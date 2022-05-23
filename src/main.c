@@ -1,54 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/05/23 21:27:32 by aaljaber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-int mini_cd(t_shell_chan *main)
+/* 
+? passing the command to each command structure 
+? and at the same time splitting them from spaces 
+? to seprate the command parts 
+*/
+void	split_command(t_shell_chan *main)
 {
-	(void) main;
-	printf("cd was here\n");
-	return (1);
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
 }
-
-// int	find_command(t_shell_chan *main)
-// {
-// 	if (!ft_strncmp(main->cmd_line, "cd", strlen(main->cmd_line)))
-// 		return (mini_cd(main));
-// 	return (0);
-// }
-// void	cmd_counter(t_shell_chan *main)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < ft_strlen(main->cmd_line))
-// 	{
-// 		if (main->cmd_line[i] == '|')
-// 			main->cmd_num++;
-// 	}
-// 	main->cmd_num++;
-// }
-
-void	mini_tools(t_shell_chan *main)
+void	check_arg(t_shell_chan *main)
 {
-	cmd_counter(main);
-	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
-	if (main->cmd_num > 1)
-		main->first_split = ft_split(main->cmd_line, '|');
-	else
-		main->first_split = &main->cmd_line;
-	// command_split(main);
-}
-
-	// printf("cmd_count%d\n", main->cmd_num);
-int	find_command(t_shell_chan *main)
-{
-	mini_tools(main);
-	return (1);
+	
 }
 
 /*
- ctrld -> if cmd_line return null that's mean that
- it's the end of the line and it could happen  
- when ctrl+d pressed
+! b4 u put them in their places check for the qoutes
+! check for the environmental variables ^.^
+! check for opt is postponded till know if u may get '-' when it's arg
+// check_opt(main);
+// void	check_opt(t_shell_chan *)
+// if (ft_strchr(main->cmd_table[i].split[k], '-'))
+*/
+int	check_cmd_parts(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		check_arg(main);
+	}
+}
+
+// printf("cmd_count%d\n", main->cmd_num);
+/*command line parts splitting and checking 
+depending on the command itself*/
+int	find_command(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	mini_tools(main);
+	if (command_name(main))
+	{
+		if (check_cmd_parts(main))
+			run_cmd(main);
+		else
+			ft_putstr_fd("error\n", 1);
+		return (1);
+	}
+	else
+		ft_putstr_fd("this commands is invalid\n", 1);
+	return (0);
+}
+
+/*
+? ctrld -> if cmd_line return null that's mean that
+? it's the end of the line and it could happen  
+? when ctrl+d pressed
 */
 int	main(void)
 {
@@ -63,11 +89,6 @@ int	main(void)
 		re_init_shell_chan(&main);
 		if (find_command(&main))
 			printf ("1\n");
-		
-		// if (find_command(&main))
-		// 	printf ("1\n");
-		// else
-		// 	printf ("0\n");
 	}
 	return (0);
 }
