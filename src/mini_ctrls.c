@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_ctrls.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/05/23 12:09:35 by aaljaber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../mini_chan.h"
 
@@ -16,12 +27,13 @@ void	ctrl_d(t_shell_chan *main)
 
 void	ctrl_c(int c)
 {
-	(void)c;
-
-	printf ("\n");
-	rl_on_new_line();
-	// rl_replace_line("", 0);
-	rl_redisplay();
+	if (c == SIGINT)
+	{
+		printf ("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 /*

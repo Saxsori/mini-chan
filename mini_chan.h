@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_chan.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/05/23 11:49:18 by aaljaber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINI_CHAN_H
 # define MINI_CHAN_H
@@ -38,17 +49,19 @@ typedef struct shell_chan
 	char		*cmd_line;
 	t_mini_cmd	*cmd_table;
 	int			cmd_num;
-	char		**cmd_split;
+	char		**first_split;
 }	t_shell_chan;
 
 /******************* INITIALIZATION *******************/
 void	init_shell_chan(t_shell_chan *main);
 void	re_init_shell_chan(t_shell_chan *main);
 
-
 /*******************   CTRL & SIG   *******************/
 void	ctrl_d(t_shell_chan *main);
 void	ctrl_c(int c);
 void	mini_sig(void);
+
+/*******************   MINI_TOOLS   *******************/
+void	cmd_counter(t_shell_chan *main);
 
 #endif
