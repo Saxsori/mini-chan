@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/23 19:49:30 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/24 05:57:55 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,19 @@ void	mini_tools(t_shell_chan *main)
 	else
 		main->first_split = &main->cmd_line;
 	split_command(main);
+}
+
+/*
+? to calculate how many strings in 2d array
+! check if u need to change it to calc any other 2d array 
+!	of ant types	
+*/
+int	twstrlen(char	**tw_str)
+{
+	int	i;
+
+	i = 0;
+	while (tw_str[i])
+		i++;
+	return (i);
 }

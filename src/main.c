@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/23 21:27:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:44:06 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	split_command(t_shell_chan *main)
 	while (++i < main->cmd_num)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
 }
-void	check_arg(t_shell_chan *main)
-{
-	
-}
 
 /*
 ! b4 u put them in their places check for the qoutes
@@ -45,7 +41,9 @@ int	check_cmd_parts(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 	{
-		check_arg(main);
+		init_mini_cmd(&main->cmd_table[i]);
+		check_opt(&main->cmd_table[i]);
+		check_arg(&main->cmd_table[i]);
 	}
 }
 
@@ -60,8 +58,8 @@ int	find_command(t_shell_chan *main)
 	mini_tools(main);
 	if (command_name(main))
 	{
-		if (check_cmd_parts(main))
-			run_cmd(main);
+		if (check_cmd_parts(main)) //
+			run_cmd(main);        //
 		else
 			ft_putstr_fd("error\n", 1);
 		return (1);
