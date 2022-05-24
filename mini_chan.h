@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 05:31:29 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:55:51 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@
 
 typedef struct mini_tools
 {
-	int	opt_num;
-	int	arg_num;
-	int	arg_index;
-	int	p_num;
-	int	y_op;
+	int		opt_num;
+	int		arg_num;
+	int		arg_index;
+	int		p_num;
+	int		y_op;
+	int		y_arg;
+	char	*cwd;
+	char	*getcwd_ret;
 }	t_cmd_tools;
 
 typedef struct mini_cmnd
@@ -54,6 +57,7 @@ typedef struct shell_chan
 	char		*cmd_line;
 	t_mini_cmd	*cmd_table;
 	int			cmd_num;
+	int			exit_status;
 	char		**first_split;
 }	t_shell_chan;
 
@@ -67,12 +71,39 @@ void	ctrl_d(t_shell_chan *main);
 void	ctrl_c(int c);
 void	mini_sig(void);
 
-/*******************   MINI_TOOLS   *******************/
+/******************* MINI_TOOLS&CHECK *******************/
 void	cmd_counter(t_shell_chan *main);
 int		twstrlen(char	**tw_str);
+void	mini_tools(t_shell_chan *main);
+void	split_command(t_shell_chan *main);
+int		is_command(char *cmd_name);
 
 /******************* OPTIONS__PARSE *******************/
 void	check_opt(t_mini_cmd *cmd);
 int		is_there_opt(t_mini_cmd *cmd);
 void	get_opt(t_mini_cmd *cmd);
+
+/******************* ARGUMENTS_PARSE *******************/
+void	check_arg(t_mini_cmd *cmd);
+void	pre_arg(t_mini_cmd *cmd);
+void	get_arg(t_mini_cmd *cmd);
+int		is_there_arg(t_mini_cmd *cmd);
+
+/******************* CMD_NAME_PARSE *******************/
+int		command_name(t_shell_chan *main);
+int		is_command(char *cmd_name);
+
+/*******************  CMD_EXECUTE  *******************/
+void	run_cmd(t_shell_chan *main);
+void	which_command(t_shell_chan *main);
+
+/*******************   MINI__CMD    *******************/
+int		mini_cd(t_shell_chan *main);
+int		mini_echo(t_shell_chan *main);
+int		mini_pwd(t_shell_chan *main);
+int		mini_exit(t_shell_chan *main);
+int		mini_export(t_shell_chan *main);
+int		mini_unset(t_shell_chan *main);
+int		mini_env(t_shell_chan *main);
+
 #endif

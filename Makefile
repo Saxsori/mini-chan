@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/05/23 18:47:29 by dfurneau         ###   ########.fr        #
+#    Updated: 2022/05/24 17:35:20 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =   src/main.c src/mini_ctrls.c 
-		src/mini_init.c src/mini_tools.c 
-		src/mini_cmd.c src/mini_check.c 
-		./mini_cmd_opt.c ./mini_cmd_arg.c
-		./mini_parse.c
+SRC =   src/main.c              src/mini_ctrls.c \
+		src/mini_init.c         src/mini_tools.c \
+		src/mini_cmd.c          src/mini_check.c \
+		src/mini_cmd_opt.c      src/mini_cmd_arg.c \
+		src/mini_cmd2.c         src/mini_parse.c \
+		src/mini_run_cmd.c      
 
 OBJ = ${SRC:.c=.o}
 

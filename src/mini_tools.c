@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 05:57:55 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:10:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,18 @@ int	twstrlen(char	**tw_str)
 	while (tw_str[i])
 		i++;
 	return (i);
+}
+
+/* 
+? passing the command to each command structure 
+? and at the same time splitting them from spaces 
+? to seprate the command parts 
+*/
+void	split_command(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
 }
