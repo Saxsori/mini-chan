@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 19:10:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/26 19:27:31 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	mini_tools(t_shell_chan *main)
 	if (main->cmd_num > 1)
 		main->first_split = ft_split(main->cmd_line, '|');
 	else
-		main->first_split = &main->cmd_line;
+	{
+		main->first_split = (char **)malloc(sizeof (char *));
+		main->first_split[0] = ft_strdup(main->cmd_line);
+	}
 	split_command(main);
 }
 
@@ -71,4 +74,7 @@ void	split_command(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
+	// i = -1;
+	// while (main->cmd_table[0].split[++i])
+	// 	printf("%s\n", main->cmd_table[0].split[i]);
 }

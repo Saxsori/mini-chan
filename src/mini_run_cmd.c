@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 17:15:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:19:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,33 @@
 ! this part u should discuss with how it should work
 !	with processes 
 */
-void	which_command(t_shell_chan *main)
+int	which_command(t_mini_cmd *cmd)
 {
-	if (!ft_strncmp(main->cmd_table->name, "cd", \
-			ft_strlen(main->cmd_table->name)))
-		mini_cd(main);
-	if (!ft_strncmp(main->cmd_table->name, "echo", \
-			ft_strlen(main->cmd_table->name)))
-		mini_echo(main);
-	if (!ft_strncmp(main->cmd_table->name, "pwd", \
-			ft_strlen(main->cmd_table->name)))
-		mini_pwd(main);
-	if (!ft_strncmp(main->cmd_table->name, "export", \
-			ft_strlen(main->cmd_table->name)))
-		mini_export(main);
-	if (!ft_strncmp(main->cmd_table->name, "unset", \
-			ft_strlen(main->cmd_table->name)))
-		mini_unset(main);
-	if (!ft_strncmp(main->cmd_table->name, "env", \
-			ft_strlen(main->cmd_table->name)))
-		mini_env(main);
-	if (!ft_strncmp(main->cmd_table->name, "exit", \
-			ft_strlen(main->cmd_table->name)))
-		mini_exit(main);
+	printf("2:%d\n", cmd->main->cmd_num);
+	if (!ft_strncmp(cmd->name, "cd", ft_strlen(cmd->name)))
+		return (mini_cd(cmd));
+	if (!ft_strncmp(cmd->name, "echo", ft_strlen(cmd->name)))
+		return (mini_echo(cmd));
+	if (!ft_strncmp(cmd->name, "pwd", ft_strlen(cmd->name)))
+		return (mini_pwd(cmd));
+	if (!ft_strncmp(cmd->name, "export", ft_strlen(cmd->name)))
+		return (mini_export(cmd));
+	if (!ft_strncmp(cmd->name, "unset", ft_strlen(cmd->name)))
+		return (mini_unset(cmd));
+	if (!ft_strncmp(cmd->name, "env", ft_strlen(cmd->name)))
+		return (mini_env(cmd));
+	if (!ft_strncmp(cmd->name, "exit", ft_strlen(cmd->name)))
+		return (mini_exit(cmd));
+	return (0);
 }
 
-void	run_cmd(t_shell_chan *main)
+/*
+! this should be changed base on what boo decide for how the process should work
+! and call this function
+*/
+int	run_cmd(t_shell_chan *main)
 {
-	which_command(main);
+	if (main->cmd_num == 1)
+		return (which_command(main->cmd_table));
+	return (0);
 }

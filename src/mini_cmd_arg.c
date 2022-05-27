@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:06:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 11:06:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:47:44 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	pre_arg(t_mini_cmd *cmd)
 ?	getting the arguments from the split starting
 ?	drom where the args is starting using arg_index
 ! check when it's only one arg 
+	i = -1;
+	while (++i < cmd->tools.arg_num)
+		printf ("%s\n", cmd->arguments[i]);
 */
 void	get_arg(t_mini_cmd *cmd)
 {
@@ -53,7 +56,20 @@ void	get_arg(t_mini_cmd *cmd)
 	k = cmd->tools.arg_index;
 	i = -1;
 	while (++i < cmd->tools.arg_num)
-		cmd->arguments[i] = cmd->split[k--];
+		cmd->arguments[i] = cmd->split[k++];
+}
+
+int	find_arg(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == '-')
+			return (0);
+	}
+	return (1);
 }
 
 /* 
@@ -64,36 +80,25 @@ void	get_arg(t_mini_cmd *cmd)
 int	is_there_arg(t_mini_cmd *cmd)
 {
 	int	i;
-	int	k;
 
-	i = -1;
-	k = -1;
+	i = 0;
 	while (cmd->split[++i])
 	{
-		k = -1;
-		while (cmd->split[i][++k])
+		if (find_arg(cmd->split[i]))
 		{
-			if (cmd->split[i][k] == '-')
-			{
-				i++;
-				k = -1;
-				cmd->tools.y_op = 1;
-			}
-		}
-		if (cmd->tools.y_op)
-			cmd->tools.y_op = 0;
-		else
-		{
-			cmd->tools.arg_index = i;
+			cmd->tools.y_arg = 1;
 			break ;
 		}
 	}
+	if (cmd->tools.y_arg == 1)
+		cmd->tools.arg_index = i;
 	return (cmd->tools.arg_index);
 }
 
+// printf ("%d\n", is_there_arg(cmd));
 void	check_arg(t_mini_cmd *cmd)
 {
-	if (is_there_arg(cmd) != -1)
+	if (is_there_arg(cmd))
 		get_arg(cmd);
 	else
 		cmd->arguments = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/24 20:55:51 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/26 23:24:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define BMAG "\e[1;35m"
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
+# define BPUR "\e[0;35m"
+
+typedef struct shell_chan	t_shell_chan;
 
 typedef struct mini_tools
 {
@@ -39,17 +42,18 @@ typedef struct mini_tools
 	int		p_num;
 	int		y_op;
 	int		y_arg;
-	char	*cwd;
-	char	*getcwd_ret;
+	char	*cwd_ret;
+	char	*pwd;
 }	t_cmd_tools;
 
 typedef struct mini_cmnd
 {
-	char		**split;
-	char		*name;
-	char		**option;
-	char		**arguments;
-	t_cmd_tools	tools;
+	char			**split;
+	char			*name;
+	char			**option;
+	char			**arguments;
+	t_cmd_tools		tools;
+	t_shell_chan	*main;
 }	t_mini_cmd;
 
 typedef struct shell_chan
@@ -64,7 +68,7 @@ typedef struct shell_chan
 /******************* INITIALIZATION *******************/
 void	init_shell_chan(t_shell_chan *main);
 void	re_init_shell_chan(t_shell_chan *main);
-void	init_mini_cmd(t_mini_cmd *cmd);
+void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 
 /*******************   CTRL & SIG   *******************/
 void	ctrl_d(t_shell_chan *main);
@@ -94,16 +98,16 @@ int		command_name(t_shell_chan *main);
 int		is_command(char *cmd_name);
 
 /*******************  CMD_EXECUTE  *******************/
-void	run_cmd(t_shell_chan *main);
-void	which_command(t_shell_chan *main);
+int		run_cmd(t_shell_chan *main);
+int		which_command(t_mini_cmd *cmd);
 
 /*******************   MINI__CMD    *******************/
-int		mini_cd(t_shell_chan *main);
-int		mini_echo(t_shell_chan *main);
-int		mini_pwd(t_shell_chan *main);
-int		mini_exit(t_shell_chan *main);
-int		mini_export(t_shell_chan *main);
-int		mini_unset(t_shell_chan *main);
-int		mini_env(t_shell_chan *main);
+int		mini_cd(t_mini_cmd *cmd);
+int		mini_echo(t_mini_cmd *cmd);
+int		mini_pwd(t_mini_cmd *cmd);
+int		mini_exit(t_mini_cmd *cmd);
+int		mini_export(t_mini_cmd *cmd);
+int		mini_unset(t_mini_cmd *cmd);
+int		mini_env(t_mini_cmd *cmd);
 
 #endif
