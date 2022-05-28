@@ -6,12 +6,24 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:31:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:04:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../mini_chan.h"
+
+void	print_envar_list(t_mini_envar *head)
+{
+	t_mini_envar *print;
+	
+	print = head;
+	while (print != NULL)
+	{
+		printf("ll -> %s\n", print->env);
+		print = print->next;
+	}
+}
 
 /*
 head here is just a pointer that will point to the first node of the
@@ -72,42 +84,25 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 	return (head);
 }
 
-t_mini_envar	*create_envar_list(t_mini_envar *head)
-{
-	head = creat_first_node(head, "path");
-	head = add_node_at_end(head, "lala");
-	head = add_node_at_end(head, "lala");
-	head = add_node_at_end(head, "lala");
-	head = add_node_at_end(head, "lala");
-	return (head);
-}
 
-void	print_envar_list(t_mini_envar *head)
+void	create_envar_list(t_shell_chan *main, char **env)
 {
-	t_mini_envar *print;
-	
-	print = head;
-	while (print != NULL)
-	{
-		printf("%s\n", print->env);
-		print = print->next;
-	}
+	int	i;
+
+	main->head_envar = creat_first_node(main->head_envar, env[0]);
+	i = 0;
+	while (env[++i])
+		main->head_envar = add_node_at_end(main->head_envar, env[i]);
+	print_envar_list(main->head_envar);
 }
 
 int main (int argc, char **argv, char **env)
 {
 	t_shell_chan main;
-	int	i;
 	
 	(void) argc;
-	(void) argv;	
-	i = -1;
-	while (env[++i])
-	{
-		printf("%s\n", env[i]);
-	}
-	main.head_envar = create_envar_list(main.head_envar);
-	// print_envar_list(main.head_envar);
+	(void) argv;
+	create_envar_list(&main, env);
 	return(0);
 }
 //    char *pathvar;
