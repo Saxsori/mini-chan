@@ -6,13 +6,19 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:04:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:29:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../mini_chan.h"
 
+/*
+-> to print the content of the list
+? taking the pointer of the head into a temp pointer 
+? if it was not NULL then moving form the next pointer of the head till 
+? the end of thw list and print the content
+*/
 void	print_envar_list(t_mini_envar *head)
 {
 	t_mini_envar *print;
@@ -23,6 +29,11 @@ void	print_envar_list(t_mini_envar *head)
 		printf("ll -> %s\n", print->env);
 		print = print->next;
 	}
+}
+
+void	add_env_data(t_mini_envar *temp, char *data)
+{
+	
 }
 
 /*
@@ -42,7 +53,8 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	temp->env = data;
+	add_env_data(temp, data);
+	// temp->env = data;
 	head = temp;
 	// free(temp);
 	return (head);
@@ -73,7 +85,8 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	temp->env = data;
+	// temp->env = data;
+	add_env_data(temp, data);
 	traversal = head;
 	while (traversal->next != NULL)
 		traversal = traversal->next;
@@ -84,15 +97,19 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 	return (head);
 }
 
-
+/*
+the main function to create the list
+creating the first node and add the first env
+adding the other env in loop
+*/
 void	create_envar_list(t_shell_chan *main, char **env)
 {
-	int	i;
+	// int	i;
 
 	main->head_envar = creat_first_node(main->head_envar, env[0]);
-	i = 0;
-	while (env[++i])
-		main->head_envar = add_node_at_end(main->head_envar, env[i]);
+	// i = 0;
+	// while (env[++i])
+	// 	main->head_envar = add_node_at_end(main->head_envar, env[i]);
 	print_envar_list(main->head_envar);
 }
 

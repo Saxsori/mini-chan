@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:25:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:23:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct node			t_mini_envar;
 typedef struct node
 {
 	t_mini_envar *prev;
-	char *env;
+	char *env_name;
+	char *env_cont;
 	t_mini_envar *next;
 }	t_mini_envar;
 
