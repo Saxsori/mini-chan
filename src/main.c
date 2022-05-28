@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/27 20:20:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:22:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	check_cmd_parts(t_shell_chan *main)
 		{
 			printf("opt%s\n", main->cmd_table[i].option[k]);
 		}
-		// printf("numa%d\n", main->cmd_table[0].tools.arg_num);
 		k = -1;
 		while (++k < main->cmd_table->tools.arg_num)
 		{
@@ -82,10 +81,12 @@ int	find_command(t_shell_chan *main)
 ? it's the end of the line and it could happen  
 ? when ctrl+d pressed
 */
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
 	t_shell_chan	main;
 
+	(void) argc;
+	(void) argv;
 	init_shell_chan(&main);
 	mini_sig();
 	while (42)

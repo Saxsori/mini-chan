@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:54:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:38:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 */
 void	print_envar_list(t_mini_envar *head)
 {
-	t_mini_envar *print;
-	
+	t_mini_envar	*print;
+
 	print = head;
 	while (print != NULL)
 	{
@@ -31,14 +31,14 @@ void	print_envar_list(t_mini_envar *head)
 	}
 }
 
-void	sequared_free(char **array)
+int	twstrlen(char	**tw_str)
 {
 	int	i;
 
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free(array);
+	i = 0;
+	while (tw_str[i])
+		i++;
+	return (i);
 }
 
 /*
@@ -48,10 +48,23 @@ void	sequared_free(char **array)
 void	add_env_data(t_mini_envar *temp, char *data)
 {
 	char	**split;
-	
+	int		i;
+
+	i = 1;
 	split = ft_split(data, '=');
 	temp->env_name = ft_strdup(split[0]);
-	temp->env_cont = ft_strdup(split[1]);
+	if (twstrlen(split) <= 2)
+	{
+		if (split[1] != NULL)
+			temp->env_cont = ft_strdup(split[1]);
+		else
+			temp->env_cont = NULL;
+	}
+	if (twstrlen(split) > 2)
+	{
+		while (++i < twstrlen(split))
+			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
+	}
 	sequared_free(split);
 }
 
@@ -99,7 +112,7 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 {
 	t_mini_envar	*temp;
 	t_mini_envar	*traversal;
-	
+
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
@@ -122,7 +135,7 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 void	create_envar_list(t_shell_chan *main, char **env)
 {
 	int	i;
-	
+
 	main->head_envar = creat_first_node(main->head_envar, env[0]);
 	i = 0;
 	while (env[++i])
@@ -132,14 +145,14 @@ void	create_envar_list(t_shell_chan *main, char **env)
 
 int main (int argc, char **argv, char **env)
 {
-	t_shell_chan main;
-	
+	t_shell_chan	main;
+
 	(void) argc;
 	(void) argv;
 	create_envar_list(&main, env);
-	return(0);
+	return (0);
 }
 //    char *pathvar;
- 
+
 //    pathvar = getenv("PATH");
 //    printf("pathvar=%s",pathvar);

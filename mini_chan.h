@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:23:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:08:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ typedef struct node			t_mini_envar;
 
 typedef struct node
 {
-	t_mini_envar *prev;
-	char *env_name;
-	char *env_cont;
-	t_mini_envar *next;
+	t_mini_envar	*prev;
+	char			*env_name;
+	char			*env_cont;
+	char			*envar;
+	t_mini_envar	*next;
 }	t_mini_envar;
 
 typedef struct mini_tools
@@ -76,43 +77,43 @@ typedef struct shell_chan
 }	t_shell_chan;
 
 
-/******************* INITIALIZATION *******************/
+/*******************     INITIALIZATION    *******************/
 void	init_shell_chan(t_shell_chan *main);
 void	re_init_shell_chan(t_shell_chan *main);
 void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 
-/*******************   CTRL & SIG   *******************/
+/*******************      CTRL & SIG       *******************/
 void	ctrl_d(t_shell_chan *main);
 void	ctrl_c(int c);
 void	mini_sig(void);
 
-/******************* MINI_TOOLS&CHECK *******************/
+/*******************   MINI__TOOLS&CHECK   *******************/
 void	cmd_counter(t_shell_chan *main);
 int		twstrlen(char	**tw_str);
 void	mini_tools(t_shell_chan *main);
 void	split_command(t_shell_chan *main);
 int		is_command(char *cmd_name);
 
-/******************* OPTIONS__PARSE *******************/
+/*******************    OPTIONS___PARSE    *******************/
 void	check_opt(t_mini_cmd *cmd);
 int		is_there_opt(t_mini_cmd *cmd);
 void	get_opt(t_mini_cmd *cmd);
 
-/******************* ARGUMENTS_PARSE *******************/
+/*******************    ARGUMENTS_PARSE    *******************/
 void	check_arg(t_mini_cmd *cmd);
 void	pre_arg(t_mini_cmd *cmd);
 void	get_arg(t_mini_cmd *cmd);
 int		is_there_arg(t_mini_cmd *cmd);
 
-/******************* CMD_NAME_PARSE *******************/
+/*******************    CMD__NAME_PARSE    *******************/
 int		command_name(t_shell_chan *main);
 int		is_command(char *cmd_name);
 
-/*******************  CMD_EXECUTE  *******************/
+/*******************      CMD_EXECUTE      *******************/
 int		run_cmd(t_shell_chan *main);
 int		which_command(t_mini_cmd *cmd);
 
-/*******************   MINI__CMD    *******************/
+/*******************       MINI_CMD        *******************/
 int		mini_cd(t_mini_cmd *cmd);
 int		mini_echo(t_mini_cmd *cmd);
 int		mini_pwd(t_mini_cmd *cmd);
@@ -120,5 +121,8 @@ int		mini_exit(t_mini_cmd *cmd);
 int		mini_export(t_mini_cmd *cmd);
 int		mini_unset(t_mini_cmd *cmd);
 int		mini_env(t_mini_cmd *cmd);
+
+/******************* MINI ERRORMNG & MEMNG *******************/
+void	sequared_free(char **array);
 
 #endif
