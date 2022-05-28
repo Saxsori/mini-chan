@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:05:57 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 22:16:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

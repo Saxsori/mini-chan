@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 17:50:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:38:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 void	check_cmd_parts(t_shell_chan *main)
 {
 	int	i;
-	int	k;
+	// int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -32,22 +32,22 @@ void	check_cmd_parts(t_shell_chan *main)
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
 	}
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		k = -1;
-		while (++k < main->cmd_table->tools.opt_num)
-		{
-			printf("opt%s\n", main->cmd_table[i].option[k]);
-		}
-		k = -1;
-		while (++k < main->cmd_table->tools.arg_num)
-		{
-			printf("arg%s\n", main->cmd_table[i].arguments[k]);
-		}
-		printf("1:%d\n", main->cmd_num);
-		printf("2:%d\n", main->cmd_table[i].main->cmd_num);
-	}
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	k = -1;
+	// 	while (++k < main->cmd_table->tools.opt_num)
+	// 	{
+	// 		printf("opt%s\n", main->cmd_table[i].option[k]);
+	// 	}
+	// 	k = -1;
+	// 	while (++k < main->cmd_table->tools.arg_num)
+	// 	{
+	// 		printf("arg%s\n", main->cmd_table[i].arguments[k]);
+	// 	}
+	// 	printf("1:%d\n", main->cmd_num);
+	// 	printf("2:%d\n", main->cmd_table[i].main->cmd_num);
+	// }
 }
 
 // printf("cmd_count%d\n", main->cmd_num);
@@ -89,12 +89,12 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 	init_shell_chan(&main);
 	mini_sig();
+	create_envar_list(&main, env);
 	while (42)
 	{
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
 		re_init_shell_chan(&main);
-		create_envar_list(&main, env);
 		if (find_command(&main))
 			main.exit_status = EXIT_SUCCESS;
 		else

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 17:08:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:05:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,51 +78,59 @@ typedef struct shell_chan
 
 
 /*******************     INITIALIZATION    *******************/
-void	init_shell_chan(t_shell_chan *main);
-void	re_init_shell_chan(t_shell_chan *main);
-void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
+void			init_shell_chan(t_shell_chan *main);
+void			re_init_shell_chan(t_shell_chan *main);
+void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 
 /*******************      CTRL & SIG       *******************/
-void	ctrl_d(t_shell_chan *main);
-void	ctrl_c(int c);
-void	mini_sig(void);
+void			ctrl_d(t_shell_chan *main);
+void			ctrl_c(int c);
+void			mini_sig(void);
 
 /*******************   MINI__TOOLS&CHECK   *******************/
-void	cmd_counter(t_shell_chan *main);
-int		twstrlen(char	**tw_str);
-void	mini_tools(t_shell_chan *main);
-void	split_command(t_shell_chan *main);
-int		is_command(char *cmd_name);
+void			cmd_counter(t_shell_chan *main);
+int				twstrlen(char	**tw_str);
+void			mini_tools(t_shell_chan *main);
+void			split_command(t_shell_chan *main);
+int				is_command(char *cmd_name);
 
 /*******************    OPTIONS___PARSE    *******************/
-void	check_opt(t_mini_cmd *cmd);
-int		is_there_opt(t_mini_cmd *cmd);
-void	get_opt(t_mini_cmd *cmd);
+void			check_opt(t_mini_cmd *cmd);
+int				is_there_opt(t_mini_cmd *cmd);
+void			get_opt(t_mini_cmd *cmd);
 
 /*******************    ARGUMENTS_PARSE    *******************/
-void	check_arg(t_mini_cmd *cmd);
-void	pre_arg(t_mini_cmd *cmd);
-void	get_arg(t_mini_cmd *cmd);
-int		is_there_arg(t_mini_cmd *cmd);
+void			check_arg(t_mini_cmd *cmd);
+void			pre_arg(t_mini_cmd *cmd);
+void			get_arg(t_mini_cmd *cmd);
+int				is_there_arg(t_mini_cmd *cmd);
 
 /*******************    CMD__NAME_PARSE    *******************/
-int		command_name(t_shell_chan *main);
-int		is_command(char *cmd_name);
+int				command_name(t_shell_chan *main);
+int				is_command(char *cmd_name);
 
 /*******************      CMD_EXECUTE      *******************/
-int		run_cmd(t_shell_chan *main);
-int		which_command(t_mini_cmd *cmd);
+int				run_cmd(t_shell_chan *main);
+int				which_command(t_mini_cmd *cmd);
 
 /*******************       MINI_CMD        *******************/
-int		mini_cd(t_mini_cmd *cmd);
-int		mini_echo(t_mini_cmd *cmd);
-int		mini_pwd(t_mini_cmd *cmd);
-int		mini_exit(t_mini_cmd *cmd);
-int		mini_export(t_mini_cmd *cmd);
-int		mini_unset(t_mini_cmd *cmd);
-int		mini_env(t_mini_cmd *cmd);
+int				mini_cd(t_mini_cmd *cmd);
+int				mini_echo(t_mini_cmd *cmd);
+int				mini_pwd(t_mini_cmd *cmd);
+int				mini_exit(t_mini_cmd *cmd);
+int				mini_export(t_mini_cmd *cmd);
+int				mini_unset(t_mini_cmd *cmd);
+int				mini_env(t_mini_cmd *cmd);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
-void	sequared_free(char **array);
+void			sequared_free(char **array);
+
+/*******************      MINI__ENVAR      *******************/
+
+void			create_envar_list(t_shell_chan *main, char **env);
+t_mini_envar	*creat_first_node(t_mini_envar *head, char *data);
+t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data);
+void			add_env_data(t_mini_envar *temp, char *data);
+void			print_envar_list(t_mini_envar *head);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:05:18 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:30:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ? the main function to create the list
 ? creating the first node and add the first env
 ? adding the other env in loop
+	// print_envar_list(main->head_envar);
 */
 void	create_envar_list(t_shell_chan *main, char **env)
 {
@@ -25,7 +26,6 @@ void	create_envar_list(t_shell_chan *main, char **env)
 	i = 0;
 	while (env[++i])
 		main->head_envar = add_node_at_end(main->head_envar, env[i]);
-	print_envar_list(main->head_envar);
 }
 
 /*
@@ -47,7 +47,6 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp->next = NULL;
 	add_env_data(temp, data);
 	head = temp;
-	// free(temp);
 	return (head);
 }
 
@@ -82,8 +81,6 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 		traversal = traversal->next;
 	traversal->next = temp;
 	temp->prev = traversal;
-	// free (temp);
-	// free (traversal);
 	return (head);
 }
 
@@ -118,7 +115,7 @@ void	add_env_data(t_mini_envar *temp, char *data)
 -> to print the content of the list
 ? taking the pointer of the head into a temp pointer 
 ? if it was not NULL then moving form the next pointer of the head till 
-? the end of thw list and print the content
+? the end of the list and print the content
 */
 void	print_envar_list(t_mini_envar *head)
 {
@@ -127,7 +124,7 @@ void	print_envar_list(t_mini_envar *head)
 	print = head;
 	while (print != NULL)
 	{
-		printf("%s=%s\n", print->env_name, print->env_cont);
+		printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
 		print = print->next;
 	}
 }

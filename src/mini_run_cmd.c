@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/27 20:19:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:42:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 int	which_command(t_mini_cmd *cmd)
 {
-	printf("2:%d\n", cmd->main->cmd_num);
+	// printf("2:%d\n", cmd->main->cmd_num);
 	if (!ft_strncmp(cmd->name, "cd", ft_strlen(cmd->name)))
 		return (mini_cd(cmd));
 	if (!ft_strncmp(cmd->name, "echo", ft_strlen(cmd->name)))
