@@ -1,31 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_envar.c                                       :+:      :+:    :+:   */
+/*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:05:18 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/05/28 18:05:57 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../mini_chan.h"
 
 /*
-? the main function to create the list
-? creating the first node and add the first env
-? adding the other env in loop
+-> to print the content of the list
+? taking the pointer of the head into a temp pointer 
+? if it was not NULL then moving form the next pointer of the head till 
+? the end of thw list and print the content
 */
-void	create_envar_list(t_shell_chan *main, char **env)
+void	print_envar_list(t_mini_envar *head)
 {
-	int	i;
+	t_mini_envar	*print;
 
-	main->head_envar = creat_first_node(main->head_envar, env[0]);
-	i = 0;
-	while (env[++i])
-		main->head_envar = add_node_at_end(main->head_envar, env[i]);
-	print_envar_list(main->head_envar);
+	print = head;
+	while (print != NULL)
+	{
+		printf("%s=%s\n", print->env_name, print->env_cont);
+		print = print->next;
+	}
+}
+
+// int	twstrlen(char	**tw_str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (tw_str[i])
+// 		i++;
+// 	return (i);
+// }
+
+/*
+? env_name is pointer here and you cant pass any value 
+? to a pointer that u didn't malloc
+*/
+void	add_env_data(t_mini_envar *temp, char *data)
+{
+	char	**split;
+	int		i;
+
+	i = 1;
+	split = ft_split(data, '=');
+	temp->env_name = ft_strdup(split[0]);
+	if (twstrlen(split) <= 2)
+	{
+		if (split[1] != NULL)
+			temp->env_cont = ft_strdup(split[1]);
+		else
+			temp->env_cont = NULL;
+	}
+	if (twstrlen(split) > 2)
+	{
+		while (++i < twstrlen(split))
+			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
+	}
+	sequared_free(split);
 }
 
 /*
@@ -88,46 +128,31 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 }
 
 /*
-? env_name is pointer here and you cant pass any value 
-? to a pointer that u didn't malloc
+? the main function to create the list
+? creating the first node and add the first env
+? adding the other env in loop
 */
-void	add_env_data(t_mini_envar *temp, char *data)
+void	create_envar_list(t_shell_chan *main, char **env)
 {
-	char	**split;
-	int		i;
+	int	i;
 
-	i = 1;
-	split = ft_split(data, '=');
-	temp->env_name = ft_strdup(split[0]);
-	if (twstrlen(split) <= 2)
-	{
-		if (split[1] != NULL)
-			temp->env_cont = ft_strdup(split[1]);
-		else
-			temp->env_cont = NULL;
-	}
-	if (twstrlen(split) > 2)
-	{
-		while (++i < twstrlen(split))
-			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
-	}
-	sequared_free(split);
+	main->head_envar = creat_first_node(main->head_envar, env[0]);
+	i = 0;
+	while (env[++i])
+		main->head_envar = add_node_at_end(main->head_envar, env[i]);
+	// print_envar_list(main->head_envar);
 }
 
-/*
--> to print the content of the list
-? taking the pointer of the head into a temp pointer 
-? if it was not NULL then moving form the next pointer of the head till 
-? the end of thw list and print the content
-*/
-void	print_envar_list(t_mini_envar *head)
-{
-	t_mini_envar	*print;
+// int main (int argc, char **argv, char **env)
+// {
+// 	t_shell_chan	main;
 
-	print = head;
-	while (print != NULL)
-	{
-		printf("%s=%s\n", print->env_name, print->env_cont);
-		print = print->next;
-	}
-}
+// 	(void) argc;
+// 	(void) argv;
+// 	create_envar_list(&main, env);
+// 	return (0);
+// }
+//    char *pathvar;
+
+//    pathvar = getenv("PATH");
+//    printf("pathvar=%s",pathvar);

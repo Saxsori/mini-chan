@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 16:22:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:50:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int argc, char **argv, char **env)
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
 		re_init_shell_chan(&main);
+		create_envar_list(&main, env);
 		if (find_command(&main))
 			main.exit_status = EXIT_SUCCESS;
 		else
