@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/26 23:24:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:25:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@
 # define BPUR "\e[0;35m"
 
 typedef struct shell_chan	t_shell_chan;
+typedef struct node			t_mini_envar;
+
+typedef struct node
+{
+	t_mini_envar *prev;
+	char *env;
+	t_mini_envar *next;
+}	t_mini_envar;
 
 typedef struct mini_tools
 {
@@ -58,12 +66,14 @@ typedef struct mini_cmnd
 
 typedef struct shell_chan
 {
-	char		*cmd_line;
-	t_mini_cmd	*cmd_table;
-	int			cmd_num;
-	int			exit_status;
-	char		**first_split;
+	char			*cmd_line;
+	t_mini_cmd		*cmd_table;
+	int				cmd_num;
+	int				exit_status;
+	char			**first_split;
+	t_mini_envar	*head_envar;
 }	t_shell_chan;
+
 
 /******************* INITIALIZATION *******************/
 void	init_shell_chan(t_shell_chan *main);
