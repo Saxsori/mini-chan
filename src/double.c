@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:29:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 19:54:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,33 @@ void	print_envar_list(t_mini_envar *head)
 	print = head;
 	while (print != NULL)
 	{
-		printf("ll -> %s\n", print->env);
+		printf("%s=%s\n", print->env_name, print->env_cont);
 		print = print->next;
 	}
 }
 
+void	sequared_free(char **array)
+{
+	int	i;
+
+	i = -1;
+	while (array[++i])
+		free(array[i]);
+	free(array);
+}
+
+/*
+? env_name is pointer here and you cant pass any value 
+? to a pointer that u didn't malloc
+*/
 void	add_env_data(t_mini_envar *temp, char *data)
 {
+	char	**split;
 	
+	split = ft_split(data, '=');
+	temp->env_name = ft_strdup(split[0]);
+	temp->env_cont = ft_strdup(split[1]);
+	sequared_free(split);
 }
 
 /*
@@ -54,7 +73,6 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp->prev = NULL;
 	temp->next = NULL;
 	add_env_data(temp, data);
-	// temp->env = data;
 	head = temp;
 	// free(temp);
 	return (head);
@@ -85,7 +103,6 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	// temp->env = data;
 	add_env_data(temp, data);
 	traversal = head;
 	while (traversal->next != NULL)
@@ -98,18 +115,18 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 }
 
 /*
-the main function to create the list
-creating the first node and add the first env
-adding the other env in loop
+? the main function to create the list
+? creating the first node and add the first env
+? adding the other env in loop
 */
 void	create_envar_list(t_shell_chan *main, char **env)
 {
-	// int	i;
-
+	int	i;
+	
 	main->head_envar = creat_first_node(main->head_envar, env[0]);
-	// i = 0;
-	// while (env[++i])
-	// 	main->head_envar = add_node_at_end(main->head_envar, env[i]);
+	i = 0;
+	while (env[++i])
+		main->head_envar = add_node_at_end(main->head_envar, env[i]);
 	print_envar_list(main->head_envar);
 }
 
