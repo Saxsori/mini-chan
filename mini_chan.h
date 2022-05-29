@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 23:19:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:10:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <signal.h>
 # include <limits.h>
 # include <errno.h>
+# include <dirent.h>
+# include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <signal.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
 # define BRED "\e[1;31m"
@@ -46,14 +48,16 @@ typedef struct node
 
 typedef struct mini_tools
 {
-	int		opt_num;
-	int		arg_num;
-	int		arg_index;
-	int		p_num;
-	int		y_op;
-	int		y_arg;
-	char	*cwd_ret;
-	char	*pwd;
+	int				opt_num;
+	int				arg_num;
+	int				arg_index;
+	int				p_num;
+	int				y_op;
+	int				y_arg;
+	char			*cwd_ret;
+	char			*pwd;
+	DIR				*dir;
+	t_mini_envar	*envar;
 }	t_cmd_tools;
 
 typedef struct mini_cmnd
@@ -131,9 +135,17 @@ void			create_envar_list(t_shell_chan *main, char **env);
 t_mini_envar	*creat_first_node(t_mini_envar *head, char *data);
 t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data);
 void			add_env_data(t_mini_envar *temp, char *data);
-void			print_envar_list(t_mini_envar *head);
-t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
 void			del_mid_envar(t_mini_envar *envar);
 t_mini_envar	*del_last_envar(t_mini_envar *head);
 t_mini_envar	*del_first_envar(t_mini_envar *head);
+t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
+void			print_envar_list(t_mini_envar *head);
+
+/*******************       MINI__ECHO      *******************/
+int				is_extst(char *line);
+void			check_echo_opt(t_mini_cmd *cmd);
+int				is_echo_opt(char **opt, char which, int len);
+
+void			new_prompt(int i);
+
 #endif

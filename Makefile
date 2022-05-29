@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/05/28 23:08:16 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/05/29 17:51:39 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC =   src/main.c                src/mini_ctrls.c \
 		src/mini_cmd2.c           src/mini_parse.c \
 		src/mini_run_cmd.c        src/mini_free.c \
 		src/mini_envar.c          src/mini_envar_tools.c \
-		src/mini_envar_export.c   src/mini_envar_unset.c
+		src/mini_envar_export.c   src/mini_envar_unset.c \
+		src/mini_echo_tools.c
 
 OBJ = ${SRC:.c=.o}
 

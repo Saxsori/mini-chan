@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:06:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/27 12:47:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 13:40:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,21 @@ void	get_arg(t_mini_cmd *cmd)
 		cmd->arguments[i] = cmd->split[k++];
 }
 
+/*
+if it does have '-' then it's opt not arg so no arg
+	// int	i;
+
+	// i = -1;
+	// while (line[++i])
+	// {
+		if (line[0] == '-')
+			return (0);
+	// }
+*/
 int	find_arg(char *line)
 {
-	int	i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] == '-')
-			return (0);
-	}
+	if (line[0] == '-')
+		return (0);
 	return (1);
 }
 
@@ -103,3 +108,19 @@ void	check_arg(t_mini_cmd *cmd)
 	else
 		cmd->arguments = NULL;
 }
+
+// void	take_first_arg(t_mini_cmd *cmd)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (twstrlen(cmd->split) <= 1)
+// 	{
+// 		cmd->tools.arg_num = twstrlen(cmd->split) - 1;
+// 		cmd->arguments = (char **)malloc(cmd->tools.arg_num * sizeof(char *));
+// 		while (++i < cmd->tools.arg_num)
+// 			cmd->arguments[i] = (char *)malloc(ft_strlen(cmd->split[i]));
+// 	}
+// 	else
+// 		cmd->arguments = NULL;
+// }

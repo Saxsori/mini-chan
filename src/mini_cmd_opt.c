@@ -6,45 +6,42 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:12:09 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/27 13:08:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:45:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-int	find_opt(char *line)
-{
-	int	i;
-
-	i = -1;
-	if (line != NULL)
-	{
-		while (line[++i])
-		{
+/*
+	// if (line != NULL)
+	// {
+		// while (line[++i])
+		// {
 			if (line[i] == '-')
 				return (1);
-		}
-	}
+	// 	}
+	// }
+*/
+int	find_opt(char *line)
+{
+	if (line[0] == '-')
+		return (1);
 	return (0);
 }
 
 int	is_there_opt(t_mini_cmd *cmd)
 {
 	int	i;
-	int	k;
 
-	i = -1;
-	k = -1;
+	i = 0;
 	if (find_opt(cmd->split[1]))
 	{
 		while (cmd->split[++i])
 		{
-			k = -1;
-			while (cmd->split[i][++k])
-			{
-				if (cmd->split[i][k] == '-')
-					cmd->tools.opt_num++;
-			}
+			if (cmd->split[i][0] == '-')
+				cmd->tools.opt_num++;
+			else
+				return (cmd->tools.opt_num);
 		}
 	}
 	return (cmd->tools.opt_num);

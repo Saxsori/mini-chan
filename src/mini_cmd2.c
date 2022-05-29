@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 00:07:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:47:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,22 @@ int	mini_unset(t_mini_cmd *cmd)
 	i = -1;
 	if (cmd->arguments)
 	{
-		while (cmd->arguments[++i])
+		while (++i < cmd->tools.arg_num)
 		{
 			envar = sreach_envar(cmd->main->head_envar, cmd->arguments[i]);
 			if (envar)
 			{
 				if (envar->prev == NULL)
-					cmd->main->head_envar = del_first_envar(cmd->main->head_envar);
+					cmd->main->head_envar = \
+										del_first_envar(cmd->main->head_envar);
 				else if (envar->next == NULL)
-					cmd->main->head_envar = del_last_envar(cmd->main->head_envar);
+					cmd->main->head_envar = \
+										del_last_envar(cmd->main->head_envar);
 				else
 					del_mid_envar(envar);
 			}
-			return(1);
-				// printf(BGRN"%s=%s\n"BWHT, envar->env_name, envar->env_cont);
-			// if ()
-			// if (envar && envar->prev && !envar->next)
-			// else if (envar)
 		}
+		return (1);
 	}
 	return (1);
 }

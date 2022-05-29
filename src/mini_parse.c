@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:17:28 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/26 20:12:38 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:09:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,11 @@ int	command_name(t_shell_chan *main)
 		}
 	}
 	return (1);
+}
+
+int	is_extst(char *line)
+{
+	if (!ft_strncmp(line, "$?", ft_strlen(line)))
+		return (1);
+	return (0);
 }

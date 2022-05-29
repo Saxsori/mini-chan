@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:47:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:48:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 	// if (cmd->arguments[0] == NULL)
 int	mini_cd(t_mini_cmd *cmd)
 {
-	if (chdir(cmd->arguments[0]) == -1)
+	if (!cmd->arguments)
 	{
-		printf(BRED"mini-chan🌸: cd: %s: No such file or directory\n"BWHT, \
-			cmd->arguments[0]);
-		return (0);
+		cmd->tools.envar = sreach_envar(cmd->main->head_envar, "HOME");
+		chdir(cmd->tools.envar->env_cont);
+	}
+	else
+	{
+		if (chdir(cmd->arguments[0]) == -1)
+		{
+			printf(BRED"mini-chan🌸: cd: %s: %s\n"BWHT, \
+				cmd->arguments[0], strerror(errno));
+			return (0);
+		}
 	}
 	return (1);
 }
@@ -30,8 +38,14 @@ int	mini_echo(t_mini_cmd *cmd)
 	int	i;
 
 	i = -1;
+	check_echo_opt(cmd);
 	while (++i < cmd->tools.arg_num)
-		printf(BCYN"%s "BWHT, cmd->arguments[i]);
+	{
+		if (is_extst(cmd->arguments[i]))
+			printf(BCYN"%d "BWHT, cmd->main->exit_status);
+		else
+			printf(BCYN"%s "BWHT, cmd->arguments[i]);
+	}
 	if (!cmd->option)
 		printf("\n"BWHT);
 	return (1);
