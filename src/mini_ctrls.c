@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 18:12:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:41:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	ctrl_d(t_shell_chan *main)
 	}
 }
 
+/*
+? rl_line_buffer -> the line gathered so far form readline
+? rl_on_new_line(); -> moving onto a new line 
+? rl_replace_line("", 0); -> Replace the contents 
+?					of rl_line_buffer with text (NULL)
+? rl_redisplay -> Change what's displayed on the 
+?	screen to reflect the current contents of rl_line_buffer
+*/
 void	new_prompt(int i)
 {
 	if (i == 1)
