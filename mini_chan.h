@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 18:05:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 23:19:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,8 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data);
 t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data);
 void			add_env_data(t_mini_envar *temp, char *data);
 void			print_envar_list(t_mini_envar *head);
-
+t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
+void			del_mid_envar(t_mini_envar *envar);
+t_mini_envar	*del_last_envar(t_mini_envar *head);
+t_mini_envar	*del_first_envar(t_mini_envar *head);
 #endif

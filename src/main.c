@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:38:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 20:20:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	main(int argc, char **argv, char **env)
 			main.exit_status = EXIT_SUCCESS;
 		else
 			main.exit_status = EXIT_FAILURE;
+		// printf("%d\n", main.exit_status);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 19:41:15 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 03:58:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,53 @@
 
 int	mini_export(t_mini_cmd *cmd)
 {
-	cmd->main->head_envar = add_node_at_end(cmd->main->head_envar, cmd->arguments[0]);
-	return (1);
+	if (cmd->arguments)
+	{
+		cmd->main->head_envar = \
+			add_node_at_end(cmd->main->head_envar, cmd->arguments[0]);
+		return (1);
+	}
+	return (0);
 }
 
 int	mini_unset(t_mini_cmd *cmd)
 {
-	(void) cmd;
-	printf("unset was here\n");
+	t_mini_envar	*envar;
+	int				i;
+
+	i = -1;
+	if (cmd->arguments)
+	{
+		while (cmd->arguments[++i])
+		{
+			envar = sreach_envar(cmd->main->head_envar, cmd->arguments[i]);
+			if (envar)
+			{
+				if (envar->prev == NULL)
+					cmd->main->head_envar = del_first_envar(cmd->main->head_envar);
+				else if (envar->next == NULL)
+					cmd->main->head_envar = del_last_envar(cmd->main->head_envar);
+				else
+					del_mid_envar(envar);
+			}
+			return(1);
+				// printf(BGRN"%s=%s\n"BWHT, envar->env_name, envar->env_cont);
+			// if ()
+			// if (envar && envar->prev && !envar->next)
+			// else if (envar)
+		}
+	}
 	return (1);
 }
 
 int	mini_env(t_mini_cmd *cmd)
 {
-	if (!cmd->arguments)
-		print_envar_list(cmd->main->head_envar);
-	else
-	{
-		print_envar_list(cmd->main->head_envar);
-		printf(BCYN"%s\n"BWHT, cmd->arguments[0]);
-	}
+	// if (!cmd->arguments)
+	print_envar_list(cmd->main->head_envar);
+	// else
+	// {
+	// 	print_envar_list(cmd->main->head_envar);
+	// 	printf(BCYN"%s\n"BWHT, cmd->arguments[0]);
+	// }
 	return (1);
 }

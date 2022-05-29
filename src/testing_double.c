@@ -3,22 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 22:16:42 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/28 23:24:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../mini_chan.h"
 
-/*
--> to print the content of the list
-? taking the pointer of the head into a temp pointer 
-? if it was not NULL then moving form the next pointer of the head till 
-? the end of thw list and print the content
-*/
+t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name)
+{
+	t_mini_envar	*envar;
+
+	envar = head;
+	if (envar->next && !envar->prev)
+	{
+		while (envar->next)
+		{
+			if (!ft_strncmp(envar->env_name, env_name, ft_strlen(envar->env_name)))
+				return (envar);
+			else
+				envar = envar->next;
+		}
+		if (!ft_strncmp(envar->env_name, env_name, ft_strlen(envar->env_name)))
+			return (envar);
+	}
+	else
+	{
+		if (!ft_strncmp(envar->env_name, env_name, ft_strlen(envar->env_name)))
+			return (envar);
+	}
+	return (NULL);
+}
+
 void	print_envar_list(t_mini_envar *head)
 {
 	t_mini_envar	*print;
@@ -26,25 +45,21 @@ void	print_envar_list(t_mini_envar *head)
 	print = head;
 	while (print != NULL)
 	{
-		printf("%s=%s\n", print->env_name, print->env_cont);
+		printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
 		print = print->next;
 	}
 }
 
-// int	twstrlen(char	**tw_str)
-// {
-// 	int	i;
+int	twstrlen(char **tw_str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (tw_str[i])
-// 		i++;
-// 	return (i);
-// }
+	i = 0;
+	while (tw_str[i])
+		i++;
+	return (i);
+}
 
-/*
-? env_name is pointer here and you cant pass any value 
-? to a pointer that u didn't malloc
-*/
 void	add_env_data(t_mini_envar *temp, char *data)
 {
 	char	**split;
@@ -68,16 +83,6 @@ void	add_env_data(t_mini_envar *temp, char *data)
 	sequared_free(split);
 }
 
-/*
-head here is just a pointer that will point to the first node of the
- list so passing that pointer ..
-? 1- malloc a temp pointer on the size of one node
-? 2- passing null to the pointer of the prev and next pointer
-?	since there it's the first node created
-? 3- passing the pointer of temp to head so that head can point to the first 
-?	node created which is the head of the list
-? 4- return head to the head pointer in the main function
-*/
 t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 {
 	t_mini_envar	*temp;
@@ -87,27 +92,9 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp->next = NULL;
 	add_env_data(temp, data);
 	head = temp;
-	// free(temp);
 	return (head);
 }
 
-/*
-here is the way to add a node to the end of an existed list 
- 	and in order to do that u need to :
-? 1- create a new node (temp) that u want to add
-? 2- pass NULL to the prev and next pointers of the new node (temp)
-? 3- pass the data to the new node (temp)
-? 4- set the traversal var to the value of the head 
-?	so it can start moving from the beginning of the list till 
-?	it reach the NULL
-? 5- moving from the next pointer of the head to the other nodes
-?	till the next node is NULL which is the end of the list (travesral)
-? 6- so the next pointer of the last node (travesral) instead of NULL it should
-?	be the pointer of the new node added (temp)
-? 7- and the prev pointer of the new node (temp) should be the pointer 
-?	of the last pointer (travesral)
-? 8- return the new head after making the change into the list
-*/
 t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 {
 	t_mini_envar	*temp;
@@ -122,16 +109,9 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 		traversal = traversal->next;
 	traversal->next = temp;
 	temp->prev = traversal;
-	// free (temp);
-	// free (traversal);
 	return (head);
 }
 
-/*
-? the main function to create the list
-? creating the first node and add the first env
-? adding the other env in loop
-*/
 void	create_envar_list(t_shell_chan *main, char **env)
 {
 	int	i;
@@ -140,18 +120,59 @@ void	create_envar_list(t_shell_chan *main, char **env)
 	i = 0;
 	while (env[++i])
 		main->head_envar = add_node_at_end(main->head_envar, env[i]);
-	// print_envar_list(main->head_envar);
 }
 
-// int main (int argc, char **argv, char **env)
-// {
-// 	t_shell_chan	main;
+t_mini_envar	*del_first_envar(t_mini_envar *head)
+{
+	head = head->next;
+	free(head->prev);
+	head->prev = NULL;
+	return (head);
+}
 
-// 	(void) argc;
-// 	(void) argv;
-// 	create_envar_list(&main, env);
-// 	return (0);
-// }
+t_mini_envar	*del_last_envar(t_mini_envar *head)
+{
+	t_mini_envar	*temp;
+	t_mini_envar	*traversal;
+
+	traversal = head;
+	while (traversal->next != NULL)
+		traversal = traversal->next;
+	temp = traversal->prev;
+	temp->next = NULL;
+	free(traversal);
+	return (head);
+}
+
+void	del_mid_envar(t_mini_envar *envar)
+{
+	t_mini_envar	*temp;
+
+	temp = envar->prev;
+	temp->next = envar->next;
+	envar->next->prev = temp;
+	free (envar);
+	envar = NULL;
+}
+
+int main (int argc, char **argv, char **env)
+{
+	t_shell_chan	main;
+	t_mini_envar	*enva;
+
+	(void) argc;
+	(void) argv;
+	create_envar_list(&main, env);
+	print_envar_list(main.head_envar);
+	enva = sreach_envar(main.head_envar, "SHELL");
+	// main.head_envar = del_first_envar(main.head_envar);
+	// main.head_envar = del_last_envar(main.head_envar);
+	printf(BGRN"----------------\n");
+	// del_mid_envar(enva);
+	print_envar_list(main.head_envar);
+	printf(BGRN"%s=%s\n"BWHT, enva->env_name, enva->env_cont);
+	return (0);
+}
 //    char *pathvar;
 
 //    pathvar = getenv("PATH");
