@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 17:48:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/30 03:04:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	mini_cd(t_mini_cmd *cmd)
 				cmd->arguments[0], strerror(errno));
 			return (0);
 		}
+		if (!ft_strncmp(cmd->arguments[0], "//", 2))
+			cmd->main->d_rootpath = 1;
 	}
 	return (1);
 }
@@ -57,7 +59,13 @@ int	mini_pwd(t_mini_cmd *cmd)
 	cmd->tools.cwd_ret = getcwd(cmd->tools.pwd, 1024);
 	if (cmd->tools.cwd_ret != NULL)
 	{
-		printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
+		if (cmd->main->d_rootpath == 1)
+		{
+			printf(BCYN"//\n"BWHT);
+			cmd->main->d_rootpath = 0;
+		}
+		else
+			printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
 		return (1);
 	}
 	else

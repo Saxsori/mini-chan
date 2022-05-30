@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 17:39:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:53:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	mini_tools(t_shell_chan *main)
 /*
 ? to calculate how many strings in 2d array
 ! check if u need to change it to calc any other 2d array 
-!	of ant types	
+!	of any types	
 */
 int	twstrlen(char	**tw_str)
 {
@@ -72,7 +72,7 @@ void	split_command(t_shell_chan *main)
 	int	i;
 
 	i = -1;
-	while (++i < main->cmd_num)
+	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
 	// i = -1;
 	// while (main->cmd_table[0].split[++i])

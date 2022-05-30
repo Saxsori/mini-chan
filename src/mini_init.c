@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/27 12:34:51 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/30 02:46:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	init_shell_chan(t_shell_chan *main)
 {
-	main->cmd_line = 0;
+	main->cmd_line = NULL;
 	main->cmd_num = 0;
 	main->exit_status = EXIT_SUCCESS;
+	main->d_rootpath = 0;
 }
 
 void	re_init_shell_chan(t_shell_chan *main)
@@ -33,4 +34,6 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->tools.opt_num = 0;
 	cmd->tools.arg_index = 0;
 	cmd->tools.y_op = 0;
+	cmd->tools.y_arg = 0;
+	cmd->tools.p_num = 0;
 }

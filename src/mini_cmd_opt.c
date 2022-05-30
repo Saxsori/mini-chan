@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd_opt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:12:09 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 17:45:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/30 02:35:01 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 */
 int	find_opt(char *line)
 {
-	if (line[0] == '-')
-		return (1);
+	if (line != NULL)
+	{
+		if (line[0] == '-')
+		return (1);	
+	}
 	return (0);
 }
 

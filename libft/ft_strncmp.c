@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrar <abrar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:05:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/21 14:12:42 by abrar            ###   ########.fr       */
+/*   Updated: 2022/05/30 08:46:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 
 	p1 = (unsigned char *)s1;
 	p2 = (unsigned char *)s2;
+	if (ft_strlen(s1) > ft_strlen(s2))
+		n = ft_strlen(s1);
+	else
+		n = ft_strlen(s2);
 	i = 0;
 	while (i < n && (p1[i] != '\0' || p2[i] != '\0'))
 	{
