@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 04:47:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:10:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
+
+typedef struct p_quotes
+{
+	int	begin;
+	int	end;
+	int	q_string;
+}	t_mini_quotes;
 
 typedef struct node
 {
@@ -73,6 +80,7 @@ typedef struct mini_cmnd
 typedef struct shell_chan
 {
 	char			*cmd_line;
+	t_mini_quotes	*q_pars;
 	t_mini_cmd		*cmd_table;
 	int				cmd_num;
 	int				exit_status;
@@ -80,7 +88,6 @@ typedef struct shell_chan
 	t_mini_envar	*head_envar;
 	int				d_rootpath;
 }	t_shell_chan;
-
 
 /*******************     INITIALIZATION    *******************/
 void			init_shell_chan(t_shell_chan *main);
@@ -93,7 +100,7 @@ void			ctrl_c(int c);
 void			mini_sig(void);
 
 /*******************   MINI__TOOLS&CHECK   *******************/
-void			mini_tools(t_shell_chan *main);
+void			first_cmd_split(t_shell_chan *main);
 int				twstrlen(char	**tw_str);
 void			cmd_counter(t_shell_chan *main);
 void			split_command(t_shell_chan *main);

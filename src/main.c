@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 18:53:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:11:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,14 @@ void	check_cmd_parts(t_shell_chan *main)
 // while (++i < main->cmd_num)
 // 	printf("%s\n", main->first_split[i]);
 // printf("%d\n", main->cmd_num);
+! after splitting | check quotes for each command and then if it was correct
+! split command parts then expand
 */
 int	find_command(t_shell_chan *main)
 {
-	mini_tools(main);
+	first_cmd_split(main);
+	///////////////quotes handling after splitting |
+	split_command(main);
 	if (command_name(main))
 	{
 		check_cmd_parts(main);

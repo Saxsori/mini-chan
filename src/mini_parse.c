@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:17:28 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/30 02:01:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:34:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	command_name(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 	{
-		if (main->cmd_table[i].split[0])
+		if (main->cmd_table[i].split != NULL)
 			main->cmd_table[i].name = main->cmd_table[i].split[0];
 		else
 			main->cmd_table[i].name = NULL;

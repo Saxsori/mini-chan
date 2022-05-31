@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 18:53:15 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:10:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	cmd_counter(t_shell_chan *main)
 ? 4- call function split command to split the parts and 
 ?	save each command on it's own structure
 */
-void	mini_tools(t_shell_chan *main)
+void	first_cmd_split(t_shell_chan *main)
 {
 	cmd_counter(main);
 	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
@@ -43,8 +43,7 @@ void	mini_tools(t_shell_chan *main)
 	{
 		main->first_split = (char **)malloc(sizeof (char *));
 		main->first_split[0] = ft_strdup(main->cmd_line);
-	}
-	split_command(main);
+	}	
 }
 
 /*
@@ -66,6 +65,9 @@ int	twstrlen(char	**tw_str)
 ? passing the command to each command structure 
 ? and at the same time splitting them from spaces 
 ? to seprate the command parts 
+	// i = -1;
+	// while (main->cmd_table[0].split[++i])
+	// 	printf("%s\n", main->cmd_table[0].split[i]);
 */
 void	split_command(t_shell_chan *main)
 {
@@ -74,7 +76,4 @@ void	split_command(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
-	// i = -1;
-	// while (main->cmd_table[0].split[++i])
-	// 	printf("%s\n", main->cmd_table[0].split[i]);
 }
