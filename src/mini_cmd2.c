@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 11:47:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:34:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	mini_export(t_mini_cmd *cmd)
 		cmd->main->head_envar = \
 			add_node_at_end(cmd->main->head_envar, cmd->arguments[0]);
 		return (1);
+	}
+	else
+	{
+		print_envar_list(cmd->main->head_envar, 'x');
 	}
 	return (0);
 }
@@ -54,10 +58,10 @@ int	mini_unset(t_mini_cmd *cmd)
 int	mini_env(t_mini_cmd *cmd)
 {
 	if (!cmd->arguments)
-		print_envar_list(cmd->main->head_envar);
+		print_envar_list(cmd->main->head_envar, 'n');
 	else
 	{
-		print_envar_list(cmd->main->head_envar);
+		print_envar_list(cmd->main->head_envar, 'n');
 		printf(BCYN"%s\n"BWHT, cmd->arguments[0]);
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/30 03:04:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:32:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	mini_cd(t_mini_cmd *cmd)
 				cmd->arguments[0], strerror(errno));
 			return (0);
 		}
-		if (!ft_strncmp(cmd->arguments[0], "//", 2))
+		if (is_doubslash(cmd->arguments[0]) == 2)
 			cmd->main->d_rootpath = 1;
+		else if (is_doubslash(cmd->arguments[0]) != 2 \
+				&& is_doubslash(cmd->arguments[0]) != 0)
+			cmd->main->d_rootpath = 0;
 	}
 	return (1);
 }
@@ -60,10 +63,7 @@ int	mini_pwd(t_mini_cmd *cmd)
 	if (cmd->tools.cwd_ret != NULL)
 	{
 		if (cmd->main->d_rootpath == 1)
-		{
-			printf(BCYN"//\n"BWHT);
-			cmd->main->d_rootpath = 0;
-		}
+			printf(BCYN"/%s\n"BWHT, cmd->tools.pwd);
 		else
 			printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/30 02:45:30 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:47:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ void			ctrl_c(int c);
 void			mini_sig(void);
 
 /*******************   MINI__TOOLS&CHECK   *******************/
-void			cmd_counter(t_shell_chan *main);
-int				twstrlen(char	**tw_str);
 void			mini_tools(t_shell_chan *main);
+int				twstrlen(char	**tw_str);
+void			cmd_counter(t_shell_chan *main);
 void			split_command(t_shell_chan *main);
-int				is_command(char *cmd_name);
+void			new_prompt(int i);
 
 /*******************    OPTIONS___PARSE    *******************/
 void			check_opt(t_mini_cmd *cmd);
@@ -106,9 +106,9 @@ void			get_opt(t_mini_cmd *cmd);
 
 /*******************    ARGUMENTS_PARSE    *******************/
 void			check_arg(t_mini_cmd *cmd);
+int				is_there_arg(t_mini_cmd *cmd);
 void			pre_arg(t_mini_cmd *cmd);
 void			get_arg(t_mini_cmd *cmd);
-int				is_there_arg(t_mini_cmd *cmd);
 
 /*******************    CMD__NAME_PARSE    *******************/
 int				command_name(t_shell_chan *main);
@@ -140,13 +140,14 @@ void			del_mid_envar(t_mini_envar *envar);
 t_mini_envar	*del_last_envar(t_mini_envar *head);
 t_mini_envar	*del_first_envar(t_mini_envar *head);
 t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
-void			print_envar_list(t_mini_envar *head);
+void			print_envar_list(t_mini_envar *head, char which);
 
 /*******************       MINI__ECHO      *******************/
 int				is_extst(char *line);
 void			check_echo_opt(t_mini_cmd *cmd);
 int				is_echo_opt(char **opt, char which, int len);
 
-void			new_prompt(int i);
+/*******************      MINI_PWD_CD      *******************/
+int				is_doubslash(char *line);
 
 #endif

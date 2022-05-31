@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_envar_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:10 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/29 04:00:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:50:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,18 @@ t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name)
 ? if it was not NULL then moving form the next pointer of the head till 
 ? the end of the list and print the content
 */
-void	print_envar_list(t_mini_envar *head)
+void	print_envar_list(t_mini_envar *head, char which)
 {
 	t_mini_envar	*print;
 
 	print = head;
 	while (print != NULL)
 	{
-		printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
+		if (which == 'n')
+			printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
+		if (which == 'x')
+			printf(BCYN"declare -x %s=\"%s\"\n"BWHT, \
+							print->env_name, print->env_cont);
 		print = print->next;
 	}
 }
