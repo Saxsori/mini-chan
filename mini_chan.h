@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/01 12:32:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:27:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int				twstrlen(char	**tw_str);
 void			cmd_counter(t_shell_chan *main);
 void			split_command(t_shell_chan *main);
 void			new_prompt(int i);
+int				check_cmd_line(char *line);
 
 /*******************    OPTIONS___PARSE    *******************/
 void			check_opt(t_mini_cmd *cmd);
@@ -169,6 +170,5 @@ int				quote_split(t_shell_chan *main, char *line, int i);
 int				line_len(char *line);
 void			find_frst(t_shell_chan *main, char *line);
 void			find_scnd(t_shell_chan *main, char *line, int index);
-
 
 #endif

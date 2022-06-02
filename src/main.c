@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/02 05:08:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:27:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	check_cmd_parts(t_shell_chan *main)
 		{
 			printf("opt%s\n", main->cmd_table[i].option[k]);
 		}
-		printf("opt num %d\n",main->cmd_table->tools.opt_num);
+		printf("opt num %d\n", main->cmd_table->tools.opt_num);
 		k = -1;
 		while (++k < main->cmd_table->tools.arg_num)
 		{
 			printf("arg%s\n", main->cmd_table[i].arguments[k]);
 		}
+		printf("opt num %d\n", main->cmd_table->tools.arg_num);
 		printf("1:%d\n", main->cmd_num);
 		printf("2:%d\n", main->cmd_table[i].main->cmd_num);
 	}
@@ -73,24 +74,12 @@ int	find_command(t_shell_chan *main)
 	if (quotes_checker(main))
 	{
 		split_command(main);
+		expand_envar(main);
 		if (command_name(main))
 		{
 			check_cmd_parts(main);
 			return (run_cmd(main));
 		}
-	}
-	return (0);
-}
-
-int	check_cmd_line(char *line)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ft_strlen(line))
-	{
-		if (line[i] > 32)
-			return (1);
 	}
 	return (0);
 }
