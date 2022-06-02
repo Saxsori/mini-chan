@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 18:10:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:32:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ typedef struct node			t_mini_envar;
 
 typedef struct p_quotes
 {
-	int	begin;
-	int	end;
-	int	q_string;
+	int		begin;
+	int		end;
+	int		first;
+	int		second;
+	int		q_string;
+	char	*line;
 }	t_mini_quotes;
 
 typedef struct node
@@ -80,7 +83,7 @@ typedef struct mini_cmnd
 typedef struct shell_chan
 {
 	char			*cmd_line;
-	t_mini_quotes	*q_pars;
+	t_mini_quotes	q_pars;
 	t_mini_cmd		*cmd_table;
 	int				cmd_num;
 	int				exit_status;
@@ -93,6 +96,7 @@ typedef struct shell_chan
 void			init_shell_chan(t_shell_chan *main);
 void			re_init_shell_chan(t_shell_chan *main);
 void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
+void			init_mini_quotes(t_shell_chan *main, char *line);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
@@ -156,5 +160,15 @@ int				is_echo_opt(char **opt, char which, int len);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
+
+/*******************    MINI_QUOTE_PARSE   *******************/
+int				is_closed(t_shell_chan *main, char *line, int index);
+int				quotes_checker(t_shell_chan *main);
+int				is_qt_valid(t_shell_chan *main, char *line);
+int				quote_split(t_shell_chan *main, char *line, int i);
+int				line_len(char *line);
+void			find_frst(t_shell_chan *main, char *line);
+void			find_scnd(t_shell_chan *main, char *line, int index);
+
 
 #endif

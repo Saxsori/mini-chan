@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 18:11:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/02 05:08:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,11 @@
 // check_opt(main);
 // void	check_opt(t_shell_chan *)
 // if (ft_strchr(main->cmd_table[i].split[k], '-'))
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// {
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.opt_num)
-	// 	{
-	// 		printf("opt%s\n", main->cmd_table[i].option[k]);
-	// 	}
-	// 	printf("opt num %d\n",main->cmd_table->tools.opt_num);
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.arg_num)
-	// 	{
-	// 		printf("arg%s\n", main->cmd_table[i].arguments[k]);
-	// 	}
-	// 	printf("1:%d\n", main->cmd_num);
-	// 	printf("2:%d\n", main->cmd_table[i].main->cmd_num);
-	// }
 */
 void	check_cmd_parts(t_shell_chan *main)
 {
 	int	i;
+	int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -47,6 +31,23 @@ void	check_cmd_parts(t_shell_chan *main)
 		init_mini_cmd(&main->cmd_table[i], main);
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
+	}
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		k = -1;
+		while (++k < main->cmd_table->tools.opt_num)
+		{
+			printf("opt%s\n", main->cmd_table[i].option[k]);
+		}
+		printf("opt num %d\n",main->cmd_table->tools.opt_num);
+		k = -1;
+		while (++k < main->cmd_table->tools.arg_num)
+		{
+			printf("arg%s\n", main->cmd_table[i].arguments[k]);
+		}
+		printf("1:%d\n", main->cmd_num);
+		printf("2:%d\n", main->cmd_table[i].main->cmd_num);
 	}
 }
 
@@ -69,12 +70,14 @@ void	check_cmd_parts(t_shell_chan *main)
 int	find_command(t_shell_chan *main)
 {
 	first_cmd_split(main);
-	///////////////quotes handling after splitting |
-	split_command(main);
-	if (command_name(main))
+	if (quotes_checker(main))
 	{
-		check_cmd_parts(main);
-		return (run_cmd(main));
+		split_command(main);
+		if (command_name(main))
+		{
+			check_cmd_parts(main);
+			return (run_cmd(main));
+		}
 	}
 	return (0);
 }
