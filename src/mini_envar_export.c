@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_env.c                                         :+:      :+:    :+:   */
+/*   mini_envar_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 23:02:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:12:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	add_env_data(t_mini_envar *temp, char *data)
 		while (++i < twstrlen(split))
 			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
 	}
-	sequared_free(split);
+	squaredstr_free(split);
 }

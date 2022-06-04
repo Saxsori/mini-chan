@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 19:28:41 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:27:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_shell_chan(t_shell_chan *main)
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
+	squaredint_free(main->exp_valid, main->cmd_num);
 	main->cmd_num = 0;
 }
 
@@ -50,7 +51,6 @@ from one instead of 0
 void	init_mini_quotes(t_shell_chan *main, char *line)
 {
 	main->q_pars.begin = -1;
-	printf("here\n");
 	main->q_pars.end = ft_strlen(line);
 	if (line[0] != 34 && line[0] != 39)
 		main->q_pars.q_string = 1;
@@ -58,4 +58,5 @@ void	init_mini_quotes(t_shell_chan *main, char *line)
 		main->q_pars.q_string = 0;
 	main->q_pars.first = 0;
 	main->q_pars.second = 0;
+	main->q_pars.exp_index = 0;
 }

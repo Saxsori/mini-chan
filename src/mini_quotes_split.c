@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/02 05:05:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:26:39 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,22 @@
 ? 2- between the first and the second quote replace all the spaces with \v
 ? this is the way to not split the spaces inside the quote by then 
 */
-void	find_scnd(t_shell_chan *main, char *line, int index)
+void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 {
-	char	quote;
+	char			quote;
 
 	quote = line[index];
 	line[index] = '\t';
 	while (++index < ft_strlen(line) + 1)
 	{
+		if (line[index] == '$')
+		{
+			if (quote == 34)
+				main->exp_valid[i][main->q_pars.exp_index] = 1;
+			else if (quote == 39)
+				main->exp_valid[i][main->q_pars.exp_index] = 0;
+			main->q_pars.exp_index++;
+		}
 		if (line[index] == ' ')
 			line[index] = '\v';
 		if (line[index] == quote)
@@ -41,12 +49,12 @@ void	find_scnd(t_shell_chan *main, char *line, int index)
 ? hold the first quote and send the line with the index to look
 ? 	for the second quote
 */
-void	find_frst(t_shell_chan *main, char *line)
+void	find_frst(t_shell_chan *main, char *line, int i)
 {
 	while (++main->q_pars.begin < ft_strlen(line))
 	{
 		if (line[main->q_pars.begin] == 34 || line[main->q_pars.begin] == 39)
-			find_scnd(main, line, main->q_pars.begin);
+			find_scnd(main, line, main->q_pars.begin, i);
 	}
 }
 
@@ -80,14 +88,17 @@ after checking of the quotes are valid (closed) then take them off
 ?	old string
 ? 5- copy the new line without the quote in the first split string
 ? 6- free the new line
+	// printf("%s - %d\n", main->first_split[i], ft_strlen(main->first_split[i]));
 */
 int	quote_split(t_shell_chan *main, char *line, int i)
 {
 	char	*new_line;
 	int		f;
 	int		n;
+	int		k;
 
-	find_frst(main, line);
+	find_frst(main, line, i);
+	main->q_pars.exp_index = 0;
 	new_line = (char *)malloc((line_len(line) + 1) * sizeof(char));
 	f = -1;
 	n = 0;
@@ -100,6 +111,12 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
-	printf("%s - %d\n", main->first_split[i], ft_strlen(main->first_split[i]));
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		k = -1;
+		while (++k < envar_num(main, i))
+			printf ("%d -> %d\n", i, main->exp_valid[i][k]);
+	}
 	return (1);
 }

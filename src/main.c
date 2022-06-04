@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/02 10:27:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:18:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	check_cmd_parts(t_shell_chan *main)
 int	find_command(t_shell_chan *main)
 {
 	first_cmd_split(main);
+	expand_tools(main);
 	if (quotes_checker(main))
 	{
 		split_command(main);
-		expand_envar(main);
 		if (command_name(main))
 		{
 			check_cmd_parts(main);
@@ -101,9 +101,9 @@ int	main(int argc, char **argv, char **env)
 	create_envar_list(&main, env);
 	while (42)
 	{
+		re_init_shell_chan(&main);
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
-		re_init_shell_chan(&main);
 		if (!check_cmd_line(main.cmd_line))
 			new_prompt(1);
 		else if (check_cmd_line(main.cmd_line))

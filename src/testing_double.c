@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 23:24:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:12:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	add_env_data(t_mini_envar *temp, char *data)
 		while (++i < twstrlen(split))
 			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
 	}
-	sequared_free(split);
+	squaredstr_free(split);
 }
 
 t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/02 10:26:51 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 01:10:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	first_cmd_split(t_shell_chan *main)
 	{
 		main->first_split = (char **)malloc(sizeof (char *));
 		main->first_split[0] = ft_strdup(main->cmd_line);
-	}	
+	}
 }
 
 /*

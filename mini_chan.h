@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/02 10:27:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:22:51 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct p_quotes
 	int		second;
 	int		q_string;
 	char	*line;
+	int		exp_index;
 }	t_mini_quotes;
 
 typedef struct node
@@ -90,6 +91,7 @@ typedef struct shell_chan
 	char			**first_split;
 	t_mini_envar	*head_envar;
 	int				d_rootpath;
+	int				**exp_valid;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/
@@ -140,7 +142,8 @@ int				mini_unset(t_mini_cmd *cmd);
 int				mini_env(t_mini_cmd *cmd);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
-void			sequared_free(char **array);
+void			squaredstr_free(char **array);
+void			squaredint_free(int **array, int len);
 
 /*******************      MINI__ENVAR      *******************/
 
@@ -168,7 +171,11 @@ int				quotes_checker(t_shell_chan *main);
 int				is_qt_valid(t_shell_chan *main, char *line);
 int				quote_split(t_shell_chan *main, char *line, int i);
 int				line_len(char *line);
-void			find_frst(t_shell_chan *main, char *line);
-void			find_scnd(t_shell_chan *main, char *line, int index);
+void			find_frst(t_shell_chan *main, char *line, int i);
+void			find_scnd(t_shell_chan *main, char *line, int index, int i);
+
+/*******************    MINI_EXPAND_TOOLS   ******************/
+void			expand_tools(t_shell_chan *main);
+int				envar_num(t_shell_chan *main, int i);
 
 #endif
