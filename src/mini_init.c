@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 17:27:22 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/05 02:06:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ void	init_mini_quotes(t_shell_chan *main, char *line)
 	main->q_pars.first = 0;
 	main->q_pars.second = 0;
 	main->q_pars.exp_index = 0;
+}
+
+void	init_env_expand(t_env_expand *env_exp, t_shell_chan *main, int index)
+{
+	env_exp->main = main;
+	env_exp->index = index;
+	env_exp->env_num = envar_num(main, index);
+	env_exp->env_ord = 0;
 }

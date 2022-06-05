@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 21:13:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/05 02:06:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ typedef struct node			t_mini_envar;
 
 typedef struct env_expand
 {
-	
+	t_shell_chan	*main;
+	int				index;
+	int				env_num;
+	int				env_ord;
 }	t_env_expand;
 typedef struct p_quotes
 {

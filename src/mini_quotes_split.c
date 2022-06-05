@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 17:26:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/05 02:44:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,8 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	char	*new_line;
 	int		f;
 	int		n;
-	int		k;
 
 	find_frst(main, line, i);
-	main->q_pars.exp_index = 0;
 	new_line = (char *)malloc((line_len(line) + 1) * sizeof(char));
 	f = -1;
 	n = 0;
@@ -111,12 +109,12 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
-	i = -1;
-	while (++i < main->cmd_num)
+	n = -1;
+	while (++n < envar_num(main, i))
 	{
-		k = -1;
-		while (++k < envar_num(main, i))
-			printf ("%d -> %d\n", i, main->exp_valid[i][k]);
+		if (main->exp_valid[i][n] == -1)
+			main->exp_valid[i][n] = 1;
 	}
+	main->q_pars.exp_index = 0;
 	return (1);
 }
