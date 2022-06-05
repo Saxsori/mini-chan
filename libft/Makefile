@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 12:10:20 by aaljaber          #+#    #+#              #
-#    Updated: 2022/05/22 10:51:28 by dfurneau         ###   ########.fr        #
+#    Updated: 2022/06/04 21:04:33 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,11 @@ BONOBJ = ${BONUS:.c=.o}
 
 NAME = libft.a
 
-INCS = libft.h
-
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -c
+CFLAGS = -Wall -Werror -Wextra
 
 RM = rm -f
-# -I ${INCS}
-.c.o :
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME} :   ${OBJS}
 	ar rc ${NAME} ${OBJS}
@@ -47,4 +42,3 @@ bonus: ${OBJS} ${BONOBJ}
 
 re : fclean all
 
-.PHONY : all .c.o clean fclean re bonus

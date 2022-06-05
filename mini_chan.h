@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 17:22:51 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/04 21:13:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
 
+typedef struct env_expand
+{
+	
+}	t_env_expand;
 typedef struct p_quotes
 {
 	int		begin;
@@ -177,5 +181,6 @@ void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 /*******************    MINI_EXPAND_TOOLS   ******************/
 void			expand_tools(t_shell_chan *main);
 int				envar_num(t_shell_chan *main, int i);
+void			expand_envar(t_shell_chan *main);
 
 #endif

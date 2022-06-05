@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/04 13:10:25 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/04 21:11:23 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC =   src/main.c                       src/mini_ctrls.c \
 		src/mini_envar_export.c          src/mini_envar_unset.c \
 		src/mini_echo_tools.c            src/mini_cd_tools.c \
 		src/mini_quotes_split.c          src/mini_quotes_checker.c \
-		src/mini_expand_tools.c          
+		src/mini_expand_tools.c          src/mini_expand_envar.c 
 
 OBJ = ${SRC:.c=.o}
 
