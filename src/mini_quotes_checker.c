@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:23:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/05 02:43:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/06 00:01:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	quotes_checker(t_shell_chan *main)
 	{
 		k = -1;
 		while (++k < envar_num(main, i))
-			printf ("%d -> %d\n", i, main->exp_valid[i][k]);
+			printf ("v%d -> %d\ni%d -> %d\n", i, main->exp_valid[i][k], i, main->env_index[i][k]);
 	}
-	return (0);
+	return (1);
 }

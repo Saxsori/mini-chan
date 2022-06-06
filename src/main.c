@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/05 02:20:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/06 02:08:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,11 @@ void	check_cmd_parts(t_shell_chan *main)
 */
 int	find_command(t_shell_chan *main)
 {
-	int	i;
-	int	k;
-
 	first_cmd_split(main);
 	expand_tools(main);
 	if (quotes_checker(main))
 	{
-		i = -1;
-		while (++i < main->cmd_num)
-		{
-			k = -1;
-			while (++k < envar_num(main, i))
-				printf ("%d -> %d\n", i, main->exp_valid[i][k]);
-		}
-		// expand_envar(main);
+		expand_envar(main);
 		split_command(main);
 		if (command_name(main))
 		{
@@ -112,7 +102,6 @@ int	main(int argc, char **argv, char **env)
 	create_envar_list(&main, env);
 	while (42)
 	{
-		re_init_shell_chan(&main);
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
 		if (!check_cmd_line(main.cmd_line))
@@ -124,6 +113,7 @@ int	main(int argc, char **argv, char **env)
 			else
 				main.exit_status = EXIT_FAILURE;
 		}
+		re_init_shell_chan(&main);
 	}
 	return (0);
 }

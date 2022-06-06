@@ -5,58 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/05 02:17:53 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/06/06 03:42:46 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/06/06 23:51:01 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../mini_chan.h"
+#include "../mini_chan.h"
 
-// int	is_there_envar(char *line)
-// {
-// 	int	i;
+void	do_expand(t_env_expand *exp_tools)
+{
+	char	*new_line;
+	int		i;
+	int		k;
+	int		j;
 
-// 	i = -1;
-// 	while (++i < ft_strlen(line))
-// 	{
-// 		if (line[i] == '$')
-// 			return (1);
-// 	}
-// 	return (0);
-// }
-
-// int	is_exp_vaild(t_env_expand *env_expand)
-// {
-// 	if (env_expand->main->exp_valid[env_expand->index][env_expand->env_ord])
-// }
-
-// void	start_expand(t_env_expand *env_expand)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < ft_strlen(env_expand->main->first_split[env_expand->index]))
-// 	{
-// 		if (env_expand->main->first_split[env_expand->index][i] == '$')
-// 		{
-// 			if (is_exp_valid(env_expand))
-			
-// 		}
-// 	}
-// }
-
-// void	expand_envar(t_shell_chan *main)
-// {
-// 	t_env_expand	env_exp;
-// 	int				i;
-
-// 	i = -1;
-// 	while (++i < main->cmd_num)
-// 	{
-// 		init_env_expand(&env_exp, main, i);
-// 		if (is_there_envar(main->first_split[i]))
-// 		{
-// 			start_expand(&env_exp);
-// 		}
-// 	}
-// }
+	printf("%d do_expand(exp_tools)\n", exp_tools->new_len_exp);
+	i = -1;
+	k = 0;
+	// printf("old_line%s\n", exp_tools->main->first_split[exp_tools->index]);
+	// printf("env_index%d\n", exp_tools->main->env_index[exp_tools->index][exp_tools->env_ord]);
+	new_line = (char *)malloc(exp_tools->new_len_exp * sizeof(char) + 1);
+	while (++i < exp_tools->new_len_exp)
+	{
+		if (j != -1)
+			j = -1;
+		printf("k%d env_i%d\n", k, exp_tools->main->env_index[exp_tools->index][exp_tools->env_ord]);
+		if (exp_tools->main->first_split[exp_tools->index][k] != '$')
+		{
+			new_line[i] = exp_tools->main->first_split[exp_tools->index][k];
+			printf("1check %c, i%d, k%d\n", new_line[i], i, k);
+			k++;
+		}
+		else if (exp_tools->main->first_split[exp_tools->index][k] == '$')
+		{
+			k = exp_tools->name_len + 2;
+			j = -1;
+			while (++j < ft_strlen(exp_tools->env_ptr->env_cont))
+			{
+				new_line[i] = exp_tools->env_ptr->env_cont[j];
+				printf("2check %c, i%d, k%d\n", new_line[i], i, k);
+				i++;
+			}
+		}
+		if (j != -1)
+			i--;
+	}
+	new_line[i] = '\0';
+	// i = -1;
+	// while (++i < exp_tools->new_len_exp)
+	// 	printf("new_line %c, i%d\n", new_line[i], i);
+	printf("new_line %s\n", new_line);
+}

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/05 02:06:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/06 04:07:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct env_expand
 	int				index;
 	int				env_num;
 	int				env_ord;
+	int				start;
+	int				end;
+	int				name_len;
+	t_mini_envar	*env_ptr;
+	int				new_len_exp;
 }	t_env_expand;
 typedef struct p_quotes
 {
@@ -99,6 +104,7 @@ typedef struct shell_chan
 	t_mini_envar	*head_envar;
 	int				d_rootpath;
 	int				**exp_valid;
+	int				**env_index;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/
@@ -106,6 +112,9 @@ void			init_shell_chan(t_shell_chan *main);
 void			re_init_shell_chan(t_shell_chan *main);
 void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 void			init_mini_quotes(t_shell_chan *main, char *line);
+void			init_env_expand(t_env_expand *env_exp, \
+												t_shell_chan *main, int index);
+void			re_init_env_expand(t_env_expand *exp_tools);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
@@ -185,5 +194,12 @@ void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 void			expand_tools(t_shell_chan *main);
 int				envar_num(t_shell_chan *main, int i);
 void			expand_envar(t_shell_chan *main);
-
+void			strat_expand(t_env_expand *exp_tools);
+int				is_envar(t_env_expand *exp_tools, int i);
+int				find_env(t_env_expand *exp_tools);
+int				cmp_env_name(t_env_expand *exp_tools, t_mini_envar *env);
+void			find_name_size(t_env_expand *exp_tools);
+int				is_exp_valid(t_env_expand *exp_tools);
+int				is_there_envar(char *line);
+void			do_expand(t_env_expand *expand_tools);
 #endif

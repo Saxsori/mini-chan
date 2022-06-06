@@ -6,11 +6,24 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/05 02:44:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/06 00:22:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
+int	env_which_index(t_shell_chan *main, int index, int i)
+{
+	int	k;
+
+	k = -1;
+	while (++k < envar_num(main, i))
+	{
+		if (main->env_index[i][k] == index)
+			return (k);
+	}
+	return (-1);
+}
 
 /*
 ? 1- replace the first with \t and then search for the second quote to
@@ -29,9 +42,9 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 		if (line[index] == '$')
 		{
 			if (quote == 34)
-				main->exp_valid[i][main->q_pars.exp_index] = 1;
+				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
-				main->exp_valid[i][main->q_pars.exp_index] = 0;
+				main->exp_valid[i][env_which_index(main, index, i)] = 0;
 			main->q_pars.exp_index++;
 		}
 		if (line[index] == ' ')
@@ -115,6 +128,5 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 		if (main->exp_valid[i][n] == -1)
 			main->exp_valid[i][n] = 1;
 	}
-	main->q_pars.exp_index = 0;
 	return (1);
 }
