@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 01:10:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 01:41:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ int	twstrlen(char	**tw_str)
 	return (i);
 }
 
+void	check_spaces(char **line)
+{
+	int	i;
+	int	k;
+
+	i = -1;
+	while (line[++i])
+	{
+		k = -1;
+		while (line[i][++k])
+		{
+			if (line[i][k] == '\v')
+				line[i][k] = ' ';
+		}
+	}
+}
+
 /* 
 ? passing the command to each command structure 
 ? and at the same time splitting them from spaces 
@@ -76,6 +93,9 @@ void	split_command(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
+	i = -1;
+	while (++i < main->cmd_num)
+		check_spaces(main->cmd_table[i].split);
 }
 
 int	check_cmd_line(char *line)

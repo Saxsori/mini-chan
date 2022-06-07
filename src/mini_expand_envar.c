@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 03:42:46 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 00:55:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 01:41:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ void	do_expand(t_env_expand *exp_tools)
 		loop_init(exp_tools, 3);
 	}
 	new_line[exp_tools->i] = '\0';
-	printf("new_line %s\n", new_line);
+	free (exp_tools->main->first_split[exp_tools->index]);
+	exp_tools->main->first_split[exp_tools->index] = ft_strdup(new_line);
+	free (new_line);
+	// printf("new_line %s\n", exp_tools->main->first_split[exp_tools->index]);
 }
