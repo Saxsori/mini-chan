@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 00:03:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 00:44:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct env_expand
 	int				new_len_exp;
 	int				s;
 	int				e;
+	int				i;
 }	t_env_expand;
 typedef struct p_quotes
 {

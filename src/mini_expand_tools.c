@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/06 04:07:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 00:59:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,10 @@ void	start_expand(t_env_expand *exp_tools)
 				// printf("%d, is_exp_vaild\n", exp_tools->env_ord);
 				if (is_envar(exp_tools, i))
 				{
-					printf("old len%d\n",exp_tools->new_len_exp);
+					// printf("old len%d\n",exp_tools->new_len_exp);
 					exp_tools->new_len_exp += ft_strlen(exp_tools->env_ptr->env_cont) - 1;
 					exp_tools->new_len_exp -= exp_tools->name_len;
-					printf("new len%d\n",exp_tools->new_len_exp);
+					// printf("new len%d\n",exp_tools->new_len_exp);
 					do_expand(exp_tools);
 				}
 			}

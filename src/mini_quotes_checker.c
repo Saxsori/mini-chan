@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:23:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/06 00:01:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 00:58:35 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ to check if the quotes is closed and valid
 int	quotes_checker(t_shell_chan *main)
 {
 	int	i;
-	int	k;
+	// int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -83,12 +83,12 @@ int	quotes_checker(t_shell_chan *main)
 			return (0);
 		}	
 	}
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		k = -1;
-		while (++k < envar_num(main, i))
-			printf ("v%d -> %d\ni%d -> %d\n", i, main->exp_valid[i][k], i, main->env_index[i][k]);
-	}
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	k = -1;
+	// 	while (++k < envar_num(main, i))
+	// 		printf ("v%d -> %d\ni%d -> %d\n", i, main->exp_valid[i][k], i, main->env_index[i][k]);
+	// }
 	return (1);
 }

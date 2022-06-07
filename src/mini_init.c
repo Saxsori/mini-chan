@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 00:04:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/07 00:47:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_env_expand(t_env_expand *exp_tools, t_shell_chan *main, int index)
 	exp_tools->new_len_exp = ft_strlen(main->first_split[index]);
 	exp_tools->e = 0;
 	exp_tools->s = 0;
+	exp_tools->i = -1;
 }
 
 void	re_init_env_expand(t_env_expand *exp_tools)
