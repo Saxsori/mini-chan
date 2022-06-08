@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/06 00:22:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/08 04:36:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	{
 		if (line[index] == '$')
 		{
-			if (quote == 34)
+			if (line[index + 1] == 34 || line[index + 1] == 39)
+				main->exp_valid[i][env_which_index(main, index, i)] = 0;
+			else if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;
@@ -128,5 +130,8 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 		if (main->exp_valid[i][n] == -1)
 			main->exp_valid[i][n] = 1;
 	}
+	n = -1;
+	while (++n < envar_num(main, i))
+		printf("%d\n", main->exp_valid[i][n]);
 	return (1);
 }
