@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 12:10:20 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/04 21:04:33 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/09 21:23:28 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,19 +26,22 @@ CFLAGS = -Wall -Werror -Wextra
 
 RM = rm -f
 
+.c.o :
+	@ ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	
 ${NAME} :   ${OBJS}
-	ar rc ${NAME} ${OBJS}
+	@ ar rc ${NAME} ${OBJS}
 
 all : ${NAME}
 
 clean :
-	${RM} ${OBJS} ${BONOBJ}
+	@ ${RM} ${OBJS} ${BONOBJ}
 	
 fclean :    clean
-	${RM} ${NAME}
+	@ ${RM} ${NAME}
 
-bonus: ${OBJS} ${BONOBJ}
-	ar rc ${NAME} ${OBJS} ${BONOBJ}
+# bonus: ${OBJS} ${BONOBJ}
+# 	@ ar rc ${NAME} ${OBJS} ${BONOBJ}
 
 re : fclean all
 

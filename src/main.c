@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 04:59:30 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:01:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	main(int argc, char **argv, char **env)
 	init_shell_chan(&main);
 	mini_sig();
 	create_envar_list(&main, env);
+	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	while (42)
 	{
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);

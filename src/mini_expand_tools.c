@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 00:59:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/10 02:31:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	is_envar(t_env_expand *exp_tools, int i)
 {
 	exp_tools->start = ++i;
 	find_name_size(exp_tools);
-	// printf("%d\n%d\n%d\n", exp_tools->start, exp_tools->end, exp_tools->name_len);
 	if (find_env(exp_tools))
 		return (1);
 	return (0);
@@ -128,17 +127,12 @@ void	start_expand(t_env_expand *exp_tools)
 		re_init_env_expand(exp_tools);
 		if (exp_tools->main->first_split[exp_tools->index][i] == '$')
 		{
-			// printf("%s - ", exp_tools->main->first_split[exp_tools->index]);
-			// printf("%d\n", i);
 			if (is_exp_valid(exp_tools))
 			{
-				// printf("%d, is_exp_vaild\n", exp_tools->env_ord);
 				if (is_envar(exp_tools, i))
 				{
-					// printf("old len%d\n",exp_tools->new_len_exp);
 					exp_tools->new_len_exp += ft_strlen(exp_tools->env_ptr->env_cont) - 1;
 					exp_tools->new_len_exp -= exp_tools->name_len;
-					// printf("new len%d\n",exp_tools->new_len_exp);
 					do_expand(exp_tools);
 				}
 			}

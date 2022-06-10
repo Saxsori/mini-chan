@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/09 18:40:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/09 22:00:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,15 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 void	add_env_data(t_mini_envar *temp, char *data)
 {
 	char	**split;
-	int		i;
 
-	i = 1;
 	split = ft_split(data, '=');
 	temp->env_name = ft_strdup(split[0]);
-	if (twstrlen(split) <= 2)
-	{
-		if (split[1] != NULL)
-			temp->env_cont = ft_strdup(split[1]);
-		else
-			temp->env_cont = NULL;
-	}
-	if (twstrlen(split) > 2)
-	{
-		while (++i < twstrlen(split))
-			temp->env_cont = ft_strjoin(temp->env_cont, split[i]);
-	}
 	squaredstr_free(split);
+	if (ft_strchr(data, '=', 2) != NULL)
+		temp->env_cont = ft_strchr(data, '=', 2);
+	else
+	{
+		temp->env_cont = (char *)malloc(sizeof(char));
+		temp->env_cont[0] = '\0';
+	}
 }
