@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/09 18:34:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:16:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ typedef struct env_expand
 	int				s;
 	int				e;
 	int				i;
+	int				l;
 }	t_env_expand;
+
 typedef struct p_quotes
 {
 	int		begin;
@@ -70,6 +72,7 @@ typedef struct node
 	char			*env_cont;
 	char			*envar;
 	int				hidden;
+	int				declared;
 	t_mini_envar	*next;
 }	t_mini_envar;
 
@@ -160,6 +163,7 @@ int				mini_exit(t_mini_cmd *cmd);
 int				mini_export(t_mini_cmd *cmd);
 int				mini_unset(t_mini_cmd *cmd);
 int				mini_env(t_mini_cmd *cmd);
+int				mini_chan(void);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
 void			squaredstr_free(char **array);
@@ -169,13 +173,16 @@ void			squaredint_free(int **array, int len);
 
 void			create_envar_list(t_shell_chan *main, char **env);
 t_mini_envar	*creat_first_node(t_mini_envar *head, char *data);
-t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data);
+t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op);
 void			add_env_data(t_mini_envar *temp, char *data);
 void			del_mid_envar(t_mini_envar *envar);
 t_mini_envar	*del_last_envar(t_mini_envar *head);
 t_mini_envar	*del_first_envar(t_mini_envar *head);
 t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
 void			print_envar_list(t_mini_envar *head, char which);
+void			add_hid_env_data(t_mini_envar *temp, char *data);
+void			add_hid_env(t_shell_chan *main);
+void			envar_mode(t_mini_envar *temp, char op);
 
 /*******************       MINI__ECHO      *******************/
 int				is_extst(char *line);

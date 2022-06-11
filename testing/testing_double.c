@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/04 17:12:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:39:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	add_env_data(temp, data);
+	add_env_data(temp, data, 'n');
 	head = temp;
 	return (head);
 }
 
-t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
+t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op)
 {
 	t_mini_envar	*temp;
 	t_mini_envar	*traversal;

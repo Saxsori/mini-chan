@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 04:34:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:59:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mini_export(t_mini_cmd *cmd)
 	if (cmd->arguments)
 	{
 		cmd->main->head_envar = \
-			add_node_at_end(cmd->main->head_envar, cmd->arguments[0]);
+			add_node_at_end(cmd->main->head_envar, cmd->arguments[0], 'n');
 		return (1);
 	}
 	else
@@ -64,5 +64,12 @@ int	mini_env(t_mini_cmd *cmd)
 		print_envar_list(cmd->main->head_envar, 'n');
 		printf(BCYN"%s\n"BWHT, cmd->arguments[0]);
 	}
+	return (1);
+}
+
+int	mini_chan(void)
+{
+	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
+	new_prompt(1);
 	return (1);
 }

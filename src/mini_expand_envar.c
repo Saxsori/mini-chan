@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 03:42:46 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/10 00:01:45 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:54:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ void	do_expand(t_env_expand *exp_tools)
 		{
 			printf("1->i %d - k %d\n", exp_tools->i, k);
 			j = -1;
-			while (++j < ft_strlen(exp_tools->env_ptr->env_cont))
-				new_line[exp_tools->i++] = exp_tools->env_ptr->env_cont[j];
+			if (exp_tools->env_ptr != NULL)
+			{	
+				while (++j < ft_strlen(exp_tools->env_ptr->env_cont))
+					new_line[exp_tools->i++] = exp_tools->env_ptr->env_cont[j];
+			}
+			else
+				k++;
 			k += exp_tools->name_len + 1;
 			exp_tools->i--;
 			printf("1->i %d - k %d\n", exp_tools->i, k);
@@ -62,7 +67,8 @@ void	do_expand(t_env_expand *exp_tools)
 		else
 		{
 			// exp_tools->i++;
-			new_line[exp_tools->i] = exp_tools->main->first_split[exp_tools->index][k];
+			if (exp_tools->main->first_split[exp_tools->index][k] != '\0')
+				new_line[exp_tools->i] = exp_tools->main->first_split[exp_tools->index][k];
 			printf("2->i %d - k %d\n", exp_tools->i, k);
 			k++;
 		}
@@ -70,11 +76,18 @@ void	do_expand(t_env_expand *exp_tools)
 	new_line[exp_tools->i] = '\0';
 	printf("%s\n", new_line);
 	free (exp_tools->main->first_split[exp_tools->index]);
-	exp_tools->main->first_split[exp_tools->index] = ft_strdup(new_line);
+	if (new_line[0] != '\0')
+		exp_tools->main->first_split[exp_tools->index] = ft_strdup(new_line);
+	else
+	{
+		exp_tools->main->first_split[exp_tools->index] = malloc(sizeof(char));
+		exp_tools->main->first_split[exp_tools->index][0] = '\0';
+	}
 	free (new_line);
 	k = 0;
 	exp_tools->i = -1;
-	// i = 0;
-	// exp_tools->i = -1;
+	// int i = -1;
+	// while (++i < exp_tools->new_len_exp)
+	// 	printf("n%c\n", exp_tools->main->first_split[exp_tools->index][i]);
 	printf("new_line %s\n", exp_tools->main->first_split[exp_tools->index]);
 }

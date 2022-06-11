@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_expand_tools.c                                :+:      :+:    :+:   */
+/*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/06 00:20:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 05:46:30 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
+/*
+returns how many env var are there
+*/
 int	envar_num(t_shell_chan *main, int i)
 {
 	int	k;
@@ -27,6 +30,9 @@ int	envar_num(t_shell_chan *main, int i)
 	return (j);
 }
 
+/*
+to find in which index is the env
+*/
 void	find_env_index(t_shell_chan *main, int i)
 {
 	int	k;

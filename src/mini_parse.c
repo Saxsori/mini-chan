@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:17:28 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 17:34:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:50:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	command_name(t_shell_chan *main)
 	{
 		if (!is_command(main->cmd_table[i].name))
 		{
-			printf(BRED"mini-chan🌸: %s: command not found\n" \
-				, main->cmd_table[i].name);
+			if (main->cmd_table[i].name)
+				printf(BRED"mini-chan🌸: %s: command not found\n" \
+					, main->cmd_table[i].name);
 			return (0);
 		}
 	}
@@ -54,3 +55,17 @@ int	is_extst(char *line)
 		return (1);
 	return (0);
 }
+
+int	check_cmd_line(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ft_strlen(line))
+	{
+		if (line[i] > 32)
+			return (1);
+	}
+	return (0);
+}
+

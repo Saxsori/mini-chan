@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/08 04:36:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 05:45:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ int	env_which_index(t_shell_chan *main, int index, int i)
 ? 1- replace the first with \t and then search for the second quote to
 ? close the first and replace it with quote
 ? 2- between the first and the second quote replace all the spaces with \v
-? this is the way to not split the spaces inside the quote by then 
+? this is the way to not split the spaces inside the quote by then
+* in this function I check also the validity of exapnding "$" when it's inside
+*	the quote if it was inside "" it won't lose it's validity if it was '' it will
+*	which means it won't be expanded
+* in case of $"" it shouldn't be expanded but it should print what's inside the quote
+* 0 - invalid expansion
+* 1 - valid expansion
+* 2 - prints what inside the quote Without $
+? for the case of $"" i Will recieve the quote and the index of the quote 
+? which is 1 so to check if this is #2 expansion case I should check the previous index
+? if it was $ then this is invalid expansion and I will put 2 on it's exp_valid pos
 */
 void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 {
@@ -37,13 +47,13 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 
 	quote = line[index];
 	line[index] = '\t';
+	if (line[index - 1] == '$')
+		main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
-			if (line[index + 1] == 34 || line[index + 1] == 39)
-				main->exp_valid[i][env_which_index(main, index, i)] = 0;
-			else if (quote == 34)
+			if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;
@@ -132,6 +142,6 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	}
 	n = -1;
 	while (++n < envar_num(main, i))
-		printf("%d\n", main->exp_valid[i][n]);
+		printf("ind%d valid%d \n", main->env_index[i][n], main->exp_valid[i][n]);
 	return (1);
 }

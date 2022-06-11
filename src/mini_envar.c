@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 23:02:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:06:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	create_envar_list(t_shell_chan *main, char **env)
 	main->head_envar = creat_first_node(main->head_envar, env[0]);
 	i = 0;
 	while (env[++i])
-		main->head_envar = add_node_at_end(main->head_envar, env[i]);
+		main->head_envar = add_node_at_end(main->head_envar, env[i], 'n');
+	add_hid_env(main);
 }
 
 /*
@@ -48,4 +49,19 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	add_env_data(temp, data);
 	head = temp;
 	return (head);
+}
+
+void	add_hid_env(t_shell_chan *main)
+{
+	char	*env;
+
+	env = (char *)malloc(sizeof(char) * 2);
+	env[1] = '\0';
+	// env[0] = '$';
+	// main->head_envar = add_node_at_end(main->head_envar, env, 'h');
+	// env[0] = '?';
+	// main->head_envar = add_node_at_end(main->head_envar, env, 'h');
+	env[0] = '0';
+	main->head_envar = add_node_at_end(main->head_envar, env, 'h');
+	free(env);
 }

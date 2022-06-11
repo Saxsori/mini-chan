@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/09 22:00:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:58:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ here is the way to add a node to the end of an existed list
 ?	of the last pointer (travesral)
 ? 8- return the new head after making the change into the list
 */
-t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
+t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op)
 {
 	t_mini_envar	*temp;
 	t_mini_envar	*traversal;
@@ -37,7 +37,11 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	add_env_data(temp, data);
+	if (op == 'h')
+		add_hid_env_data(temp, data);
+	else
+		add_env_data(temp, data);
+	envar_mode(temp, op);
 	traversal = head;
 	while (traversal->next != NULL)
 		traversal = traversal->next;
@@ -47,8 +51,35 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data)
 }
 
 /*
+? hidden means it won't show when you do env and you can't modify it with export
+? declared means it does have a value which it can be shown by env 
+? but if it wasn't declared it won't be shown by env only by export
+*/
+void	envar_mode(t_mini_envar *temp, char op)
+{
+	if (op == 'n')
+	{
+		temp->hidden = 0;
+		temp->declared = 1;
+	}
+	else if (op == 'h')
+	{
+		temp->hidden = 1;
+		temp->declared = 0;
+	}
+	else if (op == 'x')
+	{
+		temp->hidden = 0;
+		temp->declared = 0;
+	}
+}
+
+/*
 ? env_name is pointer here and you cant pass any value 
 ? to a pointer that u didn't malloc
+* n -> it's not hidden and declared so it will be normal splitted by thr first =
+* x -> it's not hidden and not declared which it won't have a value so no splitting
+* h -> it's hidden and not declared these value should be one by one init
 */
 void	add_env_data(t_mini_envar *temp, char *data)
 {
@@ -57,11 +88,24 @@ void	add_env_data(t_mini_envar *temp, char *data)
 	split = ft_split(data, '=');
 	temp->env_name = ft_strdup(split[0]);
 	squaredstr_free(split);
-	if (ft_strchr(data, '=', 2) != NULL)
+	if (!ft_strncmp(temp->env_name, "SHLVL", ft_strlen(temp->env_name)))
+		temp->env_cont = ft_itoa(1);
+	else if (ft_strchr(data, '=', 2) != NULL)
 		temp->env_cont = ft_strchr(data, '=', 2);
 	else
 	{
 		temp->env_cont = (char *)malloc(sizeof(char));
 		temp->env_cont[0] = '\0';
 	}
+}
+
+void	add_hid_env_data(t_mini_envar *temp, char *data)
+{
+	temp->env_name = ft_strdup(data);
+	// if (data[0] == '$')
+	// 	temp->env_cont = ft_atoi(find_pid());
+	if (data[0] == '0')
+		temp->env_cont = ft_strdup("mini-chan🌸");
+	// else if (data[0] == '?')
+	// 	temp->env_cont = ft_atoi()
 }

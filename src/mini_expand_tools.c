@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/10 02:31:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:47:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,29 +114,67 @@ int	is_envar(t_env_expand *exp_tools, int i)
 	find_name_size(exp_tools);
 	if (find_env(exp_tools))
 		return (1);
-	return (0);
+	else
+		exp_tools->env_ptr = NULL;
+	return (1);
 }
 
-void	start_expand(t_env_expand *exp_tools)
+int	init_expand_big_loop(t_env_expand *exp_tools)
 {
 	int	i;
 
 	i = -1;
 	while (++i < ft_strlen(exp_tools->main->first_split[exp_tools->index]))
 	{
-		re_init_env_expand(exp_tools);
-		if (exp_tools->main->first_split[exp_tools->index][i] == '$')
+		if (exp_tools->main->first_split[exp_tools->index][0] != '\0')
 		{
-			if (is_exp_valid(exp_tools))
+			if (exp_tools->main->first_split[exp_tools->index][i] == '$')
 			{
-				if (is_envar(exp_tools, i))
+				if (is_exp_valid(exp_tools))
 				{
-					exp_tools->new_len_exp += ft_strlen(exp_tools->env_ptr->env_cont) - 1;
-					exp_tools->new_len_exp -= exp_tools->name_len;
-					do_expand(exp_tools);
+					exp_tools->l = i;
+					printf("init i%d - len%d\n", i, ft_strlen(exp_tools->main->first_split[exp_tools->index]));
+					return (ft_strlen(exp_tools->main->first_split[exp_tools->index]));
 				}
 			}
-			exp_tools->env_ord++;
+		}
+	}
+	return (0);
+}
+
+void	start_expand(t_env_expand *exp_tools)
+{
+	// int	i;
+	// int	k;
+	
+	// i = -1;
+	// k = ft_strlen(exp_tools->main->first_split[exp_tools->index]);
+	while (++exp_tools->l < init_expand_big_loop(exp_tools))
+	{
+		re_init_env_expand(exp_tools);
+		if (exp_tools->main->first_split[exp_tools->index][0] != '\0')
+		{
+			if (exp_tools->main->first_split[exp_tools->index][exp_tools->l] == '$')
+			{
+				// printf("%denv index\n", exp_tools->main->env_index[exp_tools->index][exp_tools->env_ord]);
+				// printf("%denv valid\n", exp_tools->main->exp_valid[exp_tools->index][exp_tools->env_ord]);
+				if (is_exp_valid(exp_tools))
+				{
+					if (is_envar(exp_tools, exp_tools->l))
+					{
+						if (exp_tools->env_ptr != NULL)
+							exp_tools->new_len_exp += ft_strlen(exp_tools->env_ptr->env_cont);
+						else
+						{
+							exp_tools->new_len_exp += 0;
+						}
+						exp_tools->new_len_exp -= (exp_tools->name_len + 1);
+						// printf("%d %d\n",exp_tools->new_len_exp, (exp_tools->name_len + 1));
+						do_expand(exp_tools);
+					}
+				}
+				exp_tools->env_ord++;
+			}
 		}
 	}
 }

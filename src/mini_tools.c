@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/07 01:41:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:50:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,4 @@ void	split_command(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 		check_spaces(main->cmd_table[i].split);
-}
-
-int	check_cmd_line(char *line)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ft_strlen(line))
-	{
-		if (line[i] > 32)
-			return (1);
-	}
-	return (0);
 }

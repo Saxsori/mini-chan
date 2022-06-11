@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 11:24:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:15:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	which_command(t_mini_cmd *cmd)
 		return (mini_env(cmd));
 	if (!ft_strncmp(cmd->name, "exit", ft_strlen(cmd->name)))
 		return (mini_exit(cmd));
+	if (!ft_strncmp(cmd->name, "mini-chan🌸", ft_strlen(cmd->name)))
+		return (mini_chan());
 	return (0);
 }
 
