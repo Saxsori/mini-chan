@@ -6,12 +6,15 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 05:46:30 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/12 08:06:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
+/*
+* BEFORE THE QUOTES PASER TO PREPARE THE EXPANDING THING
+* AND WHILE THE QUOTES PARSING CHECK THE VALIDITY OF EACH ENV AND IT'S INDEX
+*/
 /*
 returns how many env var are there
 */
@@ -40,10 +43,16 @@ void	find_env_index(t_shell_chan *main, int i)
 
 	k = -1;
 	j = 0;
+	printf("%s\n", main->first_split[i]);
 	while (++k < ft_strlen(main->first_split[i]) && j <= envar_num(main, i))
 	{
 		if (main->first_split[i][k] == '$')
-			main->env_index[i][j++] = k;
+		{
+			main->env_index[i][j] = k;
+			printf("%d\n", main->env_index[i][j]);
+			j++;
+			printf("%d\n", k);
+		}
 	}
 }
 

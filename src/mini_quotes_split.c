@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 05:45:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/12 08:04:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,21 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	line[index] = '\t';
 	if (line[index - 1] == '$')
 		main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
+	printf("q %c\n", quote);
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
 			if (quote == 34)
+			{
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
+			}
 			else if (quote == 39)
+			{
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;
+				printf("ll v %d %d\n",env_which_index(main, index, i) ,main->exp_valid[i][env_which_index(main, index, i)]);
+				printf("%d\n", index);
+			}
 			main->q_pars.exp_index++;
 		}
 		if (line[index] == ' ')
@@ -138,8 +145,23 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	while (++n < envar_num(main, i))
 	{
 		if (main->exp_valid[i][n] == -1)
+		{
+			printf("ll v %d %d\n",n ,main->exp_valid[i][n]);
 			main->exp_valid[i][n] = 1;
+		}
 	}
+	n = -1;
+	while (++n < main->cmd_num)
+	{
+		if (main->first_split[i][n] == '$')
+		{
+			if (main->first_split[i][n + 1] == '$')
+				main->first_split[i][n + 1] = 'm';
+		}
+	}
+	n = -1;
+	while (++n < main->cmd_num)
+		find_env_index(main, n);
 	n = -1;
 	while (++n < envar_num(main, i))
 		printf("ind%d valid%d \n", main->env_index[i][n], main->exp_valid[i][n]);

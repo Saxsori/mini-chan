@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 13:11:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/12 07:12:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	find_command(t_shell_chan *main)
 	expand_tools(main);
 	if (quotes_checker(main))
 	{
+		printf("lala\n");
 		expand_envar(main);
 		split_command(main);
 		if (command_name(main))
