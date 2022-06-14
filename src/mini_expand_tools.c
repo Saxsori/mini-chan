@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/12 07:43:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:48:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ char	*get_env_name(t_env_info *env_info, int op)
 	int		j;
 
 	i = -1;
+	name = NULL;
 	source = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
 	if (op == 2)
 	{

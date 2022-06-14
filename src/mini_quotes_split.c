@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/12 08:04:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:10:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	env_which_index(t_shell_chan *main, int index, int i)
 ? 2- between the first and the second quote replace all the spaces with \v
 ? this is the way to not split the spaces inside the quote by then
 * in this function I check also the validity of exapnding "$" when it's inside
-*	the quote if it was inside "" it won't lose it's validity if it was '' it will
+*	the quote if it was inside "" it won't lose it's validity if it was '' it will,
 *	which means it won't be expanded
 * in case of $"" it shouldn't be expanded but it should print what's inside the quote
 * 0 - invalid expansion
@@ -49,21 +49,14 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	line[index] = '\t';
 	if (line[index - 1] == '$')
 		main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
-	printf("q %c\n", quote);
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
 			if (quote == 34)
-			{
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
-			}
 			else if (quote == 39)
-			{
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;
-				printf("ll v %d %d\n",env_which_index(main, index, i) ,main->exp_valid[i][env_which_index(main, index, i)]);
-				printf("%d\n", index);
-			}
 			main->q_pars.exp_index++;
 		}
 		if (line[index] == ' ')
@@ -129,6 +122,7 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	int		n;
 
 	find_frst(main, line, i);
+	find_env_length(main, line, i);
 	new_line = (char *)malloc((line_len(line) + 1) * sizeof(char));
 	f = -1;
 	n = 0;
@@ -141,29 +135,6 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
-	n = -1;
-	while (++n < envar_num(main, i))
-	{
-		if (main->exp_valid[i][n] == -1)
-		{
-			printf("ll v %d %d\n",n ,main->exp_valid[i][n]);
-			main->exp_valid[i][n] = 1;
-		}
-	}
-	n = -1;
-	while (++n < main->cmd_num)
-	{
-		if (main->first_split[i][n] == '$')
-		{
-			if (main->first_split[i][n + 1] == '$')
-				main->first_split[i][n + 1] = 'm';
-		}
-	}
-	n = -1;
-	while (++n < main->cmd_num)
-		find_env_index(main, n);
-	n = -1;
-	while (++n < envar_num(main, i))
-		printf("ind%d valid%d \n", main->env_index[i][n], main->exp_valid[i][n]);
+	printf("without quote-> %s\n", main->first_split[i]);
 	return (1);
 }

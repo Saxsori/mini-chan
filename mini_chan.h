@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/12 03:11:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:44:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct shell_chan
 	int				d_rootpath;
 	int				**exp_valid;
 	int				**env_index;
+	int				**env_n_len;
 	t_expand_tools	*exp_tools;
 }	t_shell_chan;
 
@@ -229,10 +230,12 @@ void			find_frst(t_shell_chan *main, char *line, int i);
 void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 
 /*******************    MINI_EXPAND_TOOLS   ******************/
+void			expand_pre(t_shell_chan *main);
 void			expand_tools(t_shell_chan *main);
 int				envar_num(t_shell_chan *main, int i);
 void			expand_envar(t_shell_chan *main);
 void			strat_expand(t_expand_tools *exp_tools);
 void			find_name_size(t_env_info *env_info);
 void			find_env_index(t_shell_chan *main, int i);
+
 #endif
