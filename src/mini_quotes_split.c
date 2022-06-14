@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 12:10:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:51:24 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

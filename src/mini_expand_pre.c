@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 12:11:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:24:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,59 @@ void	expand_pre(t_shell_chan *main)
 	}
 }
 
+int	get_envar_ending(char *line, int start)
+{
+	int	i;
+
+	i = start;
+	while (++i <= ft_strlen(line))
+	{
+		printf("i - %d\n", i);
+		if (line[i] == '\t')
+			return (i);
+		if (line[i] == ' ')
+			return (i);
+		else if (line[i] == '\0')
+			return (i);
+		else if (line[i] == 34)
+			return (i);
+		else if (line[i] == 39)
+			return (i);
+		else if (line[i] == '$')
+		{
+			if (line[i - 1] == '$')
+				return (i + 1);
+			else 
+				return (i);
+		}
+	}
+	printf("here\n");
+	return (0);
+}
+
+int	get_envar_len(char *line, int index)
+{
+	printf ("ending - %d || start - %d\n", get_envar_ending(line, index), index);
+	return (get_envar_ending(line, index) - (index + 1));
+}
+
 void	find_env_length(t_shell_chan *main, char *line, int i)
 {
-	
+	int	k;
+	int	j;
+
+	k = -1;
+	j = 0;
+	printf("envar - %d\n", envar_num(main, i));
+	while (++k < ft_strlen(line) && j < envar_num(main, i))
+	{
+		printf ("k - %d\n", k);
+		if (k == main->env_index[i][j])
+		{
+			printf ("index - %d\n", k);
+			main->env_n_len[i][k] = get_envar_len(line, k);
+			printf ("length - %d\n", main->env_n_len[i][k]);
+			j++;
+		}
+	}
 }

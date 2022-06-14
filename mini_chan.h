@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 11:44:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:53:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,5 +237,5 @@ void			expand_envar(t_shell_chan *main);
 void			strat_expand(t_expand_tools *exp_tools);
 void			find_name_size(t_env_info *env_info);
 void			find_env_index(t_shell_chan *main, int i);
-
+void			find_env_length(t_shell_chan *main, char *line, int i);
 #endif
