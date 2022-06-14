@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 18:24:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:36:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int	get_envar_ending(char *line, int start)
 
 int	get_envar_len(char *line, int index)
 {
-	printf ("ending - %d || start - %d\n", get_envar_ending(line, index), index);
+	// printf ("ending - %d || start - %d\n", get_envar_ending(line, index), index);
 	return (get_envar_ending(line, index) - (index + 1));
 }
 
@@ -208,7 +208,7 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 		printf ("k - %d\n", k);
 		if (k == main->env_index[i][j])
 		{
-			printf ("index - %d\n", k);
+			// printf ("index - %d\n", k);
 			main->env_n_len[i][k] = get_envar_len(line, k);
 			printf ("length - %d\n", main->env_n_len[i][k]);
 			j++;

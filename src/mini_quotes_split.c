@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 17:51:24 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:38:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,28 @@ int	env_which_index(t_shell_chan *main, int index, int i)
 }
 
 /*
-? 1- replace the first with \t and then search for the second quote to
+? 1- replace the first with \t and then search for 
+? the second quote to
 ? close the first and replace it with quote
-? 2- between the first and the second quote replace all the spaces with \v
+? 2- between the first and the second quote replace all 
+? the spaces with \v
 ? this is the way to not split the spaces inside the quote by then
-* in this function I check also the validity of exapnding "$" when it's inside
-*	the quote if it was inside "" it won't lose it's validity if it was '' it will,
+* in this function I check also the validity of 
+* exapnding "$" when it's inside
+*	the quote if it was inside "" it won't lose 
+* it's validity if it was '' it will,
 *	which means it won't be expanded
-* in case of $"" it shouldn't be expanded but it should print what's inside the quote
+* in case of $"" it shouldn't be expanded but
+* it should print what's inside the quote
 * 0 - invalid expansion
 * 1 - valid expansion
 * 2 - prints what inside the quote Without $
-? for the case of $"" i Will recieve the quote and the index of the quote 
-? which is 1 so to check if this is #2 expansion case I should check the previous index
-? if it was $ then this is invalid expansion and I will put 2 on it's exp_valid pos
+? for the case of $"" i Will recieve the quote 
+? and the index of the quote 
+? which is 1 so to check if this is #2 expansion case 
+? I should check the previous index
+? if it was $ then this is invalid expansion 
+? and I will put 2 on it's exp_valid pos
 */
 void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 {

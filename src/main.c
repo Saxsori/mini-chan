@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 05:14:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:08:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	find_command(t_shell_chan *main)
 	{
 		printf("lala\n");
 		expand_pre(main);
-	// 	expand_envar(main);
+		expand_envar(main);
 	// 	split_command(main);
 	// 	if (command_name(main))
 	// 	{
