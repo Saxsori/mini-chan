@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 17:53:15 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 02:45:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct expand_tools	t_expand_tools;
 // 	int				l;
 // }	t_env_expand;
 
-typedef	struct env_info
+typedef struct env_info
 {
 	t_expand_tools	*exp_tools;
 	int				e_pos;

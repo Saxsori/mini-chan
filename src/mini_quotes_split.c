@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 19:38:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 02:52:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	{
 		if (line[index] == '$')
 		{
-			if (quote == 34)
+			if (line[index + 1] == 34 || line[index + 1] == 39)
+				main->exp_valid[i][env_which_index(main, index, i)] = 0;
+			else if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;

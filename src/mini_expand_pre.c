@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 19:36:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 03:45:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	get_envar_ending(char *line, int start)
 	i = start;
 	while (++i <= ft_strlen(line))
 	{
-		printf("i - %d\n", i);
+		// printf("i - %d\n", i);
 		if (line[i] == '\t')
 			return (i);
 		if (line[i] == ' ')
@@ -195,6 +195,22 @@ int	get_envar_len(char *line, int index)
 	return (get_envar_ending(line, index) - (index + 1));
 }
 
+int	envar_n_ending_with_quote(char *line, int i)
+{
+	if (line[i - 1] != 34 && line[i - 1] != 39)
+	{
+		if (line[i + 1] != 34 && line[i + 1] != 39)
+		{
+			if (line[i + 1] != '$' && line[i - 1] != '$')
+			{
+				if (line[i + 1] != '\t' && line[i - 1] != '\t')
+					return (1);
+			}
+		}
+	}
+	return (0);
+}
+
 void	find_env_length(t_shell_chan *main, char *line, int i)
 {
 	int	k;
@@ -202,15 +218,19 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 
 	k = -1;
 	j = 0;
-	printf("envar - %d\n", envar_num(main, i));
+	printf("envar num - %d\n", envar_num(main, i));
+	printf("this line - %s\n", line);
 	while (++k < ft_strlen(line) && j < envar_num(main, i))
 	{
-		printf ("k - %d\n", k);
+		// printf ("k - %d\n", k);
 		if (k == main->env_index[i][j])
 		{
-			// printf ("index - %d\n", k);
-			main->env_n_len[i][k] = get_envar_len(line, k);
-			printf ("length - %d\n", main->env_n_len[i][k]);
+			printf ("index - %d\n", k);
+			if (envar_n_ending_with_quote(line, k))
+				main->env_n_len[i][j] = get_envar_len(line, k);
+			else
+				main->env_n_len[i][j] = 0;
+			printf ("length - %d\n", main->env_n_len[i][j]);
 			j++;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/14 20:11:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 03:57:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,18 +280,24 @@ void	handle_1dollar_case(t_env_info *env_info)
 void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 {
 	env_info->exp_tools = exp_tools;
+	printf("line %s \n", env_info->exp_tools->main->first_split[exp_tools->index]);
 	env_info->e_pos = i;
 	env_info->e_index = exp_tools->main->env_index[exp_tools->index][i];
 	env_info->e_valid = exp_tools->main->exp_valid[exp_tools->index][i];
 	env_info->i_start = env_info->e_index + 1;
 	env_info->name_len = exp_tools->main->env_n_len[exp_tools->index][i];
 	env_info->i_end = (env_info->i_start - 1) + env_info->name_len;
-	// find_name_size(env_info);
+	printf("first len %d\n", exp_tools->main->env_n_len[exp_tools->index][i]);
+	if (exp_tools->main->env_n_len[exp_tools->index][i] == 0)
+	{
+		printf("here\n");
+		find_name_size(env_info);
+	}
 	if (env_info->e_valid == 2 || env_info->e_valid == 0 || !find_env(env_info))
 		env_info->env_ptr = NULL;
 	get_env_value(env_info);
-	// if (env_info->env_value != NULL || env_info->e_valid != 2)
-	// 	env_info->name_len++;
+	if (env_info->env_value != NULL || env_info->e_valid != 2)
+		env_info->name_len++;
 	handle_1dollar_case(env_info);
 }
 
