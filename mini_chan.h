@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 02:45:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:42:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,4 +238,6 @@ void			strat_expand(t_expand_tools *exp_tools);
 void			find_name_size(t_env_info *env_info);
 void			find_env_index(t_shell_chan *main, int i);
 void			find_env_length(t_shell_chan *main, char *line, int i);
+void			do_expand(t_expand_tools *exp_tools);
+
 #endif

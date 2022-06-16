@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 03:45:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/15 14:59:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,19 @@ void	expand_tools(t_shell_chan *main)
 	// }
 }
 
+int	env_pos(t_shell_chan *main, int i, int index)
+{
+	int	k;
+
+	k = -1;
+	while (++k < envar_num(main, i))
+	{
+		if (main->env_index[i][k] == index)
+			return (k);
+	}
+	return (-1);
+}
+
 /*
 ? 1- everything doesn't have a validity yet means it's just a normal case
 ? so it's all should be one
@@ -142,7 +155,7 @@ void	expand_pre(t_shell_chan *main)
 		while (++n < ft_strlen(main->first_split[i]))
 		{
 			// printf("n -> %d\n", n);
-			if (main->first_split[i][n] == '$')
+			if (main->first_split[i][n] == '$' /*&& main->exp_valid[i][env_pos(main, i, n)] != 2*/)
 			{
 				if (main->first_split[i][n + 1] == '$')
 					main->first_split[i][n + 1] = '\t';
@@ -211,6 +224,43 @@ int	envar_n_ending_with_quote(char *line, int i)
 	return (0);
 }
 
+int	get_len_b4_quote(char *line, int i)
+{
+	int	j;
+
+	j = 0;
+	while (++i < ft_strlen(line))
+	{
+		if (line[i] == '\t')
+			return (j);
+		j++;
+	}
+	return (0);
+}
+
+int	envar_surr_by_quote(char *line, int i)
+{
+	int	j;
+
+	printf ("i %d line[i - 1] '%c'\n", i, line[i - 1]);
+	if (line[i - 1] == '\t')
+	{
+		j = i;
+		while (++j < ft_strlen(line))
+		{
+			if (line[j] == '\t')
+			{
+				if (j + 1 < ft_strlen(line))
+				{
+					if (line [j + 1] != ' ' || line [j + 1] != '\v')
+						return (1);
+				}
+			}
+		}
+	}
+	return (0);
+}
+
 void	find_env_length(t_shell_chan *main, char *line, int i)
 {
 	int	k;
@@ -228,8 +278,13 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 			printf ("index - %d\n", k);
 			if (envar_n_ending_with_quote(line, k))
 				main->env_n_len[i][j] = get_envar_len(line, k);
+			else if (envar_surr_by_quote(line, k))
+				main->env_n_len[i][j] = get_len_b4_quote(line, k);
 			else
+			{
+				printf("1 here\n");
 				main->env_n_len[i][j] = 0;
+			}
 			printf ("length - %d\n", main->env_n_len[i][j]);
 			j++;
 		}
