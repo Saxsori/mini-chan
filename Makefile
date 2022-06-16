@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/15 13:43:28 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/16 16:13:45 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ all : ${NAME}
 ${NAME} :  ${OBJ}
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS} 
-	# @ afplay WAKUWAKU.mp3
+	@ afplay WAKUWAKU.mp3
 # 	@ echo " \
 # ,---.    ,---..-./`) ,---.   .--..-./`)             _______   .---.  .---.    ____    ,---.   .--. \
 # |    \  /    |\ .-.')|    \  |  |\ .-.')           /   __  \  |   |  |_ _|  .'  __ `. |    \  |  | \

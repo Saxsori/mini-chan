@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 14:49:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:11:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,14 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	if (env_info->env_value != NULL || env_info->e_valid != 2)
 		env_info->name_len++;
 	handle_1dollar_case(env_info);
+	if (env_info->env_value != NULL)
+	{
+		if (env_info->env_value[0] == '\t')
+		{
+			free(env_info->env_value);
+			env_info->env_value = NULL;
+		}	
+	}
 }
 
 void	start_expand(t_expand_tools *exp_tools)
