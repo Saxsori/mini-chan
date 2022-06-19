@@ -6,51 +6,12 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/16 18:11:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/19 14:07:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-// int	is_there_envar(char *line)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < ft_strlen(line))
-// 	{
-// 		if (line[i] == '$')
-// 			return (1);
-// 	}
-// 	return (0);
-// }
-
-// int	is_exp_valid(t_env_expand *exp_tools)
-// {
-// 	if (exp_tools->main->exp_valid[exp_tools->index][exp_tools->env_ord])
-// 		return (1);
-// 	return (0);
-// }
-
-// int	check_e_index(t_env_info *env_info, int i)
-// {
-
-// 	if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '\t' && env_info->e_valid != 2)
-// 		return (1);
-// 	// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '\v')
-// 	// 	return (1);
-// 	else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == ' ')
-// 		return (1);
-// 	else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '\0')
-// 		return (1);
-// 	else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == 34)
-// 		return (1);
-// 	else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == 39)
-// 		return (1);
-// 	// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '$')
-// 	// 	return (1);
-// 	return (0);
-// }
 /*
 ? env_info->i_start points to the char when env name start after $
 ? so -- just for the loop
@@ -155,6 +116,7 @@ int	find_env(t_env_info *env_info)
 			}
 		}
 	}
+	printf ("lala\n");
 	return (0);
 }
 
@@ -232,43 +194,19 @@ void	get_env_value(t_env_info *env_info)
 	}
 }
 
-// void	handle_1dollar_case(t_env_info *env_info)
-// {
-// 	if (env_info->e_valid == 1 && env_info->name_len == 2)
-// 	{
-// 		if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index] == '$')
-// 		{
-// 			if (check_e_index(env_info, (env_info->e_index + 1)))
-// 			{
-// 				env_info->env_value = (char *)malloc(sizeof(char) * 2);
-// 				env_info->env_value[0] = '$';
-// 				env_info->env_value[1] = '\0';
-// 				env_info->value_len = 1;
-// 				env_info->name_len = 1;
-// 			}
-// 		}
-// 	}
-// 	else if (env_info->e_valid == 0 && env_info->name_len == 1)
-// 	{
-// 		if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index] == '$')
-// 		{
-// 			if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index + 1] == '\0')
-// 			{
-// 				env_info->value_len = 1;
-// 				env_info->name_len = 1;
-// 			}
-// 		}
-// 	}
-// }
-
 void	handle_1dollar_case(t_env_info *env_info)
 {
 	char	*line;
 
-	line = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
+	line = ft_strdup(env_info->exp_tools->main->first_split\ 
+	[env_info->exp_tools->index]);
 	if (env_info->e_valid != 2)
 	{
-		if (line[env_info->e_index + 1] == '\0' || line[env_info->e_index + 1] == '\0' || line[env_info->e_index + 1] == '\v' || line[env_info->e_index - 1] == '\v' || line[env_info->e_index + 1] == ' ')
+		if (line[env_info->e_index + 1] == '\0' \
+			|| line[env_info->e_index + 1] == '\v' \
+			|| (line[env_info->e_index - 1] == '\v' \
+			&& line[env_info->e_index + 1] == '\v') || \
+			line[env_info->e_index + 1] == ' ')
 		{
 			env_info->env_value = (char *)malloc(sizeof(char) * 2);
 			env_info->env_value[0] = '$';

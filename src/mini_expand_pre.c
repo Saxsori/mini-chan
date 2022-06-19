@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/19 13:24:35 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/19 14:23:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,14 @@ void	expand_tools(t_shell_chan *main)
 	main->exp_valid = (int **)malloc(main->cmd_num * sizeof(int *));
 	main->env_index = (int **)malloc(main->cmd_num * sizeof(int *));
 	main->env_n_len = (int **)malloc(main->cmd_num * sizeof(int *));
+	main->env_val_f = (int **)malloc(main->cmd_num * sizeof(int *));
 	i = -1;
 	while (++i < main->cmd_num)
 	{
 		main->exp_valid[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 		main->env_index[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 		main->env_n_len[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
+		main->env_val_f[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 	}
 	i = -1;
 	while (++i < main->cmd_num)
@@ -106,6 +108,7 @@ void	expand_tools(t_shell_chan *main)
 		{
 			main->exp_valid[i][k] = -1;
 			main->env_n_len[i][k] = -1;
+			main->env_val_f[i][k] = -1;
 		}
 		find_env_index(main, i);
 	}
@@ -131,6 +134,24 @@ int	env_pos(t_shell_chan *main, int i, int index)
 ? expand to the PID so to make it easy in parsing I will replace it to \t
 ? so that $\t means PID and the other $ with nothing should stay $ and 
 ? the other $ with anything should expand to nothing
+	// i = -1;
+	// printf("b4 replacing tab %d\n", envar_num(main, 0));
+	// while (++i < main->cmd_num)
+	// {
+	// 	n = -1;
+	// 	while (++n < ft_strlen(main->first_split[i]))
+	// 	{
+	// 		// printf("n -> %d\n", n);
+	// 		if (main->first_split[i][n] == '$')
+	// 		{
+	// 			if (main->first_split[i][n + 1] == '$')
+	// 			{
+	// 				if (main->first_split[i][env_pos(main, i, n + 1) != 2])
+	// 					main->first_split[i][n + 1] = '\t';
+	// 			}
+	// 		}	
+	// 	}
+	// }
 */
 void	expand_pre(t_shell_chan *main)
 {
@@ -148,21 +169,6 @@ void	expand_pre(t_shell_chan *main)
 		}
 		find_env_index(main, i);
 	}
-	// i = -1;
-	// printf("b4 replacing tab%d\n", envar_num(main, 0));
-	// while (++i < main->cmd_num)
-	// {
-	// 	n = -1;
-	// 	while (++n < ft_strlen(main->first_split[i]))
-	// 	{
-	// 		// printf("n -> %d\n", n);
-	// 		if (main->first_split[i][n] == '$')
-	// 		{
-	// 			if (main->first_split[i][n + 1] == '$')
-	// 				main->first_split[i][n + 1] = '\t';
-	// 		}	
-	// 	}
-	// }
 	printf("line after q_split -> (%s) \n", main->first_split[0]);
 	i = -1;
 	while (++i < main->cmd_num)
@@ -180,7 +186,6 @@ int	get_envar_ending(char *line, int start)
 	i = start;
 	while (++i <= ft_strlen(line))
 	{
-		// printf("i - %d\n", i);
 		if (line[i] == '\t')
 			return (i);
 		if (line[i] == ' ')
@@ -190,6 +195,8 @@ int	get_envar_ending(char *line, int start)
 		else if (line[i] == 34)
 			return (i);
 		else if (line[i] == 39)
+			return (i);
+		else if (line[i] == '\v')
 			return (i);
 		else if (line[i] == '$')
 		{
@@ -273,14 +280,19 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 	printf("this line - %s\n", line);
 	while (++k < ft_strlen(line) && j < envar_num(main, i))
 	{
-		// printf ("k - %d\n", k);
 		if (k == main->env_index[i][j])
 		{
 			printf ("index - %d\n", k);
 			if (envar_n_ending_with_quote(line, k))
+			{
 				main->env_n_len[i][j] = get_envar_len(line, k);
+				printf("1 hheeelloo\n");
+			}
 			else if (envar_surr_by_quote(line, k))
+			{
 				main->env_n_len[i][j] = get_len_b4_quote(line, k);
+				printf("2 hheeelloo\n");
+			}
 			else
 			{
 				printf("1 here\n");
@@ -291,3 +303,5 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 		}
 	}
 }
+
+void	set_env

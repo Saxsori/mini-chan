@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 13:42:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/19 14:23:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct shell_chan
 	int				**exp_valid;
 	int				**env_index;
 	int				**env_n_len;
+	int				**env_val_f;
 	t_expand_tools	*exp_tools;
 }	t_shell_chan;
 
@@ -230,14 +231,26 @@ void			find_frst(t_shell_chan *main, char *line, int i);
 void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 
 /*******************    MINI_EXPAND_TOOLS   ******************/
-void			expand_pre(t_shell_chan *main);
-void			expand_tools(t_shell_chan *main);
-int				envar_num(t_shell_chan *main, int i);
-void			expand_envar(t_shell_chan *main);
-void			strat_expand(t_expand_tools *exp_tools);
-void			find_name_size(t_env_info *env_info);
 void			find_env_index(t_shell_chan *main, int i);
+int				env_pos(t_shell_chan *main, int i, int index);
+int				envar_num(t_shell_chan *main, int i);
+void			expand_tools(t_shell_chan *main);
+void			expand_pre(t_shell_chan *main);
+int				envar_surr_by_quote(char *line, int i);
+int				get_envar_ending(char *line, int start);
+int				get_len_b4_quote(char *line, int i);
+int				envar_n_ending_with_quote(char *line, int i);
+int				get_envar_len(char *line, int index);
 void			find_env_length(t_shell_chan *main, char *line, int i);
+void			find_name_size(t_env_info *env_info);
+int				find_env(t_env_info *env_info);
+void			get_env_value(t_env_info *env_info);
+int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
+char			*get_env_name(t_env_info *env_info, int op);
+void			handle_1dollar_case(t_env_info *env_info);
+void			init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i);
 void			do_expand(t_expand_tools *exp_tools);
+void			start_expand(t_expand_tools *exp_tools);
+void			expand_envar(t_shell_chan *main);
 
 #endif

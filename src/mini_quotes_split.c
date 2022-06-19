@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 02:52:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/19 14:01:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 
 	find_frst(main, line, i);
 	find_env_length(main, line, i);
+	set_env_val_flag(main, line, i);
 	new_line = (char *)malloc((line_len(line) + 1) * sizeof(char));
 	f = -1;
 	n = 0;
