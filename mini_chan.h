@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/15 13:42:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:42:11 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct shell_chan
 	int				**exp_valid;
 	int				**env_index;
 	int				**env_n_len;
+	int				**env_val_f;
 	t_expand_tools	*exp_tools;
 }	t_shell_chan;
 

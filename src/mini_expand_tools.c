@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/16 18:11:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:00:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int	find_env(t_env_info *env_info)
 			}
 		}
 	}
+	printf ("lala\n");
 	return (0);
 }
 
@@ -268,7 +269,7 @@ void	handle_1dollar_case(t_env_info *env_info)
 	line = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
 	if (env_info->e_valid != 2)
 	{
-		if (line[env_info->e_index + 1] == '\0' || line[env_info->e_index + 1] == '\0' || line[env_info->e_index + 1] == '\v' || line[env_info->e_index - 1] == '\v' || line[env_info->e_index + 1] == ' ')
+		if (line[env_info->e_index + 1] == '\0'  || line[env_info->e_index + 1] == '\v' || (line[env_info->e_index - 1] == '\v' && line[env_info->e_index + 1] == '\v') || line[env_info->e_index + 1] == ' ')
 		{
 			env_info->env_value = (char *)malloc(sizeof(char) * 2);
 			env_info->env_value[0] = '$';
