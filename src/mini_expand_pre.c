@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/16 17:57:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:24:35 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ and each element for each envar in one command line
 	// 	while (++k < envar_num(main, i))
 	// 		printf ("%d -> %d\n", i, main->exp_valid[i][k]);
 	// }
+	// printf ("%d\n", envar_num(main, 0));
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	k = -1;
+	// 	while (++k < envar_num(main, i))
+	// 		printf ("i - %d\n", main->env_index[i][k]);
+	// }
 */
 void	expand_tools(t_shell_chan *main)
 {
@@ -101,14 +109,6 @@ void	expand_tools(t_shell_chan *main)
 		}
 		find_env_index(main, i);
 	}
-	// printf ("%d\n", envar_num(main, 0));
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// {
-	// 	k = -1;
-	// 	while (++k < envar_num(main, i))
-	// 		printf ("i - %d\n", main->env_index[i][k]);
-	// }
 }
 
 int	env_pos(t_shell_chan *main, int i, int index)
@@ -148,21 +148,21 @@ void	expand_pre(t_shell_chan *main)
 		}
 		find_env_index(main, i);
 	}
-	i = -1;
-	printf("b4 replacing tab%d\n", envar_num(main, 0));
-	while (++i < main->cmd_num)
-	{
-		n = -1;
-		while (++n < ft_strlen(main->first_split[i]))
-		{
-			// printf("n -> %d\n", n);
-			if (main->first_split[i][n] == '$')
-			{
-				if (main->first_split[i][n + 1] == '$')
-					main->first_split[i][n + 1] = '\t';
-			}	
-		}
-	}
+	// i = -1;
+	// printf("b4 replacing tab%d\n", envar_num(main, 0));
+	// while (++i < main->cmd_num)
+	// {
+	// 	n = -1;
+	// 	while (++n < ft_strlen(main->first_split[i]))
+	// 	{
+	// 		// printf("n -> %d\n", n);
+	// 		if (main->first_split[i][n] == '$')
+	// 		{
+	// 			if (main->first_split[i][n + 1] == '$')
+	// 				main->first_split[i][n + 1] = '\t';
+	// 		}	
+	// 	}
+	// }
 	printf("line after q_split -> (%s) \n", main->first_split[0]);
 	i = -1;
 	while (++i < main->cmd_num)
@@ -195,7 +195,7 @@ int	get_envar_ending(char *line, int start)
 		{
 			if (line[i - 1] == '$')
 				return (i + 1);
-			else 
+			else
 				return (i);
 		}
 	}
