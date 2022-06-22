@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 01:10:24 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/19 14:23:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:04:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,28 @@ int	envar_num(t_shell_chan *main, int i)
 	return (j);
 }
 
+int	new_envar_num(t_shell_chan *main, int i)
+{
+	int	k;
+	int	j;
+
+	k = -1;
+	j = 0;
+	while (++k < ft_strlen(main->first_split[i]))
+	{
+		if (main->first_split[i][k] == '$')
+		{
+			if (main->first_split[i][k + 1] == '$')
+			{
+				if (main->exp_valid[i][j] != 2 || main->exp_valid[i][j] != 3)
+					k += 1;
+			}
+			j++;
+		}
+	}
+	return (j);
+}
+
 /*
 to find in which index is the env
 */
@@ -55,6 +77,30 @@ void	find_env_index(t_shell_chan *main, int i)
 			j++;
 			if (main->first_split[i][k + 1] == '$')
 				k += 1;
+		}
+	}
+}
+
+/*
+			// if (main->first_split[i][k + 1] == '$')
+			// {
+			// 	if (main->exp_valid[i][j] != 2 || main->exp_valid[i][j] != 3)
+			// 		k += 1;
+			// }
+*/
+void	new_find_env_index(t_shell_chan *main, int i)
+{
+	int	k;
+	int	j;
+
+	k = -1;
+	j = 0;
+	while (++k < ft_strlen(main->first_split[i]) && j <= new_envar_num(main, i))
+	{
+		if (main->first_split[i][k] == '$')
+		{
+			main->env_index[i][j] = k;
+			j++;
 		}
 	}
 }
@@ -152,6 +198,13 @@ int	env_pos(t_shell_chan *main, int i, int index)
 	// 		}	
 	// 	}
 	// }
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	n = -1;
+	// 	while (++n < new_envar_num(main, i))
+	// 		printf("ind->%d valid->%d \n", main->env_index[i][n], main->exp_valid[i][n]);
+	// }
 */
 void	expand_pre(t_shell_chan *main)
 {
@@ -162,20 +215,12 @@ void	expand_pre(t_shell_chan *main)
 	while (++i < main->cmd_num)
 	{
 		n = -1;
-		while (++n < envar_num(main, i))
+		while (++n < new_envar_num(main, i))
 		{
 			if (main->exp_valid[i][n] == -1)
 				main->exp_valid[i][n] = 1;
 		}
-		find_env_index(main, i);
-	}
-	printf("line after q_split -> (%s) \n", main->first_split[0]);
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		n = -1;
-		while (++n < envar_num(main, i))
-			printf("ind->%d valid->%d \n", main->env_index[i][n], main->exp_valid[i][n]);
+		new_find_env_index(main, i);
 	}
 }
 
@@ -206,13 +251,11 @@ int	get_envar_ending(char *line, int start)
 				return (i);
 		}
 	}
-	printf("here\n");
 	return (0);
 }
 
 int	get_envar_len(char *line, int index)
 {
-	// printf ("ending - %d || start - %d\n", get_envar_ending(line, index), index);
 	return (get_envar_ending(line, index) - (index + 1));
 }
 
@@ -250,7 +293,6 @@ int	envar_surr_by_quote(char *line, int i)
 {
 	int	j;
 
-	printf ("i %d line[i - 1] '%c'\n", i, line[i - 1]);
 	if (line[i - 1] == '\t')
 	{
 		j = i;
@@ -276,32 +318,37 @@ void	find_env_length(t_shell_chan *main, char *line, int i)
 
 	k = -1;
 	j = 0;
-	printf("envar num - %d\n", envar_num(main, i));
-	printf("this line - %s\n", line);
 	while (++k < ft_strlen(line) && j < envar_num(main, i))
 	{
 		if (k == main->env_index[i][j])
 		{
-			printf ("index - %d\n", k);
 			if (envar_n_ending_with_quote(line, k))
-			{
 				main->env_n_len[i][j] = get_envar_len(line, k);
-				printf("1 hheeelloo\n");
-			}
 			else if (envar_surr_by_quote(line, k))
-			{
 				main->env_n_len[i][j] = get_len_b4_quote(line, k);
-				printf("2 hheeelloo\n");
-			}
 			else
-			{
-				printf("1 here\n");
 				main->env_n_len[i][j] = 0;
-			}
-			printf ("length - %d\n", main->env_n_len[i][j]);
 			j++;
 		}
 	}
 }
 
-void	set_env
+void	set_env_val_flag(t_shell_chan *main, char *line, int i)
+{
+	int	k;
+
+	k = -1;
+	while (++k < ft_strlen(line))
+	{
+		if (line[k] == '$')
+		{
+			if (line[k + 1] == '\t')
+			{
+				if (line[k + 2] == '\t')
+					main->env_val_f[i][env_pos(main, i, k)] = 0;
+				else
+					main->env_val_f[i][env_pos(main, i, k)] = 1;
+			}
+		}
+	}
+}

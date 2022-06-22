@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/19 14:23:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:55:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct env_info
 	int				e_pos;
 	int				e_index;
 	int				e_valid;
+	int				f_mode2_val;
 	int				i_start;
 	int				i_end;
 	int				name_len;
@@ -179,6 +180,7 @@ void			get_arg(t_mini_cmd *cmd);
 /*******************    CMD__NAME_PARSE    *******************/
 int				command_name(t_shell_chan *main);
 int				is_command(char *cmd_name);
+int				cmd_strncmp(const char *s1, const char *s2, int n);
 
 /*******************      CMD_EXECUTE      *******************/
 int				run_cmd(t_shell_chan *main);
@@ -252,5 +254,6 @@ void			init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i);
 void			do_expand(t_expand_tools *exp_tools);
 void			start_expand(t_expand_tools *exp_tools);
 void			expand_envar(t_shell_chan *main);
-
+void			set_env_val_flag(t_shell_chan *main, char *line, int i);
+int				new_envar_num(t_shell_chan *main, int i);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:28:36 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/19 14:07:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:10:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	find_name_size(t_env_info *env_info)
 		else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '$')
 			break ;
 	}
-	printf("i %d\n", i);
 	env_info->i_end = i - 1;
 	env_info->name_len = env_info->i_end - env_info->i_start + 1;
 }
@@ -116,7 +115,6 @@ int	find_env(t_env_info *env_info)
 			}
 		}
 	}
-	printf ("lala\n");
 	return (0);
 }
 
@@ -178,8 +176,10 @@ void	get_env_value(t_env_info *env_info)
 	}
 	else if (env_info->e_valid == 2 || env_info->e_valid == 0)
 	{
-		if (env_info->e_valid == 2)
+		if (env_info->e_valid == 2 && env_info->f_mode2_val == 1)
 			env_info->env_value = get_env_name(env_info, 2);
+		else if (env_info->e_valid == 2 && env_info->f_mode2_val == 0 && env_info->e_valid == 3)
+			env_info->env_value = NULL;
 		else if (env_info->e_valid == 0)
 			env_info->env_value = get_env_name(env_info, 0);
 		if (env_info->env_value != NULL)
@@ -198,8 +198,7 @@ void	handle_1dollar_case(t_env_info *env_info)
 {
 	char	*line;
 
-	line = ft_strdup(env_info->exp_tools->main->first_split\ 
-	[env_info->exp_tools->index]);
+	line = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
 	if (env_info->e_valid != 2)
 	{
 		if (line[env_info->e_index + 1] == '\0' \
@@ -218,6 +217,16 @@ void	handle_1dollar_case(t_env_info *env_info)
 	}
 }
 
+void	find_i_start(t_env_info *env_info)
+{
+	if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index + 1] == '$')
+	{
+		if (env_info->exp_tools->main->env_index[env_info->exp_tools->index][env_info->e_pos] == env_info->e_index)
+			env_info->i_start = env_info->e_index;
+	}
+	else
+		env_info->i_start = env_info->e_index + 1;
+}
 /*
 * e_pos .. the position of the env to know which env
 * e_index .. the index of the $
@@ -237,25 +246,28 @@ void	handle_1dollar_case(t_env_info *env_info)
 void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 {
 	env_info->exp_tools = exp_tools;
-	printf("line %s \n", env_info->exp_tools->main->first_split[exp_tools->index]);
 	env_info->e_pos = i;
+	env_info->f_mode2_val = exp_tools->main->env_val_f[exp_tools->index][i];
 	env_info->e_index = exp_tools->main->env_index[exp_tools->index][i];
 	env_info->e_valid = exp_tools->main->exp_valid[exp_tools->index][i];
-	env_info->i_start = env_info->e_index + 1;
+	find_i_start(env_info);
 	env_info->name_len = exp_tools->main->env_n_len[exp_tools->index][i];
 	env_info->i_end = (env_info->i_start - 1) + env_info->name_len;
-	printf("first len %d\n", exp_tools->main->env_n_len[exp_tools->index][i]);
 	if (exp_tools->main->env_n_len[exp_tools->index][i] == 0)
-	{
-		printf("2 here\n");
 		find_name_size(env_info);
-	}
-	if (env_info->e_valid == 2 || env_info->e_valid == 0 || !find_env(env_info))
+	if (env_info->e_valid == 2 || env_info->e_valid == 0 || env_info->e_valid == 3 || !find_env(env_info))
 		env_info->env_ptr = NULL;
 	get_env_value(env_info);
 	if (env_info->env_value != NULL || env_info->e_valid != 2)
 		env_info->name_len++;
 	handle_1dollar_case(env_info);
+	if (env_info->e_valid == 3)
+	{
+		free(env_info->env_value);
+		env_info->env_value = NULL;
+		env_info->value_len = 0;
+		env_info->name_len = 0;
+	}
 	if (env_info->env_value != NULL)
 	{
 		if (env_info->env_value[0] == '\t')
@@ -266,6 +278,19 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	}
 }
 
+/*
+		// printf("pos %d\n", exp_tools->env_info[i].e_pos);
+		// printf("index %d\n", exp_tools->env_info[i].e_index);
+		// printf("valid %d\n", exp_tools->env_info[i].e_valid);
+		// printf("i_start %d\n", exp_tools->env_info[i].i_start);
+		// printf("i_end %d\n", exp_tools->env_info[i].i_end);
+		// printf("name_len %d\n", exp_tools->env_info[i].name_len);
+		// if (exp_tools->env_info[i].env_ptr != NULL)
+		// 	printf("env_ptr_con %s\n", exp_tools->env_info[i].env_ptr->env_cont);
+		// printf("env_value %s\n", exp_tools->env_info[i].env_value);
+		// printf("value_len %d\n", exp_tools->env_info[i].value_len);
+		// printf("\n");
+		*/
 void	start_expand(t_expand_tools *exp_tools)
 {
 	int	i;
@@ -277,21 +302,9 @@ void	start_expand(t_expand_tools *exp_tools)
 	exp_tools->new_exp_len = ft_strlen(exp_tools->main->first_split[exp_tools->index]);
 	while (++i < exp_tools->env_num)
 	{
-		printf("pos %d\n", exp_tools->env_info[i].e_pos);
-		printf("index %d\n", exp_tools->env_info[i].e_index);
-		printf("valid %d\n", exp_tools->env_info[i].e_valid);
-		printf("i_start %d\n", exp_tools->env_info[i].i_start);
-		printf("i_end %d\n", exp_tools->env_info[i].i_end);
-		printf("name_len %d\n", exp_tools->env_info[i].name_len);
-		if (exp_tools->env_info[i].env_ptr != NULL)
-			printf("env_ptr_con %s\n", exp_tools->env_info[i].env_ptr->env_cont);
-		printf("env_value %s\n", exp_tools->env_info[i].env_value);
-		printf("value_len %d\n", exp_tools->env_info[i].value_len);
-		printf("\n");
 		exp_tools->new_exp_len -= exp_tools->env_info[i].name_len;
 		exp_tools->new_exp_len += exp_tools->env_info[i].value_len;
 	}
-	printf("new leeeen %d\n", exp_tools->new_exp_len);
 }
 
 void	expand_envar(t_shell_chan *main)

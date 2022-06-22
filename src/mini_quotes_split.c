@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/19 14:01:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:10:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 		if (line[index] == '$')
 		{
 			if (line[index + 1] == 34 || line[index + 1] == 39)
-				main->exp_valid[i][env_which_index(main, index, i)] = 0;
+				main->exp_valid[i][env_which_index(main, index, i)] = 3;
 			else if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
@@ -146,6 +146,5 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
-	printf("without quote-> %s\n", main->first_split[i]);
 	return (1);
 }
