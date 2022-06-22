@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:10 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 11:47:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:11:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ to search for a specific env so it will take the name and the head of the list
 ?	so check the env name on this node
 ? 4- else return NULL cuz env_name not found
 */
-t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name)
+t_mini_envar	*search_envar(t_mini_envar *head, char *env_name)
 {
 	t_mini_envar	*envar;
 
@@ -60,15 +60,12 @@ void	print_envar_list(t_mini_envar *head, char which)
 	{
 		if (which == 'n')
 		{
-			if (!print->hidden && print->declared)
+			if (print->declared)
 				printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
 		}
 		if (which == 'x')
-		{
-			if (!print->hidden)
-				printf(BCYN"declare -x %s=\"%s\"\n"BWHT, \
+			printf(BCYN"declare -x %s=\"%s\"\n"BWHT, \
 							print->env_name, print->env_cont);
-		}
 		print = print->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/21 17:18:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:32:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 	// 	{
 	// 		printf("opt%s\n", main->cmd_table[i].option[k]);
 	// 	}
-	// 	printf("opt num %d\n", main->cmd_table->tools.opt_num);
 	// 	k = -1;
 	// 	while (++k < main->cmd_table->tools.arg_num)
 	// 	{
 	// 		printf("arg%s\n", main->cmd_table[i].arguments[k]);
 	// 	}
-	// 	printf("opt num %d\n", main->cmd_table->tools.arg_num);
-	// 	printf("1:%d\n", main->cmd_num);
-	// 	printf("2:%d\n", main->cmd_table[i].main->cmd_num);
+	// 	printf("opt num %d\n", main->cmd_table->tools.opt_num);
+	// 	printf("arg num %d\n", main->cmd_table->tools.arg_num);
+	// 	// printf("1:%d\n", main->cmd_num);
+	// 	// printf("2:%d\n", main->cmd_table[i].main->cmd_num);
 	// }
 */
 void	check_cmd_parts(t_shell_chan *main)

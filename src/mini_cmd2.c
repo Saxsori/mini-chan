@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 11:59:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 17:23:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,43 @@
 
 int	mini_export(t_mini_cmd *cmd)
 {
-	if (cmd->arguments)
+	if (cmd->option == NULL)
 	{
-		cmd->main->head_envar = \
-			add_node_at_end(cmd->main->head_envar, cmd->arguments[0], 'n');
-		return (1);
+		if (cmd->arguments)
+			return (do_export(cmd));
+		else
+		{
+			print_envar_list(cmd->main->head_envar, 'x');
+			return (1);
+		}
 	}
 	else
-	{
-		print_envar_list(cmd->main->head_envar, 'x');
-	}
+		printf(BRED"export: no option: %s\n", cmd->option[0]);
 	return (0);
 }
 
 int	mini_unset(t_mini_cmd *cmd)
 {
-	t_mini_envar	*envar;
 	int				i;
 
 	i = -1;
-	if (cmd->arguments)
+	if (cmd->option == NULL)
 	{
-		while (++i < cmd->tools.arg_num)
+		if (cmd->arguments)
 		{
-			envar = sreach_envar(cmd->main->head_envar, cmd->arguments[i]);
-			if (envar)
+			while (++i < cmd->tools.arg_num)
 			{
-				if (envar->prev == NULL)
-					cmd->main->head_envar = \
-										del_first_envar(cmd->main->head_envar);
-				else if (envar->next == NULL)
-					cmd->main->head_envar = \
-										del_last_envar(cmd->main->head_envar);
+				if (isvalid_name(cmd->arguments[i]))
+					do_unset(cmd, i);
 				else
-					del_mid_envar(envar);
+					printf(BRED"mini-chan🌸: unset: `%s': not a valid identifier\n"BCYN, cmd->arguments[i]);
 			}
+			return (1);
 		}
-		return (1);
 	}
-	return (1);
+	else
+		printf(BRED"unset: no option: %s\n", cmd->option[0]);
+	return (0);
 }
 
 int	mini_env(t_mini_cmd *cmd)
@@ -72,4 +70,22 @@ int	mini_chan(void)
 	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	new_prompt(1);
 	return (1);
+}
+
+void	do_unset(t_mini_cmd *cmd, int i)
+{
+	t_mini_envar	*envar;
+
+	envar = search_envar(cmd->main->head_envar, cmd->arguments[i]);
+	if (envar)
+	{
+		if (envar->prev == NULL)
+			cmd->main->head_envar = \
+						del_first_envar(cmd->main->head_envar);
+		else if (envar->next == NULL)
+			cmd->main->head_envar = \
+						del_last_envar(cmd->main->head_envar);
+		else
+			del_mid_envar(envar);
+	}
 }

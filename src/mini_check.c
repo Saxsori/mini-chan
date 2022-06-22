@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:14:08 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/21 17:47:45 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:04:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	cmd_strncmp(const char *s1, const char *s2, int n)
 	{
 		if (p1[i] != p2[i])
 		{
-			if (p1[i] - p2[i] != 32 || p1[i] - p2[i] != -32)
+			if (p1[i] - p2[i] != -32)
 				return (p1[i] - p2[i]);
 		}
 		i++;

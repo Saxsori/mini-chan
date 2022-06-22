@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 11:58:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:58:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
-	if (op == 'h')
-		add_hid_env_data(temp, data);
-	else
-		add_env_data(temp, data);
+	add_env_data(temp, data);
 	envar_mode(temp, op);
 	traversal = head;
 	while (traversal->next != NULL)
@@ -58,20 +55,9 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op)
 void	envar_mode(t_mini_envar *temp, char op)
 {
 	if (op == 'n')
-	{
-		temp->hidden = 0;
 		temp->declared = 1;
-	}
-	else if (op == 'h')
-	{
-		temp->hidden = 1;
-		temp->declared = 0;
-	}
 	else if (op == 'x')
-	{
-		temp->hidden = 0;
 		temp->declared = 0;
-	}
 }
 
 /*
@@ -99,13 +85,30 @@ void	add_env_data(t_mini_envar *temp, char *data)
 	}
 }
 
-void	add_hid_env_data(t_mini_envar *temp, char *data)
+int	do_export(t_mini_cmd *cmd)
 {
-	temp->env_name = ft_strdup(data);
-	// if (data[0] == '$')
-	// 	temp->env_cont = ft_atoi(find_pid());
-	if (data[0] == '0')
-		temp->env_cont = ft_strdup("mini-chan🌸");
-	// else if (data[0] == '?')
-	// 	temp->env_cont = ft_atoi()
+	int	i;
+
+	i = -1;
+	while (++i < cmd->tools.arg_num)
+	{
+		if (isvalid_name(cmd->arguments[i]))
+		{
+			if (is_equal(cmd->arguments[i]))
+			{
+				if (check_is_name_there(cmd->main, cmd->arguments[i]))
+					replace_envar(cmd, i);
+				else
+					add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'n');
+			}
+			else if (!check_is_name_there(cmd->main, cmd->arguments[i]))
+				add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'x');
+		}
+		else
+		{
+			printf(BRED"%d export: not a valid identifier\n", i);
+			return (0);
+		}
+	}
+	return (1);
 }

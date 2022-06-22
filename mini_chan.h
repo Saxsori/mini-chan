@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/21 17:55:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 17:19:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,6 @@
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
 typedef struct expand_tools	t_expand_tools;
-
-// typedef struct env_expand
-// {
-// 	t_shell_chan	*main;
-// 	int				index;
-// 	int				env_num;
-// 	int				env_ord;
-// 	int				start;
-// 	int				end;
-// 	int				name_len;
-// 	t_mini_envar	*env_ptr;
-// 	int				new_len_exp;
-// 	int				s;
-// 	int				e;
-// 	int				i;
-// 	int				l;
-// }	t_env_expand;
 
 typedef struct env_info
 {
@@ -99,7 +82,6 @@ typedef struct node
 	char			*env_name;
 	char			*env_cont;
 	char			*envar;
-	int				hidden;
 	int				declared;
 	t_mini_envar	*next;
 }	t_mini_envar;
@@ -209,10 +191,8 @@ void			add_env_data(t_mini_envar *temp, char *data);
 void			del_mid_envar(t_mini_envar *envar);
 t_mini_envar	*del_last_envar(t_mini_envar *head);
 t_mini_envar	*del_first_envar(t_mini_envar *head);
-t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name);
+t_mini_envar	*search_envar(t_mini_envar *head, char *env_name);
 void			print_envar_list(t_mini_envar *head, char which);
-void			add_hid_env_data(t_mini_envar *temp, char *data);
-void			add_hid_env(t_shell_chan *main);
 void			envar_mode(t_mini_envar *temp, char op);
 
 /*******************       MINI__ECHO      *******************/
@@ -256,4 +236,13 @@ void			start_expand(t_expand_tools *exp_tools);
 void			expand_envar(t_shell_chan *main);
 void			set_env_val_flag(t_shell_chan *main, char *line, int i);
 int				new_envar_num(t_shell_chan *main, int i);
+
+/*******************    MINI_EXPORT_TOOLS   ******************/
+int				is_equal(char *line);
+int				do_export(t_mini_cmd *cmd);
+void			replace_envar(t_mini_cmd *cmd, int i);
+int				isvalid_name(char *line);
+int				check_is_name_there(t_shell_chan *main, char *line);
+
+void			do_unset(t_mini_cmd *cmd, int i);
 #endif

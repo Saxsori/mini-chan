@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 04:32:27 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:10:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	mini_cd(t_mini_cmd *cmd)
 {
 	if (!cmd->arguments)
 	{
-		cmd->tools.envar = sreach_envar(cmd->main->head_envar, "HOME");
+		cmd->tools.envar = search_envar(cmd->main->head_envar, "HOME");
 		chdir(cmd->tools.envar->env_cont);
 	}
 	else

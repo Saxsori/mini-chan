@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 13:39:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:11:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../mini_chan.h"
 
-t_mini_envar	*sreach_envar(t_mini_envar *head, char *env_name)
+t_mini_envar	*search_envar(t_mini_envar *head, char *env_name)
 {
 	t_mini_envar	*envar;
 
@@ -164,7 +164,7 @@ int main (int argc, char **argv, char **env)
 	(void) argv;
 	create_envar_list(&main, env);
 	print_envar_list(main.head_envar);
-	enva = sreach_envar(main.head_envar, "SHELL");
+	enva = search_envar(main.head_envar, "SHELL");
 	// main.head_envar = del_first_envar(main.head_envar);
 	// main.head_envar = del_last_envar(main.head_envar);
 	printf(BGRN"----------------\n");

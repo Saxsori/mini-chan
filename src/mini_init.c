@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/20 11:11:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:54:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,6 @@ void	init_mini_quotes(t_shell_chan *main, char *line)
 	main->q_pars.exp_index = 0;
 }
 
-// 	exp_tools->env_ord = 0;
-// 	exp_tools->start = 0;
-// 	exp_tools->end = 0;
-// 	exp_tools->name_len = 0;
-// 	exp_tools->env_ptr = NULL;
-// 	exp_tools->new_len_exp = ft_strlen(main->first_split[index]);
-// 	exp_tools->l = -1;
 void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 {
 	exp_tools->main = main;
