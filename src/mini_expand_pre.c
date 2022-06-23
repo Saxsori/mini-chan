@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 07:23:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:24:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	if (env_info->e_valid == 0 || !find_env(env_info))
 		env_info->env_ptr = NULL;
 	get_env_value(env_info);
-	if (env_info->env_value != NULL)
+	// if (env_info->env_value != NULL)
 		env_info->name_len++;
 	handle_1dollar_case(env_info);
 }
