@@ -3,47 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_envar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 14:55:28 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/06/23 21:42:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-void	init_exp_loop(t_expand_tools *exp_tools)
+int	find_env(t_env_info *env_info)
 {
-	exp_tools->i = 0;
-	exp_tools->i_s = -1;
-	exp_tools->pos = 0;
+	t_mini_envar	*temp;
+
+	temp = env_info->exp_tools->main->head_envar;
+	while (temp->next)
+	{
+		if (ft_strlen(temp->env_name) == env_info->name_len)
+		{
+			if (cmp_env_name(env_info, temp))
+			{
+				env_info->env_ptr = temp;
+				return (1);
+			}
+		}
+		temp = temp->next;
+	}
+	if (temp && !temp->next)
+	{
+		if (ft_strlen(temp->env_name) == env_info->name_len)
+		{
+			if (cmp_env_name(env_info, temp))
+			{
+				env_info->env_ptr = temp;
+				return (1);
+			}
+		}
+	}
+	return (0);
 }
 
-void	do_expand(t_expand_tools *exp_tools)
+char	*get_env_name(t_env_info *env_info)
 {
-	char	*new_line;
+	char	*name;
+	char	*source;
+	int		i;
+	int		j;
 
-	init_exp_loop(exp_tools);
-	new_line = (char *)malloc((exp_tools->new_exp_len + 1) * sizeof(char));
-	while (++exp_tools->i_s < ft_strlen(exp_tools->main->first_split[exp_tools->index]))
+	i = -1;
+	source = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
+	name = (char *)malloc(sizeof(char) * (env_info->name_len + 2));
+	j = env_info->i_start - 2;
+	while (++i < env_info->name_len + 1)
+		name[i] = source[++j];
+	name[i] = '\0';
+	free (source);
+	return (name);
+}
+
+int	cmp_env_name(t_env_info *env_info, t_mini_envar *env)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = env_info->i_start;
+	while (++i < env_info->name_len && j <= env_info->i_end)
 	{
-		if (exp_tools->main->env_index[exp_tools->index][exp_tools->pos] == exp_tools->i_s)
-		{
-			exp_tools->i_e = -1;
-			if (exp_tools->env_info[exp_tools->pos].env_value != NULL)
-			{
-				while (++exp_tools->i_e < ft_strlen(exp_tools->env_info[exp_tools->pos].env_value))
-					new_line[exp_tools->i++] = exp_tools->env_info[exp_tools->pos].env_value[exp_tools->i_e];
-			}
-			exp_tools->i_s += (exp_tools->env_info[exp_tools->pos].name_len - 1);
-			exp_tools->pos++;
-		}
+		if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][j] == env->env_name[i])
+			j++;
 		else
-			new_line[exp_tools->i++] = exp_tools->main->first_split[exp_tools->index][exp_tools->i_s];
+			return (0);
 	}
-	new_line[exp_tools->i] = '\0';
-	free(exp_tools->main->first_split[exp_tools->index]);
-	exp_tools->main->first_split[exp_tools->index] = ft_strdup(new_line);
-	free(new_line);
-	printf ("(%s)\n", exp_tools->main->first_split[exp_tools->index]);
+	return (1);
+}
+
+void	get_env_value(t_env_info *env_info)
+{
+	if (env_info->env_ptr)
+	{
+		if (env_info->env_ptr->env_cont[0] != '\0')
+		{
+			env_info->env_value = ft_strdup(env_info->env_ptr->env_cont);
+			env_info->value_len = ft_strlen(env_info->env_value);
+		}
+	}
+	else if (env_info->e_valid == 0)
+	{
+		env_info->env_value = get_env_name(env_info);
+		env_info->value_len = ft_strlen(env_info->env_value);
+	}
+	else
+	{
+		env_info->env_value = NULL;
+		env_info->value_len = 0;
+	}
 }

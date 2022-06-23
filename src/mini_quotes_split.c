@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 23:30:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:48:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	quote = line[index];
 	line[index] = '\t';
 	if (line[index - 1] == '$')
-	{
-		// main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
 		line[index - 1] = '\t';
-	}
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
@@ -125,6 +122,7 @@ after checking of the quotes are valid (closed) then take them off
 ? 5- copy the new line without the quote in the first split string
 ? 6- free the new line
 	// printf("%s - %d\n", main->first_split[i], ft_strlen(main->first_split[i]));
+	// printf ("new line %s\n", main->first_split[i]);
 */
 int	quote_split(t_shell_chan *main, char *line, int i)
 {
@@ -144,10 +142,16 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
-	printf ("new line %s\n", main->first_split[i]);
 	return (1);
 }
 
+/*
+
+	// printf ("old line %s\n", line);
+	// while (++n < envar_num(main, i))
+	// 	printf ("ind %d, val %d\n", main->env_index[i][n], main->exp_valid[i][n]);
+
+*/
 void	pre_quote(t_shell_chan *main, char *line, int i)
 {
 	int	n;
@@ -159,7 +163,4 @@ void	pre_quote(t_shell_chan *main, char *line, int i)
 		if (main->exp_valid[i][n] == -1)
 			main->exp_valid[i][n] = 1;
 	}
-	printf ("old line %s\n", line);
-	while (++n < envar_num(main, i))
-		printf ("ind %d, val %d\n", main->env_index[i][n], main->exp_valid[i][n]);
 }

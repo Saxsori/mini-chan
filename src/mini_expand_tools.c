@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:05:41 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 23:11:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:33:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	two_dollar_case(char *line)
 }
 
 /*
+
 	// i = -1;
 	// while (++i < main->cmd_num)
 	// {
@@ -95,6 +96,8 @@ void	two_dollar_case(char *line)
 	// 	while (++k < envar_num(main, i))
 	// 		printf ("ind - %d\n", main->env_index[i][k]);
 	// }
+	// printf ("line %s\n", main->first_split[0]);
+	// printf ("envar num %d\n", envar_num(main, 0));
 */
 void	expand_tools(t_shell_chan *main)
 {
@@ -104,8 +107,7 @@ void	expand_tools(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 		two_dollar_case(main->first_split[i]);
-	printf ("line %s\n", main->first_split[0]);
-	printf ("envar num %d\n", envar_num(main, 0));
+
 	main->exp_valid = (int **)malloc(main->cmd_num * sizeof(int *));
 	main->env_index = (int **)malloc(main->cmd_num * sizeof(int *));
 	i = -1;
