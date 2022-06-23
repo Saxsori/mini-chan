@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 23:43:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:58:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 	exp_tools->main = main;
 	exp_tools->index = index;
 	exp_tools->env_num = envar_num(main, index);
-	exp_tools->e = 0;
+	exp_tools->i_e = 0;
+	exp_tools->pos = 0;
 	exp_tools->i = -1;
-	exp_tools->s = 0;
+	exp_tools->i_s = 0;
 	if (exp_tools->env_num)
 		exp_tools->env_info = (t_env_info*)malloc(sizeof(t_env_info) * exp_tools->env_num);
 	exp_tools->new_exp_len = ft_strlen(exp_tools->main->first_split[index]);

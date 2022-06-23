@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 00:12:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:59:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ typedef struct expand_tools
 	int				index;
 	int				env_num;
 	int				i;
-	int				s;
-	int				e;
+	int				pos;
+	int				i_s;
+	int				i_e;
 	int				new_exp_len;
 	t_env_info		*env_info;
 }	t_expand_tools;
@@ -236,6 +237,6 @@ int				isvalid_name(char *line);
 int				check_is_name_there(t_shell_chan *main, char *line);
 void			two_dollar_case(char *line);
 void			expand_envar(t_shell_chan *main);
-
+void			do_expand(t_expand_tools *exp_tools);
 void			do_unset(t_mini_cmd *cmd, int i);
 #endif
