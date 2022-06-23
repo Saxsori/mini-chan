@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/21 17:10:22 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:30:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,15 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	quote = line[index];
 	line[index] = '\t';
 	if (line[index - 1] == '$')
-		main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
+	{
+		// main->exp_valid[i][env_which_index(main, index - 1, i)] = 2;
+		line[index - 1] = '\t';
+	}
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
-			if (line[index + 1] == 34 || line[index + 1] == 39)
-				main->exp_valid[i][env_which_index(main, index, i)] = 3;
-			else if (quote == 34)
+			if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
 				main->exp_valid[i][env_which_index(main, index, i)] = 0;
@@ -131,9 +132,6 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	int		f;
 	int		n;
 
-	find_frst(main, line, i);
-	find_env_length(main, line, i);
-	set_env_val_flag(main, line, i);
 	new_line = (char *)malloc((line_len(line) + 1) * sizeof(char));
 	f = -1;
 	n = 0;
@@ -146,5 +144,22 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	free(main->first_split[i]);
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
+	printf ("new line %s\n", main->first_split[i]);
 	return (1);
+}
+
+void	pre_quote(t_shell_chan *main, char *line, int i)
+{
+	int	n;
+
+	find_frst(main, line, i);
+	n = -1;
+	while (++n < envar_num(main, i))
+	{
+		if (main->exp_valid[i][n] == -1)
+			main->exp_valid[i][n] = 1;
+	}
+	printf ("old line %s\n", line);
+	while (++n < envar_num(main, i))
+		printf ("ind %d, val %d\n", main->env_index[i][n], main->exp_valid[i][n]);
 }

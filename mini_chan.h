@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 17:19:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:12:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,34 +208,25 @@ int				is_closed(t_shell_chan *main, char *line, int index);
 int				quotes_checker(t_shell_chan *main);
 int				is_qt_valid(t_shell_chan *main, char *line);
 int				quote_split(t_shell_chan *main, char *line, int i);
+void			pre_quote(t_shell_chan *main, char *line, int i);
 int				line_len(char *line);
 void			find_frst(t_shell_chan *main, char *line, int i);
 void			find_scnd(t_shell_chan *main, char *line, int index, int i);
+int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
 
 /*******************    MINI_EXPAND_TOOLS   ******************/
-void			find_env_index(t_shell_chan *main, int i);
-int				env_pos(t_shell_chan *main, int i, int index);
-int				envar_num(t_shell_chan *main, int i);
 void			expand_tools(t_shell_chan *main);
-void			expand_pre(t_shell_chan *main);
-int				envar_surr_by_quote(char *line, int i);
-int				get_envar_ending(char *line, int start);
-int				get_len_b4_quote(char *line, int i);
-int				envar_n_ending_with_quote(char *line, int i);
-int				get_envar_len(char *line, int index);
-void			find_env_length(t_shell_chan *main, char *line, int i);
-void			find_name_size(t_env_info *env_info);
-int				find_env(t_env_info *env_info);
-void			get_env_value(t_env_info *env_info);
-int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
-char			*get_env_name(t_env_info *env_info, int op);
-void			handle_1dollar_case(t_env_info *env_info);
-void			init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i);
-void			do_expand(t_expand_tools *exp_tools);
-void			start_expand(t_expand_tools *exp_tools);
+int				check_ignore_case(t_shell_chan *main, int i, int k, int num);
+int				envar_num(t_shell_chan *main, int i);
+void			find_env_index(t_shell_chan *main, int i);
 void			expand_envar(t_shell_chan *main);
-void			set_env_val_flag(t_shell_chan *main, char *line, int i);
-int				new_envar_num(t_shell_chan *main, int i);
+void			start_expand(t_expand_tools *exp_tools);
+void			init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i);
+void			find_istart(t_env_info *env_info);
+void			get_env_value(t_env_info *env_info);
+char			*get_env_name(t_env_info *env_info);
+int				find_env(t_env_info *env_info);
+void			find_name_size(t_env_info *env_info);
 
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);
@@ -243,6 +234,8 @@ int				do_export(t_mini_cmd *cmd);
 void			replace_envar(t_mini_cmd *cmd, int i);
 int				isvalid_name(char *line);
 int				check_is_name_there(t_shell_chan *main, char *line);
+void			two_dollar_case(char *line);
+void			expand_envar(t_shell_chan *main);
 
 void			do_unset(t_mini_cmd *cmd, int i);
 #endif

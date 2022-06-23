@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 11:54:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:43:44 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 {
 	exp_tools->main = main;
 	exp_tools->index = index;
-	exp_tools->env_num = new_envar_num(main, index);
+	exp_tools->env_num = envar_num(main, index);
 	exp_tools->e = 0;
 	exp_tools->i = -1;
 	exp_tools->s = 0;
 	if (exp_tools->env_num)
 		exp_tools->env_info = (t_env_info*)malloc(sizeof(t_env_info) * exp_tools->env_num);
-	exp_tools->new_exp_len = 0;
+	exp_tools->new_exp_len = ft_strlen(exp_tools->main->first_split[index]);
 	main->exp_tools = exp_tools;
 }
 

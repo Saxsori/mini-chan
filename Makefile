@@ -6,22 +6,22 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/22 17:00:00 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/22 23:14:38 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =   src/main.c                       src/mini_ctrls.c \
-		src/mini_init.c                  src/mini_tools.c \
-		src/mini_cmd.c                   src/mini_check.c \
-		src/mini_cmd_opt.c               src/mini_cmd_arg.c \
-		src/mini_cmd2.c                  src/mini_parse.c \
-		src/mini_run_cmd.c               src/mini_free.c \
-		src/mini_envar.c                 src/mini_envar_tools.c \
-		src/mini_envar_export.c          src/mini_envar_unset.c \
-		src/mini_echo_tools.c            src/mini_cd_tools.c \
-		src/mini_quotes_split.c          src/mini_quotes_checker.c \
-		src/mini_expand_pre.c 	         src/mini_expand_tools.c \
-		src/mini_expand_envar.c          src/mini_envar_export_tools.c
+SRC =   src/main.c                  		    src/mini_ctrls.c \
+		src/mini_init.c           		      	src/mini_tools.c \
+		src/mini_cmd.c              		    src/mini_check.c \
+		src/mini_cmd_opt.c            			src/mini_cmd_arg.c \
+		src/mini_cmd2.c               			src/mini_parse.c \
+		src/mini_run_cmd.c             			src/mini_free.c \
+		src/mini_envar.c                		src/mini_envar_tools.c \
+		src/mini_envar_export.c           		src/mini_envar_unset.c \
+		src/mini_echo_tools.c               	src/mini_cd_tools.c \
+		src/mini_quotes_split.c         	    src/mini_quotes_checker.c \
+		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
+		src/mini_expand_pre.c 					src/mini_expand_envar.c          
 
 OBJ = ${SRC:.c=.o}
 
