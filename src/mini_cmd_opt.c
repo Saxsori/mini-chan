@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd_opt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:12:09 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/31 11:20:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:30:08 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ output
 void	check_opt(t_mini_cmd *cmd)
 {
 	if (is_there_opt(cmd))
+	{
 		get_opt(cmd);
+	}
 	else
 		cmd->option = NULL;
 }

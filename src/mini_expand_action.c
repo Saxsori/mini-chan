@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_action.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 23:33:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:28:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,6 @@ void	do_expand(t_expand_tools *exp_tools)
 
 
 /*
-		// printf("pos %d\n", exp_tools->env_info[i].e_pos);
-		// printf("index %d\n", exp_tools->env_info[i].e_index);
-		// printf("valid %d\n", exp_tools->env_info[i].e_valid);
-		// printf("i_start %d\n", exp_tools->env_info[i].i_start);
-		// printf("i_end %d\n", exp_tools->env_info[i].i_end);
-		// printf("name_len %d\n", exp_tools->env_info[i].name_len);
-		// if (exp_tools->env_info[i].env_ptr != NULL)
-		// 	printf("env_ptr_con %s\n", exp_tools->env_info[i].env_ptr->env_cont);
-		// printf("env_value %s\n", exp_tools->env_info[i].env_value);
-		// printf("value_len %d\n", exp_tools->env_info[i].value_len);
-		// printf("\n");
-		// printf("new_exp_len %d\n", exp_tools->new_exp_len);
 */
 void	start_expand(t_expand_tools *exp_tools)
 {
@@ -72,9 +60,21 @@ void	start_expand(t_expand_tools *exp_tools)
 	i = -1;
 	while (++i < exp_tools->env_num)
 	{
+		printf("pos %d\n", exp_tools->env_info[i].e_pos);
+		printf("index %d\n", exp_tools->env_info[i].e_index);
+		printf("valid %d\n", exp_tools->env_info[i].e_valid);
+		printf("i_start %d\n", exp_tools->env_info[i].i_start);
+		printf("i_end %d\n", exp_tools->env_info[i].i_end);
+		printf("name_len %d\n", exp_tools->env_info[i].name_len);
+		if (exp_tools->env_info[i].env_ptr != NULL)
+			printf("env_ptr_con %s\n", exp_tools->env_info[i].env_ptr->env_cont);
+		printf("env_value %s\n", exp_tools->env_info[i].env_value);
+		printf("value_len %d\n", exp_tools->env_info[i].value_len);
+		printf("\n");
 		exp_tools->new_exp_len -= exp_tools->env_info[i].name_len;
 		exp_tools->new_exp_len += exp_tools->env_info[i].value_len;
 	}
+	printf("new_exp_len %d\n", exp_tools->new_exp_len);
 }
 
 void	expand_envar(t_shell_chan *main)

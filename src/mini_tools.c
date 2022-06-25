@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/11 11:50:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:07:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,24 @@ void	cmd_counter(t_shell_chan *main)
 	main->cmd_num++;
 }
 
+int	check_pipe(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ft_strlen(line))
+	{
+		if (line[i] == '|')
+		{
+			if (line[i + 1] == '\0')
+				return (0);
+			else if (i == 0)
+				return (0);
+		}
+	}
+	return (1);
+}
+
 /*
 ? 1- counting how many commands are there
 ? 2- depending on that counter do the malloc for the array of structures
@@ -36,9 +54,24 @@ void	cmd_counter(t_shell_chan *main)
 void	first_cmd_split(t_shell_chan *main)
 {
 	cmd_counter(main);
-	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
+	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	if (main->cmd_num > 1)
+	{
 		main->first_split = ft_split(main->cmd_line, '|');
+		if (!main->first_split)
+		{
+			main->exit_status = 2;
+			if (ft_strlen(main->cmd_line) == 1)
+				printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+			else if (ft_strlen(main->cmd_line) > 1)
+				printf (BRED"mini-chan🌸: syntax error near unexpected token `||'\n");
+		}
+		else if (!check_pipe(main->cmd_line))
+		{
+			main->exit_status = 2;
+			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+		}
+	}
 	else
 	{
 		main->first_split = (char **)malloc(sizeof (char *));
@@ -78,6 +111,29 @@ void	check_spaces(char **line)
 	}
 }
 
+void	check_special_cases(t_shell_chan *main)
+{
+	int	i;
+
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	check_echo_arg(main->cmd_table[i]);
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		if (main->cmd_table[i].split == NULL)
+		{
+			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+			main->exit_status = 2;
+			//free
+			return ;
+		}
+	}
+	i = -1;
+	while (++i < main->cmd_num)
+		check_spaces(main->cmd_table[i].split);
+}
+
 /* 
 ? passing the command to each command structure 
 ? and at the same time splitting them from spaces 
@@ -90,10 +146,12 @@ void	split_command(t_shell_chan *main)
 {
 	int	i;
 
+	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
+	i = -1;
+	while (++i < main->cmd_num)
+		init_mem_cmd(&main->cmd_table[i]);
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
-	i = -1;
-	while (++i < main->cmd_num)
-		check_spaces(main->cmd_table[i].split);
+	check_special_cases(main);
 }

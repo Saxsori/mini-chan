@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 16:58:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:40:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,12 @@ void	envar_mode(t_mini_envar *temp, char op)
 /*
 ? env_name is pointer here and you cant pass any value 
 ? to a pointer that u didn't malloc
-* n -> it's not hidden and declared so it will be normal splitted by thr first =
-* x -> it's not hidden and not declared which it won't have a value so no splitting
-* h -> it's hidden and not declared these value should be one by one init
+* n -> it's not hidden and declared so 
+* it will be normal splitted by thr first =
+* x -> it's not hidden and not declared which 
+* it won't have a value so no splitting
+* h -> it's hidden and not declared these value 
+* should be one by one init
 */
 void	add_env_data(t_mini_envar *temp, char *data)
 {
@@ -88,8 +91,10 @@ void	add_env_data(t_mini_envar *temp, char *data)
 int	do_export(t_mini_cmd *cmd)
 {
 	int	i;
+	int	fl;
 
 	i = -1;
+	fl = 1;
 	while (++i < cmd->tools.arg_num)
 	{
 		if (isvalid_name(cmd->arguments[i]))
@@ -99,16 +104,19 @@ int	do_export(t_mini_cmd *cmd)
 				if (check_is_name_there(cmd->main, cmd->arguments[i]))
 					replace_envar(cmd, i);
 				else
-					add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'n');
+					add_node_at_end(cmd->main->head_envar, \
+					cmd->arguments[i], 'n');
 			}
 			else if (!check_is_name_there(cmd->main, cmd->arguments[i]))
 				add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'x');
 		}
 		else
 		{
-			printf(BRED"%d export: not a valid identifier\n", i);
-			return (0);
+			printf(BRED"mini-chan🌸: export: '%s': not a valid identifier\n", cmd->arguments[i]);
+			fl = 0;
 		}
 	}
+	if (!fl)
+		return (fl);
 	return (1);
 }

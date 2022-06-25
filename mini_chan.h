@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 21:31:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:40:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,6 @@ typedef struct shell_chan
 	int				d_rootpath;
 	int				**exp_valid;
 	int				**env_index;
-	int				**env_n_len;
-	int				**env_val_f;
 	t_expand_tools	*exp_tools;
 }	t_shell_chan;
 
@@ -135,6 +133,7 @@ void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 void			init_mini_quotes(t_shell_chan *main, char *line);
 void			init_expand_tools(t_expand_tools *exp_tools, \
 												t_shell_chan *main, int index);
+void			init_mem_cmd(t_mini_cmd *cmd);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);

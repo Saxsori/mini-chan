@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrar <abrar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 18:33:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/21 14:17:12 by abrar            ###   ########.fr       */
+/*   Updated: 2022/06/24 23:29:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ static char	**action(char **new, char const *s, char c)
 	while (i <= ss)
 	{
 		if (s[i] != c && start < 0)
-		{
 			start = i;
-		}
 		else if ((s[i] == c || i == ss) && start >= 0)
 		{
 			new[j] = nextstr(s, start, i);
@@ -87,15 +85,13 @@ char	**ft_split(char const *s, char c)
 	int		nbstr;
 
 	if (!s)
-	{
 		return (NULL);
-	}
 	nbstr = strn(s, c);
+	if (!nbstr)
+		return (NULL);
 	new = (char **)malloc(sizeof(char *) * (nbstr + 1));
 	if (!new)
-	{
 		return (NULL);
-	}
 	action(new, s, c);
 	return (new);
 }

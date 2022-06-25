@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 21:50:18 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:51:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	check_cmd_parts(t_shell_chan *main)
 	while (++i < main->cmd_num)
 	{
 		init_mini_cmd(&main->cmd_table[i], main);
+		printf ("1here\n");
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
 	}
@@ -72,6 +73,8 @@ int	find_command(t_shell_chan *main)
 	int	i;
 
 	first_cmd_split(main);
+	if (main->exit_status == 2)
+		return (2);
 	expand_tools(main);
 	if (quotes_checker(main))
 	{
@@ -83,6 +86,8 @@ int	find_command(t_shell_chan *main)
 		while (++i < main->cmd_num)
 			printf("(%s)\n", main->first_split[i]);
 		split_command(main);
+		if (main->exit_status == 2)
+			return (2);
 		if (command_name(main))
 		{
 			check_cmd_parts(main);
@@ -115,13 +120,9 @@ int	main(int argc, char **argv, char **env)
 		if (!check_cmd_line(main.cmd_line))
 			new_prompt(1);
 		else if (check_cmd_line(main.cmd_line))
-		{
-			if (find_command(&main))
-				main.exit_status = EXIT_SUCCESS;
-			else
-				main.exit_status = EXIT_FAILURE;
-		}
+			main.exit_status = find_command(&main);
 		re_init_shell_chan(&main);
 	}
+	//free envar
 	return (0);
 }

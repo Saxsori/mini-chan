@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 14:58:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:49:43 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,29 @@ void	init_shell_chan(t_shell_chan *main)
 	main->cmd_num = 0;
 	main->exit_status = EXIT_SUCCESS;
 	main->d_rootpath = 0;
+	main->cmd_table = NULL;
+	main->env_index = NULL;
+	main->exp_tools = NULL;
+	main->exp_valid = NULL;
+	main->first_split = NULL;
+	main->head_envar = NULL;
+}
+
+void	free_mini_cmd(t_mini_cmd *cmd)
+{
+	if (cmd->split != NULL)
+		squaredstr_free(cmd->split);
+	if (cmd->option != NULL)
+		squaredstr_free(cmd->option);
+	if (cmd->arguments != NULL)
+		squaredstr_free(cmd->arguments);
+	if (cmd->name != NULL)
+		free (cmd->name);
+	if (cmd->tools.cwd_ret != NULL)
+		free (cmd->tools.cwd_ret);
+	if (cmd->tools.pwd != NULL)
+		free (cmd->tools.pwd);
+	// free DIR
 }
 
 void	re_init_shell_chan(t_shell_chan *main)
@@ -26,15 +49,28 @@ void	re_init_shell_chan(t_shell_chan *main)
 	// 	squaredint_free(main->exp_valid, main->cmd_num);
 	// if (main->env_index != NULL)
 	// 	squaredint_free(main->env_index, main->cmd_num);
+	// if (main->first_split != NULL)
+	// 	squaredstr_free(main->first_split);
+	// free_mini_cmd(main->cmd_table);
+	//free the array of cmd
 	main->cmd_num = 0;
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 }
+void	init_mem_cmd(t_mini_cmd *cmd)
+{
+	cmd->name = NULL;
+	cmd->split = NULL;
+	cmd->option = NULL;
+	cmd->arguments = NULL;
+	cmd->tools.cwd_ret = NULL;
+	cmd->tools.dir = NULL;
+	cmd->tools.envar = NULL;
+	cmd->tools.pwd = NULL;
+}
 
 void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 {
-	cmd->arguments = NULL;
-	cmd->option = NULL;
 	cmd->main = main;
 	cmd->tools.arg_num = 0;
 	cmd->tools.opt_num = 0;
