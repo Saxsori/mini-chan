@@ -1,0 +1,69 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan'
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/main.c -o src/main.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_ctrls.c -o src/mini_ctrls.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_init.c -o src/mini_init.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_tools.c -o src/mini_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cmd.c -o src/mini_cmd.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_check.c -o src/mini_check.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cmd_opt.c -o src/mini_cmd_opt.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cmd_arg.c -o src/mini_cmd_arg.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cmd2.c -o src/mini_cmd2.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_parse.c -o src/mini_parse.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_run_cmd.c -o src/mini_run_cmd.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_free.c -o src/mini_free.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar.c -o src/mini_envar.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_tools.c -o src/mini_envar_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_export.c -o src/mini_envar_export.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_unset.c -o src/mini_envar_unset.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_echo_tools.c -o src/mini_echo_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cd_tools.c -o src/mini_cd_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_quotes_split.c -o src/mini_quotes_split.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_quotes_checker.c -o src/mini_quotes_checker.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_export_tools.c -o src/mini_envar_export_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expand_tools.c -o src/mini_expand_tools.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expand_pre.c -o src/mini_expand_pre.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expand_envar.c -o src/mini_expand_envar.o
+gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expand_action.c -o src/mini_expand_action.o
+/Library/Developer/CommandLineTools/usr/bin/make -C ./libft
+make[1]: Entering directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan/libft'
+gcc -Wall -Werror -Wextra -c ft_memset.c -o ft_memset.o
+gcc -Wall -Werror -Wextra -c ft_split.c -o ft_split.o
+gcc -Wall -Werror -Wextra -c ft_bzero.c -o ft_bzero.o
+gcc -Wall -Werror -Wextra -c ft_memcpy.c -o ft_memcpy.o
+gcc -Wall -Werror -Wextra -c ft_memmove.c -o ft_memmove.o
+gcc -Wall -Werror -Wextra -c ft_memchr.c -o ft_memchr.o
+gcc -Wall -Werror -Wextra -c ft_memcmp.c -o ft_memcmp.o
+gcc -Wall -Werror -Wextra -c ft_strlen.c -o ft_strlen.o
+gcc -Wall -Werror -Wextra -c ft_strlcpy.c -o ft_strlcpy.o
+gcc -Wall -Werror -Wextra -c ft_strlcat.c -o ft_strlcat.o
+gcc -Wall -Werror -Wextra -c ft_strchr.c -o ft_strchr.o
+gcc -Wall -Werror -Wextra -c ft_strrchr.c -o ft_strrchr.o
+gcc -Wall -Werror -Wextra -c ft_strnstr.c -o ft_strnstr.o
+gcc -Wall -Werror -Wextra -c ft_strncmp.c -o ft_strncmp.o
+gcc -Wall -Werror -Wextra -c ft_atoi.c -o ft_atoi.o
+gcc -Wall -Werror -Wextra -c ft_isalpha.c -o ft_isalpha.o
+gcc -Wall -Werror -Wextra -c ft_isdigit.c -o ft_isdigit.o
+gcc -Wall -Werror -Wextra -c ft_isalnum.c -o ft_isalnum.o
+gcc -Wall -Werror -Wextra -c ft_isascii.c -o ft_isascii.o
+gcc -Wall -Werror -Wextra -c ft_isprint.c -o ft_isprint.o
+gcc -Wall -Werror -Wextra -c ft_toupper.c -o ft_toupper.o
+gcc -Wall -Werror -Wextra -c ft_tolower.c -o ft_tolower.o
+gcc -Wall -Werror -Wextra -c ft_calloc.c -o ft_calloc.o
+gcc -Wall -Werror -Wextra -c ft_strdup.c -o ft_strdup.o
+gcc -Wall -Werror -Wextra -c ft_substr.c -o ft_substr.o
+gcc -Wall -Werror -Wextra -c ft_strjoin.c -o ft_strjoin.o
+gcc -Wall -Werror -Wextra -c ft_strtrim.c -o ft_strtrim.o
+gcc -Wall -Werror -Wextra -c ft_itoa.c -o ft_itoa.o
+gcc -Wall -Werror -Wextra -c ft_strmapi.c -o ft_strmapi.o
+gcc -Wall -Werror -Wextra -c ft_striteri.c -o ft_striteri.o
+gcc -Wall -Werror -Wextra -c ft_putchar_fd.c -o ft_putchar_fd.o
+gcc -Wall -Werror -Wextra -c ft_putstr_fd.c -o ft_putstr_fd.o
+gcc -Wall -Werror -Wextra -c ft_putendl_fd.c -o ft_putendl_fd.o
+gcc -Wall -Werror -Wextra -c ft_putnbr_fd.c -o ft_putnbr_fd.o
+ar rc libft.a ft_memset.o ft_split.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_strlcpy.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_strnstr.o ft_strncmp.o ft_atoi.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
+make[1]: Leaving directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan/libft'
+gcc src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c       ./libft/libft.a -o minishell -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -L /usr/local/opt/readline/lib -lreadline 
+afplay WAKUWAKU.mp3
+make: Leaving directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan'
+ 
