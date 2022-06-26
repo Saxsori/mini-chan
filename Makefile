@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/26 14:20:19 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/26 14:25:50 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ all : ${NAME}
 	
 ${NAME} :  ${OBJ}
 	@ ${MAKE} -C ./libft
-	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS} 
-	# @ afplay WAKUWAKU.mp3
+	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
+	@ afplay WAKUWAKU.mp3
 # 	@ printf " \
 # ,---.    ,---..-./`) ,---.   .--..-./`)             _______   .---.  .---.    ____    ,---.   .--. \
 # |    \  /    |\ .-.')|    \  |  |\ .-.')           /   __  \  |   |  |_ _|  .'  __ `. |    \  |  | \
