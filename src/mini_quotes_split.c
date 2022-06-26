@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_quotes_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 21:48:27 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 13:24:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,4 +163,13 @@ void	pre_quote(t_shell_chan *main, char *line, int i)
 		if (main->exp_valid[i][n] == -1)
 			main->exp_valid[i][n] = 1;
 	}
+}
+
+void	remove_quote(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		quote_split(main, main->first_split[i], i);
 }

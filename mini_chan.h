@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/25 12:40:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 13:25:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void			pre_quote(t_shell_chan *main, char *line, int i);
 int				line_len(char *line);
 void			find_frst(t_shell_chan *main, char *line, int i);
 void			find_scnd(t_shell_chan *main, char *line, int index, int i);
-int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
+void			remove_quote(t_shell_chan *main);
 
 /*******************    MINI_EXPAND_TOOLS   ******************/
 void			expand_tools(t_shell_chan *main);
@@ -231,7 +231,6 @@ int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
 void			handle_1dollar_case(t_env_info *env_info);
 void			init_exp_loop(t_expand_tools *exp_tools);
 void			two_dollar_case(char *line);
-
 
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);

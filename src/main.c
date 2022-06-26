@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/25 12:51:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 13:24:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ int	find_command(t_shell_chan *main)
 	if (quotes_checker(main))
 	{
 		expand_envar(main);
-		i = -1;
-		while (++i < main->cmd_num)
-			quote_split(main, main->first_split[i], i);
+		remove_quote(main);
 		i = -1;
 		while (++i < main->cmd_num)
 			printf("(%s)\n", main->first_split[i]);

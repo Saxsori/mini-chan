@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/24 14:51:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 12:44:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	handle_1dollar_case(t_env_info *env_info)
 		env_info->name_len = 1;
 		env_info->i_end = env_info->e_index;
 	}
+	free(line);
 }
 
 /*
