@@ -6,7 +6,11 @@
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/26 21:14:38 by badriah          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/26 18:33:53 by aaljaber         ###   ########.fr       */
+>>>>>>> 9b260012a55aeeaef3e1cea539179790bc49d3bf
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +115,7 @@ typedef struct mini_cmnd
 	t_shell_chan	*main;
 }	t_mini_cmd;
 
+<<<<<<< HEAD
 typedef struct pre_exe
 {
 	t_shell_chan	*main; 
@@ -119,6 +124,13 @@ typedef struct pre_exe
 	char			**command_path; //execve 2nd
 			
 }	t_pre_exe;
+=======
+typedef struct echo_parse
+{
+	int	null_num;
+	int	new_size;
+}	t_mini_echo;
+>>>>>>> 9b260012a55aeeaef3e1cea539179790bc49d3bf
 
 typedef struct shell_chan
 {
@@ -129,10 +141,11 @@ typedef struct shell_chan
 	int				exit_status;
 	char			**first_split;
 	t_mini_envar	*head_envar;
-	int				d_rootpath;
 	int				**exp_valid;
 	int				**env_index;
 	t_expand_tools	*exp_tools;
+	int				d_rootpath;
+	t_mini_echo		e_parse;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/
@@ -208,6 +221,8 @@ void			envar_mode(t_mini_envar *temp, char op);
 int				is_extst(char *line);
 void			check_echo_opt(t_mini_cmd *cmd);
 int				is_echo_opt(char **opt, char which, int len);
+void			parse_echo_case(t_shell_chan *main);
+int				is_echo(char *line);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
