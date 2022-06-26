@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/23 20:01:24 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/26 14:20:19 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,11 @@ ${NAME} :  ${OBJ}
 # '--'      '--' '---' '--'    '--' '---'            `._____.'  '(_,_) '---'  '.(_,_).' '--'    '--' "
 
 clean : 
-		${RM} ${OBJ}
-		${MAKE} clean -C ./libft
+	 ${RM} ${OBJ}
+	 ${MAKE} clean -C ./libft
 
 fclean : clean
-		@ ${RM} ${NAME}
-		@ ${MAKE} fclean -C ./libft
+	 ${RM} ${NAME}
+	 ${MAKE} fclean -C ./libft
  
 re : fclean all
