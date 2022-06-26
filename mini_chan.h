@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 13:25:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:14:38 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,15 @@ typedef struct mini_cmnd
 	t_cmd_tools		tools;
 	t_shell_chan	*main;
 }	t_mini_cmd;
+
+typedef struct pre_exe
+{
+	t_shell_chan	*main; 
+	char			**path;
+	char			*cmmand; //execve 1
+	char			**command_path; //execve 2nd
+			
+}	t_pre_exe;
 
 typedef struct shell_chan
 {
@@ -242,4 +251,6 @@ void			two_dollar_case(char *line);
 void			expand_envar(t_shell_chan *main);
 void			do_expand(t_expand_tools *exp_tools);
 void			do_unset(t_mini_cmd *cmd, int i);
+
+void 			path(t_shell_chan *main,char *av[],int argc);
 #endif
