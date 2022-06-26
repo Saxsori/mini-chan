@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 19:16:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:06:47 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,16 @@
 // check_opt(main);
 // void	check_opt(t_shell_chan *)
 // if (ft_strchr(main->cmd_table[i].split[k], '-'))
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// {
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.opt_num)
-	// 	{
-	// 		printf("opt%s\n", main->cmd_table[i].option[k]);
-	// 	}
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.arg_num)
-	// 	{
-	// 		printf("arg%s\n", main->cmd_table[i].arguments[k]);
 	// 	}
 	// 	printf("opt num %d\n", main->cmd_table->tools.opt_num);
 	// 	printf("arg num %d\n", main->cmd_table->tools.arg_num);
 	// 	// printf("1:%d\n", main->cmd_num);
 	// 	// printf("2:%d\n", main->cmd_table[i].main->cmd_num);
-	// }
 */
 void	check_cmd_parts(t_shell_chan *main)
 {
 	int	i;
+	int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -49,6 +37,20 @@ void	check_cmd_parts(t_shell_chan *main)
 		printf ("1here\n");
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
+	}
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		k = -1;
+		while (++k < main->cmd_table->tools.opt_num)
+		{
+			printf("opt %s\n", main->cmd_table[i].option[k]);
+		}
+		k = -1;
+		while (++k < main->cmd_table->tools.arg_num)
+		{
+			printf("arg %s\n", main->cmd_table[i].arguments[k]);
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/27 00:45:45 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/26 21:37:05 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all : ${NAME}
 ${NAME} :  ${OBJ}
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
-	@ afplay WAKUWAKU.mp3
+	# @ afplay WAKUWAKU.mp3
 # 	@ printf " \
 # ,---.    ,---..-./`) ,---.   .--..-./`)             _______   .---.  .---.    ____    ,---.   .--. \
 # |    \  /    |\ .-.')|    \  |  |\ .-.')           /   __  \  |   |  |_ _|  .'  __ `. |    \  |  | \
@@ -57,11 +57,11 @@ ${NAME} :  ${OBJ}
 # '--'      '--' '---' '--'    '--' '---'            `._____.'  '(_,_) '---'  '.(_,_).' '--'    '--' "
 
 clean : 
-	 ${RM} ${OBJ}
-	 ${MAKE} clean -C ./libft
+	@ ${RM} ${OBJ}
+	@ ${MAKE} clean -C ./libft
 
 fclean : clean
-	 ${RM} ${NAME}
-	 ${MAKE} fclean -C ./libft
+	@ ${RM} ${NAME}
+	@ ${MAKE} fclean -C ./libft
  
 re : fclean all

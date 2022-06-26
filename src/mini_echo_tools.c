@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:47:01 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 18:04:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:30:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ int	is_echo_opt(char **opt, char which, int len)
 	if (which == '1')
 	{
 		if (!ft_strncmp(opt[0], "-n", ft_strlen(opt[0])))
+		{
+			printf("1 yes\n");
 			return (1);
+		}
+		printf("%s\n", opt[0]);
+		printf("1 no\n");
 		return (0);
 	}
 	if (which == 'i')
@@ -50,8 +55,12 @@ int	is_echo_opt(char **opt, char which, int len)
 		while (++i < len)
 		{
 			if (ft_strncmp(opt[i], "-n", ft_strlen(opt[i])))
+			{
+				printf("i no\n");
 				return (i);
+			}
 		}
+		printf("i yes\n");
 		return (-1);
 	}
 	return (-1);
