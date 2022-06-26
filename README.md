@@ -1,4 +1,4 @@
-# mini-chan
+# mini-chan🌸
 
 This shell has been raised (created) with
 unconditional love (anger), in a hope to be 
