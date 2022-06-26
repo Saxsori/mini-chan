@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/26 16:40:23 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/26 18:34:41 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_quotes_split.c         	    src/mini_quotes_checker.c \
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
-		src/mini_expand_action.c      
+		src/mini_expand_action.c      			src/mini_echo_parse.c
 
 OBJ = ${SRC:.c=.o}
 
