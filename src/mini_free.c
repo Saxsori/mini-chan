@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:24:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 07:40:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:01:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	squaredstr_free(char **array)
 
 	i = -1;
 	while (array[++i])
-	{
 		free(array[i]);
-		printf("%d\n", i);
-	}
 	free(array);
 }
 

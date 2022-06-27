@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 07:44:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:02:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,34 @@
 	// 	// printf("1:%d\n", main->cmd_num);
 	// 	// printf("2:%d\n", main->cmd_table[i].main->cmd_num);
 */
-void	check_cmd_parts(t_shell_chan *main)
-{
-	int	i;
-	// int	k;
+// void	check_cmd_parts(t_shell_chan *main)
+// {
+// 	int	i;
+// 	// int	k;
 
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		init_mini_cmd(&main->cmd_table[i], main);
-		printf ("1here\n");
-		check_opt(&main->cmd_table[i]);
-		check_arg(&main->cmd_table[i]);
-	}
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// {
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.opt_num)
-	// 	{
-	// 		printf("opt %s\n", main->cmd_table[i].option[k]);
-	// 	}
-	// 	k = -1;
-	// 	while (++k < main->cmd_table->tools.arg_num)
-	// 	{
-	// 		printf("arg %s\n", main->cmd_table[i].arguments[k]);
-	// 	}
-	// }
-}
+// 	i = -1;
+// 	while (++i < main->cmd_num)
+// 	{
+// 		init_mini_cmd(&main->cmd_table[i], main);
+// 		printf ("1here\n");
+// 		check_opt(&main->cmd_table[i]);
+// 		check_arg(&main->cmd_table[i]);
+// 	}
+// 	// i = -1;
+// 	// while (++i < main->cmd_num)
+// 	// {
+// 	// 	k = -1;
+// 	// 	while (++k < main->cmd_table->tools.opt_num)
+// 	// 	{
+// 	// 		printf("opt %s\n", main->cmd_table[i].option[k]);
+// 	// 	}
+// 	// 	k = -1;
+// 	// 	while (++k < main->cmd_table->tools.arg_num)
+// 	// 	{
+// 	// 		printf("arg %s\n", main->cmd_table[i].arguments[k]);
+// 	// 	}
+// 	// }
+// }
 
 // printf("cmd_count%d\n", main->cmd_num);
 /*
@@ -69,6 +69,8 @@ void	check_cmd_parts(t_shell_chan *main)
 // printf("%d\n", main->cmd_num);
 ! after splitting | check quotes for each command and then if it was correct
 ! split command parts then expand
+	if (!is_command(main->cmd_table[i].name))
+		return (0);
 */
 int	find_command(t_shell_chan *main)
 {
@@ -89,11 +91,8 @@ int	find_command(t_shell_chan *main)
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);
-		if (command_name(main))
-		{
-			check_cmd_parts(main);
-			return (run_cmd(main));
-		}
+		command_name(main);
+		return (run_cmd(main));
 	}
 	return (0);
 }
@@ -124,6 +123,6 @@ int	main(int argc, char **argv, char **env)
 			main.exit_status = find_command(&main);
 		re_init_shell_chan(&main);
 	}
-	//free envar
+	// free envar
 	return (0);
 }
