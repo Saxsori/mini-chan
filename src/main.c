@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 22:06:47 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/27 07:44:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 void	check_cmd_parts(t_shell_chan *main)
 {
 	int	i;
-	int	k;
+	// int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -38,20 +38,20 @@ void	check_cmd_parts(t_shell_chan *main)
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
 	}
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		k = -1;
-		while (++k < main->cmd_table->tools.opt_num)
-		{
-			printf("opt %s\n", main->cmd_table[i].option[k]);
-		}
-		k = -1;
-		while (++k < main->cmd_table->tools.arg_num)
-		{
-			printf("arg %s\n", main->cmd_table[i].arguments[k]);
-		}
-	}
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	k = -1;
+	// 	while (++k < main->cmd_table->tools.opt_num)
+	// 	{
+	// 		printf("opt %s\n", main->cmd_table[i].option[k]);
+	// 	}
+	// 	k = -1;
+	// 	while (++k < main->cmd_table->tools.arg_num)
+	// 	{
+	// 		printf("arg %s\n", main->cmd_table[i].arguments[k]);
+	// 	}
+	// }
 }
 
 // printf("cmd_count%d\n", main->cmd_num);
