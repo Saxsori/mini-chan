@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 20:54:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:56:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	execute_tools(t_mini_cmd *cmd)
 	if (cmd->tools.opt_num > 0)
 	{	
 		k = -1;
-		i = 0;
+		i = 1;
 		while (++k < cmd->tools.opt_num)
 		{
-			cmd->exe_tools.arguments[++i] = ft_strdup(cmd->option[k]);
+			cmd->exe_tools.arguments[i++] = ft_strdup(cmd->option[k]);
 		}
 	}
 	if (cmd->tools.arg_num > 0)
