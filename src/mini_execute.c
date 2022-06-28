@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 13:00:42 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:06:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	mini_execute(t_mini_cmd *cmd)
 		printf("arg '%s'\n", cmd->exe_tools.arguments[i++]);
 	if(access(cmd->exe_tools.cmd_name,F_OK) == -1)
 		printf("mini-chan: %s: command not found\n",err_command);
-	else if(execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, NULL) == -1 )
-		strerror(errno);
+	else if(execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, NULL) == -1)
+		printf("%s\n", strerror(errno));
 }

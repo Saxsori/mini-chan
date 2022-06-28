@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 20:11:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:15:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	run_cmd(t_shell_chan *main)
 		{
 			execute_tools(&main->cmd_table[0]);
 			mini_execute(&main->cmd_table[0]);
+			printf ("lala\n");
 			return (0);
 		}
 	}

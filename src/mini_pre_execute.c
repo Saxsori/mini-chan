@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 12:56:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:02:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	execute_tools(t_mini_cmd *cmd)
 	cmd->exe_tools.cmd_name = ft_strdup(cmd->name);
 	free (cmd->name);
 	cmd->exe_tools.arg_num = cmd->tools.arg_num + cmd->tools.opt_num + 1;
-	printf("num %d\n", cmd->exe_tools.arg_num);
 	cmd->exe_tools.arguments = (char **)malloc(sizeof(char *) * (cmd->exe_tools.arg_num + 1));
+	printf("num %d\n", cmd->exe_tools.arg_num + 1);
 	cmd->exe_tools.arguments[0] = ft_strdup(cmd->exe_tools.cmd_name);
 	i = 0;
 	printf("op num %d\n", cmd->tools.opt_num);
@@ -43,10 +43,16 @@ void	execute_tools(t_mini_cmd *cmd)
 	if (cmd->tools.arg_num > 0)
 	{
 		k = -1;
+		if (cmd->tools.opt_num <= 0)
+			i = 1;
 		while (++k < cmd->tools.arg_num)
 		{
 			cmd->exe_tools.arguments[i++] = ft_strdup(cmd->arguments[k]);
 		}
+		printf ("i %d\n", i);
 	}
-	cmd->exe_tools.arguments[cmd->exe_tools.arg_num + 1] = NULL;
+	cmd->exe_tools.arguments[cmd->exe_tools.arg_num] = NULL;
+	i = -1;
+	while (++i < cmd->exe_tools.arg_num + 1)
+		printf ("%d -> %s\n", i, cmd->exe_tools.arguments[i]);
 }
