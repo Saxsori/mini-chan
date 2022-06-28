@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 20:12:47 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:05:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <dirent.h>
 # include <sys/types.h>
+# include <sys/unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "./libft/libft.h"
@@ -89,9 +90,13 @@ typedef struct node
 
 typedef struct exe_tools
 {
-	int		arg_num;
-	char	*cmd_name;
-	char	**arguments;
+	int				arg_num;
+	char			*cmd_name;
+	char			**arguments;
+	t_mini_envar	*envar;
+	char			*path;
+	char			**path_split;
+	char			*err_command;
 }	t_mini_exe_tools;
 
 typedef struct mini_tools
@@ -263,8 +268,8 @@ void			expand_envar(t_shell_chan *main);
 void			do_expand(t_expand_tools *exp_tools);
 void			do_unset(t_mini_cmd *cmd, int i);
 
+/*******************    MINI_EXECUTE_TOOLS   ******************/
 void			execute_tools(t_mini_cmd *cmd);
-void 			path(t_shell_chan *main, char *av[], int argc);
-
+void			path(t_shell_chan *main, char *av[], int argc);
 void			mini_execute(t_mini_cmd *cmd);
 #endif

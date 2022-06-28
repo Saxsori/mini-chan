@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:45 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:37:24 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 			
 	// 	}
 	// }
+	! fix exit status and the error mangement for the execution
 	*/
 int	run_cmd(t_shell_chan *main)
 {
