@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:47:01 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/29 18:34:03 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:52:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ void	handle_one_case(t_mini_cmd *cmd)
 	}
 }
 
+/*
+	// printf ("opt - index %d\n", cmd->tools.new_arg);
+	// printf ("arg_num + new_arg %d\n", cmd->tools.new_arg_size);
+*/
 char	**new_arg(t_mini_cmd *cmd)
 {
 	int		i;
@@ -103,8 +107,6 @@ char	**new_arg(t_mini_cmd *cmd)
 
 	cmd->tools.new_arg = cmd->tools.opt_num - cmd->tools.i_arg;
 	cmd->tools.new_arg_size = cmd->tools.new_arg + cmd->tools.arg_num;
-	printf ("opt - index %d\n", cmd->tools.new_arg);
-	printf ("arg_num + new_arg %d\n", cmd->tools.new_arg_size);
 	new_arg = (char **)malloc(sizeof(char *) * cmd->tools.new_arg_size);
 	i = -1;
 	k = cmd->tools.i_arg;
@@ -125,6 +127,13 @@ char	**new_arg(t_mini_cmd *cmd)
 	return (new_arg);
 }
 
+/*
+
+	// printf ("index %d\n", cmd->tools.i_arg);
+	// i = -1;
+	// while (++i < cmd->tools.arg_num)
+	// 	printf("-> (%s)\n", cmd->arguments[i]);
+*/
 void	check_echo_opt(t_mini_cmd *cmd)
 {
 	int	i;
@@ -145,15 +154,9 @@ void	check_echo_opt(t_mini_cmd *cmd)
 			}
 		}
 	}
-	printf ("index %d\n", cmd->tools.i_arg);
 	if (cmd->tools.i_arg != -1)
 	{
-		// cmd->tools.new_arg = cmd->tools.opt_num - cmd->tools.i_arg;
-		// cmd->tools.new_arg_size = cmd->tools.new_arg + cmd->tools.arg_num;
 		cmd->arguments = new_arg(cmd);
 		cmd->tools.arg_num = cmd->tools.new_arg_size;
 	}
-	i = -1;
-	while (++i < cmd->tools.arg_num)
-		printf("-> (%s)\n", cmd->arguments[i]);
 }
