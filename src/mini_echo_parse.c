@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 19:17:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:37:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 			if (main->first_split[index][i + 1] == '\t')
 			{
 				if (main->first_split[index][i - 1] == ' ' && \
-					(main->first_split[index][i + 2] == ' ' || \
-					main->first_split[index][i + 2] == '\0'))
+					(main->first_split[index][i + 2] == ' ' /*|| \
+					main->first_split[index][i + 2] == '\0'*/))
 				{
 					line[k++] = '\v';
 					i += 2;

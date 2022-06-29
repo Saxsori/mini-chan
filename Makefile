@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/28 18:03:03 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/06/28 16:55:49 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,11 @@ NAME = minishell
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include
+# -I /usr/local/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g 
 
-LINKS =  -L /usr/local/opt/readline/lib -lreadline
+#-L /usr/local/opt/readline/lib
+LINKS =   -lreadline
 
 RM = rm -rf
 

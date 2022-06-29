@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 18:05:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:47:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,9 @@ typedef struct mini_tools
 	int				p_num;
 	int				y_op;
 	int				y_arg;
+	int				i_arg;
+	int				new_arg;
+	int				new_arg_size;
 	char			*cwd_ret;
 	char			*pwd;
 	DIR				*dir;
@@ -220,10 +223,11 @@ void			envar_mode(t_mini_envar *temp, char op);
 
 /*******************       MINI__ECHO      *******************/
 int				is_extst(char *line);
-void			check_echo_opt(t_mini_cmd *cmd);
-int				is_echo_opt(char **opt, char which, int len);
+// void			check_echo_opt(t_mini_cmd *cmd);
+// int				is_echo_opt(char **opt, char which, int len);
 void			parse_echo_case(t_shell_chan *main);
 int				is_echo(char *line);
+void			check_echo_opt(t_mini_cmd *cmd);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
