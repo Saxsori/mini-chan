@@ -10,7 +10,9 @@ void path(t_shell_chan *main,char *av[],int argc)
 	char 	**path_split = ft_split(path,':');
 	char *command = NULL;
 	char **arg ;
-	if(argc == 3)
+	if(argc == 2)
+		arg =ft_split(ft_strjoin(av[1], ":"),':');
+	else if(argc == 3)
 		arg= ft_split(ft_strjoin(ft_strjoin(av[1],":"),av[2]),':');
 	else if(argc == 4)
 		arg= ft_split(ft_strjoin(ft_strjoin(ft_strjoin(ft_strjoin(av[1],":"),av[2]),":"),av[3]),':');
@@ -23,10 +25,18 @@ void path(t_shell_chan *main,char *av[],int argc)
 		i++;	
 	}
 	int err = execve(command,arg,NULL);
-	if(command == NULL)
-		printf("mini-chan: command not found: %s\n",av[1]);
-	else if(err == -1)
-		printf("mini-chan %s: %s: No such file or directory\n",av[1],av[2]);
+	i = 0;
+	printf("%d '%s'\n",i,arg[i]);
+	printf("%d '%s'\n",i,command);
+	// while(arg[i])
+	// {
+	// 	printf("%d '%s'\n",i,arg[i]);
+	// 	i++;
+	// }
+	// if(command == NULL)
+	// 	printf("mini-chan: command not found: %s\n",av[1]);
+	// else if(err == -1)
+	// 	printf("mini-chan %s: %s: No such file or directory\n",av[1],av[2]);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 00:44:48 by badriah          ###   ########.fr       */
+/*   Updated: 2022/06/30 17:31:18 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <dirent.h>
 # include <sys/types.h>
+# include <sys/unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "./libft/libft.h"
@@ -66,6 +67,23 @@ typedef struct expand_tools
 	t_env_info		*env_info;
 }	t_expand_tools;
 
+typedef struct redirect_tools
+{
+	int		num_arg;
+	int		num_file;
+	int		num_redir;
+	char	*command;
+	char	**arguments;
+	char	*redir;
+	char	**files;
+}	t_mini_redir;
+
+typedef struct echo_parse
+{
+	int	null_num;
+	int	new_size;
+}	t_mini_echo;
+
 typedef struct p_quotes
 {
 	int		begin;
@@ -77,15 +95,16 @@ typedef struct p_quotes
 	int		exp_index;
 }	t_mini_quotes;
 
-typedef struct node
+typedef struct exe_tools
 {
-	t_mini_envar	*prev;
-	char			*env_name;
-	char			*env_cont;
-	char			*envar;
-	int				declared;
-	t_mini_envar	*next;
-}	t_mini_envar;
+	int				arg_num;
+	char			*cmd_name;
+	char			**arguments;
+	t_mini_envar	*envar;
+	char			*path;
+	char			**path_split;
+	char			*err_command;
+}	t_mini_exe_tools;
 
 typedef struct mini_tools
 {
@@ -95,6 +114,9 @@ typedef struct mini_tools
 	int				p_num;
 	int				y_op;
 	int				y_arg;
+	int				i_arg;
+	int				new_arg;
+	int				new_arg_size;
 	char			*cwd_ret;
 	char			*pwd;
 	DIR				*dir;
@@ -103,19 +125,25 @@ typedef struct mini_tools
 
 typedef struct mini_cmnd
 {
-	char			**split;
-	char			*name;
-	char			**option;
-	char			**arguments;
-	t_cmd_tools		tools;
-	t_shell_chan	*main;
+	char				**split;
+	char				*name;
+	char				**option;
+	char				**arguments;
+	int					y_exe;
+	t_cmd_tools			tools;
+	t_shell_chan		*main;
+	t_mini_exe_tools	exe_tools;
 }	t_mini_cmd;
 
-typedef struct echo_parse
+typedef struct node
 {
-	int	null_num;
-	int	new_size;
-}	t_mini_echo;
+	t_mini_envar	*prev;
+	char			*env_name;
+	char			*env_cont;
+	char			*envar;
+	int				declared;
+	t_mini_envar	*next;
+}	t_mini_envar;
 
 typedef struct shell_chan
 {
@@ -167,11 +195,13 @@ void			pre_arg(t_mini_cmd *cmd);
 void			get_arg(t_mini_cmd *cmd);
 
 /*******************    CMD__NAME_PARSE    *******************/
-int				command_name(t_shell_chan *main);
+void			command_name(t_shell_chan *main);
 int				is_command(char *cmd_name);
 int				cmd_strncmp(const char *s1, const char *s2, int n);
 
 /*******************      CMD_EXECUTE      *******************/
+
+int				run_builtn(t_mini_cmd *cmd);
 int				run_cmd(t_shell_chan *main);
 int				which_command(t_mini_cmd *cmd);
 
@@ -204,10 +234,11 @@ void			envar_mode(t_mini_envar *temp, char op);
 
 /*******************       MINI__ECHO      *******************/
 int				is_extst(char *line);
-void			check_echo_opt(t_mini_cmd *cmd);
-int				is_echo_opt(char **opt, char which, int len);
+// void			check_echo_opt(t_mini_cmd *cmd);
+// int				is_echo_opt(char **opt, char which, int len);
 void			parse_echo_case(t_shell_chan *main);
 int				is_echo(char *line);
+void			check_echo_opt(t_mini_cmd *cmd);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
@@ -252,5 +283,8 @@ void			expand_envar(t_shell_chan *main);
 void			do_expand(t_expand_tools *exp_tools);
 void			do_unset(t_mini_cmd *cmd, int i);
 
-void 			path(t_shell_chan *main,char *av[],int argc);
+/*******************    MINI_EXECUTE_TOOLS   ******************/
+void			execute_tools(t_mini_cmd *cmd);
+void			path(t_shell_chan *main, char *av[], int argc);
+void			mini_execute(t_mini_cmd *cmd);
 #endif

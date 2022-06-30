@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/25 15:49:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:07:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,25 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
-	// if (main->exp_valid != NULL)
-	// 	squaredint_free(main->exp_valid, main->cmd_num);
-	// if (main->env_index != NULL)
-	// 	squaredint_free(main->env_index, main->cmd_num);
-	// if (main->first_split != NULL)
-	// 	squaredstr_free(main->first_split);
+	if (main->exp_valid != NULL)
+		squaredint_free(main->exp_valid, main->cmd_num);
+	if (main->env_index != NULL)
+		squaredint_free(main->env_index, main->cmd_num);
+	if (main->cmd_num > 1)
+	{
+		if (main->first_split != NULL)
+			squaredstr_free(main->first_split);
+	}
+	else if (main->cmd_num == 1)
+	{
+		free(main->first_split[0]);
+		free(main->first_split);
+	}
 	// free_mini_cmd(main->cmd_table);
 	//free the array of cmd
-	main->cmd_num = 0;
 	main->exp_valid = NULL;
 	main->env_index = NULL;
+	main->cmd_num = 0;
 }
 void	init_mem_cmd(t_mini_cmd *cmd)
 {
@@ -112,7 +120,7 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 	exp_tools->i = -1;
 	exp_tools->i_s = 0;
 	if (exp_tools->env_num)
-		exp_tools->env_info = (t_env_info*)malloc(sizeof(t_env_info) * exp_tools->env_num);
+		exp_tools->env_info = (t_env_info *)malloc(sizeof(t_env_info) * exp_tools->env_num);
 	exp_tools->new_exp_len = ft_strlen(exp_tools->main->first_split[index]);
 	main->exp_tools = exp_tools;
 }
