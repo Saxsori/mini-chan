@@ -8,10 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Jun 28 14:13:32 2022
+# Make data base, printed on Fri Jul  1 05:30:55 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -29,27 +30,33 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/aaljaber/Desktop/mini-chan
+CURDIR := /Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 39)
+# makefile (from `Makefile', line 41)
 RM = rm -rf
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 35)
-CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include
+# makefile (from `Makefile', line 36)
+CFLAGS = -Wall -Werror -Wextra -g 
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000c_v40032ps/T/vscode-ipc-f57f98ef-6e5e-414d-9a6d-c4dc41c4b7d2.sock
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/vscode-ipc-ae9030dd-1d5c-4016-9037-347bf475a52e.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/aaljaber/Documents/42-ValgrindContainer
+PATH = /opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = F776C5EB-8BE4-4E8A-B62D-8516E8F6D313
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -57,27 +64,29 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.M58nITMfFz/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.KdPkhAOKJI/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/aaljaber/Desktop/mini-chan
+PWD = /Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/aaljaber
+HOME = /Users/abrar
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/aaljaber/Library/Application Support/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+VSCODE_CODE_CACHE_PATH = /Users/abrar/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
-LOGNAME = aaljaber
+LOGNAME = abrar
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/abrar/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -95,25 +104,27 @@ CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = aaljaber
+USER = abrar
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 31)
 NAME = minishell
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 37)
-LINKS = -L /usr/local/opt/readline/lib -lreadline
+# makefile (from `Makefile', line 39)
+LINKS = -lreadline
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000c_v40032ps/T/
+TMPDIR = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/aaljaber/Library/Application Support/Code/1.67.1-main.sock
+VSCODE_IPC_HOOK = /Users/abrar/Library/Application Support/Code/1.68.1-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -121,19 +132,26 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2236
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.20904873.20904879
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-__CF_USER_TEXT_ENCODING = 0x18AD9:0x0:0x0
+ 
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
+PAGER = less
+# environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186b7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -145,9 +163,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 63124
+VSCODE_PID = 528
 # variable set hash-table stats:
-# Load=67/1024=7%, Rehash=0, Collisions=3/95=3%
+# Load=75/1024=7%, Rehash=0, Collisions=3/103=3%
 
 # Pattern-specific Variable Values
 
@@ -155,7 +173,7 @@ VSCODE_PID = 63124
 
 # Directories
 
-# . (device 16777225, inode 663179): 17 files, no impossibilities.
+# . (device 16777233, inode 21545115): 17 files, no impossibilities.
 
 # 17 files, no impossibilities in 1 directories.
 
@@ -168,7 +186,7 @@ VSCODE_PID = 63124
 # Not a target:
 src/mini_free.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -176,8 +194,9 @@ src/mini_free.o:
 
 # Not a target:
 src/mini_quotes_checker.o:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -186,7 +205,7 @@ src/mini_quotes_checker.o:
 # Not a target:
 src/mini_init.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -204,7 +223,7 @@ all: minishell
 # Not a target:
 src/mini_parse.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -213,16 +232,17 @@ src/mini_parse.o:
 # Not a target:
 src/mini_envar_unset.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+ 
 
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -231,7 +251,7 @@ src/main.o:
 # Not a target:
 src/mini_cmd_arg.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -240,7 +260,7 @@ src/mini_cmd_arg.o:
 # Not a target:
 src/mini_cmd_opt.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -249,7 +269,7 @@ src/mini_cmd_opt.o:
 # Not a target:
 src/mini_execute.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -264,16 +284,17 @@ src/mini_execute.o:
 # Not a target:
 src/mini_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:11:18
+#  Last modified 2022-06-28 20:55:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -282,7 +303,7 @@ Makefile:
 # Not a target:
 src/mini_echo_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -291,7 +312,7 @@ src/mini_echo_tools.o:
 # Not a target:
 src/mini_quotes_split.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -300,8 +321,7 @@ src/mini_quotes_split.o:
 # Not a target:
 src/mini_expand_pre.o:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -310,16 +330,17 @@ src/mini_expand_pre.o:
 # Not a target:
 src/mini_run_cmd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 src/mini_pre_execute.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -328,7 +349,7 @@ src/mini_pre_execute.o:
 # Not a target:
 src/mini_cmd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -337,7 +358,7 @@ src/mini_cmd.o:
 # Not a target:
 src/mini_envar.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -345,22 +366,22 @@ src/mini_envar.o:
 
 minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-28 14:12:35
+#  Last modified 2022-07-01 01:19:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 47):
+#  commands to execute (from `Makefile', line 49):
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
-	@ afplay WAKUWAKU.mp3
+	# @ afplay WAKUWAKU.mp3
 	
 
 .c.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 44):
+#  commands to execute (from `Makefile', line 46):
 	@ ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 	
 
@@ -368,15 +389,16 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 66):
+#  commands to execute (from `Makefile', line 68):
 	@ ${RM} ${NAME}
 	@ ${MAKE} fclean -C ./libft
 	
 
 # Not a target:
+ 
 src/mini_check.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -385,7 +407,7 @@ src/mini_check.o:
 # Not a target:
 src/mini_ctrls.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -394,7 +416,7 @@ src/mini_ctrls.o:
 # Not a target:
 src/mini_expand_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -403,7 +425,7 @@ src/mini_expand_tools.o:
 # Not a target:
 src/mini_cd_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -416,9 +438,10 @@ src/mini_cd_tools.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 src/mini_echo_parse.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -432,7 +455,7 @@ re: fclean all
 # Not a target:
 src/mini_expand_envar.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -442,7 +465,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 62):
+#  commands to execute (from `Makefile', line 64):
 	@ ${RM} ${OBJ}
 	@ ${MAKE} clean -C ./libft
 	
@@ -450,7 +473,7 @@ clean:
 # Not a target:
 src/mini_expand_action.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -459,7 +482,7 @@ src/mini_expand_action.o:
 # Not a target:
 src/mini_envar_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -468,7 +491,7 @@ src/mini_envar_tools.o:
 # Not a target:
 src/mini_cmd2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:31
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -477,7 +500,7 @@ src/mini_cmd2.o:
 # Not a target:
 src/mini_run.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -486,7 +509,7 @@ src/mini_run.o:
 # Not a target:
 src/mini_envar_export.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -495,7 +518,7 @@ src/mini_envar_export.o:
 # Not a target:
 src/mini_envar_export_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 14:12:32
+#  Last modified 2022-07-01 01:19:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -514,6 +537,6 @@ src/mini_envar_export_tools.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jun 28 14:13:32 2022
+# Finished Make data base on Fri Jul  1 05:30:55 2022
 
  

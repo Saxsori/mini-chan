@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/29 21:54:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:58:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
 typedef struct expand_tools	t_expand_tools;
 
+typedef struct echo_parse
+{
+	int	null_num;
+	int	new_size;
+}	t_mini_echo;
+
+typedef struct node
+{
+	t_mini_envar	*prev;
+	char			*env_name;
+	char			*env_cont;
+	char			*envar;
+	int				declared;
+	t_mini_envar	*next;
+}	t_mini_envar;
+
 typedef struct env_info
 {
 	t_expand_tools	*exp_tools;
@@ -67,23 +83,6 @@ typedef struct expand_tools
 	t_env_info		*env_info;
 }	t_expand_tools;
 
-typedef struct redirect_tools
-{
-	int		num_arg;
-	int		num_file;
-	int		num_redir;
-	char	*command;
-	char	**arguments;
-	char	*redir;
-	char	**files;
-}	t_mini_redir;
-
-typedef struct echo_parse
-{
-	int	null_num;
-	int	new_size;
-}	t_mini_echo;
-
 typedef struct p_quotes
 {
 	int		begin;
@@ -94,6 +93,24 @@ typedef struct p_quotes
 	char	*line;
 	int		exp_index;
 }	t_mini_quotes;
+
+typedef struct redirect_tools
+{
+	int				parse_err;
+	int				num_arg;
+	int				num_file;
+	int				num_redir;
+	t_shell_chan	*main;
+}	t_redir_tools;
+
+typedef struct mini_redirecton
+{
+	char			*command;
+	char			**arguments;
+	char			**redir;
+	char			**files;
+	t_redir_tools	redir_tools;
+}	t_mini_redir;
 
 typedef struct exe_tools
 {
@@ -130,20 +147,12 @@ typedef struct mini_cmnd
 	char				**option;
 	char				**arguments;
 	int					y_exe;
+	int					y_redir;
+	t_mini_redir		redir;
 	t_cmd_tools			tools;
 	t_shell_chan		*main;
 	t_mini_exe_tools	exe_tools;
 }	t_mini_cmd;
-
-typedef struct node
-{
-	t_mini_envar	*prev;
-	char			*env_name;
-	char			*env_cont;
-	char			*envar;
-	int				declared;
-	t_mini_envar	*next;
-}	t_mini_envar;
 
 typedef struct shell_chan
 {
