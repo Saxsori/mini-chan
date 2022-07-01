@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_ctrls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 19:16:22 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:47:50 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	new_prompt(int i)
 	{
 		printf ("\n");
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }

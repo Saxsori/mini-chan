@@ -6,7 +6,7 @@
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 17:31:18 by badriah          ###   ########.fr       */
+/*   Updated: 2022/07/01 18:47:41 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
 # define BRED "\e[1;31m"

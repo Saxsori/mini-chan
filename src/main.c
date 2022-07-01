@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 19:26:43 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:03:25 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int	main(int argc, char **argv, char **env)
 	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	while (42)
 	{
+		
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
 		if (!check_cmd_line(main.cmd_line))

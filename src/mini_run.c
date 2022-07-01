@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 14:37:24 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:23:30 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	run_cmd(t_shell_chan *main)
 		{
 			execute_tools(&main->cmd_table[0]);
 			mini_execute(&main->cmd_table[0]);
-			printf ("lala\n");
+			// printf ("lala\n");
 			return (0);
 		}
 	}
