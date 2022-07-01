@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/01 01:32:08 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:42:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,13 @@ typedef struct mini_redirecton
 	t_redir_tools	redir_tools;
 }	t_mini_redir;
 
+typedef struct p_redir
+{
+	int	num_redir;
+	int	*r_valid;
+	int	*r_index;
+}	t_redir_parse;
+
 typedef struct exe_tools
 {
 	int				arg_num;
@@ -136,7 +143,11 @@ typedef struct mini_tools
 	int				new_arg_size;
 	char			*cwd_ret;
 	char			*pwd;
+	int				f_redir;
+	int				y_exe;
+	int				y_redir;
 	DIR				*dir;
+	t_redir_parse	p_redir;
 	t_mini_envar	*envar;
 }	t_cmd_tools;
 
@@ -146,8 +157,6 @@ typedef struct mini_cmnd
 	char				*name;
 	char				**option;
 	char				**arguments;
-	int					y_exe;
-	int					y_redir;
 	t_mini_redir		redir;
 	t_cmd_tools			tools;
 	t_shell_chan		*main;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 19:26:43 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/07/01 14:43:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,22 @@ int	find_command(t_shell_chan *main)
 	if (main->exit_status == 2)
 		return (2);
 	expand_tools(main);
-	if (quotes_checker(main))
-	{
-		expand_envar(main);
-		parse_echo_case(main);
-		remove_quote(main);
-		i = -1;
-		while (++i < main->cmd_num)
-			printf("(%s)\n", main->first_split[i]);
-		split_command(main);
-		if (main->exit_status == 2)
-			return (2);
-		command_name(main);
-		return (run_cmd(main));
-	}
-	return (0);
+	redir_tools(main);
+	// if (quotes_checker(main))
+	// {
+	// 	expand_envar(main);
+	// 	parse_echo_case(main);
+	// 	remove_quote(main);
+	// 	i = -1;
+	// 	while (++i < main->cmd_num)
+	// 		printf("(%s)\n", main->first_split[i]);
+	// 	split_command(main);
+	// 	if (main->exit_status == 2)
+	// 		return (2);
+	// 	command_name(main);
+	// 	return (run_cmd(main));
+	// }
+	// return (0);
 }
 
 /*
