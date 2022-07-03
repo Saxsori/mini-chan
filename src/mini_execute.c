@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 17:07:05 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/01 19:34:36 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	mini_execute(t_mini_cmd *cmd)
 	int				i;
 	int status;
 	i = 0;
+	printf("here %d %s\n",cmd->exe_tools.arg_num,cmd->exe_tools.cmd_name);
 	pid_t child = fork();
 	while (cmd->exe_tools.path_split[i])
 	{
@@ -52,3 +53,10 @@ void	mini_execute(t_mini_cmd *cmd)
 	}
 
 }
+
+void	mini_exe_pipe(t_mini_cmd *cmd)
+{
+	
+	printf("sl7 %s\n",cmd->exe_tools.cmd_name);
+}
+

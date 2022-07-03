@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/30 17:23:30 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/01 19:41:55 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ int	run_cmd(t_shell_chan *main)
 			return (0);
 		}
 	}
+	// else if(main->cmd_num == 2 && !is_command(main->cmd_table[0].name)) //! need to check its ONLY pipes
+	// {
+	// 	printf("here pipe\n");
+	// 	mini_exe_pipe(&main->cmd_table[0]);	
+	// }
+	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/01 18:47:41 by badriah          ###   ########.fr       */
+/*   Updated: 2022/07/02 00:14:02 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,5 +287,9 @@ void			do_unset(t_mini_cmd *cmd, int i);
 /*******************    MINI_EXECUTE_TOOLS   ******************/
 void			execute_tools(t_mini_cmd *cmd);
 void			path(t_shell_chan *main, char *av[], int argc);
+void 			ft_pipe(t_shell_chan *main,char *av[],int ac);
 void			mini_execute(t_mini_cmd *cmd);
+/*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
+void			mini_exe_pipe(t_mini_cmd *cmd);	
+			
 #endif
