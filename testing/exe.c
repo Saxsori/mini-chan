@@ -1,6 +1,7 @@
 #include "../mini_chan.h"
 #include <errno.h>
 #include <stdio.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 void path(t_shell_chan *main,char *av[],int argc)
@@ -100,161 +101,107 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	}
 	//?? **cmd_path(command path) && ***arg(cmd line)
 	//todo init forks and pipe
-	// int ends[num_cmd][2]; // 0 read 1 write
-	// int st;
-	// i = 0;
-	// while(i < num_cmd)
-	// {
-	// 	if(pipe(ends[i])< 0)
-	// 		perror("Error pipes ");
-	// 	i++;
-	// }
-	// THE CREATION OF CHILD PROCESS AND EXE CHILD PROCESS SHOULD BE IN LOOP .. pid_t array
-	// i = 0;
-	// pid_t *child =(pid_t *)malloc(sizeof(pid_t) * num_cmd);
-	// while(i < num_cmd)
-	// {
-	// 	child[i] = fork();
-	// 	i++;
-	// }
-	// i = 0;
-	// while(i < num_cmd)
-	// {
-	// 	if(child[i] == 0) // one dup2 if child == 0 || child == num_cmd -1 
-	// 	{
-	// 		if(i == 0)
-	// 		{
-	// 			// printf("child1 %d  cmd :%s arg:%s\n",i,cmd_path[i], arg[i][0]);
-	// 			close(ends[i][0]);
-	// 			if(dup2(ends[i][0],STDIN_FILENO) < 0)
-	// 				perror("STD 1");
-	// 			close(ends[i][1]);
-	// 			execve(cmd_path[i],arg[i], NULL);
-	// 		}
-	// 		else if(i == num_cmd - 1)
-	// 		{
-	// 			printf("child last %d\n", i);
-	// 		}
-	// 		else
-	// 		{
-	// 			// printf("child2 %d\n",i);
-	// 			close(ends[i][1]);
-	// 			if(dup2(STDOUT_FILENO,STDIN_FILENO) < 0)
-	// 				perror("STD OUT IN");
-	// 			if(dup2(ends[i][0],STDOUT_FILENO) < 0)
-	// 				perror("STD 2");
-	// 			close(ends[i][0]);
-	// 			execve(cmd_path[i],arg[i], NULL);
-	// 		}
-	// 	}
-	// 	else
-	// 	 	perror("child error ");
-	// 	// waitpid(1,&st,0);
-	// 	i++;
-	// }
+	//------------------------------ ls | wc -l --------------------------------------------//
+	/*
+		1 PIPE 			->	end[2];
+		2 CHILD PROCESS	->	fork(); fork();
+	*/
 	// int ends[2];
-	// pipe(ends);
-	// pid_t child1 = fork();
-	// int st;
-	// if(child1 == 0)
+	// int s;
+	// pid_t ch1;
+	// pid_t ch2;
+	// if(pipe(ends)<0)
+	// 	printf("PIPE ERROR\n");
+	// ch1 = fork();
+	// if(ch1 == 0)
 	// {
-	// 	close(ends[0]); // ? should i close all other ends for other child process ?
-	// 	if(dup2(ends[1],STDOUT_FILENO) < 0)
-	// 		perror("CH1 STDOUT");
-	// 	close(ends[1]);
-	// 	execve(cmd_path[0], arg[0] , NULL);
-	// }
-
-
-	// pid_t child2;
-	// child2 = fork();
-	// if(child2 == 0)
-	// {
-	// 	close(ends[1]); // ? should i close all other ends for other child process ?
-	// 	if(dup2(ends[0],STDIN_FILENO) < 0)
-	// 		perror("CH1 STDOUT");
+	// 	printf("here ch1");
 	// 	close(ends[0]);
-	// 	execve(cmd_path[1], arg[1] , NULL);
+	// 	if(dup2(ends[1],STDOUT_FILENO) < 0)
+	// 		perror("DUP2 : CH1");
+	// 	close(ends[1]);
+	// 	if(execve(cmd_path[0],arg[0], NULL) == -1)
+	// 		perror("EXE : CH1");
 	// }
-	// waitpid(1,&st,0);
-	int ends[3][2];
-	pipe(ends[0]);
-	pipe(ends[1]);
-	pid_t child1 = fork();
-	int st;
-	if(child1 == 0)
-	{
-		close(ends[0][1]); // ? should i close all other ends for other child process ?
-		if(dup2(ends[0][0],STDIN_FILENO) < 0)
-			perror("CH1 STDOUT");
-		if(dup2(ends[1][1],STDOUT_FILENO) < 0)
-				perror("CH1 STDOUT");		
-		close(ends[0][0]);
-		close(ends[0][1]);
-		close(ends[1][0]);
-		close(ends[1][1]);
-		close(ends[2][0]);
-		close(ends[2][1]);
-		execve(cmd_path[0], arg[0] , NULL);
-	}
-	else{
-		pid_t child2 = fork();
-		if(child2 == 0)
-		{
-			// close(ends[][0]); // ? should i close all other ends for other child process ?
-			// close
-			if(dup2(ends[1][0],STDIN_FILENO) < 0)
-				perror("CH2 STDOUT");
-			if(dup2(ends[2][1],STDOUT_FILENO) < 0)
-				perror("CH2 STDOUT");
-			close(ends[0][0]);
-			close(ends[0][1]);
-			close(ends[1][0]);
-			close(ends[1][1]);
-			close(ends[2][0]);
-			close(ends[2][1]);
-			if(execve(cmd_path[1], arg[1] , NULL) == -1)
-				perror("exe ");
-		}
-		else {
-			pid_t child3;
-			child3 = fork();
-			if(child3 == 0)
-			{
-				// close(ends[1]); // ? should i close all other ends for other child process ?
-				printf("here \n");
-				if(dup2(ends[2][0],STDIN_FILENO) < 0)
-					perror("CH3 STDOUT");
-				close(ends[0][0]);
-				close(ends[0][1]);
-				close(ends[1][0]);
-				close(ends[1][1]);
-				close(ends[2][0]);
-				close(ends[2][1]);
-				if(execve(cmd_path[2], arg[2] , NULL) == -1)
-					perror(" exe 3");
-			}			
-		
-		
-		}
-	}	
-	waitpid(1,&st,0);
-	waitpid(1,&st,0);
-	// waitpid(1,&st,0);
-	// i = 0;
-	// j = 0;
-	// while(i < num_cmd)
-	// {
-	// 	j=0;
-	// 	while(arg[i][j])
+	// 	ch2 = fork();
+	// 	if(ch2 == 0)
 	// 	{
-	// 		printf("%s\n",arg[i][j]);
-	// 		j++;
+	// 		printf("here ch2");
+	// 		close(ends[1]);
+	// 		if(dup2(ends[0],STDIN_FILENO) > 0)
+	// 			perror("DUP2 : CH2 ");
+	// 		close(ends[0]);
+	// 		if(execve(cmd_path[1],arg[1],NULL) == -1)
+	// 			perror("EXE : CH1");
 	// 	}
-	// 	i++;
-	// }
-	
-	
+	// waitpid(-1,&s,0);
+
+
+	//------------------------------ cat exe.c | grep "DUP2" | wc -l --------------------------------------------//
+	/*
+		2 pipes
+		3 childs 
+			ch1 write -> pip1
+			
+			ch2 read -> pip1
+			ch2 write -> pip2
+
+			ch3 read -> pip2
+		waitpid .. parent waits
+	*/
+	int stat;
+	int end1[2];
+	int end2[2];
+	pid_t ch1,ch2,ch3;
+	if(pipe(end1) < 0)
+		perror("pipe 1");
+	if(pipe(end2) < 0)
+		perror("pipe 2");
+	printf("%s \n%s \n%s \n",cmd_path[0],cmd_path[1],cmd_path[2]);
+	ch1 = fork();
+	if(ch1 == 0)
+	{
+		close(end1[0]);
+		dup2(end1[1],STDOUT_FILENO);
+		close(end1[1]);
+		execve(cmd_path[0], arg[0], NULL);
+	}
+	else 
+	{
+		ch2 = fork();
+		if(ch2 == 0)
+		{
+			//read end1
+			close(end1[1]);
+			dup2(end1[0],STDIN_FILENO);
+			close(end1[0]);
+			execve(cmd_path[1],arg[1], NULL);
+			//write end2
+			close(end2[0]);
+			dup2(end2[1],STDOUT_FILENO);
+			close(end2[1]);
+			execve(cmd_path[1], arg[1], NULL);
+		}
+		else
+		{
+			ch3 = fork();
+			if(ch3 == 0)
+			{
+				//read end2
+				close(end2[1]);
+				dup2(end2[0],STDIN_FILENO);
+				close(end2[0]);
+				execve(cmd_path[2],arg[2], NULL);
+			}
+		}
+	}
+				close(end2[0]);
+				close(end2[1]);
+				close(end1[0]);
+				close(end1[1]);
+
+	waitpid(-1,&stat,0);
+
 }
 /*
 gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c
