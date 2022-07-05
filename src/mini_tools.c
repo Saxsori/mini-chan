@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/25 15:07:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:12:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ int	check_pipe(char *line)
 	return (1);
 }
 
+void	loop_init(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		init_mini_cmd(&main->cmd_table[i], main);
+}
+
 /*
 ? 1- counting how many commands are there
 ? 2- depending on that counter do the malloc for the array of structures
@@ -54,7 +63,8 @@ int	check_pipe(char *line)
 void	first_cmd_split(t_shell_chan *main)
 {
 	cmd_counter(main);
-	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
+	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
+	loop_init(main);
 	if (main->cmd_num > 1)
 	{
 		main->first_split = ft_split(main->cmd_line, '|');
@@ -74,8 +84,9 @@ void	first_cmd_split(t_shell_chan *main)
 	}
 	else
 	{
-		main->first_split = (char **)malloc(sizeof (char *));
+		main->first_split = (char **)malloc(sizeof (char *) * 2);
 		main->first_split[0] = ft_strdup(main->cmd_line);
+		main->first_split[1] = NULL;
 	}
 }
 
@@ -146,7 +157,7 @@ void	split_command(t_shell_chan *main)
 {
 	int	i;
 
-	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
+	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	i = -1;
 	while (++i < main->cmd_num)
 		init_mem_cmd(&main->cmd_table[i]);

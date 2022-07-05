@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 19:17:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:56:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	count_null_arg(char *line)
 	// i = -1;
 	// while (line[++i])
 	// 	printf("(%c)\n", line[i]);
+	 || \
+					main->first_split[index][i + 2] == '\0'
 */
 char	*line_no_null_arg(t_shell_chan *main, int index)
 {
@@ -68,8 +70,7 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 			if (main->first_split[index][i + 1] == '\t')
 			{
 				if (main->first_split[index][i - 1] == ' ' && \
-					(main->first_split[index][i + 2] == ' ' || \
-					main->first_split[index][i + 2] == '\0'))
+					(main->first_split[index][i + 2] == ' '))
 				{
 					line[k++] = '\v';
 					i += 2;
@@ -88,6 +89,13 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 	return (line);
 }
 
+/*
+
+			// printf ("yes echo\n");
+			// printf("%d\n", main->e_parse.new_size);
+			// printf("new size %d null num %d\n", \
+			// main->e_parse.new_size, main->e_parse.null_num);
+*/
 void	parse_echo_case(t_shell_chan *main)
 {
 	int	i;
@@ -97,12 +105,9 @@ void	parse_echo_case(t_shell_chan *main)
 	{
 		if (is_echo(main->first_split[i]))
 		{
-			printf ("yes echo\n");
 			main->e_parse.new_size = ft_strlen(main->first_split[i]);
-			printf("%d\n", main->e_parse.new_size);
 			main->e_parse.null_num = count_null_arg(main->first_split[i]);
 			main->e_parse.new_size -= (main->e_parse.null_num);
-			printf("new size %d null num %d\n", main->e_parse.new_size, main->e_parse.null_num);
 			if (main->e_parse.null_num > 0)
 				main->first_split[i] = line_no_null_arg(main, i);
 		}

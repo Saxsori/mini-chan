@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 18:07:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:10:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void	init_shell_chan(t_shell_chan *main)
 	main->head_envar = NULL;
 }
 
+void	free_redir_parse(t_mini_cmd *cmd)
+{
+	free(cmd->tools.p_redir.r_index);
+	free(cmd->tools.p_redir.r_valid);
+	free(cmd->redir.redir_tools.r_pos);
+}
+
+void	free_mini_redir(t_mini_redir *redir)
+{
+	squaredstr_free(redir->redir_tools.split);
+	free(redir->redir_tools.r_pos);
+	free(redir->command);
+	squaredstr_free(redir->redir);
+	squaredstr_free(redir->arguments);
+	squaredstr_free(redir->files);
+}
+
 void	free_mini_cmd(t_mini_cmd *cmd)
 {
 	if (cmd->split != NULL)
@@ -40,11 +57,18 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 		free (cmd->tools.cwd_ret);
 	if (cmd->tools.pwd != NULL)
 		free (cmd->tools.pwd);
-	// free DIR
+	if (cmd->tools.f_redir)
+		free_redir_parse(cmd);
+	if (cmd->tools.y_redir)
+		free_mini_redir(&cmd->redir);
+	init_mem_cmd(cmd);
+	// // free DIR
 }
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
+	int	i;
+
 	if (main->exp_valid != NULL)
 		squaredint_free(main->exp_valid, main->cmd_num);
 	if (main->env_index != NULL)
@@ -59,14 +83,19 @@ void	re_init_shell_chan(t_shell_chan *main)
 		free(main->first_split[0]);
 		free(main->first_split);
 	}
-	// free_mini_cmd(main->cmd_table);
-	//free the array of cmd
+	i = -1;
+	while (++i < main->cmd_num)
+		free_mini_cmd(&main->cmd_table[i]);
+	free(main->cmd_table);
+	main->cmd_table = NULL;
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->cmd_num = 0;
 }
+
 void	init_mem_cmd(t_mini_cmd *cmd)
 {
+	printf("hello poop\n");
 	cmd->name = NULL;
 	cmd->split = NULL;
 	cmd->option = NULL;
@@ -75,6 +104,10 @@ void	init_mem_cmd(t_mini_cmd *cmd)
 	cmd->tools.dir = NULL;
 	cmd->tools.envar = NULL;
 	cmd->tools.pwd = NULL;
+	// cmd->redir.arguments = NULL;
+	// cmd->redir.command = NULL;
+	// cmd->redir.files = NULL;
+	// cmd->redir.redir = NULL;
 }
 
 void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
@@ -86,6 +119,8 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->tools.y_op = 0;
 	cmd->tools.y_arg = 0;
 	cmd->tools.p_num = 0;
+	cmd->tools.f_redir = 0;
+	cmd->tools.y_redir = 0;
 }
 
 /*
@@ -131,3 +166,50 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 // 	exp_tools->end = 0;
 // 	exp_tools->name_len = 0;
 // }
+
+void	init_predir_arrays(t_redir_parse *p_redir)
+{
+	int	i;
+
+	i = -1;
+	p_redir->r_index = (int *)malloc(sizeof(int) * p_redir->num_redir);
+	p_redir->r_valid = (int *)malloc(sizeof(int) * p_redir->num_redir);
+	while (++i < p_redir->num_redir)
+	{
+		p_redir->r_index[i] = -1;
+		p_redir->r_valid[i] = -1;
+	}
+}
+
+void	init_predir(t_redir_parse *p_redir)
+{
+	p_redir->num_redir = 0;
+	p_redir->begin = -1;
+	p_redir->end = -1;
+	p_redir->r_index = NULL;
+	p_redir->r_valid = NULL;
+}
+
+void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
+{
+	redir->arguments = NULL;
+	redir->command = NULL;
+	redir->files = NULL;
+	redir->redir_tools.main = main;
+	redir->redir_tools.num_arg = 0;
+	redir->redir_tools.num_file = 0;
+	redir->redir_tools.parse_err = 0;
+	redir->redir_tools.num_part = 0;
+	redir->redir_tools.i = -1;
+	redir->redir_tools.j = -1;
+	redir->redir_tools.k = -1;
+	redir->redir_tools.r_pos = NULL;
+	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
+	replace_tabbing_spaces(redir->redir_tools.split);
+}
+
+void	init_loop_p_redir(t_mini_cmd *cmd, int i)
+{
+	cmd->tools.p_redir.begin = -1;
+	cmd->tools.p_redir.end = ft_strlen(cmd->main->first_split[i]);
+}

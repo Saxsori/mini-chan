@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 13:24:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:19:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	// 	printf ("ind %d, val %d\n", main->env_index[i][n], main->exp_valid[i][n]);
 
 */
-void	pre_quote(t_shell_chan *main, char *line, int i)
+void	tabbing_quote(t_shell_chan *main, char *line, int i)
 {
 	int	n;
 
