@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:47:01 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/29 18:52:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:09:39 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ char	**new_arg(t_mini_cmd *cmd)
 
 	cmd->tools.new_arg = cmd->tools.opt_num - cmd->tools.i_arg;
 	cmd->tools.new_arg_size = cmd->tools.new_arg + cmd->tools.arg_num;
-	new_arg = (char **)malloc(sizeof(char *) * cmd->tools.new_arg_size);
+	new_arg = (char **)malloc(sizeof(char *) * (cmd->tools.new_arg_size + 1));
+	new_arg[cmd->tools.new_arg_size] = NULL;
 	i = -1;
 	k = cmd->tools.i_arg;
 	while (++i < cmd->tools.new_arg)

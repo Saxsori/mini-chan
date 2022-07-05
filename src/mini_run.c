@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 14:37:24 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:42:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,20 @@ int	run_cmd(t_shell_chan *main)
 {
 	if (main->cmd_num == 1)
 	{
-		init_mini_cmd(&main->cmd_table[0], main);
-		check_opt(&main->cmd_table[0]);
-		check_arg(&main->cmd_table[0]);
+		// init_mini_cmd(&main->cmd_table[0], main);
+		// check_opt(&main->cmd_table[0]);
+		// check_arg(&main->cmd_table[0]);
 		if (is_command(main->cmd_table[0].name))
 		{
+			printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
 			return (run_builtn(&main->cmd_table[0]));
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			execute_tools(&main->cmd_table[0]);
 			mini_execute(&main->cmd_table[0]);
-			printf ("lala\n");
-			return (0);
+			// printf ("lala\n");
+			return (1);
 		}
 	}
 	return (0);

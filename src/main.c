@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/01 14:43:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/05 03:55:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,20 @@
 	// 	// printf("1:%d\n", main->cmd_num);
 	// 	// printf("2:%d\n", main->cmd_table[i].main->cmd_num);
 */
-// void	check_cmd_parts(t_shell_chan *main)
-// {
-// 	int	i;
+void	check_cmd_parts(t_shell_chan *main)
+{
+	int	i;
 // 	// int	k;
 
-// 	i = -1;
-// 	while (++i < main->cmd_num)
-// 	{
-// 		init_mini_cmd(&main->cmd_table[i], main);
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		// init_mini_cmd(&main->cmd_table[i], main);
 // 		printf ("1here\n");
-// 		check_opt(&main->cmd_table[i]);
-// 		check_arg(&main->cmd_table[i]);
-// 	}
+		// if ()
+		check_opt(&main->cmd_table[i]);
+		check_arg(&main->cmd_table[i]);
+	}
 // 	// i = -1;
 // 	// while (++i < main->cmd_num)
 // 	// {
@@ -52,7 +53,27 @@
 // 	// 		printf("arg %s\n", main->cmd_table[i].arguments[k]);
 // 	// 	}
 // 	// }
-// }
+}
+
+void	check_isbuiltin(t_shell_chan *main)
+{
+	int		i;
+	char	**split;
+
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		split = ft_split(main->first_split[i], ' ');
+		if (split)
+		{
+			if (is_command(split[i]))
+				main->cmd_table[i].tools.y_exe = 0;
+			else
+				main->cmd_table[i].tools.y_exe = 1;
+			squaredstr_free(split);
+		}
+	}
+}
 
 // printf("cmd_count%d\n", main->cmd_num);
 /*
@@ -81,21 +102,33 @@ int	find_command(t_shell_chan *main)
 		return (2);
 	expand_tools(main);
 	redir_tools(main);
-	// if (quotes_checker(main))
-	// {
-	// 	expand_envar(main);
-	// 	parse_echo_case(main);
-	// 	remove_quote(main);
-	// 	i = -1;
-	// 	while (++i < main->cmd_num)
-	// 		printf("(%s)\n", main->first_split[i]);
-	// 	split_command(main);
-	// 	if (main->exit_status == 2)
-	// 		return (2);
-	// 	command_name(main);
-	// 	return (run_cmd(main));
-	// }
-	// return (0);
+	if (quotes_checker(main))
+	{
+		if (pre_redir(main) == 2)
+			return (2);
+		i = -1;
+		pre_quote(main);
+		expand_envar(main);
+		parse_echo_case(main);
+		remove_quote(main);
+		check_isbuiltin(main);
+		while (++i < main->cmd_num)
+		{
+			printf("(%s)", main->first_split[i]);
+			printf(" - r %d", main->cmd_table[i].tools.y_redir);
+			printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
+		}
+		split_redir(main);
+		split_command(main);
+		if (main->exit_status == 2)
+			return (2);
+		command_name(main);
+		check_cmd_parts(main);
+		return (run_cmd(main));
+	}
+	// else
+		//free first_split .. cmd_table .. expand_tools .. redir_tools
+	return (0);
 }
 
 /*

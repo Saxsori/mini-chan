@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:12:09 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/25 12:30:08 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:08:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	pre_opt(t_mini_cmd *cmd)
 
 	i = -1;
 	k = 0;
-	cmd->option = (char **)malloc(cmd->tools.opt_num * sizeof(char *));
+	cmd->option = (char **)malloc((cmd->tools.opt_num + 1) * sizeof(char *));
+	cmd->option[cmd->tools.opt_num] = NULL;
 	while (++i < cmd->tools.opt_num)
 		cmd->option[i] = (char *)malloc(ft_strlen(cmd->split[++k]));
 }

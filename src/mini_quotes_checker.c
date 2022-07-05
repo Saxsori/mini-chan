@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:23:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 23:31:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:19:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	quotes_checker(t_shell_chan *main)
 		{
 			printf("quotes are valid 1\n");
 			main->q_pars.begin = -1;
-			pre_quote(main, main->first_split[i], i);
 		}
 		else
 		{
@@ -82,4 +81,13 @@ int	quotes_checker(t_shell_chan *main)
 		}	
 	}
 	return (1);
+}
+
+void	pre_quote(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		tabbing_quote(main, main->first_split[i], i);
 }
