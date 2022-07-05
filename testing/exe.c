@@ -161,16 +161,20 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	ch1 = fork();
 	if(ch1 == 0)
 	{
+			printf("ch1\n");
+
 		close(end1[0]);
 		dup2(end1[1],STDOUT_FILENO);
 		close(end1[1]);
 		execve(cmd_path[0], arg[0], NULL);
 	}
-	else 
-	{
+	// else 
+	// {
 		ch2 = fork();
 		if(ch2 == 0)
 		{
+			printf("ch2\n");
+
 			//read end1
 			close(end1[1]);
 			dup2(end1[0],STDIN_FILENO);
@@ -181,27 +185,25 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			dup2(end2[1],STDOUT_FILENO);
 			close(end2[1]);
 			execve(cmd_path[1], arg[1], NULL);
-		}
-		else
-		{
 			ch3 = fork();
-			if(ch3 == 0)
-			{
+		}
+
+		if(ch3 == 0)
+		{
+			printf("ch3\n");
 				//read end2
 				close(end2[1]);
 				dup2(end2[0],STDIN_FILENO);
 				close(end2[0]);
 				execve(cmd_path[2],arg[2], NULL);
 			}
-		}
-	}
+		// }
+	// }
 				close(end2[0]);
 				close(end2[1]);
 				close(end1[0]);
 				close(end1[1]);
-
 	waitpid(-1,&stat,0);
-
 }
 /*
 gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c
