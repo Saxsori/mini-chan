@@ -1,5 +1,9 @@
 make --dry-run --always-make --keep-going --print-directory
+<<<<<<< HEAD
 make: Entering directory `/Users/aaljaber/Desktop/mini-chan'
+=======
+make: Entering directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan'
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/main.c -o src/main.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_ctrls.c -o src/mini_ctrls.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_init.c -o src/mini_init.o
@@ -18,7 +22,10 @@ gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_enva
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_unset.c -o src/mini_envar_unset.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_echo_tools.c -o src/mini_echo_tools.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_cd_tools.c -o src/mini_cd_tools.o
+<<<<<<< HEAD
  
+=======
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_quotes_split.c -o src/mini_quotes_split.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_quotes_checker.c -o src/mini_quotes_checker.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_envar_export_tools.c -o src/mini_envar_export_tools.o
@@ -28,7 +35,10 @@ gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expa
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_expand_action.c -o src/mini_expand_action.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_echo_parse.c -o src/mini_echo_parse.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_pre_execute.c -o src/mini_pre_execute.o
+<<<<<<< HEAD
  
+=======
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_run.c -o src/mini_run.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_execute.c -o src/mini_execute.o
 gcc -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -c src/mini_redir_tools.c -o src/mini_redir_tools.o
@@ -78,8 +88,16 @@ gcc -Wall -Werror -Wextra -c ft_putstr_fd.c -o ft_putstr_fd.o
 gcc -Wall -Werror -Wextra -c ft_putendl_fd.c -o ft_putendl_fd.o
 gcc -Wall -Werror -Wextra -c ft_putnbr_fd.c -o ft_putnbr_fd.o
 ar rc libft.a ft_memset.o ft_split.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_strlcpy.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_strnstr.o ft_strncmp.o ft_atoi.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
+<<<<<<< HEAD
 make[1]: Leaving directory `/Users/aaljaber/Desktop/mini-chan/libft'
 gcc src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c						src/mini_redir_tools.c src/mini_redir_pre.c					src/mini_redir_isvalid.c src/mini_redir_take_valid.c             src/mini_redir_getredir.c src/mini_redir_reline.c					src/mini_redir_split.c src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c ./libft/libft.a -o minishell -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -lreadline -L /usr/local/opt/readline/lib
 # @ afplay WAKUWAKU.mp3
 make: Leaving directory `/Users/aaljaber/Desktop/mini-chan'
+=======
+make[1]: Leaving directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan/libft'
+gcc src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c						src/mini_redir_tools.c src/mini_redir_pre.c					src/mini_redir_isvalid.c src/mini_redir_take_valid.c             src/mini_redir_getredir.c src/mini_redir_reline.c					src/mini_redir_split.c src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c ./libft/libft.a -o minishell -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include -lreadline -L /usr/local/opt/readline/lib
+# @ afplay WAKUWAKU.mp3
+ 
+make: Leaving directory `/Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan'
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
  

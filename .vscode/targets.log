@@ -8,7 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
+<<<<<<< HEAD
 # Make data base, printed on Tue Jul  5 19:13:12 2022
+=======
+# Make data base, printed on Tue Jul  5 09:26:50 2022
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 
 # Variables
 
@@ -45,11 +49,23 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
+<<<<<<< HEAD
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000c_v40032ps/T/vscode-ipc-fc66d4b9-f83f-40d1-a667-caba64ea8915.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/aaljaber/Documents/42-ValgrindContainer
+=======
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/vscode-ipc-17ba233e-8c58-47f7-b9d0-fb93cbc890e2.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -57,7 +73,11 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
+<<<<<<< HEAD
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.bJd9XB840T/Listeners
+=======
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0QFFk7wFPl/Listeners
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 # automatic
 %F = $(notdir $%)
 # environment
@@ -127,7 +147,13 @@ XPC_SERVICE_NAME = com.microsoft.VSCode.2236
 # automatic
 +F = $(notdir $+)
 # environment
+<<<<<<< HEAD
 __CF_USER_TEXT_ENCODING = 0x18AD9:0x0:0x0
+=======
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 # default
 MAKEFILES := 
 # automatic
@@ -145,9 +171,15 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
+<<<<<<< HEAD
 VSCODE_PID = 20759
 # variable set hash-table stats:
 # Load=67/1024=7%, Rehash=0, Collisions=3/95=3%
+=======
+VSCODE_PID = 1107
+# variable set hash-table stats:
+# Load=73/1024=7%, Rehash=0, Collisions=3/101=3%
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 
 # Pattern-specific Variable Values
 
@@ -155,7 +187,12 @@ VSCODE_PID = 20759
 
 # Directories
 
+<<<<<<< HEAD
 # . (device 16777225, inode 663179): 22 files, no impossibilities.
+=======
+ 
+# . (device 16777233, inode 21545115): 22 files, no impossibilities.
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 
 # 22 files, no impossibilities in 1 directories.
 
@@ -168,7 +205,11 @@ VSCODE_PID = 20759
 # Not a target:
 src/mini_free.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -177,7 +218,11 @@ src/mini_free.o:
 # Not a target:
 src/mini_quotes_checker.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -186,7 +231,11 @@ src/mini_quotes_checker.o:
 # Not a target:
 src/mini_init.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -204,7 +253,11 @@ all: minishell
 # Not a target:
 src/mini_parse.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -213,7 +266,11 @@ src/mini_parse.o:
 # Not a target:
 src/mini_envar_unset.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -222,7 +279,11 @@ src/mini_envar_unset.o:
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -231,7 +292,11 @@ src/main.o:
 # Not a target:
 src/mini_echo_arg_redir.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:04
+=======
+#  Last modified 2022-07-05 09:25:12
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -240,7 +305,11 @@ src/mini_echo_arg_redir.o:
 # Not a target:
 src/mini_redir_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -249,7 +318,11 @@ src/mini_redir_tools.o:
 # Not a target:
 src/mini_cmd_arg.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -258,7 +331,11 @@ src/mini_cmd_arg.o:
 # Not a target:
 src/mini_redir_reline.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -267,7 +344,11 @@ src/mini_redir_reline.o:
 # Not a target:
 src/mini_redir_isvalid.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -276,7 +357,11 @@ src/mini_redir_isvalid.o:
 # Not a target:
 src/mini_cmd_opt.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -285,7 +370,11 @@ src/mini_cmd_opt.o:
 # Not a target:
 src/mini_execute.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
  
@@ -301,7 +390,11 @@ src/mini_execute.o:
 # Not a target:
 src/mini_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -310,7 +403,11 @@ src/mini_tools.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 09:44:46
+=======
+#  Last modified 2022-07-05 01:28:25
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -319,7 +416,11 @@ Makefile:
 # Not a target:
 src/mini_echo_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -328,7 +429,11 @@ src/mini_echo_tools.o:
 # Not a target:
 src/mini_quotes_split.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -337,7 +442,11 @@ src/mini_quotes_split.o:
 # Not a target:
 src/mini_expand_pre.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -346,7 +455,11 @@ src/mini_expand_pre.o:
 # Not a target:
 src/mini_run_cmd.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -355,6 +468,7 @@ src/mini_run_cmd.o:
 # Not a target:
 src/mini_pre_execute.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
 #  File has been updated.
 #  Successfully updated.
@@ -365,15 +479,32 @@ src/mini_pre_execute.o:
 src/mini_redir_split.o:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-05 10:11:04
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+src/mini_redir_split.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+ 
 src/mini_cmd.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -382,7 +513,11 @@ src/mini_cmd.o:
 # Not a target:
 src/mini_envar.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -390,7 +525,11 @@ src/mini_envar.o:
 
 minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o src/mini_redir_tools.o src/mini_redir_pre.o src/mini_redir_isvalid.o src/mini_redir_take_valid.o src/mini_redir_getredir.o src/mini_redir_reline.o src/mini_redir_split.o src/mini_redir_get_parts.o src/mini_echo_arg_redir.o
 #  Implicit rule search has not been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:07
+=======
+#  Last modified 2022-07-05 09:25:15
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -421,7 +560,11 @@ fclean: clean
 # Not a target:
 src/mini_check.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -430,7 +573,11 @@ src/mini_check.o:
 # Not a target:
 src/mini_ctrls.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -439,7 +586,11 @@ src/mini_ctrls.o:
 # Not a target:
 src/mini_redir_getredir.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -448,7 +599,11 @@ src/mini_redir_getredir.o:
 # Not a target:
 src/mini_expand_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -457,7 +612,11 @@ src/mini_expand_tools.o:
 # Not a target:
 src/mini_cd_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -472,7 +631,11 @@ src/mini_cd_tools.o:
 # Not a target:
 src/mini_echo_parse.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -486,7 +649,11 @@ re: fclean all
 # Not a target:
 src/mini_expand_envar.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -504,7 +671,11 @@ clean:
 # Not a target:
 src/mini_expand_action.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -513,7 +684,11 @@ src/mini_expand_action.o:
 # Not a target:
 src/mini_envar_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -522,7 +697,11 @@ src/mini_envar_tools.o:
 # Not a target:
 src/mini_redir_take_valid.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -531,7 +710,11 @@ src/mini_redir_take_valid.o:
 # Not a target:
 src/mini_cmd2.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:01
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -540,7 +723,11 @@ src/mini_cmd2.o:
 # Not a target:
 src/mini_run.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -549,7 +736,11 @@ src/mini_run.o:
 # Not a target:
 src/mini_redir_get_parts.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:04
+=======
+#  Last modified 2022-07-05 09:25:12
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -558,6 +749,7 @@ src/mini_redir_get_parts.o:
 # Not a target:
 src/mini_envar_export.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:02
 #  File has been updated.
 #  Successfully updated.
@@ -569,7 +761,20 @@ src/mini_redir_pre.o:
  
 #  Implicit rule search has been done.
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:10
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_pre.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
+#  File has been updated.
+ 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -577,7 +782,11 @@ src/mini_redir_pre.o:
 # Not a target:
 src/mini_envar_export_tools.o:
 #  Implicit rule search has been done.
+<<<<<<< HEAD
 #  Last modified 2022-07-05 10:11:03
+=======
+#  Last modified 2022-07-05 09:25:11
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -596,6 +805,10 @@ src/mini_envar_export_tools.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
+<<<<<<< HEAD
 # Finished Make data base on Tue Jul  5 19:13:12 2022
+=======
+# Finished Make data base on Tue Jul  5 09:26:50 2022
+>>>>>>> 97e42db9375479c7a9b5635ba1c9450026b5e043
 
  
