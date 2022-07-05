@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/01 19:41:55 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:28:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ int	run_cmd(t_shell_chan *main)
 {
 	if (main->cmd_num == 1)
 	{
-		init_mini_cmd(&main->cmd_table[0], main);
-		check_opt(&main->cmd_table[0]);
-		check_arg(&main->cmd_table[0]);
+		// init_mini_cmd(&main->cmd_table[0], main);
+		// check_opt(&main->cmd_table[0]);
+		// check_arg(&main->cmd_table[0]);
 		if (is_command(main->cmd_table[0].name))
 		{
+			printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
 			return (run_builtn(&main->cmd_table[0]));
 		}
 		else if (!is_command(main->cmd_table[0].name))
@@ -45,7 +46,7 @@ int	run_cmd(t_shell_chan *main)
 			execute_tools(&main->cmd_table[0]);
 			mini_execute(&main->cmd_table[0]);
 			// printf ("lala\n");
-			return (0);
+			return (1);
 		}
 	}
 	// else if(main->cmd_num == 2 && !is_command(main->cmd_table[0].name)) //! need to check its ONLY pipes

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/02 00:14:02 by badriah          ###   ########.fr       */
+/*   Updated: 2022/07/05 09:28:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
 # define BRED "\e[1;31m"
@@ -39,6 +39,22 @@
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
 typedef struct expand_tools	t_expand_tools;
+
+typedef struct echo_parse
+{
+	int	null_num;
+	int	new_size;
+}	t_mini_echo;
+
+typedef struct node
+{
+	t_mini_envar	*prev;
+	char			*env_name;
+	char			*env_cont;
+	char			*envar;
+	int				declared;
+	t_mini_envar	*next;
+}	t_mini_envar;
 
 typedef struct env_info
 {
@@ -68,23 +84,6 @@ typedef struct expand_tools
 	t_env_info		*env_info;
 }	t_expand_tools;
 
-typedef struct redirect_tools
-{
-	int		num_arg;
-	int		num_file;
-	int		num_redir;
-	char	*command;
-	char	**arguments;
-	char	*redir;
-	char	**files;
-}	t_mini_redir;
-
-typedef struct echo_parse
-{
-	int	null_num;
-	int	new_size;
-}	t_mini_echo;
-
 typedef struct p_quotes
 {
 	int		begin;
@@ -95,6 +94,39 @@ typedef struct p_quotes
 	char	*line;
 	int		exp_index;
 }	t_mini_quotes;
+
+typedef struct redirect_tools
+{
+	int				parse_err;
+	int				num_arg;
+	int				num_file;
+	int				num_redir;
+	int				num_part;
+	int				i;
+	int				k;
+	int				j;
+	int				*r_pos;
+	char			**split;
+	t_shell_chan	*main;
+}	t_redir_tools;
+
+typedef struct mini_redirecton
+{
+	char			*command;
+	char			**arguments;
+	char			**redir;
+	char			**files;
+	t_redir_tools	redir_tools;
+}	t_mini_redir;
+
+typedef struct p_redir
+{
+	int	num_redir;
+	int	*r_valid;
+	int	*r_index;
+	int	begin;
+	int	end;
+}	t_redir_parse;
 
 typedef struct exe_tools
 {
@@ -120,7 +152,12 @@ typedef struct mini_tools
 	int				new_arg_size;
 	char			*cwd_ret;
 	char			*pwd;
+	int				f_redir;
+	int				y_exe;
+	int				y_redir;
+	int				r_err_syn;
 	DIR				*dir;
+	t_redir_parse	p_redir;
 	t_mini_envar	*envar;
 }	t_cmd_tools;
 
@@ -130,21 +167,11 @@ typedef struct mini_cmnd
 	char				*name;
 	char				**option;
 	char				**arguments;
-	int					y_exe;
+	t_mini_redir		redir;
 	t_cmd_tools			tools;
 	t_shell_chan		*main;
 	t_mini_exe_tools	exe_tools;
 }	t_mini_cmd;
-
-typedef struct node
-{
-	t_mini_envar	*prev;
-	char			*env_name;
-	char			*env_cont;
-	char			*envar;
-	int				declared;
-	t_mini_envar	*next;
-}	t_mini_envar;
 
 typedef struct shell_chan
 {
@@ -235,12 +262,13 @@ void			envar_mode(t_mini_envar *temp, char op);
 
 /*******************       MINI__ECHO      *******************/
 int				is_extst(char *line);
-// void			check_echo_opt(t_mini_cmd *cmd);
-// int				is_echo_opt(char **opt, char which, int len);
 void			parse_echo_case(t_shell_chan *main);
 int				is_echo(char *line);
 void			check_echo_opt(t_mini_cmd *cmd);
-
+void			get_echo_arg_redir(t_mini_cmd *cmd);
+int				is_echo_opt(char *line);
+void			handle_one_case(t_mini_cmd *cmd);
+char			**new_arg(t_mini_cmd *cmd);
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
 
@@ -249,11 +277,12 @@ int				is_closed(t_shell_chan *main, char *line, int index);
 int				quotes_checker(t_shell_chan *main);
 int				is_qt_valid(t_shell_chan *main, char *line);
 int				quote_split(t_shell_chan *main, char *line, int i);
-void			pre_quote(t_shell_chan *main, char *line, int i);
+void			pre_quote(t_shell_chan *main);
 int				line_len(char *line);
 void			find_frst(t_shell_chan *main, char *line, int i);
 void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 void			remove_quote(t_shell_chan *main);
+void			tabbing_quote(t_shell_chan *main, char *line, int i);
 
 /*******************    MINI_EXPAND_TOOLS   ******************/
 void			expand_tools(t_shell_chan *main);
@@ -262,7 +291,8 @@ int				envar_num(t_shell_chan *main, int i);
 void			find_env_index(t_shell_chan *main, int i);
 void			expand_envar(t_shell_chan *main);
 void			start_expand(t_expand_tools *exp_tools);
-void			init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i);
+void			init_env_info(t_env_info *env_info, \
+t_expand_tools *exp_tools, int i);
 void			find_istart(t_env_info *env_info);
 void			get_env_value(t_env_info *env_info);
 char			*get_env_name(t_env_info *env_info);
@@ -272,6 +302,47 @@ int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
 void			handle_1dollar_case(t_env_info *env_info);
 void			init_exp_loop(t_expand_tools *exp_tools);
 void			two_dollar_case(char *line);
+
+/*******************    MINI_REDIR_TOOLS   ******************/
+void			redir_tools(t_shell_chan *main);
+void			count_redir(t_mini_cmd *cmd, int i);
+int				is_more_redir(char *line, int k);
+void			check_redir(t_shell_chan *main, int i);
+int				is_redir(char *line);
+int				pre_redir(t_shell_chan *main);
+void			redir_index(t_mini_cmd *cmd, int i);
+void			init_loop_p_redir(t_mini_cmd *cmd, int i);
+int				redir_pos(t_mini_cmd *cmd, int index);
+int				last_redir(char *line, int i);
+int				is_redir_index(t_mini_cmd *cmd, int index);
+int				redir_err_syn(t_shell_chan *main);
+void			redir_valid(t_shell_chan *main);
+int				pre_redir(t_shell_chan *main);
+void			take_v_redir(t_shell_chan *main);
+void			num_valid_redir(t_mini_cmd *cmd);
+int				is_there_v_redir(t_mini_cmd *cmd);
+void			not_opp_redir(t_mini_cmd *cmd, char *line);
+int				is_opp_redir(char *line, int index);
+void			not_more_than_two(t_mini_cmd *cmd, char *line);
+void			not_btwn_quote(t_mini_cmd *cmd, char *line);
+void			is_btwn_quote(t_mini_cmd *cmd, char *line, int begin);
+void			fill_redir_array(t_mini_cmd *cmd, char *line);
+char			*get_redir(char *line, int begin, int end);
+void			init_predir(t_redir_parse *p_redir);
+void			init_predir_arrays(t_redir_parse *p_redir);
+char			*replace_redir(char	*line, t_mini_cmd *cmd);
+int				isvla_redir(t_mini_cmd *cmd, int index);
+void			init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i);
+void			split_redir(t_shell_chan *main);
+int				check_redirline_syn(t_mini_redir *redir);
+void			get_redir_pos(t_mini_redir *redir);
+void			get_files(t_mini_redir *redir);
+void			get_cmd(t_mini_redir *redir, int op);
+void			get_arg_num(t_mini_redir *redir, int op);
+void			get_redir_arg(t_mini_redir *redir, int op);
+void			get_redir_part(t_mini_redir *redir, int op);
+void			split_redir(t_shell_chan *main);
+void			replace_tabbing_spaces(char	**split);
 
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);

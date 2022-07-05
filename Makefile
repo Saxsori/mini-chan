@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/06/30 19:17:16 by balnahdi         ###   ########.fr        #
+#    Updated: 2022/07/04 21:28:25 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,12 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
 		src/mini_expand_action.c      			src/mini_echo_parse.c \
-		src/mini_pre_execute.c					src/mini_run.c\
-		src/mini_execute.c
+		src/mini_pre_execute.c					src/mini_run.c \
+		src/mini_execute.c						src/mini_redir_tools.c \
+		src/mini_redir_pre.c					src/mini_redir_isvalid.c \
+		src/mini_redir_take_valid.c             src/mini_redir_getredir.c \
+		src/mini_redir_reline.c					src/mini_redir_split.c \
+		src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c
 
 OBJ = ${SRC:.c=.o}
 
