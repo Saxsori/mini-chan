@@ -149,59 +149,58 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			ch3 read -> pip2
 		waitpid .. parent waits
 	*/
-	int stat;
 	int end1[2];
 	int end2[2];
-	pid_t ch1,ch2,ch3;
+	int s;
+	// pid_t *child=malloc(sizeof(pid_t)*3);
+	i = 0;
 	if(pipe(end1) < 0)
 		perror("pipe 1");
 	if(pipe(end2) < 0)
 		perror("pipe 2");
-	printf("%s \n%s \n%s \n",cmd_path[0],cmd_path[1],cmd_path[2]);
-	ch1 = fork();
-	if(ch1 == 0)
+	if(fork() == 0)
 	{
+		// printf("CH1");
+		if(dup2(end1[1] ,STDOUT_FILENO) < 0)
+			perror("CH1");
 		close(end1[0]);
-		dup2(end1[1],STDOUT_FILENO);
 		close(end1[1]);
+		// close(end2[0]);
+		// close(end2[1]);
+		
 		execve(cmd_path[0], arg[0], NULL);
 	}
-	else 
+	else
 	{
-		ch2 = fork();
-		if(ch2 == 0)
+		if(fork() == 0)
 		{
-			//read end1
+			// printf(" CH2");
 			close(end1[1]);
-			dup2(end1[0],STDIN_FILENO);
+			if(dup2(end1[0],STDIN_FILENO) < 0)
+				perror("CH2 1");
 			close(end1[0]);
-			execve(cmd_path[1],arg[1], NULL);
-			//write end2
 			close(end2[0]);
-			dup2(end2[1],STDOUT_FILENO);
+			if(dup2(end2[1] ,STDOUT_FILENO) < 0)
+				perror("CH2 2");
 			close(end2[1]);
-			execve(cmd_path[1], arg[1], NULL);
+			execve(cmd_path[1],arg[1],NULL);
 		}
 		else
 		{
-			ch3 = fork();
-			if(ch3 == 0)
+			if(fork() == 0)
 			{
-				//read end2
+				// printf(" CH3");
+				if(dup2(end2[0],STDIN_FILENO) < 0)
+					perror("CH3");
 				close(end2[1]);
-				dup2(end2[0],STDIN_FILENO);
 				close(end2[0]);
-				execve(cmd_path[2],arg[2], NULL);
+				close(end1[0]);
+				close(end1[1]);
+				execve(cmd_path[2], arg[2], NULL);
 			}
 		}
 	}
-				close(end2[0]);
-				close(end2[1]);
-				close(end1[0]);
-				close(end1[1]);
-
-	waitpid(-1,&stat,0);
-
+	// waitpid(-1, &s, 0);
 }
 /*
 gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c
