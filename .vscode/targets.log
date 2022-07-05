@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Jul  1 05:30:55 2022
+# Make data base, printed on Tue Jul  5 09:26:50 2022
 
 # Variables
 
@@ -17,10 +17,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 29)
+# makefile (from `Makefile', line 33)
 OBJ = ${SRC:.c=.o}
 # makefile (from `Makefile', line 13)
-SRC = src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c
+SRC = src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c						src/mini_redir_tools.c src/mini_redir_pre.c					src/mini_redir_isvalid.c src/mini_redir_take_valid.c             src/mini_redir_getredir.c src/mini_redir_reline.c					src/mini_redir_split.c src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -33,14 +33,14 @@ VSCODE_LOG_NATIVE = false
 CURDIR := /Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 41)
+# makefile (from `Makefile', line 45)
 RM = rm -rf
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 36)
-CFLAGS = -Wall -Werror -Wextra -g 
+# makefile (from `Makefile', line 40)
+CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
@@ -48,7 +48,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/vscode-ipc-ae9030dd-1d5c-4016-9037-347bf475a52e.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/vscode-ipc-17ba233e-8c58-47f7-b9d0-fb93cbc890e2.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -56,15 +56,13 @@ PATH = /opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = F776C5EB-8BE4-4E8A-B62D-8516E8F6D313
-# environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.KdPkhAOKJI/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0QFFk7wFPl/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -99,7 +97,7 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 33)
+# makefile (from `Makefile', line 37)
 CC = gcc
 # default
 MAKE_VERSION := 3.81
@@ -107,14 +105,14 @@ MAKE_VERSION := 3.81
 USER = abrar
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 31)
+# makefile (from `Makefile', line 35)
 NAME = minishell
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 39)
-LINKS = -lreadline
+# makefile (from `Makefile', line 43)
+LINKS = -lreadline -L /usr/local/opt/readline/lib
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
@@ -138,7 +136,6 @@ XPC_SERVICE_NAME = application.com.microsoft.VSCode.20904873.20904879
 # automatic
 +F = $(notdir $+)
 # environment
- 
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
 COMMAND_MODE = unix2003
@@ -150,8 +147,6 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186b7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -163,9 +158,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 528
+VSCODE_PID = 1107
 # variable set hash-table stats:
-# Load=75/1024=7%, Rehash=0, Collisions=3/103=3%
+# Load=73/1024=7%, Rehash=0, Collisions=3/101=3%
 
 # Pattern-specific Variable Values
 
@@ -173,9 +168,10 @@ VSCODE_PID = 528
 
 # Directories
 
-# . (device 16777233, inode 21545115): 17 files, no impossibilities.
+ 
+# . (device 16777233, inode 21545115): 22 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -186,7 +182,7 @@ VSCODE_PID = 528
 # Not a target:
 src/mini_free.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -194,9 +190,8 @@ src/mini_free.o:
 
 # Not a target:
 src/mini_quotes_checker.o:
- 
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -205,7 +200,7 @@ src/mini_quotes_checker.o:
 # Not a target:
 src/mini_init.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -223,7 +218,7 @@ all: minishell
 # Not a target:
 src/mini_parse.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -232,17 +227,34 @@ src/mini_parse.o:
 # Not a target:
 src/mini_envar_unset.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
- 
 
 # Not a target:
 src/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_echo_arg_redir.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_tools.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -251,7 +263,25 @@ src/main.o:
 # Not a target:
 src/mini_cmd_arg.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_reline.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_isvalid.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -260,7 +290,7 @@ src/mini_cmd_arg.o:
 # Not a target:
 src/mini_cmd_opt.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -269,7 +299,7 @@ src/mini_cmd_opt.o:
 # Not a target:
 src/mini_execute.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -284,17 +314,16 @@ src/mini_execute.o:
 # Not a target:
 src/mini_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
- 
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 20:55:49
+#  Last modified 2022-07-05 01:28:25
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -303,7 +332,7 @@ Makefile:
 # Not a target:
 src/mini_echo_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -312,7 +341,7 @@ src/mini_echo_tools.o:
 # Not a target:
 src/mini_quotes_split.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -321,7 +350,7 @@ src/mini_quotes_split.o:
 # Not a target:
 src/mini_expand_pre.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -330,7 +359,25 @@ src/mini_expand_pre.o:
 # Not a target:
 src/mini_run_cmd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_pre_execute.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_split.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -338,18 +385,9 @@ src/mini_run_cmd.o:
 
 # Not a target:
  
-src/mini_pre_execute.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 src/mini_cmd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -358,20 +396,20 @@ src/mini_cmd.o:
 # Not a target:
 src/mini_envar.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o
+minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o src/mini_redir_tools.o src/mini_redir_pre.o src/mini_redir_isvalid.o src/mini_redir_take_valid.o src/mini_redir_getredir.o src/mini_redir_reline.o src/mini_redir_split.o src/mini_redir_get_parts.o src/mini_echo_arg_redir.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-01 01:19:57
+#  Last modified 2022-07-05 09:25:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 53):
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
 	# @ afplay WAKUWAKU.mp3
@@ -381,7 +419,7 @@ minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 46):
+#  commands to execute (from `Makefile', line 50):
 	@ ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 	
 
@@ -389,16 +427,15 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 68):
+#  commands to execute (from `Makefile', line 72):
 	@ ${RM} ${NAME}
 	@ ${MAKE} fclean -C ./libft
 	
 
 # Not a target:
- 
 src/mini_check.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -407,7 +444,16 @@ src/mini_check.o:
 # Not a target:
 src/mini_ctrls.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_getredir.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -416,7 +462,7 @@ src/mini_ctrls.o:
 # Not a target:
 src/mini_expand_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -425,7 +471,7 @@ src/mini_expand_tools.o:
 # Not a target:
 src/mini_cd_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -438,10 +484,9 @@ src/mini_cd_tools.o:
 #  File has not been updated.
 
 # Not a target:
- 
 src/mini_echo_parse.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -455,7 +500,7 @@ re: fclean all
 # Not a target:
 src/mini_expand_envar.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -465,7 +510,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 68):
 	@ ${RM} ${OBJ}
 	@ ${MAKE} clean -C ./libft
 	
@@ -473,7 +518,7 @@ clean:
 # Not a target:
 src/mini_expand_action.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -482,7 +527,16 @@ src/mini_expand_action.o:
 # Not a target:
 src/mini_envar_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_take_valid.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -491,7 +545,7 @@ src/mini_envar_tools.o:
 # Not a target:
 src/mini_cmd2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -500,7 +554,16 @@ src/mini_cmd2.o:
 # Not a target:
 src/mini_run.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_get_parts.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -509,8 +572,18 @@ src/mini_run.o:
 # Not a target:
 src/mini_envar_export.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:53
+#  Last modified 2022-07-05 09:25:10
 #  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/mini_redir_pre.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 09:25:11
+#  File has been updated.
+ 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -518,14 +591,14 @@ src/mini_envar_export.o:
 # Not a target:
 src/mini_envar_export_tools.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 01:19:54
+#  Last modified 2022-07-05 09:25:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=38/1024=4%, Rehash=0, Collisions=6/84=7%
+# Load=47/1024=5%, Rehash=0, Collisions=6/102=6%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -537,6 +610,6 @@ src/mini_envar_export_tools.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jul  1 05:30:55 2022
+# Finished Make data base on Tue Jul  5 09:26:50 2022
 
  
