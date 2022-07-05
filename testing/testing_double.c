@@ -6,7 +6,7 @@
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 21:14:27 by badriah          ###   ########.fr       */
+/*   Updated: 2022/07/02 00:14:37 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,8 @@ int main (int argc, char **argv, char **env)
 	(void) argv;
 	create_envar_list(&main, env);
 	// print_envar_list(main.head_envar);
-	path(&main,argv,argc);
+	// path(&main,argv,argc);
+	ft_pipe(&main,argv,argc);
 	// enva = search_envar(main.head_envar, "SHELL");
 	// main.head_envar = dl_first_envar(main.head_envar);
 	// main.head_envar = del_last_envar(main.head_envar);
@@ -176,3 +177,4 @@ int main (int argc, char **argv, char **env)
 
 //    pathvar = getenv("PATH");
 //    printf("pathvar=%s",pathvar);
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 21:42:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:28:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,11 @@ int	run_cmd(t_shell_chan *main)
 			return (1);
 		}
 	}
+	// else if(main->cmd_num == 2 && !is_command(main->cmd_table[0].name)) //! need to check its ONLY pipes
+	// {
+	// 	printf("here pipe\n");
+	// 	mini_exe_pipe(&main->cmd_table[0]);	
+	// }
+	
 	return (0);
 }
