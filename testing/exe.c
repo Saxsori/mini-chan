@@ -50,6 +50,23 @@ char **arg_fill(char *arg)
 	return(args);
 }
 
+void close_fun(int num, int **fds)
+{
+	int i = 0;
+	int j = 0;
+	while(i < num)
+	{
+		j= 0;
+		while(j < 2)
+		{
+			close(fds[i][j]);
+			j++;
+		}
+		i++;
+	}
+
+}
+
 void ft_pipe(t_shell_chan *main,char *av[],int ac)
 {
 	t_mini_envar *envar;
@@ -151,35 +168,64 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 		waitpid .. parent waits
 	*/
 // int end1[2];
+	printf("HERE\n");
 	int end2[2];
 	int s;
-	// int ***ends =(int ***)malloc(sizeof(int **)); 
-	int pipe1 [2];
-	int pipe2[2];
-	int pipe3[2];
-	if(pipe(pipe1) < 0)
-		perror("NO PIPE 1\n");
-	if(pipe(pipe2) < 0)
-		perror("NO PIPE 2\n");
-	if(pipe(pipe2) < 0)
-		perror("NO PIPE 3\n");
+	j = 0;
+	int **fds = malloc(sizeof(int *) * num_cmd -1);
+	i = 0;
+	while(i < num_cmd)
+	{
+		
+		fds[i] = (int *)malloc(sizeof(int) * 2);
+		i++;
+	}
+	printf("HERE %d\n",num_cmd);
+
+	i = 0;
+	while(i < num_cmd)
+	{
+		j = 0;
+		while(j < 2)
+		{
+			fds[i][j] = j;
+			printf("pipe %d[%d]\n",i,fds[i][j]);
+
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while(i < num_cmd)
+	{
+		if(pipe(fds[i]) < 0)
+			perror("pipe");
+		i++;
+	}
+	printf("DONE\n");
 	pid_t ch;
+	i = 0;
 	while(i < num_cmd)
 	{
 		ch = fork();
 		if (ch == 0 && i == 0)
 		{
-		
+			dup2(fds[i][1],STDOUT_FILENO);
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i], arg[i],NULL);
 		}
 		else if (ch == 0 && (i == num_cmd -1))
 		{
-			// if(fork() == 0)
-				printf("CH3 %d\n",i);
+			dup2(fds[i][0],STDIN_FILENO);
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i],arg[i],NULL);
 		}
 		else if (ch == 0)
 		{
-			// if(fork() == 0)
-				printf("CH2 %d\n",i);
+			dup2(fds[i][0],STDIN_FILENO); // read from the pipe 
+			dup2(fds[i+1][1],STDOUT_FILENO); // i + 1 to write in the next pipe
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i],arg[i],NULL);
 		}
 		i++;
 	}
