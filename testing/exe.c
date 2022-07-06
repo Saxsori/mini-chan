@@ -1,6 +1,7 @@
 #include "../mini_chan.h"
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -149,58 +150,40 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			ch3 read -> pip2
 		waitpid .. parent waits
 	*/
-	int end1[2];
+// int end1[2];
 	int end2[2];
 	int s;
-	// pid_t *child=malloc(sizeof(pid_t)*3);
-	i = 0;
-	if(pipe(end1) < 0)
-		perror("pipe 1");
-	if(pipe(end2) < 0)
-		perror("pipe 2");
-	if(fork() == 0)
+	// int ***ends =(int ***)malloc(sizeof(int **)); 
+	int pipe1 [2];
+	int pipe2[2];
+	int pipe3[2];
+	if(pipe(pipe1) < 0)
+		perror("NO PIPE 1\n");
+	if(pipe(pipe2) < 0)
+		perror("NO PIPE 2\n");
+	if(pipe(pipe2) < 0)
+		perror("NO PIPE 3\n");
+	pid_t ch;
+	while(i < num_cmd)
 	{
-		// printf("CH1");
-		if(dup2(end1[1] ,STDOUT_FILENO) < 0)
-			perror("CH1");
-		close(end1[0]);
-		close(end1[1]);
-		// close(end2[0]);
-		// close(end2[1]);
+		ch = fork();
+		if (ch == 0 && i == 0)
+		{
 		
-		execve(cmd_path[0], arg[0], NULL);
-	}
-	else
-	{
-		if(fork() == 0)
-		{
-			// printf(" CH2");
-			close(end1[1]);
-			if(dup2(end1[0],STDIN_FILENO) < 0)
-				perror("CH2 1");
-			close(end1[0]);
-			close(end2[0]);
-			if(dup2(end2[1] ,STDOUT_FILENO) < 0)
-				perror("CH2 2");
-			close(end2[1]);
-			execve(cmd_path[1],arg[1],NULL);
 		}
-		else
+		else if (ch == 0 && (i == num_cmd -1))
 		{
-			if(fork() == 0)
-			{
-				// printf(" CH3");
-				if(dup2(end2[0],STDIN_FILENO) < 0)
-					perror("CH3");
-				close(end2[1]);
-				close(end2[0]);
-				close(end1[0]);
-				close(end1[1]);
-				execve(cmd_path[2], arg[2], NULL);
-			}
+			// if(fork() == 0)
+				printf("CH3 %d\n",i);
 		}
+		else if (ch == 0)
+		{
+			// if(fork() == 0)
+				printf("CH2 %d\n",i);
+		}
+		i++;
 	}
-	// waitpid(-1, &s, 0);
+	waitpid(-1, &s, 0);
 }
 /*
 gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c
