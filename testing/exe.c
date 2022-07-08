@@ -1,6 +1,7 @@
 #include "../mini_chan.h"
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -47,6 +48,23 @@ char **arg_fill(char *arg)
 {
 	char **args = ft_split(arg,' ');
 	return(args);
+}
+
+void close_fun(int num, int **fds)
+{
+	int i = 0;
+	int j = 0;
+	while(i < num)
+	{
+		j= 0;
+		while(j < 2)
+		{
+			close(fds[i][j]);
+			j++;
+		}
+		i++;
+	}
+
 }
 
 void ft_pipe(t_shell_chan *main,char *av[],int ac)
@@ -149,58 +167,69 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			ch3 read -> pip2
 		waitpid .. parent waits
 	*/
-	int end1[2];
+// int end1[2];
+	printf("HERE\n");
 	int end2[2];
 	int s;
-	// pid_t *child=malloc(sizeof(pid_t)*3);
+	j = 0;
+	int **fds = malloc(sizeof(int *) * num_cmd -1);
 	i = 0;
-	if(pipe(end1) < 0)
-		perror("pipe 1");
-	if(pipe(end2) < 0)
-		perror("pipe 2");
-	if(fork() == 0)
+	while(i < num_cmd)
 	{
-		// printf("CH1");
-		if(dup2(end1[1] ,STDOUT_FILENO) < 0)
-			perror("CH1");
-		close(end1[0]);
-		close(end1[1]);
-		// close(end2[0]);
-		// close(end2[1]);
 		
-		execve(cmd_path[0], arg[0], NULL);
+		fds[i] = (int *)malloc(sizeof(int) * 2);
+		i++;
 	}
-	else
+	printf("HERE %d\n",num_cmd);
+
+	i = 0;
+	while(i < num_cmd)
 	{
-		if(fork() == 0)
+		j = 0;
+		while(j < 2)
 		{
-			// printf(" CH2");
-			close(end1[1]);
-			if(dup2(end1[0],STDIN_FILENO) < 0)
-				perror("CH2 1");
-			close(end1[0]);
-			close(end2[0]);
-			if(dup2(end2[1] ,STDOUT_FILENO) < 0)
-				perror("CH2 2");
-			close(end2[1]);
-			execve(cmd_path[1],arg[1],NULL);
+			fds[i][j] = j;
+			printf("pipe %d[%d]\n",i,fds[i][j]);
+
+			j++;
 		}
-		else
-		{
-			if(fork() == 0)
-			{
-				// printf(" CH3");
-				if(dup2(end2[0],STDIN_FILENO) < 0)
-					perror("CH3");
-				close(end2[1]);
-				close(end2[0]);
-				close(end1[0]);
-				close(end1[1]);
-				execve(cmd_path[2], arg[2], NULL);
-			}
-		}
+		i++;
 	}
-	// waitpid(-1, &s, 0);
+	i = 0;
+	while(i < num_cmd)
+	{
+		if(pipe(fds[i]) < 0)
+			perror("pipe");
+		i++;
+	}
+	printf("DONE\n");
+	pid_t ch;
+	i = 0;
+	while(i < num_cmd)
+	{
+		ch = fork();
+		if (ch == 0 && i == 0)
+		{
+			dup2(fds[i][1],STDOUT_FILENO);
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i], arg[i],NULL);
+		}
+		else if (ch == 0 && (i == num_cmd -1))
+		{
+			dup2(fds[i][0],STDIN_FILENO);
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i],arg[i],NULL);
+		}
+		else if (ch == 0)
+		{
+			dup2(fds[i][0],STDIN_FILENO); // read from the pipe 
+			dup2(fds[i+1][1],STDOUT_FILENO); // i + 1 to write in the next pipe
+			close_fun( num_cmd , fds);
+			execve(cmd_path[i],arg[i],NULL);
+		}
+		i++;
+	}
+	waitpid(-1, &s, 0);
 }
 /*
 gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/08 02:06:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 06:15:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void	init_shell_chan(t_shell_chan *main)
 	main->head_envar = NULL;
 }
 
+void	free_redir_parse(t_mini_cmd *cmd)
+{
+	free(cmd->tools.p_redir.r_index);
+	free(cmd->tools.p_redir.r_valid);
+	free(cmd->redir.redir_tools.r_pos);
+}
+
+void	free_mini_redir(t_mini_redir *redir)
+{
+	squaredstr_free(redir->redir_tools.split);
+	free(redir->redir_tools.r_pos);
+	free(redir->command);
+	squaredstr_free(redir->redir);
+	squaredstr_free(redir->arguments);
+	squaredstr_free(redir->files);
+}
+
 void	free_mini_cmd(t_mini_cmd *cmd)
 {
 	if (cmd->split != NULL)
@@ -40,6 +57,10 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 		free (cmd->tools.cwd_ret);
 	if (cmd->tools.pwd != NULL)
 		free (cmd->tools.pwd);
+	if (cmd->tools.f_redir)
+		free_redir_parse(cmd);
+	if (cmd->tools.y_redir)
+		free_mini_redir(&cmd->redir);
 	init_mem_cmd(cmd);
 	// // free DIR
 }
@@ -62,10 +83,18 @@ void	re_init_shell_chan(t_shell_chan *main)
 		free(main->first_split[0]);
 		free(main->first_split);
 	}
+<<<<<<< HEAD
 	// i = -1;
 	// while (++i < main->cmd_num)
 	// 	free_mini_cmd(&main->cmd_table[i]);
 	//free the array of cmd
+=======
+	i = -1;
+	while (++i < main->cmd_num)
+		free_mini_cmd(&main->cmd_table[i]);
+	free(main->cmd_table);
+	main->cmd_table = NULL;
+>>>>>>> f0287092c4a85dec6cb625afa9053ef9eec3f922
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->cmd_num = 0;
