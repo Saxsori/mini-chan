@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 05:25:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 02:06:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
-	int	i;
+	// int	i;
 
 	if (main->exp_valid != NULL)
 		squaredint_free(main->exp_valid, main->cmd_num);
@@ -62,9 +62,9 @@ void	re_init_shell_chan(t_shell_chan *main)
 		free(main->first_split[0]);
 		free(main->first_split);
 	}
-	i = -1;
-	while (++i < main->cmd_num)
-		free_mini_cmd(&main->cmd_table[i]);
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	free_mini_cmd(&main->cmd_table[i]);
 	//free the array of cmd
 	main->exp_valid = NULL;
 	main->env_index = NULL;
