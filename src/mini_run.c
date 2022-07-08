@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
 /*   Updated: 2022/07/08 12:44:08 by dfurneau         ###   ########.fr       */
+=======
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/07/08 02:04:31 by aaljaber         ###   ########.fr       */
+>>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +38,12 @@
 	*/
 int	run_cmd(t_shell_chan *main)
 {
+	int	i;
+	int	k;
+	
+	printf("cmd num %d\n", main->cmd_num);
 	if (main->cmd_num == 1)
 	{
-		// init_mini_cmd(&main->cmd_table[0], main);
-		// check_opt(&main->cmd_table[0]);
-		// check_arg(&main->cmd_table[0]);
 		if (is_command(main->cmd_table[0].name))
 		{
 			printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
@@ -51,14 +59,20 @@ int	run_cmd(t_shell_chan *main)
 	}
 	else if (main->cmd_num > 1)
 	{
+<<<<<<< HEAD
 		int	i;
 		int	k;
 
 		i = -1;
+=======
+		i = -1;
+		printf("lo here\n");
+>>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 		while (++i < main->cmd_num)
 		{
 			if (is_command(main->cmd_table[i].name))
 			{
+<<<<<<< HEAD
 				printf("%d\n", i);
 				k = -1;
 				printf("%s\n", main->cmd_table[i].name);
@@ -73,6 +87,22 @@ int	run_cmd(t_shell_chan *main)
 					printf("%s\n", main->cmd_table[i].exe_tools.arguments[k]);
 			}
 			
+=======
+				printf("b %d\n", i);
+				printf("b %s\n", main->cmd_table[i].name);
+				k = -1;
+				while (++k < main->cmd_table[i].tools.arg_num)
+					printf("b %s\n", main->cmd_table[i].arguments[k]);
+			}
+			else if (!is_command(main->cmd_table[i].name))
+			{
+				printf("e %d\n", i);
+				execute_tools(&main->cmd_table[i]);
+				k = -1;
+				while (++k < main->cmd_table[i].exe_tools.arg_num)
+					printf("e %s\n", main->cmd_table[i].exe_tools.arguments[k]);
+			}
+>>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 		}	
 	}
 	return (0);

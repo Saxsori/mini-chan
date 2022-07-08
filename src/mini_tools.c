@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 22:12:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 02:00:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ int	twstrlen(char	**tw_str)
 	return (i);
 }
 
+/*
+to replace the /v by space
+*/
 void	check_spaces(char **line)
 {
 	int	i;
@@ -122,6 +125,12 @@ void	check_spaces(char **line)
 	}
 }
 
+/*
+? if the split on | return NULL it means there is only |
+! handle multiple pipe in the middle or one at the end
+!  -> echo || or echo | or echo || cat
+? check to replace the /v by spaces after split on spaces
+*/
 void	check_special_cases(t_shell_chan *main)
 {
 	int	i;
@@ -158,9 +167,9 @@ void	split_command(t_shell_chan *main)
 	int	i;
 
 	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
-	i = -1;
-	while (++i < main->cmd_num)
-		init_mem_cmd(&main->cmd_table[i]);
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	init_mem_cmd(&main->cmd_table[i]);
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');

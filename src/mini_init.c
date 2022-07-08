@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 10:10:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 06:15:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
-	int	i;
+	// int	i;
 
 	if (main->exp_valid != NULL)
 		squaredint_free(main->exp_valid, main->cmd_num);
@@ -83,11 +83,18 @@ void	re_init_shell_chan(t_shell_chan *main)
 		free(main->first_split[0]);
 		free(main->first_split);
 	}
+<<<<<<< HEAD
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	free_mini_cmd(&main->cmd_table[i]);
+	//free the array of cmd
+=======
 	i = -1;
 	while (++i < main->cmd_num)
 		free_mini_cmd(&main->cmd_table[i]);
 	free(main->cmd_table);
 	main->cmd_table = NULL;
+>>>>>>> f0287092c4a85dec6cb625afa9053ef9eec3f922
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->cmd_num = 0;

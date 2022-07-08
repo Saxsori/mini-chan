@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
 /*   Updated: 2022/07/08 12:34:46 by dfurneau         ###   ########.fr       */
+=======
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/07/08 01:54:57 by aaljaber         ###   ########.fr       */
+>>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +73,7 @@ void	check_isbuiltin(t_shell_chan *main)
 		split = ft_split(main->first_split[i], ' ');
 		if (split)
 		{
-			if (is_command(split[i]))
+			if (is_command(split[0]))
 				main->cmd_table[i].tools.y_exe = 0;
 			else
 				main->cmd_table[i].tools.y_exe = 1;
@@ -125,6 +132,7 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		command_name(main);
 		check_cmd_parts(main);
+		printf("here\n");
 		return (run_cmd(main));
 	}
 	// else
