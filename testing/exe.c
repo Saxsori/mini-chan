@@ -54,14 +54,10 @@ void close_fun(int num, int **fds)
 {
 	int i = 0;
 	int j = 0;
-	while(i < num)
+	while(i < num - 1)
 	{
-		j= 0;
-		while(j < 2)
-		{
-			close(fds[i][j]);
-			j++;
-		}
+		close(fds[i][0]);
+		close(fds[i][1]);
 		i++;
 	}
 
@@ -103,6 +99,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	//todo check command paths and fill them in cmd_path
 	while(cmd[i])
 	{
+		// printf("check path and command");
 		j = 0;
 		while(path_split[j])
 		{
@@ -113,6 +110,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 		if(j == 10 && cmd_path[i] == NULL)
 		{
 			printf("zsh: command not found: %s\n",cmd[i]);
+			exit(127);
 			break;
 		}
 		i++;
@@ -168,67 +166,102 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 		waitpid .. parent waits
 	*/
 // int end1[2];
-	printf("HERE\n");
 	int end2[2];
 	int s;
 	j = 0;
-	int **fds = malloc(sizeof(int *) * num_cmd -1);
+	int **fds = malloc(sizeof(int *) * num_cmd - 1);
 	i = 0;
-	while(i < num_cmd)
+	while(i < num_cmd -1)
 	{
 		
+		// printf("FD %d\n",i);
 		fds[i] = (int *)malloc(sizeof(int) * 2);
 		i++;
 	}
-	printf("HERE %d\n",num_cmd);
-
 	i = 0;
-	while(i < num_cmd)
+	// printf("cmd num %d\n",num_cmd);
+	while(i < num_cmd -1)
 	{
 		j = 0;
 		while(j < 2)
 		{
 			fds[i][j] = j;
-			printf("pipe %d[%d]\n",i,fds[i][j]);
+			// printf("pipe %d[%d]\n",i,fds[i][j]);
 
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while(i < num_cmd)
+	while(i < num_cmd - 1) // 2	
 	{
 		if(pipe(fds[i]) < 0)
 			perror("pipe");
 		i++;
 	}
-	printf("DONE\n");
+	// printf("DONE\n");
 	pid_t ch;
 	i = 0;
-	while(i < num_cmd)
+	while(i < num_cmd) // 0 1 2 3
 	{
+		// printf("in loop\n");
 		ch = fork();
-		if (ch == 0 && i == 0)
+		if ((i == 0) && ch == 0)
 		{
-			dup2(fds[i][1],STDOUT_FILENO);
+			// printf("ch1 %d\n",i);
+			if(dup2(fds[i][1],STDOUT_FILENO) < 0)
+				perror("dup ch1");
+			// j = 0;
+			// while(j < num_cmd -1)
+			// {
+			// 	// printf("j %d\n",j);
+			// 	close(fds[j][0]);
+			// 	close(fds[j][1]);
+			// 	j++;
+			// }
 			close_fun( num_cmd , fds);
-			execve(cmd_path[i], arg[i],NULL);
+			if(execve(cmd_path[i], arg[i],NULL) == -1)
+				exit(127);
 		}
-		else if (ch == 0 && (i == num_cmd -1))
+		else if ((i == num_cmd -1) && ch == 0)
 		{
-			dup2(fds[i][0],STDIN_FILENO);
+			// printf("ch3 %d\n",i);
+			if(dup2(fds[i -1][0],STDIN_FILENO) < 0)
+				perror("dup ch3");
 			close_fun( num_cmd , fds);
-			execve(cmd_path[i],arg[i],NULL);
+			// j = 0;
+			// while(j < num_cmd -1)
+			// {
+			// 	// printf("j %d\n",j);
+			// 	close(fds[j][0]);
+			// 	close(fds[j][1]);
+			// 	j++;
+			// }
+			if(execve(cmd_path[i],arg[i],NULL) == -1)
+				exit(127);
 		}
 		else if (ch == 0)
 		{
-			dup2(fds[i][0],STDIN_FILENO); // read from the pipe 
-			dup2(fds[i+1][1],STDOUT_FILENO); // i + 1 to write in the next pipe
+			// printf("mid ch %d\n",i);
+			if(dup2(fds[i -1][0],STDIN_FILENO) < 0)
+				perror("ch mid dup1"); // read from the pipe 
+			if(dup2(fds[i][1],STDOUT_FILENO) < 0)
+				perror("ch mid dup2"); // i + 1 to write in the next pipe
 			close_fun( num_cmd , fds);
-			execve(cmd_path[i],arg[i],NULL);
+			// j = 0;
+			// while(j < num_cmd -1)
+			// {
+			// 	// printf("j %d\n",j);
+			// 	close(fds[j][0]);
+			// 	close(fds[j][1]);
+			// 	j++;
+			// }
+			if(execve(cmd_path[i],arg[i],NULL) == -1)
+				exit(127);
 		}
 		i++;
 	}
+	// printf("DONE\n");
 	waitpid(-1, &s, 0);
 }
 /*

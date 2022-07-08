@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 09:28:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:44:08 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,31 @@ int	run_cmd(t_shell_chan *main)
 			return (1);
 		}
 	}
-	// else if(main->cmd_num == 2 && !is_command(main->cmd_table[0].name)) //! need to check its ONLY pipes
-	// {
-	// 	printf("here pipe\n");
-	// 	mini_exe_pipe(&main->cmd_table[0]);	
-	// }
-	
+	else if (main->cmd_num > 1)
+	{
+		int	i;
+		int	k;
+
+		i = -1;
+		while (++i < main->cmd_num)
+		{
+			if (is_command(main->cmd_table[i].name))
+			{
+				printf("%d\n", i);
+				k = -1;
+				printf("%s\n", main->cmd_table[i].name);
+				while (++k < main->cmd_table[i].tools.arg_num)
+					printf("%s\n", main->cmd_table[i].arguments[k]);
+			}
+			else if (!is_command(main->cmd_table[i].name))
+			{
+				printf("%d\n", i);
+				k = -1;
+				while (++k < main->cmd_table[i].exe_tools.arg_num)
+					printf("%s\n", main->cmd_table[i].exe_tools.arguments[k]);
+			}
+			
+		}	
+	}
 	return (0);
 }

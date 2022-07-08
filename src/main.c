@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 09:29:18 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:34:46 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	find_command(t_shell_chan *main)
 	int	i;
 
 	first_cmd_split(main);
+	printf("here\n");
 	if (main->exit_status == 2)
 		return (2);
 	expand_tools(main);
