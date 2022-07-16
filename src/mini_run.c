@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/08 02:04:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/16 09:38:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	run_cmd(t_shell_chan *main)
 	{
 		if (is_command(main->cmd_table[0].name))
 		{
-			printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
+	printf("lala\n");
+			// printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
 			return (run_builtn(&main->cmd_table[0]));
 		}
 		else if (!is_command(main->cmd_table[0].name))
