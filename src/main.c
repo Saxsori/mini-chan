@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 19:41:51 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/16 09:37:19 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/07/16 11:07:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	find_command(t_shell_chan *main)
 	int	i;
 
 	first_cmd_split(main);
+	printf("here\n");
 	if (main->exit_status == 2)
 		return (2);
 	expand_tools(main);
