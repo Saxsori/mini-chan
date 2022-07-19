@@ -169,101 +169,146 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	int end2[2];
 	int s;
 	j = 0;
-	int **fds = malloc(sizeof(int *) * num_cmd - 1);
-	i = 0;
-	while(i < num_cmd -1)
-	{
-		
-		// printf("FD %d\n",i);
-		fds[i] = (int *)malloc(sizeof(int) * 2);
-		i++;
-	}
-	i = 0;
-	// printf("cmd num %d\n",num_cmd);
-	while(i < num_cmd -1)
-	{
-		j = 0;
-		while(j < 2)
-		{
-			fds[i][j] = j;
-			// printf("pipe %d[%d]\n",i,fds[i][j]);
+	// int **fds = malloc(sizeof(int *) * num_cmd - 1);
+	// i = 0;
+	// while(i < num_cmd -1)
+	// {
 
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while(i < num_cmd - 1) // 2	
-	{
-		if(pipe(fds[i]) < 0)
-			perror("pipe");
-		i++;
-	}
-	// printf("DONE\n");
+	// 	fds[i] = (int *)malloc(sizeof(int) * 2);
+	// 	i++;
+	// }
+	// i = 0;
+	// // printf("cmd num %d\n",num_cmd);
+	// while(i < num_cmd -1)
+	// {
+	// 	j = 0;
+	// 	while(j < 2)
+	// 	{
+	// 		fds[i][j] = j;
+	// 		// printf("pipe %d[%d]\n",i,fds[i][j]);
+
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// i = 0;
+	// while(i < num_cmd - 1)
+	// {
+	// 	if(pipe(fds[i]) < 0)
+	// 		perror("pipe");
+	// 	i++;
+	// }
 	pid_t ch;
 	i = 0;
-	while(i < num_cmd) // 0 1 2 3
+	int fds[2][2];
+	while(i < num_cmd) 
 	{
-		// printf("in loop\n");
-		ch = fork();
-		if ((i == 0) && ch == 0)
+		if(i < num_cmd -1)
 		{
-			// printf("ch1 %d\n",i);
-			if(dup2(fds[i][1],STDOUT_FILENO) < 0)
-				perror("dup ch1");
-			// j = 0;
-			// while(j < num_cmd -1)
-			// {
-			// 	// printf("j %d\n",j);
-			// 	close(fds[j][0]);
-			// 	close(fds[j][1]);
-			// 	j++;
-			// }
-			close_fun( num_cmd , fds);
-			if(execve(cmd_path[i], arg[i],NULL) == -1)
-				exit(127);
+			if(pipe(fds[i]) < 0)
+				perror("pipe add");
 		}
-		else if ((i == num_cmd -1) && ch == 0)
+		ch = fork();// 2 process
+		// printf(" PID =%d\n", ch);
+		//ch[i] = fork();
+		// if(ch == 0)
+		// {
+		// 	if(i < num_cmd - 1)
+		// 	{
+		// 		dup2(fds[i][1], STDOUT_FILENO);
+		// 		close(fds[i][1]);
+		// 		close(fds[i][0]);
+		// 	}
+		// 	if(i > 0)
+		// 	{
+		// 		dup2(fds[i-1][0], STDIN_FILENO);
+		// 		close(fds[i-1][0]);
+		// 	}
+		// 	if(execve(cmd_path[i], arg[i],NULL) == -1)
+		// 	{
+		// 		perror("ERROR IN CMD");
+		// 		exit(127);
+		// 	}
+		// }
+		if(ch == 0)
 		{
-			// printf("ch3 %d\n",i);
-			if(dup2(fds[i -1][0],STDIN_FILENO) < 0)
-				perror("dup ch3");
-			close_fun( num_cmd , fds);
-			// j = 0;
-			// while(j < num_cmd -1)
-			// {
-			// 	// printf("j %d\n",j);
-			// 	close(fds[j][0]);
-			// 	close(fds[j][1]);
-			// 	j++;
-			// }
-			if(execve(cmd_path[i],arg[i],NULL) == -1)
-				exit(127);
+			if ((i == 0) )
+			{
+				if(dup2(fds[i][1],STDOUT_FILENO)<0)
+					perror("dup ch1");
+				if(close(fds[0][0]) == -1)
+					perror("st 1");
+				if(close(fds[0][1]) == -1)
+					perror("sec 2");
+				if(execve(cmd_path[i], arg[i],NULL) == -1)
+				{
+					perror("exe");		
+					exit(127);
+				}
+
+			}
+			else if ((i == num_cmd -1) && ch == 0)
+			{
+				if(dup2(fds[i -1][0],STDIN_FILENO) <0)
+					perror("dup ch last");
+				if(close(fds[i -1][0]) == -1)
+					perror("lst 1 close");
+				if(execve(cmd_path[i],arg[i],NULL) == -1)
+				{
+					perror("exe");		
+					exit(127);
+				}
+
+			}
+			else
+			{
+				if(dup2(fds[i -1][0],STDIN_FILENO) < 0 )
+					perror("ch mid dup1");
+				if(dup2(fds[i][1],STDOUT_FILENO) < 0)
+					perror("ch mid dup2");
+				if(close(fds[i-1][0]) == -1)
+					perror("3close");
+				if(close(fds[i][1]) == -1)
+					perror("4close");
+				if(close(fds[i][0]) == -1)
+					perror("4close");
+				if(execve(cmd_path[i],arg[i],NULL)==-1)
+				{
+					perror("exe");		
+					exit(127);
+				}
+			}
 		}
-		else if (ch == 0)
+		else
 		{
-			// printf("mid ch %d\n",i);
-			if(dup2(fds[i -1][0],STDIN_FILENO) < 0)
-				perror("ch mid dup1"); // read from the pipe 
-			if(dup2(fds[i][1],STDOUT_FILENO) < 0)
-				perror("ch mid dup2"); // i + 1 to write in the next pipe
-			close_fun( num_cmd , fds);
-			// j = 0;
-			// while(j < num_cmd -1)
-			// {
-			// 	// printf("j %d\n",j);
-			// 	close(fds[j][0]);
-			// 	close(fds[j][1]);
-			// 	j++;
-			// }
-			if(execve(cmd_path[i],arg[i],NULL) == -1)
-				exit(127);
+			if(i < num_cmd -1)
+			{
+				// perror("close1");
+				if(close(fds[i][1]) == -1)
+					perror("first close\n");
+			}
+			if(i > 0)
+			{
+				// perror("close2");
+				if(close(fds[i-1][0]) == -1)
+					perror("sec close \n");
+			}
 		}
-		i++;
+			i++;
+
 	}
-	// printf("DONE\n");
-	waitpid(-1, &s, 0);
+	j = 0;
+	int status;
+	while(j < 3)
+	{
+		waitpid(-1, &status, 0);
+		// printf("Exit Statssu = %d\n",WEXITSTATUS(status));
+		// wait(0);echo 
+		j++;
+	}
+
 }
+
 /*
-gcc testing_double.c exe.c ../libft/libft.a ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c
+gcc testing_double.c exe.c ../src/mini_envar.c ../src/mini_envar_export.c ../src/mini_envar_tools.c ../src/mini_free.c ../src/mini_envar_export_tools.c ../src/mini_envar_unset.c ../libft/libft.a
 */

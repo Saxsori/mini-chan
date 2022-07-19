@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/08 12:44:08 by dfurneau         ###   ########.fr       */
-=======
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/08 02:04:31 by aaljaber         ###   ########.fr       */
->>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
+/*   Updated: 2022/07/08 14:22:54 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,35 +52,12 @@ int	run_cmd(t_shell_chan *main)
 	}
 	else if (main->cmd_num > 1)
 	{
-<<<<<<< HEAD
-		int	i;
-		int	k;
-
-		i = -1;
-=======
 		i = -1;
 		printf("lo here\n");
->>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 		while (++i < main->cmd_num)
 		{
 			if (is_command(main->cmd_table[i].name))
 			{
-<<<<<<< HEAD
-				printf("%d\n", i);
-				k = -1;
-				printf("%s\n", main->cmd_table[i].name);
-				while (++k < main->cmd_table[i].tools.arg_num)
-					printf("%s\n", main->cmd_table[i].arguments[k]);
-			}
-			else if (!is_command(main->cmd_table[i].name))
-			{
-				printf("%d\n", i);
-				k = -1;
-				while (++k < main->cmd_table[i].exe_tools.arg_num)
-					printf("%s\n", main->cmd_table[i].exe_tools.arguments[k]);
-			}
-			
-=======
 				printf("b %d\n", i);
 				printf("b %s\n", main->cmd_table[i].name);
 				k = -1;
@@ -102,7 +72,6 @@ int	run_cmd(t_shell_chan *main)
 				while (++k < main->cmd_table[i].exe_tools.arg_num)
 					printf("e %s\n", main->cmd_table[i].exe_tools.arguments[k]);
 			}
->>>>>>> cdc5a66330a4ce1a66257975d591de1814d2009f
 		}	
 	}
 	return (0);
