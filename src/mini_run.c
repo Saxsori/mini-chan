@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:24:05 by aaljaber          #+#    #+#             */
 /*   Updated: 2022/07/08 14:22:54 by dfurneau         ###   ########.fr       */
+=======
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/07/16 07:12:17 by aaljaber         ###   ########.fr       */
+>>>>>>> 3edf7b7828f45ba2a1543666a030d86defc931d6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +40,19 @@ int	run_cmd(t_shell_chan *main)
 {
 	int	i;
 	int	k;
-	
+
 	printf("cmd num %d\n", main->cmd_num);
 	if (main->cmd_num == 1)
 	{
 		if (is_command(main->cmd_table[0].name))
 		{
-			printf("here %s\n", main->cmd_table[0].redir.arguments[0]);
+			printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 			return (run_builtn(&main->cmd_table[0]));
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			execute_tools(&main->cmd_table[0]);
 			mini_execute(&main->cmd_table[0]);
-			// printf ("lala\n");
 			return (1);
 		}
 	}
