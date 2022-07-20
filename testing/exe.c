@@ -169,28 +169,28 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	int end2[2];
 	int s;
 	j = 0;
-	// int **fds = malloc(sizeof(int *) * num_cmd - 1);
-	// i = 0;
-	// while(i < num_cmd -1)
-	// {
+	int **fds = malloc(sizeof(int *) * num_cmd - 1);
+	i = 0;
+	while(i < num_cmd -1)
+	{
 
-	// 	fds[i] = (int *)malloc(sizeof(int) * 2);
-	// 	i++;
-	// }
-	// i = 0;
-	// // printf("cmd num %d\n",num_cmd);
-	// while(i < num_cmd -1)
-	// {
-	// 	j = 0;
-	// 	while(j < 2)
-	// 	{
-	// 		fds[i][j] = j;
-	// 		// printf("pipe %d[%d]\n",i,fds[i][j]);
+		fds[i] = (int *)malloc(sizeof(int) * 2);
+		i++;
+	}
+	i = 0;
+	// printf("cmd num %d\n",num_cmd);
+	while(i < num_cmd -1)
+	{
+		j = 0;
+		while(j < 2)
+		{
+			fds[i][j] = j;
+			// printf("pipe %d[%d]\n",i,fds[i][j]);
 
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+			j++;
+		}
+		i++;
+	}
 	// i = 0;
 	// while(i < num_cmd - 1)
 	// {
@@ -200,7 +200,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 	// }
 	pid_t ch;
 	i = 0;
-	int fds[2][2];
+	// int fds[2][2];
 	while(i < num_cmd) 
 	{
 		if(i < num_cmd -1)
@@ -208,7 +208,8 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			if(pipe(fds[i]) < 0)
 				perror("pipe add");
 		}
-		ch = fork();// 2 process
+		ch = fork();
+		// 2 process
 		// printf(" PID =%d\n", ch);
 		//ch[i] = fork();
 		// if(ch == 0)
@@ -262,7 +263,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			}
 			else
 			{
-				if(dup2(fds[i -1][0],STDIN_FILENO) < 0 )
+				if(dup2(fds[i -1][0],STDIN_FILENO) < 0)
 					perror("ch mid dup1");
 				if(dup2(fds[i][1],STDOUT_FILENO) < 0)
 					perror("ch mid dup2");
@@ -272,7 +273,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 					perror("4close");
 				if(close(fds[i][0]) == -1)
 					perror("4close");
-				if(execve(cmd_path[i],arg[i],NULL)==-1)
+				if(execve(cmd_path[i],arg[i],NULL) == -1)
 				{
 					perror("exe");		
 					exit(127);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/27 19:01:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:46:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ int	run_builtn(t_mini_cmd *cmd)
 {
 	return (which_command(cmd));
 	return (0);
+}
+
+void	get_path(t_shell_chan *main)
+{
+	main->envar = search_envar(main->head_envar, "PATH");
+	main->path = ft_strdup(main->envar->env_cont);
+	main->path_split = ft_split(main->path, ':');
 }

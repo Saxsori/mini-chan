@@ -133,9 +133,6 @@ typedef struct exe_tools
 	int				arg_num;
 	char			*cmd_name;
 	char			**arguments;
-	t_mini_envar	*envar;
-	char			*path;
-	char			**path_split;
 	char			*err_command;
 }	t_mini_exe_tools;
 
@@ -187,6 +184,9 @@ typedef struct shell_chan
 	t_expand_tools	*exp_tools;
 	int				d_rootpath;
 	t_mini_echo		e_parse;
+	t_mini_envar	*envar;
+	char			*path;
+	char			**path_split;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/
@@ -248,7 +248,6 @@ void			squaredstr_free(char **array);
 void			squaredint_free(int **array, int len);
 
 /*******************      MINI__ENVAR      *******************/
-
 void			create_envar_list(t_shell_chan *main, char **env);
 t_mini_envar	*creat_first_node(t_mini_envar *head, char *data);
 t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op);
@@ -358,9 +357,12 @@ void			do_unset(t_mini_cmd *cmd, int i);
 /*******************    MINI_EXECUTE_TOOLS   ******************/
 void			execute_tools(t_mini_cmd *cmd);
 void			path(t_shell_chan *main, char *av[], int argc);
-void 			ft_pipe(t_shell_chan *main,char *av[],int ac);
+void 			ft_pipe(t_shell_chan *main, char *av[], int ac);
+void			path_test(t_shell_chan *main,char *av[],int ac);
 void			mini_execute(t_mini_cmd *cmd);
+void			get_path(t_shell_chan *main);
+
 /*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
 void			mini_exe_pipe(t_mini_cmd *cmd);	
-			
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 22:11:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:45:44 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	init_mini_exe_tools(t_mini_cmd *cmd)
 	cmd->exe_tools.arguments = (char **)malloc(sizeof(char *) \
 	* (cmd->exe_tools.arg_num + 1));
 	cmd->exe_tools.arguments[0] = ft_strdup(cmd->exe_tools.cmd_name);
-	cmd->exe_tools.envar = search_envar(cmd->main->head_envar, "PATH");
-	cmd->exe_tools.path = ft_strdup(cmd->exe_tools.envar->env_cont);
-	cmd->exe_tools.path_split = ft_split(cmd->exe_tools.path, ':');
+// 	cmd->exe_tools.envar = search_envar(cmd->main->head_envar, "PATH");
+// 	cmd->exe_tools.path = ft_strdup(cmd->exe_tools.envar->env_cont);
+// 	cmd->exe_tools.path_split = ft_split(cmd->exe_tools.path, ':');
 	cmd->exe_tools.err_command = ft_strdup(cmd->exe_tools.cmd_name);
 }
 
