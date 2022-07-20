@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:35:50 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 17:13:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:39:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 		++j;
 		cmd[j] = arg[j][0];
 	}
+	
+	// ************ finding the path
 	i = -1;
 	while (cmd[++i])
 	{
@@ -64,6 +66,9 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 			break ;
 		}
 	}
+	// *************
+	
+	// !initialize the fd's array
 	fds = malloc(sizeof(int *) * num_cmd - 1);
 	i = -1;
 	while (++i < num_cmd - 1)
@@ -79,6 +84,8 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 		}
 		i++;
 	}
+	//! *******
+	
 	i = 0;
 	while (i < num_cmd) 
 	{
@@ -92,7 +99,7 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 		{
 			if (i == 0)
 			{
-				if (dup2(fds[i][1], STDOUT_FILENO)<0)
+				if (dup2(fds[i][1], STDOUT_FILENO) < 0)
 					perror("dup ch1");
 				if (close(fds[0][0]) == -1)
 					perror("st 1");
@@ -153,6 +160,7 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 			i++;
 
 	}
+	//******* wait childs 
 	j = 0;
 	while (j < 3)
 	{
