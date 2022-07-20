@@ -1,0 +1,96 @@
+==7483== Memcheck, a memory error detector
+==7483== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7483== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==7483== Command: ./a.out cat cat ls
+==7483== Parent PID: 21049
+==7483== 
+==7483== Invalid write of size 8
+==7483==    at 0x109634: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==  Address 0x4a18790 is 0 bytes after a block of size 32 alloc'd
+==7483==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7483==    by 0x1095CE: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== Invalid write of size 8
+==7483==    at 0x109652: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==  Address 0x4a187f0 is 0 bytes after a block of size 32 alloc'd
+==7483==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7483==    by 0x1095E6: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== Conditional jump or move depends on uninitialised value(s)
+==7483==    at 0x109873: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== 
+==7483== Process terminating with default action of signal 2 (SIGINT)
+==7483==    at 0x49171C6: wait4 (wait4.c:27)
+==7483==    by 0x109BD1: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== FILE DESCRIPTORS: 8 open at exit.
+==7483== Open file descriptor 6:
+==7483==    at 0x493B7D7: pipe (syscall-template.S:120)
+==7483==    by 0x1098A3: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== Open file descriptor 4:
+==7483==    at 0x493B7D7: pipe (syscall-template.S:120)
+==7483==    by 0x1098A3: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== Open file descriptor 20: /dev/pts/ptmx
+==7483==    <inherited from parent>
+==7483== 
+==7483== Open file descriptor 19: /root/.vscode-server/data/logs/20220717T021310/ptyhost.log
+==7483==    <inherited from parent>
+==7483== 
+==7483== Open file descriptor 3: /home/vscode/src/Cursus/mini-chan/testing/leaks.txt
+==7483==    <inherited from parent>
+==7483== 
+==7483== Open file descriptor 2: /dev/pts/2
+==7483==    <inherited from parent>
+==7483== 
+==7483== Open file descriptor 1: /dev/pts/2
+==7483==    <inherited from parent>
+==7483== 
+==7483== Open file descriptor 0: /dev/pts/2
+==7483==    <inherited from parent>
+==7483== 
+==7483== 
+==7483== HEAP SUMMARY:
+==7483==     in use at exit: 3,774 bytes in 137 blocks
+==7483==   total heap usage: 254 allocs, 117 frees, 15,356 bytes allocated
+==7483== 
+==7483== 18 bytes in 3 blocks are definitely lost in loss record 4 of 17
+==7483==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7483==    by 0x10AB90: ft_strjoin (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x1097B4: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== 480 bytes in 21 blocks are definitely lost in loss record 14 of 17
+==7483==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7483==    by 0x10AB90: ft_strjoin (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x10975B: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== 536 bytes in 21 blocks are definitely lost in loss record 16 of 17
+==7483==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7483==    by 0x10AB90: ft_strjoin (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109766: ft_pipe (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483==    by 0x109235: main (in /home/vscode/src/Cursus/mini-chan/testing/a.out)
+==7483== 
+==7483== LEAK SUMMARY:
+==7483==    definitely lost: 1,034 bytes in 45 blocks
+==7483==    indirectly lost: 0 bytes in 0 blocks
+==7483==      possibly lost: 0 bytes in 0 blocks
+==7483==    still reachable: 2,740 bytes in 92 blocks
+==7483==         suppressed: 0 bytes in 0 blocks
+==7483== Reachable blocks (those to which a pointer was found) are not shown.
+==7483== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7483== 
+==7483== Use --track-origins=yes to see where uninitialised values come from
+==7483== For lists of detected and suppressed errors, rerun with: -s
+==7483== ERROR SUMMARY: 6 errors from 6 contexts (suppressed: 0 from 0)
