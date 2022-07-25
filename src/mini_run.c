@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 14:09:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:30:34 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	run_cmd(t_shell_chan *main)
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			execute_tools(&main->cmd_table[0]);
+			printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
 			mini_execute(&main->cmd_table[0]);
 			return (1);
 		}

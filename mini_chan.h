@@ -187,6 +187,7 @@ typedef struct shell_chan
 	t_mini_envar	*envar;
 	char			*path;
 	char			**path_split;
+	int				**fds;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/

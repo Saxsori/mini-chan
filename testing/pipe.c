@@ -3,28 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:35:50 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 17:39:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/26 02:35:16 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+/*
+	struct
+		- mini_exe_tools.cmd_name "ls" .. [execve]
+		- mini_exe_tools.arg_num .. number of arguments
+		- mini_exe_tools.arguments **char "ls" "-la" [execve]
+		!need
+		- *cmd_path = joint(path,cmd_name) [access]
+		- **fds "allocate num_cmd -1" [dup2 & close]
+		todo:status in struct ? in arr ..
+		todo:child_id in arr ..
 
+void ft_dup_fds(int i,t_shell_chan *main)
+{
+	if(i < num_cmd - 1)
+	{
+		todo dup out
+		todo close		
+	}
+	if(i > 0)
+	{
+		todo dup in
+		todo close	
+	}
+}
+*/
+//!!!...!!!
+/*
+void ft_patent_fd()
+{
+	if(i < num_cmd -1)
+	{
 
+	}
+	if(i > 0)
+	{
+		
+	}
+}
+*/
 void path_test(t_shell_chan *main,char *av[],int ac)
 {
-	t_mini_envar	*envar;
-	char			*path;
-	char			**path_split;
-	char			***arg;
-	char			**cmd;
-	char			**cmd_path;
+	t_mini_envar	*envar;//
+	char			*path;//
+	char			**path_split;//
+	char			***arg;//
+	char			**cmd; //
+	char			**cmd_path;//
 	int 			i;
 	int				j;
-	int				num_cmd;
-	int				**fds;
+	int				num_cmd;//
+	int				**fds; //
 	int				status;
 	pid_t			ch;
 
@@ -67,7 +104,6 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 		}
 	}
 	// *************
-	
 	// !initialize the fd's array
 	fds = malloc(sizeof(int *) * num_cmd - 1);
 	i = -1;
