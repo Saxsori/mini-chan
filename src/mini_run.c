@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 21:49:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:15:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 	*/
 int	run_cmd(t_shell_chan *main)
 {
+	int	i;
+
 	printf("cmd num %d\n", main->cmd_num);
 	get_path(main);
 	if (main->cmd_num == 1)
@@ -71,9 +73,84 @@ int	run_cmd(t_shell_chan *main)
 	}
 	else if (main->cmd_num > 1)
 	{
-		// main->pipe_tools(main->);
 		pipe_tools(main);
-		
+		i = -1;
+		while (++i < main->cmd_num)
+		{
+			if (i < main->pipe_tools.p_num)
+			{
+				if (pipe(main->pipe_tools.fds[i]) < 0)
+					perror("pipe add");
+			}
+			main->pipe_tools.child = fork();
+			if (main->pipe_tools.child == 0)
+			{
+				if (i == 0)
+				{
+					ft_dup_fds(main, i);
+					if (main->cmd_table[i].tools.y_exe)
+					{
+						execute_tools(&main->cmd_table[i]);
+						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						{
+							perror("exe");
+							exit(127);
+						}
+					}
+					else
+						printf("builtin\n");
+				}
+				else if ((i == main->pipe_tools.p_num) && main->pipe_tools.child == 0)
+				{
+					ft_dup_fds(main, i);
+					if (main->cmd_table[i].tools.y_exe)
+					{
+						execute_tools(&main->cmd_table[i]);
+						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						{
+							perror("exe");
+							exit(127);
+						}
+					}
+					else
+						printf("builtin\n");
+				}
+				else
+				{
+					ft_dup_fds(main, i);
+					if (main->cmd_table[i].tools.y_exe)
+					{
+						execute_tools(&main->cmd_table[i]);
+						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						{
+							perror("exe");
+							exit(127);
+						}
+					}
+					else
+						printf("builtin\n");
+				}
+			}
+			else
+			{
+				if (i < main->pipe_tools.p_num)
+				{
+					if (close(main->pipe_tools.fds[i][1]) == -1)
+						perror("first close\n");
+				}
+				if (i > 0)
+				{
+					if (close(main->pipe_tools.fds[i - 1][0]) == -1)
+						perror("sec close \n");
+				}
+			}
+		}
+	}
+	i = 0;
+	while (i < 3)
+	{
+		waitpid(-1, &main->pipe_tools.status, 0);
+		i++;
 	}
 	return (0);
 }
