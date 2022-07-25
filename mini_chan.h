@@ -190,6 +190,7 @@ typedef struct shell_chan
 	int				**fds;
 }	t_shell_chan;
 
+//wkhdjkewhjdgew
 /*******************     INITIALIZATION    *******************/
 void			init_shell_chan(t_shell_chan *main);
 void			re_init_shell_chan(t_shell_chan *main);
