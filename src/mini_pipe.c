@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 22:06:57 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:50:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	pipe_tools(t_shell_chan *main)
 	i = 0;
 	while (i < main->cmd_num)
 		path_finder(&main->cmd_table[i]);
+		// main->cmd_table[i].exe_tools.arguments
 }

@@ -10,7 +10,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/main.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Mon Jul 25 20:39:51 2022
+# Make data base, printed on Mon Jul 25 22:52:33 2022
+ 
 
 # Variables
 
@@ -73,7 +74,7 @@ VSCODE_CODE_CACHE_PATH = /Users/abrar/Library/Application Support/Code/CachedDat
 # environment
 LOGNAME = abrar
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 ZSH = /Users/abrar/.oh-my-zsh
 # environment
@@ -135,6 +136,7 @@ COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
+ 
 <F = $(notdir $<)
 # environment
 PAGER = less
@@ -248,7 +250,6 @@ src/mini_redir_isvalid.o:
 #  File has not been updated.
 
 # Not a target:
- 
 src/mini_cmd_opt.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -445,6 +446,7 @@ src/mini_cmd2.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 src/mini_run.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -487,6 +489,6 @@ src/mini_envar_export_tools.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jul 25 20:39:51 2022
+# Finished Make data base on Mon Jul 25 22:52:33 2022
 
  
