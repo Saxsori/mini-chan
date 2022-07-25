@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 08:58:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:10:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int	find_command(t_shell_chan *main)
 ? ctrld -> if cmd_line return null that's mean that
 ? it's the end of the line and it could happen  
 ? when ctrl+d pressed
+
 		// printf("%d\n", main.exit_status);
 */
 int	main(int argc, char **argv, char **env)
