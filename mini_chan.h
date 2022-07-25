@@ -164,11 +164,22 @@ typedef struct mini_cmnd
 	char				*name;
 	char				**option;
 	char				**arguments;
+	char				*cmd_path;
 	t_mini_redir		redir;
 	t_cmd_tools			tools;
 	t_shell_chan		*main;
 	t_mini_exe_tools	exe_tools;
 }	t_mini_cmd;
+
+typedef struct pip_tools
+{
+	int		**fds;
+	pid_t	child;
+	int		p_num;
+	int		status;
+	int		i;
+	int		j;
+}	t_mini_pipe;
 
 typedef struct shell_chan
 {
@@ -187,10 +198,10 @@ typedef struct shell_chan
 	t_mini_envar	*envar;
 	char			*path;
 	char			**path_split;
+	t_mini_pipe		pipe_tools;
 	int				**fds;
 }	t_shell_chan;
 
-//wkhdjkewhjdgew
 /*******************     INITIALIZATION    *******************/
 void			init_shell_chan(t_shell_chan *main);
 void			re_init_shell_chan(t_shell_chan *main);

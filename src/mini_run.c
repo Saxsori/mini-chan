@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/22 19:30:34 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:49:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,6 @@
 			
 	// 	}
 	// }
-	! fix exit status and the error mangement for the execution
-	*/
-int	run_cmd(t_shell_chan *main)
-{
-	// int	i;
-	// int	k;
-
-	printf("cmd num %d\n", main->cmd_num);
-	get_path(main);
-	if (main->cmd_num == 1)
-	{
-		if (is_command(main->cmd_table[0].name))
-		{
-			printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
-			return (run_builtn(&main->cmd_table[0]));
-		}
-		else if (!is_command(main->cmd_table[0].name))
-		{
-			execute_tools(&main->cmd_table[0]);
-			printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
-			mini_execute(&main->cmd_table[0]);
-			return (1);
-		}
-	}
-	else if (main->cmd_num > 1)
-	{
-		
 		// i = -1;
 		// printf("lo here\n");
 		// while (++i < main->cmd_num)
@@ -75,6 +48,32 @@ int	run_cmd(t_shell_chan *main)
 		// 			printf("e %s\n", main->cmd_table[i].exe_tools.arguments[k]);
 		// 	}
 		// }
+	! fix exit status and the error mangement for the execution
+	*/
+int	run_cmd(t_shell_chan *main)
+{
+	printf("cmd num %d\n", main->cmd_num);
+	get_path(main);
+	if (main->cmd_num == 1)
+	{
+		if (is_command(main->cmd_table[0].name))
+		{
+			printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
+			return (run_builtn(&main->cmd_table[0]));
+		}
+		else if (!is_command(main->cmd_table[0].name))
+		{
+			execute_tools(&main->cmd_table[0]);
+			printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
+			mini_execute(&main->cmd_table[0]);
+			return (1);
+		}
+	}
+	else if (main->cmd_num > 1)
+	{
+		// main->pipe_tools(main->);
+		pipe_tools(main);
+		
 	}
 	return (0);
 }
