@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 08:58:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:16:43 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_shell_chan(t_shell_chan *main)
 	main->exp_valid = NULL;
 	main->first_split = NULL;
 	main->head_envar = NULL;
+	init_mini_pipe(&main->pipe_tools);
 }
 
 void	free_redir_parse(t_mini_cmd *cmd)
@@ -212,4 +213,14 @@ void	init_loop_p_redir(t_mini_cmd *cmd, int i)
 {
 	cmd->tools.p_redir.begin = -1;
 	cmd->tools.p_redir.end = ft_strlen(cmd->main->first_split[i]);
+}
+
+void	init_mini_pipe(t_mini_pipe *p_tool)
+{
+	p_tool->fds = NULL;
+	p_tool->child = -1;
+	p_tool->i = 0;
+	p_tool->j = 0;
+	p_tool->p_num = 0;
+	p_tool->status = 0;
 }
