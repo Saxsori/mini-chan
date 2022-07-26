@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 08:58:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:12:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ void	check_isbuiltin(t_shell_chan *main)
 ! split command parts then expand
 	if (!is_command(main->cmd_table[i].name))
 		return (0);
+
+		BOO
+? 		first_cmd_split .. split pipes only and fill variables
+?
+
 */
 int	find_command(t_shell_chan *main)
 {
@@ -137,6 +142,11 @@ int	find_command(t_shell_chan *main)
 ? ctrld -> if cmd_line return null that's mean that
 ? it's the end of the line and it could happen  
 ? when ctrl+d pressed
+	BOO
+?	init_shell_chan init all 
+?	mini_sig catch signals
+?	create_envar_list create env variables in 2xlinked list ..
+ 
 		// printf("%d\n", main.exit_status);
 */
 int	main(int argc, char **argv, char **env)

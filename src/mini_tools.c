@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/08 02:00:02 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:13:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	loop_init(t_shell_chan *main)
 ?		else just take that one command and save it on first split
 ? 4- call function split command to split the parts and 
 ?	save each command on it's own structure
+
+	BOO
+todo	check || in mid of cmd line AND |     |  AND cmd|cmd||||cmd
+		handel DONE ( cmd | cmd ||)
 */
 void	first_cmd_split(t_shell_chan *main)
 {
