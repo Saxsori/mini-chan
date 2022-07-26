@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 21:49:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/26 05:47:34 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,61 @@ int	run_cmd(t_shell_chan *main)
 	else if (main->cmd_num > 1)
 	{
 		// main->pipe_tools(main->);
+		int	i;
 		pipe_tools(main);
-		
+		i = -1;
+		while (++i < main->cmd_num)
+		{
+			if (i < main->pipe_tools.p_num)
+			{
+				if (pipe(main->pipe_tools.fds[i]) < 0)
+					perror("pipe add");
+			}
+			main->pipe_tools.child = fork();
+			if (main->pipe_tools.child == 0)
+			{
+				if (i == 0)
+				{
+					ft_dup_fds(main, i);
+					if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe, NULL) == -1)
+					{
+						perror("exe");
+						exit(127);
+					}
+				}
+				else if ((i == main->pipe_tools.p_num) && ch == 0)
+				{
+					ft_dup_fds(main, i);
+					if (execve(main->cmd_table[i].cmd_path, arg[i], NULL) == -1)
+					{
+						perror("exe");
+						exit(127);
+					}
+				}
+				else
+				{
+					ft_dup_fds(main, i);
+					if (execve(main->cmd_table[i].cmd_path, arg[i], NULL) == -1)
+					{
+						perror("exe");
+						exit(127);
+					}
+				}
+			}
+			else
+			{
+				if (i < main->pipe_tools.p_num)
+				{
+					if (close(main->pipe_tools.fds[i][1]) == -1)
+						perror("first close\n");
+				}
+				if (i > 0)
+				{
+					if (close(main->pipe_tools.fds[i - 1][0]) == -1)
+						perror("sec close \n");
+				}
+			}
+		}
 	}
 	return (0);
 }

@@ -197,10 +197,9 @@ typedef struct shell_chan
 	t_mini_echo		e_parse;
 	t_mini_envar	*envar;
 	char			*path;
-	int				**fds;
+	// int				**fds;
 	char			**path_split;
 	t_mini_pipe		pipe_tools;
-	int				**fds;
 }	t_shell_chan;
 
 /*******************     INITIALIZATION    *******************/
@@ -211,6 +210,7 @@ void			init_mini_quotes(t_shell_chan *main, char *line);
 void			init_expand_tools(t_expand_tools *exp_tools, \
 												t_shell_chan *main, int index);
 void			init_mem_cmd(t_mini_cmd *cmd);
+void			init_mini_pipe(t_mini_pipe *p_tool);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
@@ -377,6 +377,10 @@ void			mini_execute(t_mini_cmd *cmd);
 void			get_path(t_shell_chan *main);
 
 /*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
-void			mini_exe_pipe(t_mini_cmd *cmd);	
+void			mini_exe_pipe(t_mini_cmd *cmd);
+
+void			pipe_tools(t_shell_chan *main);
+void			init_fds(t_shell_chan *main);
+void			path_finder(t_mini_cmd *cmd);
 
 #endif
