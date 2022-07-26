@@ -1,0 +1,280 @@
+==46610== Memcheck, a memory error detector
+==46610== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==46610== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==46610== Command: ./a.out ls wc cat ls
+==46610== Parent PID: 39005
+==46610== 
+==46610== Invalid write of size 8
+==46610==    at 0x109713: path_test (pipe_final.c:121)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a181d8 is 0 bytes after a block of size 40 alloc'd
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096E5: path_test (pipe_final.c:119)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid write of size 8
+==46610==    at 0x10972E: path_test (pipe_final.c:122)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a18248 is 0 bytes after a block of size 40 alloc'd
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096FA: path_test (pipe_final.c:120)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Conditional jump or move depends on uninitialised value(s)
+==46610==    at 0x109481: path_finder (pipe_final.c:39)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Conditional jump or move depends on uninitialised value(s)
+==46610==    at 0x109295: ft_free (pipe_final.c:18)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46611== Syscall param execve(argv[i]) points to unaddressable byte(s)
+==46611==    at 0x49176C7: execve (syscall-template.S:120)
+==46611==    by 0x1098CA: path_test (pipe_final.c:151)
+==46611==    by 0x10923B: main (testing_double.c:167)
+==46611==  Address 0x4a182e0 is 0 bytes inside a block of size 3 free'd
+==46611==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46611==    by 0x109276: ft_free (pipe_final.c:20)
+==46611==    by 0x109492: path_finder (pipe_final.c:56)
+==46611==    by 0x109802: path_test (pipe_final.c:135)
+==46611==    by 0x10923B: main (testing_double.c:167)
+==46611==  Block was alloc'd at
+==46611==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46611==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46611==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46611==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46611==    by 0x10978B: path_test (pipe_final.c:127)
+==46611==    by 0x10923B: main (testing_double.c:167)
+==46611== 
+==46612== Syscall param execve(argv[i]) points to unaddressable byte(s)
+==46612==    at 0x49176C7: execve (syscall-template.S:120)
+==46612==    by 0x1099BD: path_test (pipe_final.c:169)
+==46612==    by 0x10923B: main (testing_double.c:167)
+==46612==  Address 0x4a18380 is 0 bytes inside a block of size 3 free'd
+==46612==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46612==    by 0x109276: ft_free (pipe_final.c:20)
+==46612==    by 0x109492: path_finder (pipe_final.c:56)
+==46612==    by 0x109802: path_test (pipe_final.c:135)
+==46612==    by 0x10923B: main (testing_double.c:167)
+==46612==  Block was alloc'd at
+==46612==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46612==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46612==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46614== Syscall param execve(argv[i]) points to unaddressable byte(s)
+==46612==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46612==    by 0x10978B: path_test (pipe_final.c:127)
+==46613== Syscall param execve(argv[i]) points to unaddressable byte(s)
+==46613==    at 0x49176C7: execve (syscall-template.S:120)
+==46614==    at 0x49176C7: execve (syscall-template.S:120)
+==46614==    by 0x10994C: path_test (pipe_final.c:160)
+==46612==    by 0x10923B: main (testing_double.c:167)
+==46612== 
+==46613==    by 0x1099BD: path_test (pipe_final.c:169)
+==46613==    by 0x10923B: main (testing_double.c:167)
+==46614==    by 0x10923B: main (testing_double.c:167)
+==46614==  Address 0x4a184c0 is 0 bytes inside a block of size 3 free'd
+==46613==  Address 0x4a18420 is 0 bytes inside a block of size 4 free'd
+==46613==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46614==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46614==    by 0x109276: ft_free (pipe_final.c:20)
+==46613==    by 0x109276: ft_free (pipe_final.c:20)
+==46613==    by 0x109492: path_finder (pipe_final.c:56)
+==46614==    by 0x109492: path_finder (pipe_final.c:56)
+==46614==    by 0x109802: path_test (pipe_final.c:135)
+==46613==    by 0x109802: path_test (pipe_final.c:135)
+==46613==    by 0x10923B: main (testing_double.c:167)
+==46614==    by 0x10923B: main (testing_double.c:167)
+==46614==  Block was alloc'd at
+==46613==  Block was alloc'd at
+==46613==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46614==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46614==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46613==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46613==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46614==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46614==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46613==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46613==    by 0x10978B: path_test (pipe_final.c:127)
+==46614==    by 0x10978B: path_test (pipe_final.c:127)
+==46614==    by 0x10923B: main (testing_double.c:167)
+==46613==    by 0x10923B: main (testing_double.c:167)
+==46613== 
+==46614== 
+==46610== Conditional jump or move depends on uninitialised value(s)
+==46610==    at 0x109295: ft_free (pipe_final.c:18)
+==46610==    by 0x109AA2: path_test (pipe_final.c:198)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid read of size 8
+==46610==    at 0x10928F: ft_free (pipe_final.c:18)
+==46610==    by 0x109AAE: path_test (pipe_final.c:199)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a18220 is 0 bytes inside a block of size 40 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1092A2: ft_free (pipe_final.c:23)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096FA: path_test (pipe_final.c:120)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid read of size 8
+==46610==    at 0x10926C: ft_free (pipe_final.c:20)
+==46610==    by 0x109AAE: path_test (pipe_final.c:199)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a18220 is 0 bytes inside a block of size 40 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1092A2: ft_free (pipe_final.c:23)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096FA: path_test (pipe_final.c:120)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid free() / delete / delete[] / realloc()
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109AAE: path_test (pipe_final.c:199)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a182e0 is 0 bytes inside a block of size 3 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10978B: path_test (pipe_final.c:127)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid free() / delete / delete[] / realloc()
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1092A2: ft_free (pipe_final.c:23)
+==46610==    by 0x109AAE: path_test (pipe_final.c:199)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a18220 is 0 bytes inside a block of size 40 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1092A2: ft_free (pipe_final.c:23)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096FA: path_test (pipe_final.c:120)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid free() / delete / delete[] / realloc()
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109ABD: path_test (pipe_final.c:200)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a182e0 is 0 bytes inside a block of size 3 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10978B: path_test (pipe_final.c:127)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== Invalid free() / delete / delete[] / realloc()
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109AD0: path_test (pipe_final.c:201)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Address 0x4a18380 is 0 bytes inside a block of size 3 free'd
+==46610==    at 0x48399AB: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109276: ft_free (pipe_final.c:20)
+==46610==    by 0x109492: path_finder (pipe_final.c:56)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610==  Block was alloc'd at
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10A5B5: nextstr (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A6AE: action (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10A76F: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x10978B: path_test (pipe_final.c:127)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 
+==46610== HEAP SUMMARY:
+==46610==     in use at exit: 4,002 bytes in 145 blocks
+==46610==   total heap usage: 259 allocs, 121 frees, 6,707 bytes allocated
+==46610== 
+==46610== 28 bytes in 4 blocks are definitely lost in loss record 4 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10AA81: ft_strjoin (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x1093C2: path_finder (pipe_final.c:46)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 55 (31 direct, 24 indirect) bytes in 1 blocks are definitely lost in loss record 6 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1094C4: init_fds (pipe_final.c:65)
+==46610==    by 0x109817: path_test (pipe_final.c:136)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 72 (40 direct, 32 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x1096E5: path_test (pipe_final.c:119)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 153 bytes in 1 blocks are definitely lost in loss record 9 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10A9DA: ft_strdup (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x1092E6: path_finder (pipe_final.c:35)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 217 (64 direct, 153 indirect) bytes in 1 blocks are definitely lost in loss record 10 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10A746: ft_split (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x1092FB: path_finder (pipe_final.c:36)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 640 bytes in 28 blocks are definitely lost in loss record 12 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10AA81: ft_strjoin (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x109369: path_finder (pipe_final.c:44)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 703 bytes in 28 blocks are definitely lost in loss record 13 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x10AA81: ft_strjoin (in /home/vscode/src/Cursus/mini-chan-1/testing/a.out)
+==46610==    by 0x109374: path_finder (pipe_final.c:44)
+==46610==    by 0x109802: path_test (pipe_final.c:135)
+==46610==    by 0x10923B: main (testing_double.c:167)
+==46610== 
+==46610== 2,134 (48 direct, 2,086 indirect) bytes in 1 blocks are definitely lost in loss record 15 of 15
+==46610==    at 0x483877F: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==46610==    by 0x109B87: creat_first_node (mini_envar.c:45)
+==46610==    by 0x109B01: create_envar_list (mini_envar.c:25)
+==46610==    by 0x10921C: main (testing_double.c:163)
+==46610== 
+==46610== LEAK SUMMARY:
+==46610==    definitely lost: 1,707 bytes in 65 blocks
+==46610==    indirectly lost: 2,295 bytes in 80 blocks
+==46610==      possibly lost: 0 bytes in 0 blocks
+==46610==    still reachable: 0 bytes in 0 blocks
+==46610==         suppressed: 0 bytes in 0 blocks
+==46610== 
+==46610== Use --track-origins=yes to see where uninitialised values come from
+==46610== For lists of detected and suppressed errors, rerun with: -s
+==46610== ERROR SUMMARY: 29 errors from 19 contexts (suppressed: 0 from 0)
