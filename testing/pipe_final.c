@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 06:53:55 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/07/25 12:24:22 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/26 03:36:29 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	**path_finder(t_shell_chan *main, char **cmd, int ac)
 			break ;
 		}
 	}
-	ft_free(cmd);
 	return (cmd_path);
 }
 
@@ -120,8 +119,6 @@ void	path_test(t_shell_chan *main, char *av[], int ac)
 
 	arg = (char ***)malloc(sizeof(char **) * ac);
 	cmd = (char **)malloc(sizeof(char *) * ac);
-	arg[ac] = NULL;
-	cmd[ac] = NULL;
 	i = -1;
 	j = 0;
 	num_cmd = ac -1;
@@ -197,8 +194,4 @@ void	path_test(t_shell_chan *main, char *av[], int ac)
 		waitpid(-1, &status, 0);
 		j++;
 	}
-	ft_free(cmd_path);
-	ft_free(cmd);
-	ft_free(arg[0]);
-	ft_free(arg[1]);
 }
