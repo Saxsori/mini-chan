@@ -6,11 +6,12 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:35:50 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/26 02:35:16 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:38:29 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+#include <fcntl.h>
 /*
 	struct
 		- mini_exe_tools.cmd_name "ls" .. [execve]
@@ -104,103 +105,128 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 		}
 	}
 	// *************
-	// !initialize the fd's array
-	fds = malloc(sizeof(int *) * num_cmd - 1);
-	i = -1;
-	while (++i < num_cmd - 1)
-		fds[i] = (int *)malloc(sizeof(int) * 2);
-	i = 0;
-	while (i < num_cmd -1)
+	printf("HI %s\n", cmd_path[0]);
+	int	fd;
+	if (access(av[3], F_OK) == -1)
 	{
-		j = 0;
-		while (j < 2)
-		{
-			fds[i][j] = j;
-			j++;
-		}
-		i++;
+		fd = open(av[3], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	}
-	//! *******
+	else
+		fd = open(av[3], O_TRUNC | O_RDWR);
+	// if(fork() == 0)
+	// {
+		dup2(fd, STDOUT_FILENO);
+		// close(fd);
+	int fd2;
+	if (access(av[4], F_OK) == -1)
+	{
+		fd2 = open(av[4], O_RDWR | O_TRUNC | O_CREAT, 0644);
+	}
+	else
+		fd2 = open(av[4], O_TRUNC | O_RDWR);
+		dup2(fd2, STDOUT_FILENO);
+
+	execve(cmd_path[0],arg[0], NULL);
+	execve(cmd_path[1],arg[1], NULL);
 	
-	i = 0;
-	while (i < num_cmd) 
-	{
-		if (i < num_cmd -1)
-		{
-			if (pipe(fds[i]) < 0)
-				perror("pipe add");
-		}
-		ch = fork();
-		if (ch == 0)
-		{
-			if (i == 0)
-			{
-				if (dup2(fds[i][1], STDOUT_FILENO) < 0)
-					perror("dup ch1");
-				if (close(fds[0][0]) == -1)
-					perror("st 1");
-				if (close(fds[0][1]) == -1)
-					perror("sec 2");
-				if (execve(cmd_path[i], arg[i], NULL) == -1)
-				{
-					perror("exe");		
-					exit(127);
-				}
+	// }
+	// !initialize the fd's array
+	// fds = malloc(sizeof(int *) * num_cmd - 1);
+	// i = -1;
+	// while (++i < num_cmd - 1)
+	// 	fds[i] = (int *)malloc(sizeof(int) * 2);
+	// i = 0;
+	// while (i < num_cmd -1)
+	// {
+	// 	j = 0;
+	// 	while (j < 2)
+	// 	{
+	// 		fds[i][j] = j;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// //! *******
+	
+	// i = 0;
+	// while (i < num_cmd) 
+	// {
+	// 	if (i < num_cmd -1)
+	// 	{
+	// 		if (pipe(fds[i]) < 0)
+	// 			perror("pipe add");
+	// 	}
+	// 	ch = fork();
+	// 	if (ch == 0)
+	// 	{
+	// 		if (i == 0)
+	// 		{
+	// 			if (dup2(fds[i][1], STDOUT_FILENO) < 0)
+	// 				perror("dup ch1");
+	// 			if (close(fds[0][0]) == -1)
+	// 				perror("st 1");
+	// 			if (close(fds[0][1]) == -1)
+	// 				perror("sec 2");
+	// 			if (execve(cmd_path[i], arg[i], NULL) == -1)
+	// 			{
+	// 				perror("exe");		
+	// 				exit(127);
+	// 			}
 
-			}
-			else if ((i == num_cmd -1) && ch == 0)
-			{
-				if (dup2(fds[i -1][0], STDIN_FILENO) < 0)
-					perror("dup ch last");
-				if (close(fds[i -1][0]) == -1)
-					perror("lst 1 close");
-				if (execve(cmd_path[i], arg[i], NULL) == -1)
-				{
-					perror("exe");		
-					exit(127);
-				}
+	// 		}
+	// 		else if ((i == num_cmd -1) && ch == 0)
+	// 		{
+	// 			if (dup2(fds[i -1][0], STDIN_FILENO) < 0)
+	// 				perror("dup ch last");
+	// 			if (close(fds[i -1][0]) == -1)
+	// 				perror("lst 1 close");
+	// 			if (execve(cmd_path[i], arg[i], NULL) == -1)
+	// 			{
+	// 				perror("exe");		
+	// 				exit(127);
+	// 			}
 
-			}
-			else
-			{
-				if (dup2(fds[i -1][0], STDIN_FILENO) < 0)
-					perror("ch mid dup1");
-				if (dup2(fds[i][1], STDOUT_FILENO) < 0)
-					perror("ch mid dup2");
-				if (close(fds[i-1][0]) == -1)
-					perror("3close");
-				if (close(fds[i][1]) == -1)
-					perror("4close");
-				if (close(fds[i][0]) == -1)
-					perror("4close");
-				if (execve(cmd_path[i], arg[i], NULL) == -1)
-				{
-					perror("exe");		
-					exit(127);
-				}
-			}
-		}
-		else
-		{
-			if (i < num_cmd - 1)
-			{
-				if (close(fds[i][1]) == -1)
-					perror("first close\n");
-			}
-			if (i > 0)
-			{
-				if (close(fds[i - 1][0]) == -1)
-					perror("sec close \n");
-			}
-		}
-			i++;
+	// 		}
+	// 		else
+	// 		{
+	// 			if (dup2(fds[i -1][0], STDIN_FILENO) < 0)
+	// 				perror("ch mid dup1");
+	// 			if (dup2(fds[i][1], STDOUT_FILENO) < 0)
+	// 				perror("ch mid dup2");
+	// 			if (close(fds[i-1][0]) == -1)
+	// 				perror("3close");
+	// 			if (close(fds[i][1]) == -1)
+	// 				perror("4close");
+	// 			if (close(fds[i][0]) == -1)
+	// 				perror("4close");
+	// 			if (execve(cmd_path[i], arg[i], NULL) == -1)
+	// 			{
+	// 				perror("exe");		
+	// 				exit(127);
+	// 			}
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+	// 		if (i < num_cmd - 1)
+	// 		{
+	// 			if (close(fds[i][1]) == -1)
+	// 				perror("first close\n");
+	// 		}
+	// 		if (i > 0)
+	// 		{
+	// 			if (close(fds[i - 1][0]) == -1)
+	// 				perror("sec close \n");
+	// 		}
+	// 	}
+	// 		i++;
 
-	}
-	//******* wait childs 
-	j = 0;
-	while (j < 3)
-	{
-		waitpid(-1, &status, 0);
-		j++;
-	}
+	// }
+	// //******* wait childs 
+	// j = 0;
+	// while (j < 3)
+	// {
+	// 	waitpid(-1, &status, 0);
+	// 	j++;
+	// }
 }

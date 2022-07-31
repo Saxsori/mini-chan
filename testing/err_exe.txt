@@ -1,4 +1,0 @@
-ls
-grep
-/bin/ls
-/bin/grep

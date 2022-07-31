@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:37:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/20 16:52:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/29 06:03:45 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,8 @@ int main (int argc, char **argv, char **env)
 	// print_envar_list(main.head_envar);
 	// path(&main,argv,argc);
 	// ft_pipe(&main,argv,argc);
-	path_test(&main, argv, argc);
+	// path_test(&main, argv, argc);
+	tst_redir_main(&main, argv, argc);
 	// enva = search_envar(main.head_envar, "SHELL");
 	// main.head_envar = dl_first_envar(main.head_envar);
 	// main.head_envar = del_last_envar(main.head_envar);
