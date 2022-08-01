@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 23:15:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:28:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int	run_cmd(t_shell_chan *main)
 	{
 		if (is_command(main->cmd_table[0].name))
 		{
-			printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
+			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 			return (run_builtn(&main->cmd_table[0]));
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			execute_tools(&main->cmd_table[0]);
-			printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
+			// printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
 			mini_execute(&main->cmd_table[0]);
 			return (1);
 		}
@@ -98,7 +98,7 @@ int	run_cmd(t_shell_chan *main)
 						}
 					}
 					else
-						printf("builtin\n");
+						run_builtn(&main->cmd_table[i]);
 				}
 				else if ((i == main->pipe_tools.p_num) && main->pipe_tools.child == 0)
 				{
@@ -113,7 +113,7 @@ int	run_cmd(t_shell_chan *main)
 						}
 					}
 					else
-						printf("builtin\n");
+						run_builtn(&main->cmd_table[i]);
 				}
 				else
 				{
@@ -128,7 +128,7 @@ int	run_cmd(t_shell_chan *main)
 						}
 					}
 					else
-						printf("builtin\n");
+						run_builtn(&main->cmd_table[i]);
 				}
 			}
 			else
