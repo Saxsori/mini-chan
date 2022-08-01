@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:08:40 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/07/29 14:15:00 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:57:42 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,46 @@ void tst_redir(t_shell_chan *main,char *av[],int ac, int k)
 
 void tst_redir_main(t_shell_chan *main,char *av[],int ac)
 {
-	int i =0;
+	int i = 2;
 	int k =0;
 	int fd;
 	int fd2;
-	// while(i < ac - 1)
-	// {
-	// 	printf("here1 %d %s\n",i,av[i]);
-	// 	if(av[i+1][0] == '>')
-	// 	{
-	// 		printf("here in %s\n",av[i+2]);
-			if (access(av[3], F_OK) == -1)
-			{
-				fd = open(av[3], O_RDONLY);
-			}
+	while(i < ac - 1)
+	{
+		if(av[i][0] == '>')
+		{
+			if(access(av[i + 1], F_OK) == -1)
+				fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
 			else
-				fd = open(av[3], O_RDONLY);
+				fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
+			dup2(fd,STDOUT_FILENO);
+			close(fd);
+		}
+		else if(av[i][0] == '<')
+		{
+			if(access(av[i+1],F_OK) == 0)
+				fd = open(av[i+1], O_RDONLY);
+			else
+			{
+				printf("%s",av[i+1]);
+				perror("mini-chan ");
+				exit(1);
+			}
 			dup2(fd, STDIN_FILENO);
 			close(fd);
-			if (access(av[5], F_OK) == -1)
-			{
-				fd = open(av[5], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-			}
+		}
+		else if(av[i][0] == '}')
+		{
+			// printf("OUT HERE APPEND\n");
+			if(access(av[i+1],F_OK) == -1)
+				fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
 			else
-				fd = open(av[5], O_WRONLY | O_TRUNC);
+				fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
 			dup2(fd, STDOUT_FILENO);
 			close(fd);
-			if (access(av[7], F_OK) == -1)
-			{
-				fd = open(av[7], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-			}
-			else
-				fd = open(av[7], O_WRONLY | O_TRUNC);
-			dup2(fd, STDOUT_FILENO);
-			close(fd);
-			tst_redir(main, av, ac,k);
+		}
+		
+		i++;
+	}
+	tst_redir(main, av, ac,k);
 }
