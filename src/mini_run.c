@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 23:28:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:26:24 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	run_cmd(t_shell_chan *main)
 {
 	int	i;
 
-	printf("cmd num %d\n", main->cmd_num);
 	get_path(main);
 	if (main->cmd_num == 1)
 	{
@@ -66,12 +65,12 @@ int	run_cmd(t_shell_chan *main)
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			execute_tools(&main->cmd_table[0]);
-			// printf("cmd_name %s \n",main->cmd_table[0].exe_tools.cmd_name);
+			printf("cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
 			mini_execute(&main->cmd_table[0]);
 			return (1);
 		}
 	}
-	else if (main->cmd_num > 1)
+	if (main->cmd_num > 1)
 	{
 		pipe_tools(main);
 		i = -1;
@@ -90,30 +89,41 @@ int	run_cmd(t_shell_chan *main)
 					ft_dup_fds(main, i);
 					if (main->cmd_table[i].tools.y_exe)
 					{
+						write(1, &main->cmd_table[i].tools.y_exe, 10);
 						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						if (execve(main->cmd_table[i].cmd_path, \
+							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 						{
-							perror("exe");
+							write(2, "command not found\n", 19);
 							exit(127);
 						}
 					}
 					else
+					{
 						run_builtn(&main->cmd_table[i]);
+						exit(0);
+					}
 				}
-				else if ((i == main->pipe_tools.p_num) && main->pipe_tools.child == 0)
+				else if ((i == main->pipe_tools.p_num) \
+							&& main->pipe_tools.child == 0)
 				{
 					ft_dup_fds(main, i);
 					if (main->cmd_table[i].tools.y_exe)
 					{
+						write(1, &main->cmd_table[i].tools.y_exe, 10);
 						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						if (execve(main->cmd_table[i].cmd_path, \
+							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 						{
-							perror("exe");
+							write(2, "command not found\n", 19);
 							exit(127);
 						}
 					}
 					else
+					{
 						run_builtn(&main->cmd_table[i]);
+						exit(0);
+					}
 				}
 				else
 				{
@@ -121,14 +131,18 @@ int	run_cmd(t_shell_chan *main)
 					if (main->cmd_table[i].tools.y_exe)
 					{
 						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+						if (execve(main->cmd_table[i].cmd_path, \
+							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 						{
-							perror("exe");
+							write(2, "command not found\n", 19);
 							exit(127);
 						}
 					}
 					else
+					{
 						run_builtn(&main->cmd_table[i]);
+						exit(0);
+					}
 				}
 			}
 			else

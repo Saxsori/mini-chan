@@ -373,6 +373,8 @@ void			execute_tools(t_mini_cmd *cmd);
 void			path(t_shell_chan *main, char *av[], int argc);
 void 			ft_pipe(t_shell_chan *main, char *av[], int ac);
 void			path_test(t_shell_chan *main,char *av[],int ac);
+void 			tst_redir(t_shell_chan *main,char *av[],int ac, int k);
+void			tst_redir_main(t_shell_chan *main,char *av[],int ac);
 void			mini_execute(t_mini_cmd *cmd);
 void			get_path(t_shell_chan *main);
 
