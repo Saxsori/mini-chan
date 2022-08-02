@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_echo_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:47:01 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 22:09:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/02 10:35:17 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,12 @@ void	check_echo_opt(t_mini_cmd *cmd)
 {
 	int	i;
 
-	i = -1;
+	// i = -1;
 	cmd->tools.i_arg = -1;
 	if (cmd->option)
 	{
-		while (++i < cmd->tools.opt_num)
-			printf ("%s\n", cmd->option[i]);
+		// while (++i < cmd->tools.opt_num)
+			// printf ("%s\n", cmd->option[i]);
 		i = -1;
 		while (++i < cmd->tools.opt_num)
 		{

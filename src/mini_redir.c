@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/02 10:03:26 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/02 10:32:25 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	redir(t_mini_cmd *cmd)
 	pid_t child;
 	int status;
 
+	// printf("%s abrab cmd name\n",cmd->redir.command);
 	i = 0;
 	child = fork();
 	if(child == 0)
@@ -69,7 +70,18 @@ void	redir(t_mini_cmd *cmd)
 			
 			i++;
 		}
-		redir_exe(cmd);
+		write(2,"if conndd\n",11);
+		if(!is_command(cmd->redir.command))
+		{
+			write(2,"COMMAND\n",9);
+			redir_exe(cmd);
+		}
+		else if (is_command(cmd->redir.command))
+		{
+			// write(2,"NOT COMMAND\n",13);
+			run_builtn(cmd);
+			exit(0);
+		}
 	}
 	else
 		waitpid(-1, &status, 0);

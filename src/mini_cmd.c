@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 23:28:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/02 10:53:15 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int	mini_echo(t_mini_cmd *cmd)
 		get_echo_arg_redir(cmd);
 	while (++i < cmd->tools.arg_num)
 	{
-		if (is_extst(cmd->arguments[i]))
-			printf(BCYN"%d "BWHT, cmd->main->exit_status);
-		else
-			printf(BCYN"%s "BWHT, cmd->arguments[i]);
+		// if (is_extst(cmd->arguments[i]))
+		// 	printf(BCYN"%d "BWHT, cmd->main->exit_status);
+		// else
+			printf("%s ", cmd->arguments[i]);
 	}
 	if (!cmd->option)
-		printf("\n"BWHT);
+		printf("\n");
 	return (1);
 }
 
