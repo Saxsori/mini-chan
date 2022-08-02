@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 20:41:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:46:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	find_command(t_shell_chan *main)
 	int	i;
 
 	first_cmd_split(main);
-	printf("here\n");
+	// printf("here\n");
 	if (main->exit_status == 2)
 		return (2);
 	expand_tools(main);
@@ -112,25 +112,41 @@ int	find_command(t_shell_chan *main)
 	{
 		if (pre_redir(main) == 2)
 			return (2);
-		i = -1;
+		// i = -1;
 		pre_quote(main);
 		expand_envar(main);
 		parse_echo_case(main);
 		remove_quote(main);
 		check_isbuiltin(main);
-		while (++i < main->cmd_num)
-		{
-			printf("(%s)", main->first_split[i]);
-			printf(" - r %d", main->cmd_table[i].tools.y_redir);
-			printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
-		}
+		// while (++i < main->cmd_num)
+		// {
+		// 	printf("(%s)", main->first_split[i]);
+		// 	printf(" - r %d", main->cmd_table[i].tools.y_redir);
+		// 	printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
+		// }
 		split_redir(main);
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);
 		command_name(main);
 		check_cmd_parts(main);
-		printf("here\n");
+		i = -1;
+		int	k;
+		while (++i < main->cmd_num)
+		{
+			printf("r command->>> %s\n", main->cmd_table[i].redir.command);
+			k = -1;
+			while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
+				printf("r arg->>> %s\n", main->cmd_table[i].redir.arguments[k]);
+			k = -1;
+			while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
+				printf("r redir->>> %s\n", main->cmd_table[i].redir.redir[k]);
+			k = -1;
+			while (++k < main->cmd_table[i].redir.redir_tools.num_file)
+				printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
+			
+		}
+		// printf("here\n");
 		return (run_cmd(main));
 	}
 	// else

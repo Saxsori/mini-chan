@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 21:41:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:28:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	mini_echo(t_mini_cmd *cmd)
 	int	i;
 
 	i = -1;
-	printf("here %d\n", cmd->tools.y_redir);
+	// printf("here %d\n", cmd->tools.y_redir);
 	if (!cmd->tools.y_redir)
 		check_echo_opt(cmd);
 	else if (cmd->tools.y_redir)
