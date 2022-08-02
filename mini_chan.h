@@ -22,6 +22,8 @@
 # include <dirent.h>
 # include <sys/types.h>
 # include <sys/unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
@@ -357,6 +359,10 @@ void			get_redir_part(t_mini_redir *redir, int op);
 void			split_redir(t_shell_chan *main);
 void			replace_tabbing_spaces(char	**split);
 
+/*******************    MINI_REDIR_EXE   ******************/
+
+void			redir(t_mini_cmd *cmd);
+
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);
 int				do_export(t_mini_cmd *cmd);
@@ -380,7 +386,6 @@ void			get_path(t_shell_chan *main);
 
 /*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
 void			mini_exe_pipe(t_mini_cmd *cmd);
-
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);

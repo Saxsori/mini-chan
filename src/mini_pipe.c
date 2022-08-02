@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/26 06:47:53 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:11:08 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,22 @@ void	path_finder(t_mini_cmd *cmd)
 {
 	int	i;
 	int	j;
+	char	*command;
 
 	i = -1;
 	j = 0;
-	printf("cmd name %s\n", cmd->name);
+	if (cmd->tools.y_redir)
+		command = ft_strdup(cmd->redir.command);
+	else
+		command = ft_strdup(cmd->name);
+	// printf("3 cmd name %s\n", command);
 	while (cmd->main->path_split[++i])
 	{
 		if (access(ft_strjoin(ft_strjoin(cmd->main->path_split[i], "/"), \
-		cmd->name), F_OK) == 0)
+		command), F_OK) == 0)
 		{
 			cmd->cmd_path = ft_strjoin(ft_strjoin(cmd->main->path_split[i], \
-			"/"), cmd->name);
+			"/"), command);
 			j = 1;
 			break ;
 		}
@@ -39,9 +44,9 @@ void	path_finder(t_mini_cmd *cmd)
 	i = -1;
 	while (cmd->main->path[++i] && j != 1)
 	{
-		if (access(cmd->name, F_OK) == 0)
+		if (access(command, F_OK) == 0)
 		{
-			cmd->cmd_path = cmd->name;
+			cmd->cmd_path = ft_strdup(command);
 			break ;
 		}
 		else

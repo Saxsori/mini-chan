@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/01 22:46:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/02 07:39:36 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,16 +134,19 @@ int	find_command(t_shell_chan *main)
 		int	k;
 		while (++i < main->cmd_num)
 		{
-			printf("r command->>> %s\n", main->cmd_table[i].redir.command);
-			k = -1;
-			while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
-				printf("r arg->>> %s\n", main->cmd_table[i].redir.arguments[k]);
-			k = -1;
-			while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
-				printf("r redir->>> %s\n", main->cmd_table[i].redir.redir[k]);
-			k = -1;
-			while (++k < main->cmd_table[i].redir.redir_tools.num_file)
-				printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
+			if (main->cmd_table[i].tools.y_redir)
+			{
+				printf("r command->>> %s\n", main->cmd_table[i].redir.command);
+				k = -1;
+				while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
+					printf("r arg->>> %s\n", main->cmd_table[i].redir.arguments[k]);
+				k = -1;
+				while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
+					printf("r redir->>> %s\n", main->cmd_table[i].redir.redir[k]);
+				k = -1;
+				while (++k < main->cmd_table[i].redir.redir_tools.num_file)
+					printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
+			}
 			
 		}
 		// printf("here\n");

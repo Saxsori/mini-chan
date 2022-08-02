@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:08:40 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/01 06:57:42 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/02 08:22:23 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void tst_redir(t_shell_chan *main,char *av[],int ac, int k)
 			break ;
 		}
 	}
-	execve(cmd_path[k], arg[k], NULL);
+	if (execve(cmd_path[k], arg[k], NULL) == -1)
+		perror("ERROR");
 }
 
 
@@ -73,42 +74,51 @@ void tst_redir_main(t_shell_chan *main,char *av[],int ac)
 	int k =0;
 	int fd;
 	int fd2;
-	while(i < ac - 1)
+	pid_t child;
+	int status;
+
+	child = fork();
+	if(child == 0)
 	{
-		if(av[i][0] == '>')
+		while(i < ac - 1)
 		{
-			if(access(av[i + 1], F_OK) == -1)
-				fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
-			else
-				fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
-			dup2(fd,STDOUT_FILENO);
-			close(fd);
-		}
-		else if(av[i][0] == '<')
-		{
-			if(access(av[i+1],F_OK) == 0)
-				fd = open(av[i+1], O_RDONLY);
-			else
+			if(av[i][0] == '>')
 			{
-				printf("%s",av[i+1]);
-				perror("mini-chan ");
-				exit(1);
+				if(access(av[i + 1], F_OK) == -1)
+					fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
+				else
+					fd = open(av[i+1], O_WRONLY| O_TRUNC| O_CREAT, 0644);
+				dup2(fd,STDOUT_FILENO);
+				close(fd);
 			}
-			dup2(fd, STDIN_FILENO);
-			close(fd);
+			else if(av[i][0] == '<')
+			{
+				if(access(av[i+1],F_OK) == 0)
+					fd = open(av[i+1], O_RDONLY);
+				else
+				{
+					printf("%s",av[i+1]);
+					perror("mini-chan ");
+					exit(1);
+				}
+				dup2(fd, STDIN_FILENO);
+				close(fd);
+			}
+			else if(av[i][0] == '}')
+			{
+				// printf("OUT HERE APPEND\n");
+				if(access(av[i+1],F_OK) == -1)
+					fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
+				else
+					fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
+				dup2(fd, STDOUT_FILENO);
+				close(fd);
+			}
+			
+			i++;
 		}
-		else if(av[i][0] == '}')
-		{
-			// printf("OUT HERE APPEND\n");
-			if(access(av[i+1],F_OK) == -1)
-				fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
-			else
-				fd = open(av[i+1], O_WRONLY| O_APPEND| O_CREAT, 0644);
-			dup2(fd, STDOUT_FILENO);
-			close(fd);
-		}
-		
-		i++;
+		tst_redir(main, av, ac,k);
 	}
-	tst_redir(main, av, ac,k);
+	else
+		waitpid(-1, &status, 0);
 }

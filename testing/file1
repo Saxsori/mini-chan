@@ -1,12 +1,13 @@
-total 152
-drwxr-xr-x 31 root root   992 Aug  1 19:01 .
-drwxr-xr-x 20 root root   640 Aug  1 19:01 ..
--rwxr-xr-x  1 root root 23032 Aug  1 19:01 a.out
+total 148
+drwxr-xr-x 32 root root  1024 Aug  2 08:01 .
+drwxr-xr-x 20 root root   640 Aug  2 07:51 ..
+-rwxr-xr-x  1 root root 23032 Aug  2 08:01 a.out
 -rw-r--r--  1 root root    35 Jul 26 03:49 echo_testing.c
 -rw-r--r--  1 root root  6326 Jul 26 03:49 exe.c
--rw-r--r--  1 root root    62 Aug  1 05:42 file
--rw-r--r-x  1 root root     0 Aug  1 19:06 file1
--rw-r--r--  1 root root    18 Aug  1 08:04 file2
+drwxr-xr-x  3 root root    96 Aug  2 05:40 exploit
+-rw-r--r--  1 root root     0 Aug  2 05:33 file
+-rw-r--r-x  1 root root     0 Aug  2 08:01 file1
+-rw-r--r--  1 root root  1572 Aug  2 05:37 file2
 -rw-r--r--  1 root root  1542 Aug  1 07:02 file3
 -rw-r--r--  1 root root    11 Aug  1 05:29 file4
 -rw-r--r--  1 root root    29 Aug  1 04:52 file5
@@ -19,7 +20,7 @@ drwxr-xr-x 20 root root   640 Aug  1 19:01 ..
 -rw-r--r--  1 root root 17097 Jul 26 03:49 malloc-val
 -rw-r--r--  1 root root  5153 Jul 28 20:38 pipe.c
 -rw-r--r--  1 root root  3966 Jul 26 03:49 pipe_final.c
--rw-r--r--  1 root root  2903 Aug  1 06:57 redir.c
+-rw-r--r--  1 root root  2932 Aug  2 08:00 redir.c
 -rw-r--r--  1 root root   188 Jul 26 03:49 tessst.c
 -rw-r--r--  1 root root   195 Jul 26 03:49 test.c
 -rw-r--r--  1 root root   213 Jul 26 03:49 test_free.c

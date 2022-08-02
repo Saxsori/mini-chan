@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/01 22:26:24 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/02 10:07:22 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,29 @@ int	run_cmd(t_shell_chan *main)
 	int	i;
 
 	get_path(main);
+	
 	if (main->cmd_num == 1)
 	{
-		if (is_command(main->cmd_table[0].name))
+		if(main->cmd_table->tools.y_redir)
 		{
-			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
-			return (run_builtn(&main->cmd_table[0]));
+			printf ("1 lala\n");
+			redir(main->cmd_table);
 		}
-		else if (!is_command(main->cmd_table[0].name))
+		else
 		{
-			execute_tools(&main->cmd_table[0]);
-			printf("cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
-			mini_execute(&main->cmd_table[0]);
-			return (1);
+			printf ("2 lala\n");
+			if (is_command(main->cmd_table[0].name))
+			{
+				// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
+				return (run_builtn(&main->cmd_table[0]));
+			}
+			else if (!is_command(main->cmd_table[0].name))
+			{
+				execute_tools(&main->cmd_table[0]);
+				// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
+				mini_execute(&main->cmd_table[0]);
+				return (1);
+			}
 		}
 	}
 	if (main->cmd_num > 1)
@@ -87,62 +97,86 @@ int	run_cmd(t_shell_chan *main)
 				if (i == 0)
 				{
 					ft_dup_fds(main, i);
-					if (main->cmd_table[i].tools.y_exe)
-					{
-						write(1, &main->cmd_table[i].tools.y_exe, 10);
-						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, \
-							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+					// if(main->cmd_table[i].tools.y_redir)
+					// {
+					// 	// printf ("1 lala\n");
+					// 	redir(&main->cmd_table[i]);
+					// }
+					// else
+					// {
+						if (main->cmd_table[i].tools.y_exe)
 						{
-							write(2, "command not found\n", 19);
-							exit(127);
+							write(1, &main->cmd_table[i].tools.y_exe, 10);
+							execute_tools(&main->cmd_table[i]);
+							if (execve(main->cmd_table[i].cmd_path, \
+								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+							{
+								write(2, "command not found\n", 19);
+								exit(127);
+							}
 						}
-					}
-					else
-					{
-						run_builtn(&main->cmd_table[i]);
-						exit(0);
-					}
+						else
+						{
+							run_builtn(&main->cmd_table[i]);
+							exit(0);
+						}
+					// }
 				}
 				else if ((i == main->pipe_tools.p_num) \
 							&& main->pipe_tools.child == 0)
 				{
 					ft_dup_fds(main, i);
-					if (main->cmd_table[i].tools.y_exe)
-					{
-						write(1, &main->cmd_table[i].tools.y_exe, 10);
-						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, \
-							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+					// if(main->cmd_table[i].tools.y_redir)
+					// {
+					// 	// printf ("1 lala\n");
+					// 	redir(&main->cmd_table[i]);
+					// }
+					// else
+					// {
+						if (main->cmd_table[i].tools.y_exe)
 						{
-							write(2, "command not found\n", 19);
-							exit(127);
+							write(1, &main->cmd_table[i].tools.y_exe, 10);
+							execute_tools(&main->cmd_table[i]);
+							if (execve(main->cmd_table[i].cmd_path, \
+								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+							{
+								write(2, "command not found\n", 19);
+								exit(127);
+							}
 						}
-					}
-					else
-					{
-						run_builtn(&main->cmd_table[i]);
-						exit(0);
-					}
+						else
+						{
+							run_builtn(&main->cmd_table[i]);
+							exit(0);
+						}
+					// }
 				}
 				else
 				{
 					ft_dup_fds(main, i);
-					if (main->cmd_table[i].tools.y_exe)
-					{
-						execute_tools(&main->cmd_table[i]);
-						if (execve(main->cmd_table[i].cmd_path, \
-							main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+					// if(main->cmd_table[i].tools.y_redir)
+					// {
+					// 	// printf ("1 lala\n");
+					// 	redir(&main->cmd_table[i]);
+					// }
+					// else
+					// {
+						if (main->cmd_table[i].tools.y_exe)
 						{
-							write(2, "command not found\n", 19);
-							exit(127);
+							execute_tools(&main->cmd_table[i]);
+							if (execve(main->cmd_table[i].cmd_path, \
+								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+							{
+								write(2, "command not found\n", 19);
+								exit(127);
+							}
 						}
-					}
-					else
-					{
-						run_builtn(&main->cmd_table[i]);
-						exit(0);
-					}
+						else
+						{
+							run_builtn(&main->cmd_table[i]);
+							exit(0);
+						}
+					// }
 				}
 			}
 			else
