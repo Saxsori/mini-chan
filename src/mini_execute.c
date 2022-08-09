@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/02 09:17:26 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/08 06:31:03 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ void	mini_execute(t_mini_cmd *cmd)
 	}
 	if (child == 0)
 	{
-		printf("cmd_name %s\n", cmd->exe_tools.cmd_name);
-		if (access(cmd->exe_tools.cmd_name, F_OK) == -1)
-			printf("mini-chan🌸: %s: command not found\n", \
-			cmd->exe_tools.err_command);
-		else if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
+		// if (access(cmd->exe_tools.cmd_name, F_OK) == -1)
+		// 	printf("mini-chan🌸: %s: command not found\n", \//
+		// 	cmd->exe_tools.err_command);
+		if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 		NULL) == -1)
-			printf("here mini-chan🌸: %s\n", strerror(errno));
+		{
+			write(2,"mini-chan🌸: ",16);
+			write(2,cmd->exe_tools.arguments[0],ft_strlen(cmd->exe_tools.arguments[0]));
+			write(2,": command not found\n",21);
+			exit(1);
+			//WIFEXITED
+		}
+		//free all memory
+		// exit(1);
 	}
 	else
 		waitpid(-1, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/02 10:07:22 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/08 06:47:17 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ int	run_cmd(t_shell_chan *main)
 	{
 		if(main->cmd_table->tools.y_redir)
 		{
-			printf ("1 lala\n");
 			redir(main->cmd_table);
 		}
 		else
 		{
-			printf ("2 lala\n");
 			if (is_command(main->cmd_table[0].name))
 			{
 				// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
@@ -97,13 +95,7 @@ int	run_cmd(t_shell_chan *main)
 				if (i == 0)
 				{
 					ft_dup_fds(main, i);
-					// if(main->cmd_table[i].tools.y_redir)
-					// {
-					// 	// printf ("1 lala\n");
-					// 	redir(&main->cmd_table[i]);
-					// }
-					// else
-					// {
+
 						if (main->cmd_table[i].tools.y_exe)
 						{
 							write(1, &main->cmd_table[i].tools.y_exe, 10);
@@ -111,8 +103,10 @@ int	run_cmd(t_shell_chan *main)
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2, "command not found\n", 19);
-								exit(127);
+								write(2,"mini-chan🌸: ",16);
+								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+								write(2,": command not found\n",21);
+								exit(1);
 							}
 						}
 						else
@@ -120,19 +114,11 @@ int	run_cmd(t_shell_chan *main)
 							run_builtn(&main->cmd_table[i]);
 							exit(0);
 						}
-					// }
 				}
 				else if ((i == main->pipe_tools.p_num) \
 							&& main->pipe_tools.child == 0)
 				{
 					ft_dup_fds(main, i);
-					// if(main->cmd_table[i].tools.y_redir)
-					// {
-					// 	// printf ("1 lala\n");
-					// 	redir(&main->cmd_table[i]);
-					// }
-					// else
-					// {
 						if (main->cmd_table[i].tools.y_exe)
 						{
 							write(1, &main->cmd_table[i].tools.y_exe, 10);
@@ -140,8 +126,10 @@ int	run_cmd(t_shell_chan *main)
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2, "command not found\n", 19);
-								exit(127);
+								write(2,"mini-chan🌸: ",16);
+								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+								write(2,": command not found\n",21);
+								exit(1);
 							}
 						}
 						else
@@ -149,26 +137,20 @@ int	run_cmd(t_shell_chan *main)
 							run_builtn(&main->cmd_table[i]);
 							exit(0);
 						}
-					// }
 				}
 				else
 				{
 					ft_dup_fds(main, i);
-					// if(main->cmd_table[i].tools.y_redir)
-					// {
-					// 	// printf ("1 lala\n");
-					// 	redir(&main->cmd_table[i]);
-					// }
-					// else
-					// {
 						if (main->cmd_table[i].tools.y_exe)
 						{
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2, "command not found\n", 19);
-								exit(127);
+								write(2,"mini-chan🌸: ",16);
+								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+								write(2,": command not found\n",21);
+								exit(1);
 							}
 						}
 						else
@@ -176,7 +158,6 @@ int	run_cmd(t_shell_chan *main)
 							run_builtn(&main->cmd_table[i]);
 							exit(0);
 						}
-					// }
 				}
 			}
 			else

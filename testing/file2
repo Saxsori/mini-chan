@@ -1,32 +1,9 @@
-total 144
-drwxr-xr-x 31 root root   992 Aug  2 05:33 .
-drwxr-xr-x 20 root root   640 Aug  2 05:35 ..
--rwxr-xr-x  1 root root 23032 Aug  2 05:33 a.out
--rw-r--r--  1 root root    35 Jul 26 03:49 echo_testing.c
--rw-r--r--  1 root root  6326 Jul 26 03:49 exe.c
--rw-r--r--  1 root root     0 Aug  2 05:33 file
--rw-r--r-x  1 root root     0 Aug  2 05:37 file1
--rw-r--r--  1 root root     0 Aug  2 05:37 file2
--rw-r--r--  1 root root  1542 Aug  1 07:02 file3
--rw-r--r--  1 root root    11 Aug  1 05:29 file4
--rw-r--r--  1 root root    29 Aug  1 04:52 file5
--rw-r--r--  1 root root    29 Aug  1 04:55 file6
--rw-r--r--  1 root root  1768 Aug  1 06:27 file7
--rw-r--r--  1 root root  1752 Aug  1 06:15 file77
--rw-r--r--  1 root root   193 Jul 29 06:14 finput
--rw-r--r--  1 root root  5331 Jul 26 03:49 leaks.txt
--rw-r--r--  1 root root     0 Aug  1 07:08 ls
--rw-r--r--  1 root root 17097 Jul 26 03:49 malloc-val
--rw-r--r--  1 root root  5153 Jul 28 20:38 pipe.c
--rw-r--r--  1 root root  3966 Jul 26 03:49 pipe_final.c
--rw-r--r--  1 root root  2903 Aug  1 06:57 redir.c
--rw-r--r--  1 root root   188 Jul 26 03:49 tessst.c
--rw-r--r--  1 root root   195 Jul 26 03:49 test.c
--rw-r--r--  1 root root   213 Jul 26 03:49 test_free.c
--rw-r--r--  1 root root  1129 Jul 26 03:49 testing_dir.c
--rw-r--r--  1 root root  4708 Jul 29 06:03 testing_double.c
--rw-r--r--  1 root root   233 Jul 29 10:00 tmp
--rw-r--r--  1 root root     0 Jul 29 10:03 tmp1
--rw-r--r--  1 root root     0 Jul 29 10:03 tmp2
--rw-r--r--  1 root root     0 Jul 29 10:04 tmp3
--rw-r--r--  1 root root  5003 Jul 26 03:49 try.c
+FILE1
+FILE1
+FILE1
+FILE1
+FILE1
+FILE1
+FILE1
+FILE1
+FILE1

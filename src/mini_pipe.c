@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/02 09:11:08 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/08 06:06:14 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	path_finder(t_mini_cmd *cmd)
 		else
 			cmd->cmd_path = NULL;
 	}
+	
 }
 
 void	init_fds(t_shell_chan *main)

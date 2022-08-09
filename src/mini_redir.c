@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/02 10:32:25 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/08 06:16:37 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ void	redir_exe(t_mini_cmd *cmd)
 {
 	//todo path == null
 	path_finder(cmd);
-	execve(cmd->cmd_path, cmd->redir.arguments, NULL);
+	if(execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
+	{
+		write(2,"Command not found\n",19);
+		exit(1);
+	}
 }
 
 void	redir(t_mini_cmd *cmd)
@@ -67,18 +71,32 @@ void	redir(t_mini_cmd *cmd)
 				dup2(fd, STDOUT_FILENO);
 				close(fd);
 			}
+			else if(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
+			{
+				char *eof;
+				while(3)
+				{
+					eof = readline("> ");
+					// if(ft_strncmp(eof,cmd->redir.files[0],ft_strlen(eof)))
+					// {
+					// 	redir(cmd);
+					// }
+					if(!ft_strncmp(eof,cmd->redir.files[0],ft_strlen(eof)))
+					{
+						redir_exe(cmd);
+						// exit(0);
+					}	
+				}
+			}
 			
 			i++;
 		}
-		write(2,"if conndd\n",11);
 		if(!is_command(cmd->redir.command))
 		{
-			write(2,"COMMAND\n",9);
 			redir_exe(cmd);
 		}
 		else if (is_command(cmd->redir.command))
 		{
-			// write(2,"NOT COMMAND\n",13);
 			run_builtn(cmd);
 			exit(0);
 		}
