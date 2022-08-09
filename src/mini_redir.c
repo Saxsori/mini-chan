@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/08 06:16:37 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:09:56 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,14 @@ void	redir(t_mini_cmd *cmd)
 			else if(!ft_strncmp(cmd->redir.redir[i],"<",ft_strlen("<")))
 			{
 				if(access(cmd->redir.files[i], F_OK) == 0)
-					fd = open(cmd->redir.files[i], O_RDONLY);
+				{
+						fd = open(cmd->redir.files[i], O_RDONLY);
+						write(1,"\n here1 \n",9);
+				}
 				else
 				{
-					write(1, cmd->redir.files[i],ft_strlen(cmd->redir.files[i]));
-					write(1,"No such file or directory", 26);
+					write(2, cmd->redir.files[i],ft_strlen(cmd->redir.files[i]));
+					write(2,"No such file or directory\n", 26);
 					exit(127);
 				}
 				dup2(fd, STDIN_FILENO);
@@ -77,15 +80,8 @@ void	redir(t_mini_cmd *cmd)
 				while(3)
 				{
 					eof = readline("> ");
-					// if(ft_strncmp(eof,cmd->redir.files[0],ft_strlen(eof)))
-					// {
-					// 	redir(cmd);
-					// }
-					if(!ft_strncmp(eof,cmd->redir.files[0],ft_strlen(eof)))
-					{
-						redir_exe(cmd);
-						// exit(0);
-					}	
+					if(!ft_strncmp(eof,cmd->redir.files[i],ft_strlen(eof)))
+						break;
 				}
 			}
 			
