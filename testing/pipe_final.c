@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_final.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 06:53:55 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/07/25 21:54:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:39:05 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	ft_dup_fds(t_shell_chan *main, int i, int num_cmd)
 	if (i > 0)
 	{
 		if (dup2 (main->fds[i - 1][0], STDIN_FILENO) < 0)
-			perror("dup2");
+			perror("testing dup2");
 	}
 	if (i < num_cmd - 1)
 	{
 		if (dup2 (main->fds[i][1], STDOUT_FILENO) < 0)
-			perror("dup1");
+			perror("testing dup1");
 	}
 	if (i > 0)
 	{
@@ -182,7 +182,7 @@ void	path_test(t_shell_chan *main, char *av[], int ac)
 			if (i > 0)
 			{
 				if (close(main->fds[i - 1][0]) == -1)
-					perror("sec close \n");
+					perror("testing sec close \n");
 			}
 		}
 			i++;

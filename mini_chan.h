@@ -361,7 +361,11 @@ void			replace_tabbing_spaces(char	**split);
 
 /*******************    MINI_REDIR_EXE   ******************/
 
+
+void			redir_exe(t_mini_cmd *cmd);
 void			redir(t_mini_cmd *cmd);
+void			redir_pip(t_shell_chan *main, t_mini_cmd *cmd,int i);
+// void			redir_pip(t_mini_cmd *cmd, int i);
 
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);

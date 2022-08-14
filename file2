@@ -1,0 +1,31 @@
+total 464
+drwxr-xr-x  30 balnahdi  2021_abudhabi    1020 Aug 14 13:53 .
+drwxr-xr-x  58 balnahdi  2021_abudhabi    2040 Aug 14 13:48 ..
+-rw-r--r--   1 balnahdi  2021_abudhabi   10244 Aug  9 14:26 .DS_Store
+drwxr-xr-x  14 balnahdi  2021_abudhabi     476 Aug 10 11:11 .git
+-rw-r--r--   1 balnahdi  2021_abudhabi      17 Aug  9 14:26 .gitignore
+drwxr-xr-x   6 balnahdi  2021_abudhabi     204 Aug  9 14:26 .vscode
+-rw-r--r--   1 balnahdi  2021_abudhabi    3590 Aug 14 11:57 Makefile
+-rw-r--r--   1 balnahdi  2021_abudhabi     165 Aug  9 14:26 README.md
+-rw-r--r--   1 balnahdi  2021_abudhabi   25953 Aug  9 14:26 WAKUWAKU.mp3
+-rw-r--r--   1 balnahdi  2021_abudhabi      60 Aug 14 13:55 cat
+-rw-r--r--   1 balnahdi  2021_abudhabi      29 Aug  9 14:26 dirlist
+-rw-r--r--   1 balnahdi  2021_abudhabi     944 Aug  9 14:26 fd
+-rw-r--r--   1 balnahdi  2021_abudhabi     176 Aug 10 12:13 fiel1
+-rw-r--r--   1 balnahdi  2021_abudhabi     193 Aug 14 13:51 fil
+-rw-r--r--   1 balnahdi  2021_abudhabi       0 Aug 14 13:58 file
+-rw-r--r--   1 balnahdi  2021_abudhabi   14022 Aug 14 13:58 file1
+-rw-r--r--   1 balnahdi  2021_abudhabi       0 Aug 14 13:58 file2
+-rw-r--r--   1 balnahdi  2021_abudhabi     152 Aug  9 14:26 file3
+-rw-r--r--   1 balnahdi  2021_abudhabi     157 Aug  9 14:26 file5
+-rw-r--r--   1 balnahdi  2021_abudhabi    1779 Aug  9 16:01 file99
+-rw-r--r--   1 balnahdi  2021_abudhabi       0 Aug 14 08:57 fileee
+-rw-r--r--   1 balnahdi  2021_abudhabi     185 Aug 14 11:51 ile
+drwxr-xr-x  82 balnahdi  2021_abudhabi    2788 Aug 14 13:53 libft
+-rw-r--r--   1 balnahdi  2021_abudhabi   12104 Aug 14 12:15 mini_chan.h
+-rw-r--r--   1 balnahdi  2021_abudhabi    1944 Aug  9 14:26 mini_redir_getred.c
+-rw-r--r--   1 balnahdi  2021_abudhabi     899 Aug  9 14:26 minichan .txt
+-rwxr-xr-x   1 balnahdi  2021_abudhabi  110360 Aug 14 13:53 minishell
+drwxr-xr-x   3 balnahdi  2021_abudhabi     102 Aug  9 14:26 minishell.dSYM
+drwxr-xr-x  86 balnahdi  2021_abudhabi    2924 Aug 14 13:53 src
+drwxr-xr-x  33 balnahdi  2021_abudhabi    1122 Aug  9 14:26 testing

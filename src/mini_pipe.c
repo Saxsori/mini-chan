@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/08 06:06:14 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:14:55 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,23 @@ void	ft_dup_fds(t_shell_chan *main, int i)
 	if (i > 0)
 	{
 		if (dup2 (main->pipe_tools.fds[i - 1][0], STDIN_FILENO) < 0)
-			perror("dup2");
+			perror(". dup2");
 	}
 	if (i < main->pipe_tools.p_num)
 	{
 		if (dup2 (main->pipe_tools.fds[i][1], STDOUT_FILENO) < 0)
-			perror("dup1");
+			perror(". dup1");
 	}
 	if (i > 0)
 	{
 		if (close(main->pipe_tools.fds[i - 1][0]) == -1)
-			perror("1 close");
+			perror(". 1 close");
 	}
 	if (i < main->pipe_tools.p_num)
 	{
 		if (close(main->pipe_tools.fds[i][1]) == -1)
-			perror("2 close");
+			perror(". 2 close");
 		if (close(main->pipe_tools.fds[i][0]) == -1)
-			perror("3 close");
+			perror(". 3 close");
 	}
 }

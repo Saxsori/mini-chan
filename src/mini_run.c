@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/08 06:47:17 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:13:42 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 int	run_cmd(t_shell_chan *main)
 {
 	int	i;
-
+	i = 0;
 	get_path(main);
 	
 	if (main->cmd_num == 1)
@@ -94,20 +94,26 @@ int	run_cmd(t_shell_chan *main)
 			{
 				if (i == 0)
 				{
-					ft_dup_fds(main, i);
-
-						if (main->cmd_table[i].tools.y_exe)
+						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
 						{
-							write(1, &main->cmd_table[i].tools.y_exe, 10);
+							ft_dup_fds(main, i);
+							write(2,"1redir here\n",12);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2,"mini-chan🌸: ",16);
+								write(2,"f mini-chan🌸: ",18);
 								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
 								write(2,": command not found\n",21);
 								exit(1);
 							}
+						}
+						else if(main->cmd_table[i].tools.y_redir)
+						{
+							write(2,"2redir here\n",11);
+							// ft_dup_fds(main, i);
+							redir(&main->cmd_table[i]);
+								// redir_pip(main, main->cmd_table,i);
 						}
 						else
 						{
@@ -118,19 +124,27 @@ int	run_cmd(t_shell_chan *main)
 				else if ((i == main->pipe_tools.p_num) \
 							&& main->pipe_tools.child == 0)
 				{
-					ft_dup_fds(main, i);
-						if (main->cmd_table[i].tools.y_exe)
+						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
 						{
-							write(1, &main->cmd_table[i].tools.y_exe, 10);
+							ft_dup_fds(main, i);
+							write(2,"3redir here\n",12);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2,"mini-chan🌸: ",16);
+								write(2,"l mini-chan🌸: ",18);
 								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
 								write(2,": command not found\n",21);
 								exit(1);
 							}
+						}
+						else if(main->cmd_table[i].tools.y_redir)
+						{
+							write(2,"4redir here\n",11);
+								//ft_dup_fds(main, i);
+								redir(&main->cmd_table[i]);
+								// redir_pip(main, main->cmd_table,i);
+
 						}
 						else
 						{
@@ -140,18 +154,26 @@ int	run_cmd(t_shell_chan *main)
 				}
 				else
 				{
-					ft_dup_fds(main, i);
-						if (main->cmd_table[i].tools.y_exe)
+						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir) 
 						{
+							write(2,"5redir here\n",11);
+							ft_dup_fds(main, i);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2,"mini-chan🌸: ",16);
+								write(2,"m mini-chan🌸: ",18);
 								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
 								write(2,": command not found\n",21);
 								exit(1);
 							}
+						}
+						else if(main->cmd_table[i].tools.y_redir)
+						{
+							write(2,"6redir here\n",11);
+								// ft_dup_fds(main, i);
+							redir(&main->cmd_table[i]);
+								// redir_pip(main, main->cmd_table,i);
 						}
 						else
 						{
@@ -170,16 +192,16 @@ int	run_cmd(t_shell_chan *main)
 				if (i > 0)
 				{
 					if (close(main->pipe_tools.fds[i - 1][0]) == -1)
-						perror("sec close \n");
+						perror(". sec close \n");
 				}
 			}
 		}
 	}
-	i = 0;
-	while (i < 3)
-	{
-		waitpid(-1, &main->pipe_tools.status, 0);
-		i++;
-	}
+		i = 0;
+		while (i < 3)
+		{
+			waitpid(-1, &main->pipe_tools.status, 0);
+			i++;
+		}
 	return (0);
 }

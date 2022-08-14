@@ -6,11 +6,12 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/09 15:09:56 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:37:07 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+#include <stdio.h>
 
 void	redir_exe(t_mini_cmd *cmd)
 {
@@ -22,22 +23,12 @@ void	redir_exe(t_mini_cmd *cmd)
 		exit(1);
 	}
 }
-
-void	redir(t_mini_cmd *cmd)
+void	redir_mix(t_mini_cmd *cmd)
 {
-	// printf("arg redir  %d \n",cmd->redir.redir_tools.num_redir);
-	// printf("cmd name %s  %s\n",cmd->redir.command, cmd->cmd_path);
 	int	i;
-	int fd;
-	pid_t child;
-	int status;
-
-	// printf("%s abrab cmd name\n",cmd->redir.command);
 	i = 0;
-	child = fork();
-	if(child == 0)
-	{
-		while(i < cmd->redir.redir_tools.num_redir)
+	int fd;
+		while(i < cmd->redir.redir_tools.num_redir )
 		{
 			if(!ft_strncmp(cmd->redir.redir[i],">",ft_strlen(">")))
 			{
@@ -45,9 +36,10 @@ void	redir(t_mini_cmd *cmd)
 					fd = open(cmd->redir.files[i], O_WRONLY| O_TRUNC| O_CREAT, 0644);
 				else
 					fd = open(cmd->redir.files[i], O_WRONLY| O_TRUNC| O_CREAT, 0644);
-				dup2(fd, STDOUT_FILENO);
+				write(2,"dup > here\n",11);
+				if(dup2(fd, STDOUT_FILENO) < 0)
+					perror("dup >");
 				close(fd);
-				
 			}
 			else if(!ft_strncmp(cmd->redir.redir[i],"<",ft_strlen("<")))
 			{
@@ -62,7 +54,9 @@ void	redir(t_mini_cmd *cmd)
 					write(2,"No such file or directory\n", 26);
 					exit(127);
 				}
-				dup2(fd, STDIN_FILENO);
+				write(2,"dup < here\n",11);
+				if(dup2(fd, STDIN_FILENO) < 0)
+					perror("dup <");
 				close(fd);
 			}
 			else if(!ft_strncmp(cmd->redir.redir[i],">>",ft_strlen(">>")))
@@ -71,7 +65,9 @@ void	redir(t_mini_cmd *cmd)
 					fd = open(cmd->redir.files[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
 				else
 					fd = open(cmd->redir.files[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
-				dup2(fd, STDOUT_FILENO);
+				write(2,"dup >> here\n",12);				
+				if(dup2(fd, STDOUT_FILENO) < 0)
+					perror("dup >>");
 				close(fd);
 			}
 			else if(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
@@ -89,6 +85,7 @@ void	redir(t_mini_cmd *cmd)
 		}
 		if(!is_command(cmd->redir.command))
 		{
+			write(2,"exe   here\n",12);
 			redir_exe(cmd);
 		}
 		else if (is_command(cmd->redir.command))
@@ -96,7 +93,93 @@ void	redir(t_mini_cmd *cmd)
 			run_builtn(cmd);
 			exit(0);
 		}
+}
+void	redir(t_mini_cmd *cmd)
+{
+	int	i;
+	int fd;
+	pid_t child;
+	int status;
+	i = 0;
+	
+		if(cmd->main->cmd_num > 1)
+		{
+			redir_mix(cmd);
+		}
+		else if (cmd->main->cmd_num == 1)
+		{
+			write(2,"only redir\n",11);
+			child = fork();
+			if(child == 0)
+			{
+				while(i < cmd->redir.redir_tools.num_redir )
+				{
+					if(!ft_strncmp(cmd->redir.redir[i],">",ft_strlen(">")))
+					{
+						if(access(cmd->redir.files[i], F_OK) == -1)
+							fd = open(cmd->redir.files[i], O_WRONLY| O_TRUNC| O_CREAT, 0644);
+						else
+							fd = open(cmd->redir.files[i], O_WRONLY| O_TRUNC| O_CREAT, 0644);
+						write(2,"dup > here\n",11);
+						if(dup2(fd, STDOUT_FILENO) < 0)
+							perror("dup >");
+						close(fd);
+					}
+					else if(!ft_strncmp(cmd->redir.redir[i],"<",ft_strlen("<")))
+					{
+						if(access(cmd->redir.files[i], F_OK) == 0)
+						{
+								fd = open(cmd->redir.files[i], O_RDONLY);
+								write(1,"\n here1 \n",9);
+						}
+						else
+						{
+							write(2, cmd->redir.files[i],ft_strlen(cmd->redir.files[i]));
+							write(2,"No such file or directory\n", 26);
+							exit(127);
+						}
+						write(2,"dup < here\n",11);
+						if(dup2(fd, STDIN_FILENO) < 0)
+							perror("dup <");
+						close(fd);
+					}
+					else if(!ft_strncmp(cmd->redir.redir[i],">>",ft_strlen(">>")))
+					{
+						if(access(cmd->redir.files[i], F_OK) == -1)
+							fd = open(cmd->redir.files[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
+						else
+							fd = open(cmd->redir.files[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
+						write(2,"dup >> here\n",12);				
+						if(dup2(fd, STDOUT_FILENO) < 0)
+							perror("dup >>");
+						close(fd);
+					}
+					else if(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
+					{
+						char *eof;
+						while(3)
+						{
+							eof = readline("> ");
+							if(!ft_strncmp(eof,cmd->redir.files[i],ft_strlen(eof)))
+								break;
+						}
+					}
+					
+					i++;
+				}
+			
+				if(!is_command(cmd->redir.command))
+				{
+					write(2,"exe   here\n",12);
+					redir_exe(cmd);
+				}
+				else if (is_command(cmd->redir.command))
+				{
+					run_builtn(cmd);
+					exit(0);
+				}
+		}
+			else
+				waitpid(-1, &status, 0);
 	}
-	else
-		waitpid(-1, &status, 0);
 }

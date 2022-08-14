@@ -292,7 +292,7 @@ void ft_pipe(t_shell_chan *main,char *av[],int ac)
 			{
 				// perror("close2");
 				if(close(fds[i-1][0]) == -1)
-					perror("sec close \n");
+					perror("exe testing sec close \n");
 			}
 		}
 			i++;

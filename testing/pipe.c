@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:35:50 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/28 20:38:29 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:33:22 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void path_test(t_shell_chan *main,char *av[],int ac)
 			break ;
 		}
 	}
-	// *************
 	printf("HI %s\n", cmd_path[0]);
 	int	fd;
 	if (access(av[3], F_OK) == -1)
