@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/14 14:13:42 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/15 09:47:47 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,7 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"2redir here\n",11);
-							// ft_dup_fds(main, i);
 							redir(&main->cmd_table[i]);
-								// redir_pip(main, main->cmd_table,i);
 						}
 						else
 						{
@@ -141,10 +139,7 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"4redir here\n",11);
-								//ft_dup_fds(main, i);
-								redir(&main->cmd_table[i]);
-								// redir_pip(main, main->cmd_table,i);
-
+							redir(&main->cmd_table[i]);
 						}
 						else
 						{
@@ -171,9 +166,7 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"6redir here\n",11);
-								// ft_dup_fds(main, i);
 							redir(&main->cmd_table[i]);
-								// redir_pip(main, main->cmd_table,i);
 						}
 						else
 						{
