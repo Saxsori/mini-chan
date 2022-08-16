@@ -6,7 +6,7 @@
 #    By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/08/14 11:57:27 by balnahdi         ###   ########.fr        #
+#    Updated: 2022/08/16 13:35:38 by balnahdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ all : ${NAME}
 ${NAME} :  ${OBJ}
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
-	#@ afplay WAKUWAKU.mp3
+	@ afplay WAKUWAKU.mp3
 # 	@ printf " \
 # ,---.    ,---..-./`) ,---.   .--..-./`)             _______   .---.  .---.    ____    ,---.   .--. \
 # |    \  /    |\ .-.')|    \  |  |\ .-.')           /   __  \  |   |  |_ _|  .'  __ `. |    \  |  | \

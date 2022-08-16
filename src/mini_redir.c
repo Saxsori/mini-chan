@@ -6,12 +6,16 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/14 14:37:07 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:02:16 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdio.h>
+#include <sys/_types/_pid_t.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 void	redir_exe(t_mini_cmd *cmd)
 {
@@ -23,6 +27,7 @@ void	redir_exe(t_mini_cmd *cmd)
 		exit(1);
 	}
 }
+
 void	redir_mix(t_mini_cmd *cmd)
 {
 	int	i;
@@ -156,21 +161,44 @@ void	redir(t_mini_cmd *cmd)
 					}
 					else if(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
 					{
+						// while(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
+						// 	i++;
 						char *eof;
-						while(3)
+						int fd[2];
+						int stat;
+						if(pipe(fd) < 0)
+							perror("pipe error");
+						pid_t child;
+						child = fork();
+						if(child == 0)
 						{
-							eof = readline("> ");
-							if(!ft_strncmp(eof,cmd->redir.files[i],ft_strlen(eof)))
-								break;
+							while(3)
+							{
+								eof = readline("> ");
+								if(!ft_strncmp(eof,cmd->redir.files[i],ft_strlen(eof)))
+									break;
+								write(fd[1],eof,ft_strlen(eof));
+								write(fd[1],"\n",1);
+							}
+							close(fd[1]);
+							dup2(fd[0], STDIN_FILENO);
+							close(fd[0]);
+							redir_exe(cmd);
+						}
+						else {
+							close(fd[0]);
+							close(fd[1]);
+							waitpid(-1, &stat, 0);
 						}
 					}
 					
 					i++;
 				}
 			
-				if(!is_command(cmd->redir.command))
+				if(!is_command(cmd->redir.command) && ft_strncmp(cmd->redir.command, "cat", ft_strlen("cat")))//&& !ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen("<<") todo if command is "cat"
 				{
-					write(2,"exe   here\n",12);
+					write(2,"9exe  here\n",12);
+					// write(2,cmd->redir.command,ft_strlen(cmd->redir.command));
 					redir_exe(cmd);
 				}
 				else if (is_command(cmd->redir.command))

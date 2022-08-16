@@ -53,20 +53,38 @@ int main(int ac,char *av[])
 {
 	int fd[2];
 	int stat;
+	char *dlm;
 	char **c = ft_split(av[1], '\0');
 	if(pipe(fd) < 0)
 		perror("pipe error");
 	pid_t child = fork();
 	if(child == 0)
 	{
-		dup2(STDOUT_FILENO,fd[1]);
-		if(execve("bin/ls",c, NULL) < 0)
-			perror("error");
-		dup2(STDIN_FILENO,fd[0]);
-		if(execve("bin/ls",c, NULL) < 0)
-			perror("error2");
+		if(av[2][0] == '{')
+		{
+			while(1)
+			{
+				dlm = readline("> ");
+				if(!strcmp(dlm,av[3]))
+				{
+					break;
+				}
+				write(fd[1],dlm,ft_strlen(dlm));
+				write(fd[1],"\n",1);
+				// ft_putstr_fd(dlm, fd[1]);
+				//nl
+			}
+			close(fd[1]);
+			dup2(fd[0],STDIN_FILENO);
+			close(fd[0]);
+			if(execve(av[4],c,NULL) < 0)
+				perror("error");
+			// exit(0);
+		}
 	}
 	else {
+			close(fd[0]);
+			close(fd[1]);
 		waitpid(0, &stat, 0);
 	}
 }
