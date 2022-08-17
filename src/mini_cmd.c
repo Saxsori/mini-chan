@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/02 10:53:15 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/17 12:39:22 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,17 @@ int	mini_pwd(t_mini_cmd *cmd)
 
 int	mini_exit(t_mini_cmd *cmd)
 {
-	if (!cmd->arguments)
-	{
-		printf(BCYN"exit\n"BWHT);
-		exit(0);
-	}
-	else
-	{
-		printf(BCYN"exit\n"BWHT);
-		exit(ft_atoi(cmd->arguments[0]));
-	}
+	if (cmd->option)
+		pre_exit_arg(cmd);
+	
+	// if (!cmd->arguments)
+	// {
+	// 	printf(BCYN"exit\n"BWHT);
+	// 	exit(0);
+	// }
+	// else
+	// {
+	// 	printf(BCYN"exit\n"BWHT);
+	// 	exit(ft_atoi(cmd->arguments[0]));
+	// }
 }

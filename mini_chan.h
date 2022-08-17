@@ -307,7 +307,7 @@ void			find_env_index(t_shell_chan *main, int i);
 void			expand_envar(t_shell_chan *main);
 void			start_expand(t_expand_tools *exp_tools);
 void			init_env_info(t_env_info *env_info, \
-t_expand_tools *exp_tools, int i);
+				t_expand_tools *exp_tools, int i);
 void			find_istart(t_env_info *env_info);
 void			get_env_value(t_env_info *env_info);
 char			*get_env_name(t_env_info *env_info);
@@ -394,4 +394,7 @@ void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
 void			ft_dup_fds(t_shell_chan *main, int i);
+
+/*******************    MINI_EXIT  ******************/
+void			pre_exit_arg(t_mini_cmd *cmd);
 #endif
