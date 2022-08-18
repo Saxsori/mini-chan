@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/17 12:39:22 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/18 15:51:35 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	mini_exit(t_mini_cmd *cmd)
 {
 	if (cmd->option)
 		pre_exit_arg(cmd);
-	
+	printf(" BOO exit cmd %d\n",cmd->tools.arg_num);	
 	// if (!cmd->arguments)
 	// {
 	// 	printf(BCYN"exit\n"BWHT);
@@ -94,4 +94,6 @@ int	mini_exit(t_mini_cmd *cmd)
 	// 	printf(BCYN"exit\n"BWHT);
 	// 	exit(ft_atoi(cmd->arguments[0]));
 	// }
+	// exit(0);
+	return(0);
 }
