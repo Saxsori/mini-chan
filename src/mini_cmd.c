@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/18 15:51:35 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:06:12 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,33 @@ int	mini_pwd(t_mini_cmd *cmd)
 
 int	mini_exit(t_mini_cmd *cmd)
 {
+	int	i;
+
+	i = 0;
 	if (cmd->option)
 		pre_exit_arg(cmd);
-	printf(" BOO exit cmd %d\n",cmd->tools.arg_num);	
-	// if (!cmd->arguments)
-	// {
-	// 	printf(BCYN"exit\n"BWHT);
-	// 	exit(0);
-	// }
-	// else
-	// {
-	// 	printf(BCYN"exit\n"BWHT);
-	// 	exit(ft_atoi(cmd->arguments[0]));
-	// }
-	// exit(0);
-	return(0);
+	printf(" BOO exit cmd %d\n", cmd->tools.arg_num);
+	if (cmd->tools.arg_num > 1)
+	{
+		printf(" too many args exit cmd %d %s\n", \
+		cmd->tools.arg_num, cmd->arguments[0]);
+		if (!ft_atoi(cmd->arguments[0]))
+		{
+			printf("exit\n");
+			printf("mini-chan🌸$: exit: %s: numeric argument required\n", cmd->arguments[0]);
+			exit(255);//todo
+		}
+		else
+		{
+			printf("exit\n");
+			printf("mini-chan🌸$: exit: too many arguments\n");
+			exit(1);
+		}
+	}
+	else if (cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1)
+	{
+		printf(" one exit cmd %d\n", cmd->tools.arg_num);
+		exit(0);
+	}
+	return (0);
 }

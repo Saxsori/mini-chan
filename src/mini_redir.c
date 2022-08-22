@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/16 16:02:16 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:26:24 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
 void	redir_exe(t_mini_cmd *cmd)
 {
 	//todo path == null
-	path_finder(cmd);
-	if(execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
+	if (cmd->redir.command)
 	{
-		write(2,"Command not found\n",19);
+		path_finder(cmd);
+	}
+	if (execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
+	{
+		write (2, "Command not found\n", 19);
 		exit(1);
 	}
 }
