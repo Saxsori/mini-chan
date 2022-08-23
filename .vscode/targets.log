@@ -7,11 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `src/main.o', needed by `minishell'.  Stop.
 
-
-# Make data base, printed on Mon Jul 25 22:52:33 2022
- 
+# Make data base, printed on Sat Aug 20 12:42:52 2022
 
 # Variables
 
@@ -19,10 +16,10 @@ make: *** No rule to make target `src/main.o', needed by `minishell'.  Stop.
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 33)
+# makefile (from `Makefile', line 35)
 OBJ = ${SRC:.c=.o}
 # makefile (from `Makefile', line 13)
-SRC = src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c						src/mini_redir_tools.c src/mini_redir_pre.c					src/mini_redir_isvalid.c src/mini_redir_take_valid.c             src/mini_redir_getredir.c src/mini_redir_reline.c					src/mini_redir_split.c src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c
+SRC = src/main.c                  		    src/mini_ctrls.c src/mini_init.c           		      	src/mini_tools.c src/mini_cmd.c              		    src/mini_check.c src/mini_cmd_opt.c            			src/mini_cmd_arg.c src/mini_cmd2.c               			src/mini_parse.c src/mini_run_cmd.c             			src/mini_free.c src/mini_envar.c                		src/mini_envar_tools.c src/mini_envar_export.c           		src/mini_envar_unset.c src/mini_echo_tools.c               	src/mini_cd_tools.c src/mini_quotes_split.c         	    src/mini_quotes_checker.c src/mini_envar_export_tools.c			src/mini_expand_tools.c src/mini_expand_pre.c 					src/mini_expand_envar.c src/mini_expand_action.c      			src/mini_echo_parse.c src/mini_pre_execute.c					src/mini_run.c src/mini_execute.c						src/mini_redir_tools.c src/mini_redir_pre.c					src/mini_redir_isvalid.c src/mini_redir_take_valid.c             src/mini_redir_getredir.c src/mini_redir_reline.c					src/mini_redir_split.c src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c src/mini_pipe.c							src/mini_redir.c src/mini_redir_wpip.c					src/mini_exit_pre.c
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -30,53 +27,47 @@ SRC = src/main.c                  		    src/mini_ctrls.c src/mini_init.c        
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan
+CURDIR := /Users/balnahdi/mini-chan-1
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 45)
+# makefile (from `Makefile', line 47)
 RM = rm -rf
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 40)
+# makefile (from `Makefile', line 42)
 CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
-__CFBundleIdentifier = com.microsoft.VSCode
-# environment
 VSCODE_CWD = /
 # environment
-PATH = /opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/balnahdi/Documents/42-ValgrindContainer
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.wtCo4BE37r/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BHGVNQxMUl/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/abrar/Desktop/42-Devcontainer/src/Cursus/mini-chan
+PWD = /Users/balnahdi/mini-chan-1
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/abrar
+HOME = /Users/balnahdi
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/abrar/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /Users/balnahdi/Library/Application Support/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
-LOGNAME = abrar
+LOGNAME = balnahdi
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-ZSH = /Users/abrar/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -89,32 +80,30 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 37)
+# makefile (from `Makefile', line 39)
 CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = abrar
+USER = balnahdi
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 35)
+# makefile (from `Makefile', line 37)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 43)
+# makefile (from `Makefile', line 45)
 LINKS = -lreadline -L /usr/local/opt/readline/lib
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/tf/h1_k8wk91w3b7v3vlh1n3j_r0000gn/T/
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cb980032t_/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/abrar/Library/Application Support/Code/1.69.2-main.sock
+VSCODE_IPC_HOOK = /Users/balnahdi/Library/Application Support/Code/1.70.1-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -124,22 +113,17 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.23059458.23059464
+XPC_SERVICE_NAME = com.microsoft.VSCode.2448
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
-# environment
-COMMAND_MODE = unix2003
+__CF_USER_TEXT_ENCODING = 0x18B4A:0x0:0x0
 # default
 MAKEFILES := 
 # automatic
- 
 <F = $(notdir $<)
-# environment
-PAGER = less
 # environment
 LC_ALL = C
 # automatic
@@ -153,9 +137,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 53422
+VSCODE_PID = 3086
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=3/97=3%
+# Load=63/1024=6%, Rehash=0, Collisions=3/91=3%
 
 # Pattern-specific Variable Values
 
@@ -163,9 +147,9 @@ VSCODE_PID = 53422
 
 # Directories
 
-# . (device 16777234, inode 21545115): 16 files, no impossibilities.
+# . (device 16777225, inode 1059036): 29 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 29 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -276,7 +260,7 @@ src/mini_tools.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 17:45:58
+#  Last modified 2022-08-17 12:02:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -315,6 +299,9 @@ src/mini_pre_execute.o:
 # Not a target:
 src/mini_redir_split.o:
 #  Implicit rule search has not been done.
+ 
+make: *** No rule to make target `src/main.o', needed by `minishell'.  Stop.
+
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -330,23 +317,23 @@ src/mini_envar.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o src/mini_redir_tools.o src/mini_redir_pre.o src/mini_redir_isvalid.o src/mini_redir_take_valid.o src/mini_redir_getredir.o src/mini_redir_reline.o src/mini_redir_split.o src/mini_redir_get_parts.o src/mini_echo_arg_redir.o
+minishell: src/main.o src/mini_ctrls.o src/mini_init.o src/mini_tools.o src/mini_cmd.o src/mini_check.o src/mini_cmd_opt.o src/mini_cmd_arg.o src/mini_cmd2.o src/mini_parse.o src/mini_run_cmd.o src/mini_free.o src/mini_envar.o src/mini_envar_tools.o src/mini_envar_export.o src/mini_envar_unset.o src/mini_echo_tools.o src/mini_cd_tools.o src/mini_quotes_split.o src/mini_quotes_checker.o src/mini_envar_export_tools.o src/mini_expand_tools.o src/mini_expand_pre.o src/mini_expand_envar.o src/mini_expand_action.o src/mini_echo_parse.o src/mini_pre_execute.o src/mini_run.o src/mini_execute.o src/mini_redir_tools.o src/mini_redir_pre.o src/mini_redir_isvalid.o src/mini_redir_take_valid.o src/mini_redir_getredir.o src/mini_redir_reline.o src/mini_redir_split.o src/mini_redir_get_parts.o src/mini_echo_arg_redir.o src/mini_pipe.o src/mini_redir.o src/mini_redir_wpip.o src/mini_exit_pre.o
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 53):
+#  commands to execute (from `Makefile', line 55):
 	@ ${MAKE} -C ./libft
 	@ ${CC} ${SRC} ./libft/libft.a -o ${NAME} ${CFLAGS} ${LINKS}
-	#@ afplay WAKUWAKU.mp3
+	@ afplay WAKUWAKU.mp3
 	
 
 .c.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 50):
+#  commands to execute (from `Makefile', line 52):
 	@ ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 	
 
@@ -354,7 +341,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 74):
 	@ ${RM} ${NAME}
 	@ ${MAKE} fclean -C ./libft
 	
@@ -401,6 +388,12 @@ src/mini_echo_parse.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/mini_pipe.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 re: fclean all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -416,7 +409,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 68):
+#  commands to execute (from `Makefile', line 70):
 	@ ${RM} ${OBJ}
 	@ ${MAKE} clean -C ./libft
 	
@@ -446,8 +439,19 @@ src/mini_cmd2.o:
 #  File has not been updated.
 
 # Not a target:
- 
+src/mini_redir.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/mini_run.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/mini_exit_pre.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -471,13 +475,19 @@ src/mini_redir_pre.o:
 #  File has not been updated.
 
 # Not a target:
+src/mini_redir_wpip.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/mini_envar_export_tools.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=47/1024=5%, Rehash=0, Collisions=6/102=6%
+# Load=51/1024=5%, Rehash=0, Collisions=6/110=5%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -489,6 +499,6 @@ src/mini_envar_export_tools.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jul 25 22:52:33 2022
+# Finished Make data base on Sat Aug 20 12:42:52 2022
 
  

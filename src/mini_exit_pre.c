@@ -6,16 +6,16 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:52:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/08/17 12:38:41 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:06:59 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../mini_chan.h"
 
-char **get_exit_arg(t_mini_cmd *cmd)
+char	**get_exit_arg(t_mini_cmd *cmd)
 {
 	int		i;
-	char 	**arg;
+	char	**arg;
 	int		num;
 	int		j;
 
@@ -42,15 +42,16 @@ void	pre_exit_arg(t_mini_cmd *cmd)
 
 	i = -1;
 	printf("opt num %d\n", cmd->tools.opt_num);
-	while(++i < cmd->tools.opt_num)
+	while (++i < cmd->tools.opt_num)
 		printf("opt %s\n", cmd->option[i]);
 	i = -1;
 	printf("arg num %d\n", cmd->tools.arg_num);
-	while(++i < cmd->tools.arg_num)
+	while (++i < cmd->tools.arg_num)
 		printf("arg %s\n", cmd->arguments[i]);
 	cmd->arguments = get_exit_arg(cmd);
 	i = -1;
 	printf("new arg num %d\n", cmd->tools.arg_num);
-	while(++i < cmd->tools.arg_num)
+	while (++i < cmd->tools.arg_num)
 		printf("new arg %s\n", cmd->arguments[i]);
+	exit(0);
 }

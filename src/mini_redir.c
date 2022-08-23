@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/22 11:54:05 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/08/23 07:17:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
 void	redir_exe(t_mini_cmd *cmd)
 {
 	//todo path == null
-	path_finder(cmd);
-	if(execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
+	if (cmd->redir.command)
 	{
-		write(2,"Command not found\n",19);
+		path_finder(cmd);
+	}
+	if (execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
+	{
+		write (2, "Command not found\n", 19);
 		exit(1);
 	}
 }

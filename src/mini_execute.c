@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/08 06:31:03 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/22 18:30:14 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+#include <sys/wait.h>
 
 /*
 	// i = 0;
@@ -18,7 +19,7 @@
 	// 	printf("arg '%s'\n", cmd->exe_tools.arguments[i++]);
 */
 
-void	mini_execute(t_mini_cmd *cmd)
+int	mini_execute(t_mini_cmd *cmd)
 {
 	int		i;
 	int		status;
@@ -45,12 +46,17 @@ void	mini_execute(t_mini_cmd *cmd)
 			write(2,"mini-chan🌸: ",16);
 			write(2,cmd->exe_tools.arguments[0],ft_strlen(cmd->exe_tools.arguments[0]));
 			write(2,": command not found\n",21);
-			exit(1);
+			exit(WIFEXITED(status));
 			//WIFEXITED
 		}
 		//free all memory
 		// exit(1);
 	}
 	else
+	{
 		waitpid(-1, &status, 0);
+		// printf("status %d\n", WEXITSTATUS(status));
+		// printf("exited %d\n", WEXITED);
+	}
+	return (0);
 }
