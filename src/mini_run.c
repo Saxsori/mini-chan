@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 11:33:18 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:35:54 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	run_cmd(t_shell_chan *main)
 
 	i = 0;
 	get_path(main);
-	printf("seg\n");
+	// printf("seg\n");
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
