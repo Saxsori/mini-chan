@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/22 20:10:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:27:51 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int	main(int argc, char **argv, char **env)
 		else if (check_cmd_line(main.cmd_line))
 			main.exit_status = find_command(&main);
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK;
+		// VALGRIND_DO_LEAK_CHECK;
 	}
 	// free envar
 	return (0);
