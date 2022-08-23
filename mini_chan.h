@@ -22,10 +22,11 @@
 # include <dirent.h>
 # include <sys/types.h>
 # include <sys/unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <valgrind/memcheck.h>
 # include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
@@ -381,10 +382,10 @@ void			do_unset(t_mini_cmd *cmd, int i);
 /*******************    MINI_EXECUTE_TOOLS   ******************/
 void			execute_tools(t_mini_cmd *cmd);
 void			path(t_shell_chan *main, char *av[], int argc);
-void 			ft_pipe(t_shell_chan *main, char *av[], int ac);
-void			path_test(t_shell_chan *main,char *av[],int ac);
-void 			tst_redir(t_shell_chan *main,char *av[],int ac, int k);
-void			tst_redir_main(t_shell_chan *main,char *av[],int ac);
+void			ft_pipe(t_shell_chan *main, char *av[], int ac);
+void			path_test(t_shell_chan *main, char *av[],int ac);
+void 			tst_redir(t_shell_chan *main, char *av[], int ac, int k);
+void			tst_redir_main(t_shell_chan *main, char *av[], int ac);
 void			mini_execute(t_mini_cmd *cmd);
 void			get_path(t_shell_chan *main);
 
@@ -397,4 +398,5 @@ void			ft_dup_fds(t_shell_chan *main, int i);
 
 /*******************    MINI_EXIT  ******************/
 void			pre_exit_arg(t_mini_cmd *cmd);
+
 #endif

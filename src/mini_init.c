@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/25 21:16:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:54:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ void	re_init_shell_chan(t_shell_chan *main)
 		squaredint_free(main->exp_valid, main->cmd_num);
 	if (main->env_index != NULL)
 		squaredint_free(main->env_index, main->cmd_num);
-	if (main->cmd_num > 1)
-	{
+	// if (main->cmd_num > 1)
+	// {
 		if (main->first_split != NULL)
 			squaredstr_free(main->first_split);
-	}
+	// }
 	else if (main->cmd_num == 1)
 	{
 		free(main->first_split[0]);
@@ -92,6 +92,8 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->cmd_num = 0;
+	free(main->cmd_line);
+	main->cmd_line = NULL;
 }
 
 void	init_mem_cmd(t_mini_cmd *cmd)
@@ -193,6 +195,8 @@ void	init_predir(t_redir_parse *p_redir)
 
 void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 {
+	int	k;
+
 	redir->arguments = NULL;
 	redir->command = NULL;
 	redir->files = NULL;
@@ -205,7 +209,17 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->redir_tools.j = -1;
 	redir->redir_tools.k = -1;
 	redir->redir_tools.r_pos = NULL;
+	k = -1;
+	while (main->first_split[i][++k])
+	{
+		if (main->first_split[i][k] == '\a')
+			printf("yes\n");
+	}
+	printf("first split (%s)\n", main->first_split[i]);
 	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
+	k = -1;
+	while (redir->redir_tools.split[++k])
+		printf("split redir (%s)\n", redir->redir_tools.split[k]);
 	replace_tabbing_spaces(redir->redir_tools.split);
 }
 

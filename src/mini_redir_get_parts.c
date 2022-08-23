@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 21:13:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:18:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	get_redir_arg(t_mini_redir *redir, int op)
 	}
 	redir->redir_tools.j = 0;
 	redir->arguments = (char **)malloc(sizeof(char *) * (redir->redir_tools.num_arg + 2));
-	redir->arguments[0] = ft_strdup(redir->command);
+	if (!redir->arguments[0])
+		redir->arguments[0] = NULL;
+	else
+		redir->arguments[0] = ft_strdup(redir->command);
 	redir->arguments[redir->redir_tools.num_arg + 1] = NULL;
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
@@ -62,9 +65,19 @@ void	get_files(t_mini_redir *redir)
 void	get_cmd(t_mini_redir *redir, int op)
 {
 	if (op == 1)
-		redir->command = ft_strdup(redir->redir_tools.split[2]);
+	{
+		if (!redir->redir_tools.split[2])
+			redir->command = NULL;
+		else
+			redir->command = ft_strdup(redir->redir_tools.split[2]);
+	}
 	if (op == 2)
-		redir->command = ft_strdup(redir->redir_tools.split[0]);
+	{
+		if (!redir->redir_tools.split[0])
+			redir->command = NULL;
+		else
+			redir->command = ft_strdup(redir->redir_tools.split[0]);
+	}
 }
 
 /*
@@ -76,6 +89,7 @@ void	get_redir_part(t_mini_redir *redir, int op)
 	get_cmd(redir, op);
 	get_arg_num(redir, op);
 	get_redir_arg(redir, op);
+	printf("heere\n");
 	printf("cmd - %s\n", redir->command);
 	i = -1;
 	while (++i < redir->redir_tools.num_arg + 1)

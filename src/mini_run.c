@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/15 09:47:47 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/22 18:27:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@
 int	run_cmd(t_shell_chan *main)
 {
 	int	i;
+
 	i = 0;
 	get_path(main);
-	
+	printf("seg\n");
 	if (main->cmd_num == 1)
 	{
-		if(main->cmd_table->tools.y_redir)
+		if (main->cmd_table->tools.y_redir)
 		{
 			redir(main->cmd_table);
 		}
@@ -71,6 +72,7 @@ int	run_cmd(t_shell_chan *main)
 			}
 			else if (!is_command(main->cmd_table[0].name))
 			{
+				// TODO : if (!main->path)
 				execute_tools(&main->cmd_table[0]);
 				// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
 				mini_execute(&main->cmd_table[0]);

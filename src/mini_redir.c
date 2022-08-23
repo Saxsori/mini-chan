@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 06:37:12 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/16 16:02:16 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:54:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdio.h>
-#include <sys/_types/_pid_t.h>
+// #include <sys/_types/_pid_t.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 04:30:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:58:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	split_redir(t_shell_chan *main)
 				break ;
 			get_redir_pos(&main->cmd_table[i].redir);
 			get_files(&main->cmd_table[i].redir);
+			// printf("heere\n");
 			if (main->cmd_table[i].redir.redir_tools.split[0][0] == '\a')
 				get_redir_part(&main->cmd_table[i].redir, 1);
 			else
