@@ -215,6 +215,16 @@ void			init_expand_tools(t_expand_tools *exp_tools, \
 void			init_mem_cmd(t_mini_cmd *cmd);
 void			init_mini_pipe(t_mini_pipe *p_tool);
 
+/******************* MINI ERRORMNG & MEMNG *******************/
+void			squaredstr_free(char **array);
+void			squaredint_free(int **array, int len);
+void			ft_exit(t_shell_chan *main, int	status);
+void			free_mini_chan(t_shell_chan *main);
+void			free_mini_envar(t_shell_chan *main);
+void			free_shell_chan_mem(t_shell_chan *main);
+void			free_ptr(void **ptr);
+
+
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
 void			ctrl_c(int c);
@@ -259,10 +269,6 @@ int				mini_export(t_mini_cmd *cmd);
 int				mini_unset(t_mini_cmd *cmd);
 int				mini_env(t_mini_cmd *cmd);
 int				mini_chan(void);
-
-/******************* MINI ERRORMNG & MEMNG *******************/
-void			squaredstr_free(char **array);
-void			squaredint_free(int **array, int len);
 
 /*******************      MINI__ENVAR      *******************/
 void			create_envar_list(t_shell_chan *main, char **env);

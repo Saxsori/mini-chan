@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 10:40:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:38:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,47 @@
 void	init_shell_chan(t_shell_chan *main)
 {
 	main->cmd_line = NULL;
+	main->cmd_table = NULL;
 	main->cmd_num = 0;
 	main->exit_status = EXIT_SUCCESS;
-	main->d_rootpath = 0;
-	main->cmd_table = NULL;
-	main->env_index = NULL;
-	main->exp_tools = NULL;
-	main->exp_valid = NULL;
 	main->first_split = NULL;
 	main->head_envar = NULL;
-	init_mini_pipe(&main->pipe_tools);
+	main->exp_tools = NULL;
+	main->exp_valid = NULL;
+	main->env_index = NULL;
+	main->envar = NULL;
+	main->path = NULL;
+	main->path_split = NULL;
+	main->d_rootpath = 0;
 }
+
+void	re_init_shell_chan(t_shell_chan *main)
+{
+	free_shell_chan_mem(main);
+	main->cmd_line = NULL;
+	main->cmd_table = NULL;
+	main->cmd_num = 0;
+	main->first_split = NULL;
+	main->exp_tools = NULL;
+	main->exp_valid = NULL;
+	main->env_index = NULL;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void	free_redir_parse(t_mini_cmd *cmd)
 {
@@ -66,35 +96,6 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 	// // free DIR
 }
 
-void	re_init_shell_chan(t_shell_chan *main)
-{
-	// int	i;
-
-	if (main->exp_valid != NULL)
-		squaredint_free(main->exp_valid, main->cmd_num);
-	if (main->env_index != NULL)
-		squaredint_free(main->env_index, main->cmd_num);
-	// if (main->cmd_num > 1)
-	// {
-		if (main->first_split != NULL)
-			squaredstr_free(main->first_split);
-	// }
-	else if (main->cmd_num == 1)
-	{
-		free(main->first_split[0]);
-		free(main->first_split);
-	}
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// 	free_mini_cmd(&main->cmd_table[i]);
-	free(main->cmd_table);
-	main->cmd_table = NULL;
-	main->exp_valid = NULL;
-	main->env_index = NULL;
-	main->cmd_num = 0;
-	free(main->cmd_line);
-	main->cmd_line = NULL;
-}
 
 void	init_mem_cmd(t_mini_cmd *cmd)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_ctrls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/02 00:01:06 by badriah          ###   ########.fr       */
+/*   Updated: 2022/08/24 19:36:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ctrl_d(t_shell_chan *main)
 	if (!main->cmd_line)
 	{
 		printf(BCYN"exit\n"BWHT);
-		exit (0);
+		ft_exit (main, 0);
 	}
 }
 

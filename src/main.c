@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 11:27:51 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:41:24 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,10 +183,10 @@ int	main(int argc, char **argv, char **env)
 	{
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		ctrl_d(&main);
-		if (!check_cmd_line(main.cmd_line))
-			new_prompt(1);
-		else if (check_cmd_line(main.cmd_line))
-			main.exit_status = find_command(&main);
+		// if (!check_cmd_line(main.cmd_line))
+			// new_prompt(1);
+		// else if (check_cmd_line(main.cmd_line))
+			// main.exit_status = find_command(&main);
 		re_init_shell_chan(&main);
 		// VALGRIND_DO_LEAK_CHECK;
 	}
