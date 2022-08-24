@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/22 20:54:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:40:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,4 +237,5 @@ void	init_mini_pipe(t_mini_pipe *p_tool)
 	p_tool->j = 0;
 	p_tool->p_num = 0;
 	p_tool->status = 0;
+
 }
