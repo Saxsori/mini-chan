@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 11:16:18 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:23:56 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	ft_scan_num(char *str)
 	int	i;
 
 	i = 0;
+	if(str[0] == '+')
+		i++;
 	while (str[i])
 	{
 		if(str[i] < '0' || str[i] > '9')
@@ -101,12 +103,15 @@ int	ft_scan_num(char *str)
 
 int	check_first_arg(t_mini_cmd *cmd)
 {
-	int len;
-	int i;
+	int	len;
+	int	i;
+
 	if(!cmd->arguments[0])
 		return -1;
 	i = 0;
 	len = ft_strlen(cmd->arguments[0]);
+	if (cmd->arguments[0][i] == '+')
+		i++;
 	while (cmd->arguments[0][i] == '0')
 		i++;
 	if (i == len)
@@ -123,13 +128,14 @@ int	mini_exit(t_mini_cmd *cmd)
 	check_ret = 1;
 	if (cmd->option)
 		pre_exit_arg(cmd);
+	printf("exit  %s\n", cmd->arguments[0]);
 	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 	{
 		if (check_ret == 1)
 		{
 			printf("exit\n");
-			printf("mini-chan🌸$: exit: %s: numeric argument\
+			printf("1 mini-chan🌸$: exit: %s: numeric argument\
 			 required\n", cmd->arguments[0]);
 			exit(255);
 		}
@@ -145,8 +151,8 @@ int	mini_exit(t_mini_cmd *cmd)
 	else if (check_first_arg(cmd) && cmd->tools.arg_num == 1)
 	{
 		printf("exit\n");
-		printf("mini-chan🌸$: exit: %s: numeric argument required\n", \
-		cmd->arguments[0]);
+		printf("2 mini-chan🌸$: exit: %s: numeric argument required %d\n", \
+		cmd->arguments[0],check_first_arg(cmd));
 		exit(255);
 	}
 	return (0);
