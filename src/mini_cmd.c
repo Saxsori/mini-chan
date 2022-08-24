@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 17:54:23 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:16:18 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,60 +84,69 @@ int	mini_pwd(t_mini_cmd *cmd)
 		if all 0s return 0
 	2 while check if all numbers using atoi (one case wont be handeld)
 */
-int check_first_arg(t_mini_cmd *cmd)
+
+int	ft_scan_num(char *str)
 {
-	int i = 0;
-	int non_num = 1;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if(str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_first_arg(t_mini_cmd *cmd)
+{
+	int len;
+	int i;
 	if(!cmd->arguments[0])
 		return -1;
-	int len = ft_strlen(cmd->arguments[0]);
-	while(cmd->arguments[0][i] == '0')
+	i = 0;
+	len = ft_strlen(cmd->arguments[0]);
+	while (cmd->arguments[0][i] == '0')
 		i++;
-	if (i == len && non_num == 1)
+	if (i == len)
 		return (0);
-	if(ft_atoi(cmd->arguments[0]))
-	{
-		printf("len %d i %d atoi ret %d\n",len,i,ft_atoi(cmd->arguments[0]));
+	if (ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0]))
 		return (0);
-	}
-	printf("len %d i %d\n",len,i);
 	return (1);
 }
 
 int	mini_exit(t_mini_cmd *cmd)
 {
-	int check_ret = 1; 
+	int	check_ret;
+
+	check_ret = 1;
 	if (cmd->option)
 		pre_exit_arg(cmd);
 	check_ret = check_first_arg(cmd);
-	printf(" BOO exit cmd %d  exit arg %s .. check_ret %d\n", cmd->tools.arg_num,cmd->arguments[0],check_first_arg(cmd));
 	if (cmd->tools.arg_num > 1)
 	{
-		printf(" too many args exit cmd %d %s\n", \
-		cmd->tools.arg_num, cmd->arguments[0]);
-		printf("return atoi = %d to %s\n",ft_atoi(cmd->arguments[0]),cmd->arguments[0]);
-		// if (non_num == 0)
-		// {
-		// 	printf("exit\n");
-		// 	printf("mini-chan🌸$: exit: %s: numeric argument required\n", cmd->arguments[0]);
-		// 	exit(255);//todo
-		// }
-		// else if(non_num == 1)
-		// {
-		// 	printf("exit\n");
-		// 	printf("mini-chan🌸$: exit: too many arguments\n");
-		// 	// exit(1);
-		// }
+		if (check_ret == 1)
+		{
+			printf("exit\n");
+			printf("mini-chan🌸$: exit: %s: numeric argument\
+			 required\n", cmd->arguments[0]);
+			exit(255);
+		}
+		else
+		{
+			printf("exit\n");
+			printf("mini-chan🌸$: exit: too many arguments\n");
+		}
 	}
-	else if ((cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1) && !check_first_arg(cmd))
-	{
-		printf(" one exit cmd %d %d .. atoi ret %d\n", cmd->tools.arg_num, check_first_arg(cmd),ft_atoi(cmd->arguments[0]));
+	else if ((cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1) \
+	&& !check_first_arg(cmd))
 		exit(ft_atoi(cmd->arguments[0]));
-	}
 	else if (check_first_arg(cmd) && cmd->tools.arg_num == 1)
 	{
 		printf("exit\n");
-		printf("mini-chan🌸$: exit: %s: numeric argument required\n", cmd->arguments[0]);
+		printf("mini-chan🌸$: exit: %s: numeric argument required\n", \
+		cmd->arguments[0]);
 		exit(255);
 	}
 	return (0);
