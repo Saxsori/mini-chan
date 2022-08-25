@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exit_pre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:52:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/08/22 13:06:59 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:55:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,27 @@ char	**get_exit_arg(t_mini_cmd *cmd)
 	arg = (char **)malloc(sizeof(char *) * (num + 1));
 	arg[num] = NULL;
 	i = -1;
+	printf("sds\n");
 	while (++i < cmd->tools.opt_num)
+	{
+		printf("optttt %s\n", cmd->option[i]);
 		arg[i] = ft_strdup(cmd->option[i]);
+	}
+	printf("sds\n");
 	j = -1;
 	while (++j < cmd->tools.arg_num)
 		arg[i++] = ft_strdup(cmd->arguments[j]);
-	squaredstr_free(cmd->arguments);
-	squaredstr_free(cmd->option);
+	printf("sds\n");
+	if (cmd->arguments)
+	{
+		squaredstr_free(cmd->arguments);
+		cmd->arguments = NULL;
+	}
+	if (cmd->option)
+	{
+		squaredstr_free(cmd->option);
+		cmd->option = NULL;
+	}
 	cmd->tools.arg_num = num;
 	cmd->tools.opt_num = 0;
 	return (arg);
