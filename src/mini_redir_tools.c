@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:14:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 04:26:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:40:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	redir_index(t_mini_cmd *cmd, int i)
 		}
 	}
 }
+
 /*
 			// k = -1;
 			// while (++k < main->cmd_table[i].tools.p_redir.num_redir)

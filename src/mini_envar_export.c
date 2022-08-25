@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_envar_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/27 13:18:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 09:24:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_mini_envar	*add_node_at_end(t_mini_envar *head, char *data, char op)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
+	temp->env_cont = NULL;
+	temp->env_name = NULL;
+	temp->envar = NULL;
 	add_env_data(temp, data);
 	envar_mode(temp, op);
 	traversal = head;
@@ -78,9 +81,9 @@ void	add_env_data(t_mini_envar *temp, char *data)
 	temp->env_name = ft_strdup(split[0]);
 	squaredstr_free(split);
 	if (!ft_strncmp(temp->env_name, "SHLVL", ft_strlen(temp->env_name)))
-		temp->env_cont = ft_itoa(1);
+		temp->env_cont = ft_itoa(ft_atoi(ft_strchr(data, '=', 2)) + 1);
 	else if (ft_strchr(data, '=', 2) != NULL)
-		temp->env_cont = ft_strchr(data, '=', 2);
+		temp->env_cont = ft_strdup(ft_strchr(data, '=', 2));
 	else
 	{
 		temp->env_cont = (char *)malloc(sizeof(char));

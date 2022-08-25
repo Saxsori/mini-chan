@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/29 18:56:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:09:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	parse_echo_case(t_shell_chan *main)
 			main->e_parse.null_num = count_null_arg(main->first_split[i]);
 			main->e_parse.new_size -= (main->e_parse.null_num);
 			if (main->e_parse.null_num > 0)
-				main->first_split[i] = line_no_null_arg(main, i);
+				main->first_split[i] = ft_strdup(line_no_null_arg(main, i));
 		}
 	}
 }

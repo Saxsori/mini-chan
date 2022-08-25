@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 11:50:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:55:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_mini_envar	*creat_first_node(t_mini_envar *head, char *data)
 	temp = (t_mini_envar *)malloc(sizeof(t_mini_envar));
 	temp->prev = NULL;
 	temp->next = NULL;
+	temp->env_cont = NULL;
+	temp->env_name = NULL;
+	temp->envar = NULL;
 	add_env_data(temp, data);
 	head = temp;
 	return (head);

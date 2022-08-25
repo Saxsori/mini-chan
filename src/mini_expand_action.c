@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/24 14:28:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:35:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ void	expand_envar(t_shell_chan *main)
 			start_expand(&exp_tools);
 			do_expand(&exp_tools);
 			//free
+		}
+		if (exp_tools.env_num)
+		{
+			free_ptr((void **)&exp_tools.env_info->env_value);
+			free_ptr((void **)&exp_tools.env_info);
 		}
 	}
 }

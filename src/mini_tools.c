@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/21 19:13:31 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:42:03 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ void	cmd_counter(t_shell_chan *main)
 	main->cmd_num++;
 }
 
+int	no_cmd(char *line, int i)
+{
+	while (line[++i])
+	{
+		if (line[i] != ' ')
+			return (0);
+	}
+	return (1);
+}
+
 int	check_pipe(char *line)
 {
 	int	i;
@@ -34,7 +44,9 @@ int	check_pipe(char *line)
 	{
 		if (line[i] == '|')
 		{
-			if (line[i + 1] == '\0')
+			if (line[i + 1] == '|')
+				return (0);
+			else if (no_cmd(line, i))
 				return (0);
 			else if (i == 0)
 				return (0);
