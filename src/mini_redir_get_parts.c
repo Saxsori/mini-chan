@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/22 12:18:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:55:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	get_redir_arg(t_mini_redir *redir, int op)
 	}
 	redir->redir_tools.j = 0;
 	redir->arguments = (char **)malloc(sizeof(char *) * (redir->redir_tools.num_arg + 2));
-	if (!redir->arguments[0])
-		redir->arguments[0] = NULL;
-	else
+	// if (!redir->arguments[0])
+	// 	redir->arguments[0] = NULL;
+	// else
+	/* when it's null then it can't be freed */
 		redir->arguments[0] = ft_strdup(redir->command);
 	redir->arguments[redir->redir_tools.num_arg + 1] = NULL;
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)

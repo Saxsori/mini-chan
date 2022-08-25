@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 17:09:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:16:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 	i = -1;
 	k = 0;
 	line = (char *)malloc(sizeof(char) * (main->e_parse.new_size + 1));
+	printf("new size %d\n", main->e_parse.new_size + 1);
 	while (++i < ft_strlen(main->first_split[index]))
 	{
 		if (main->first_split[index][i] == '\t')
@@ -84,7 +85,9 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 		else
 			line[k++] = main->first_split[index][i];
 	}
-	line[k] = '\0';
+	line[k - 1] = '\0';
+	//was line[k]
+	printf("k %d\n", k);
 	free (main->first_split[index]);
 	return (line);
 }
@@ -98,8 +101,8 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 */
 void	parse_echo_case(t_shell_chan *main)
 {
-	int	i;
-
+	int		i;
+	// char	*line;
 	i = -1;
 	while (++i < main->cmd_num)
 	{
@@ -109,7 +112,12 @@ void	parse_echo_case(t_shell_chan *main)
 			main->e_parse.null_num = count_null_arg(main->first_split[i]);
 			main->e_parse.new_size -= (main->e_parse.null_num);
 			if (main->e_parse.null_num > 0)
-				main->first_split[i] = ft_strdup(line_no_null_arg(main, i));
+			{
+				// line = line_no_null_arg(main, i);
+				// main->first_split[i] = ft_strdup(line);
+				main->first_split[i] = line_no_null_arg(main, i);
+				// free(line);
+			}
 		}
 	}
 }

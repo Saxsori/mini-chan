@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:24:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 16:31:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 00:18:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	free_redir(t_mini_cmd *cmd)
 
 void	free_mini_cmd(t_mini_cmd *cmd)
 {
+	if (cmd->split)
+		squaredstr_free(cmd->split);
+	if (cmd->option)
+		squaredstr_free(cmd->option);
+	if (cmd->arguments)
+		squaredstr_free(cmd->arguments);
 	free_predir(cmd);
 	free_redir(cmd);
 }

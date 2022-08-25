@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 17:00:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 23:33:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,39 @@ void	init_loop_p_redir(t_mini_cmd *cmd, int i)
 {
 	cmd->tools.p_redir.begin = -1;
 	cmd->tools.p_redir.end = ft_strlen(cmd->main->first_split[i]);
+}
+
+/*
+? split redir
+*/
+void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
+{
+	// int	k;
+
+	redir->arguments = NULL;
+	redir->command = NULL;
+	redir->files = NULL;
+	redir->redir_tools.main = main;
+	redir->redir_tools.num_arg = 0;
+	redir->redir_tools.num_file = 0;
+	redir->redir_tools.parse_err = 0;
+	redir->redir_tools.num_part = 0;
+	redir->redir_tools.i = -1;
+	redir->redir_tools.j = -1;
+	redir->redir_tools.k = -1;
+	redir->redir_tools.r_pos = NULL;
+	// k = -1;
+	// while (main->first_split[i][++k])
+	// {
+	// 	if (main->first_split[i][k] == '\a')
+	// 		printf("yes\n");
+	// }
+	// printf("first split (%s)\n", main->first_split[i]);
+	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
+	// k = -1;
+	// while (redir->redir_tools.split[++k])
+	// 	printf("split redir (%s)\n", redir->redir_tools.split[k]);
+	replace_tabbing_spaces(redir->redir_tools.split);
 }
 /****************************  PARSE_REDIR  ***********************************/
 
@@ -311,35 +344,7 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 // }
 
 
-void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
-{
-	int	k;
 
-	redir->arguments = NULL;
-	redir->command = NULL;
-	redir->files = NULL;
-	redir->redir_tools.main = main;
-	redir->redir_tools.num_arg = 0;
-	redir->redir_tools.num_file = 0;
-	redir->redir_tools.parse_err = 0;
-	redir->redir_tools.num_part = 0;
-	redir->redir_tools.i = -1;
-	redir->redir_tools.j = -1;
-	redir->redir_tools.k = -1;
-	redir->redir_tools.r_pos = NULL;
-	k = -1;
-	while (main->first_split[i][++k])
-	{
-		if (main->first_split[i][k] == '\a')
-			printf("yes\n");
-	}
-	printf("first split (%s)\n", main->first_split[i]);
-	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
-	k = -1;
-	while (redir->redir_tools.split[++k])
-		printf("split redir (%s)\n", redir->redir_tools.split[k]);
-	replace_tabbing_spaces(redir->redir_tools.split);
-}
 
 
 

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:06:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/04 22:07:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,10 @@
 */
 void	pre_arg(t_mini_cmd *cmd)
 {
-	int	i;
-	int	k;
-
-	i = -1;
-	k = cmd->tools.arg_index;
 	cmd->tools.p_num = twstrlen(cmd->split);
 	cmd->tools.arg_num = cmd->tools.p_num - cmd->tools.arg_index;
 	cmd->arguments = (char **)malloc((cmd->tools.arg_num + 1) * sizeof(char *));
 	cmd->arguments[cmd->tools.arg_num] = NULL;
-	while (++i < cmd->tools.arg_num)
-		cmd->arguments[i] = (char *)malloc(ft_strlen(cmd->split[k++]));
 }
 
 /*
@@ -57,7 +50,7 @@ void	get_arg(t_mini_cmd *cmd)
 	k = cmd->tools.arg_index;
 	i = -1;
 	while (++i < cmd->tools.arg_num)
-		cmd->arguments[i] = cmd->split[k++];
+		cmd->arguments[i] = ft_strdup(cmd->split[k++]);
 }
 
 /*
