@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 16:24:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/27 17:59:03 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/08/27 18:29:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	free_shell_chan_mem(t_shell_chan *main)
 			free_mini_cmd(&main->cmd_table[i]);
 		free_ptr((void **)&main->cmd_table);
 	}
+	//teest
 }
 
 void	free_mini_envar(t_shell_chan *main)
