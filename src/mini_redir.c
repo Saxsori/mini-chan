@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 07:17:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:55:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,15 @@ void	redir_mix(t_mini_cmd *cmd)
 			exit(0);
 		}
 }
+
 void	redir(t_mini_cmd *cmd)
 {
 	int	i;
 	int fd;
 	pid_t child;
 	int status;
+
 	i = 0;
-	
 		if(cmd->main->cmd_num > 1)
 		{
 			redir_mix(cmd);
@@ -194,7 +195,6 @@ void	redir(t_mini_cmd *cmd)
 							waitpid(-1, &stat, 0);
 						}
 					}
-					
 					i++;
 				}
 			

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 14:26:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:13:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	init_shell_chan(t_shell_chan *main)
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->envar = NULL;
-	main->path = NULL;
-	main->path_split = NULL;
 	main->d_rootpath = 0;
 }
 

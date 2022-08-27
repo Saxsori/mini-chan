@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 23:33:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 20:01:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
 
 void	init_shell_chan(t_shell_chan *main)
 {
@@ -24,16 +25,23 @@ void	init_shell_chan(t_shell_chan *main)
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->envar = NULL;
+	main->d_rootpath = 0;
 	main->path = NULL;
 	main->path_split = NULL;
-	main->d_rootpath = 0;
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
+	init_mini_pipe(&main->pipe_tools);
 }
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
 	free_shell_chan_mem(main);
+	if (main->path_split)
+		squaredstr_free(main->path_split);
+	if (main->path)
+		free_ptr((void **)&main->path);
+	main->path = NULL;
+	main->path_split = NULL;
 	main->cmd_line = NULL;
 	main->cmd_table = NULL;
 	main->cmd_num = 0;
@@ -41,6 +49,15 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->exp_tools = NULL;
 	main->exp_valid = NULL;
 	main->env_index = NULL;
+	main->d_rootpath = 0;
+	main->pipe_tools.fds = NULL;
+	main->pipe_tools.i = 0;
+	main->pipe_tools.j = 0;
+	main->pipe_tools.p_num = 0;
+	main->pipe_tools.child = -1;
+	main->pipe_tools.status = 0;
+	main->e_parse.new_size = 0;
+	main->e_parse.null_num = 0;
 }
 
 
@@ -181,7 +198,6 @@ void	init_cmd_tools(t_mini_cmd *cmd)
 	cmd->tools.new_arg = 0;
 	cmd->tools.new_arg_size = 0;
 	cmd->tools.r_err_syn = 0;
-	cmd->tools.dir = NULL;
 	cmd->tools.cwd_ret = NULL;
 	cmd->tools.dir = NULL;
 	cmd->tools.envar = NULL;
@@ -213,10 +229,21 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->redir.redir_tools.parse_err = 0;
 	cmd->redir.redir_tools.r_pos = NULL;
 	cmd->redir.redir_tools.split = NULL;
+	cmd->exe_tools.arg_num = 0;
+	cmd->exe_tools.arguments = NULL;
+	cmd->exe_tools.cmd_name = NULL;
+	cmd->exe_tools.err_command = NULL;
 }
 
-
-
+void	init_mini_pipe(t_mini_pipe *p_tool)
+{
+	p_tool->fds = NULL;
+	p_tool->child = -1;
+	p_tool->i = 0;
+	p_tool->j = 0;
+	p_tool->p_num = 0;
+	p_tool->status = 0;
+}
 
 
 
@@ -348,13 +375,3 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 
 
 
-void	init_mini_pipe(t_mini_pipe *p_tool)
-{
-	p_tool->fds = NULL;
-	p_tool->child = -1;
-	p_tool->i = 0;
-	p_tool->j = 0;
-	p_tool->p_num = 0;
-	p_tool->status = 0;
-
-}

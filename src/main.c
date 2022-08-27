@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 20:20:08 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 20:05:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@
 	// 	printf("arg num %d\n", main->cmd_table->tools.arg_num);
 	// 	// printf("1:%d\n", main->cmd_num);
 	// 	// printf("2:%d\n", main->cmd_table[i].main->cmd_num);
-*/
-void	check_cmd_parts(t_shell_chan *main)
-{
-	int	i;
-// 	// int	k;
-
-	i = -1;
-	while (++i < main->cmd_num)
-	{
-		// init_mini_cmd(&main->cmd_table[i], main);
-// 		printf ("1here\n");
-		// if ()
-		check_opt(&main->cmd_table[i]);
-		check_arg(&main->cmd_table[i]);
-	}
 // 	// i = -1;
 // 	// while (++i < main->cmd_num)
 // 	// {
@@ -54,6 +39,17 @@ void	check_cmd_parts(t_shell_chan *main)
 // 	// 		printf("arg %s\n", main->cmd_table[i].arguments[k]);
 // 	// 	}
 // 	// }
+*/
+void	check_cmd_parts(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+	{
+		check_opt(&main->cmd_table[i]);
+		check_arg(&main->cmd_table[i]);
+	}
 }
 
 void	check_isbuiltin(t_shell_chan *main)
@@ -62,6 +58,7 @@ void	check_isbuiltin(t_shell_chan *main)
 	char	**split;
 
 	i = -1;
+	printf("here\n");
 	while (++i < main->cmd_num)
 	{
 		split = ft_split(main->first_split[i], ' ');
@@ -71,8 +68,8 @@ void	check_isbuiltin(t_shell_chan *main)
 				main->cmd_table[i].tools.y_exe = 0;
 			else
 				main->cmd_table[i].tools.y_exe = 1;
+			squaredstr_free(split);
 		}
-		squaredstr_free(split);
 	}
 }
 
@@ -101,7 +98,7 @@ void	check_isbuiltin(t_shell_chan *main)
 */
 int	find_command(t_shell_chan *main)
 {
-	int	i;
+	// int	i;
 	// int	k;
 
 	first_cmd_split(main);
@@ -111,20 +108,21 @@ int	find_command(t_shell_chan *main)
 	redir_tools(main);
 	if (quotes_checker(main))
 	{
+		// printf("here\n");
 		if (pre_redir(main) == 2)
 			return (2);
-		i = -1;
 		pre_quote(main);
 		expand_envar(main);
 		parse_echo_case(main);
 		remove_quote(main);
 		check_isbuiltin(main);
-		while (++i < main->cmd_num)
-		{
-			printf("(%s)", main->first_split[i]);
-			printf(" - r %d", main->cmd_table[i].tools.y_redir);
-			printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
-		}
+		// i = -1;
+		// while (++i < main->cmd_num)
+		// {
+		// 	printf("(%s)", main->first_split[i]);
+		// 	printf(" - r %d", main->cmd_table[i].tools.y_redir);
+		// 	printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
+		// }
 		split_redir(main);
 		split_command(main);
 		if (main->exit_status == 2)
@@ -148,9 +146,7 @@ int	find_command(t_shell_chan *main)
 	// 				printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
 	// 		}
 		// }
-	// 	// printf("here\n");
-		// return (run_cmd(main));
-		return (1);
+		return (run_cmd(main));
 	}
 	// else
 		//free first_split .. cmd_table .. expand_tools .. redir_tools

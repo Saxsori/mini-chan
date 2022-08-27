@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/22 18:13:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:41:30 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,5 @@ void	get_path(t_shell_chan *main)
 	{
 		main->path = ft_strdup(main->envar->env_cont);
 		main->path_split = ft_split(main->path, ':');
-		return ;
 	}
-	main->path = NULL;
-	main->path_split = NULL;
-	// free linked list
 }

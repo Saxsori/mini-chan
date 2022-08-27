@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 16:42:03 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:34:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	cmd_counter(t_shell_chan *main)
 	main->cmd_num++;
 }
 
-int	no_cmd(char *line, int i)
+int	no_cmd(char *line, int begin, int end)
 {
-	while (line[++i])
+	while (++begin < end)
 	{
-		if (line[i] != ' ')
+		if (line[begin] > 32 && line[begin] < 127)
 			return (0);
 	}
 	return (1);
@@ -38,18 +38,25 @@ int	no_cmd(char *line, int i)
 int	check_pipe(char *line)
 {
 	int	i;
+	int	begin;
 
 	i = -1;
+	begin = -1;
 	while (++i < ft_strlen(line))
 	{
 		if (line[i] == '|')
 		{
-			if (line[i + 1] == '|')
+			if (no_cmd(line, begin, i))
 				return (0);
-			else if (no_cmd(line, i))
-				return (0);
-			else if (i == 0)
-				return (0);
+			begin = i;
+		}
+		if (line[i + 1] == '\0')
+		{
+			if (line[begin] == '|')
+			{
+				if (no_cmd(line, begin, i))
+					return (0);
+			}
 		}
 	}
 	return (1);

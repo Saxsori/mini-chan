@@ -168,8 +168,8 @@ typedef struct mini_cmnd
 	char				**option;
 	char				**arguments;
 	char				*cmd_path;
-	t_mini_redir		redir;
 	t_cmd_tools			tools;
+	t_mini_redir		redir;
 	t_shell_chan		*main;
 	t_mini_exe_tools	exe_tools;
 }	t_mini_cmd;
@@ -200,7 +200,6 @@ typedef struct shell_chan
 	t_mini_echo		e_parse;
 	t_mini_envar	*envar;
 	char			*path;
-	// int				**fds;
 	char			**path_split;
 	t_mini_pipe		pipe_tools;
 }	t_shell_chan;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/10 14:14:55 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:09:39 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ TODO: should cover
 */
 void	path_finder(t_mini_cmd *cmd)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*command;
 
 	i = -1;
@@ -27,7 +27,6 @@ void	path_finder(t_mini_cmd *cmd)
 		command = ft_strdup(cmd->redir.command);
 	else
 		command = ft_strdup(cmd->name);
-	// printf("3 cmd name %s\n", command);
 	while (cmd->main->path_split[++i])
 	{
 		if (access(ft_strjoin(ft_strjoin(cmd->main->path_split[i], "/"), \
@@ -52,7 +51,7 @@ void	path_finder(t_mini_cmd *cmd)
 		else
 			cmd->cmd_path = NULL;
 	}
-	
+	free(command);
 }
 
 void	init_fds(t_shell_chan *main)
