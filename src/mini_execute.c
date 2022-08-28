@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 22:08:11 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/08/28 22:27:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	mini_execute(t_mini_cmd *cmd)
 	pid_t	child;
 	char	*str1;
 	char	*str2;
+	char	*str3;
 	i = 0;
 
 	child = fork();
@@ -36,15 +37,15 @@ int	mini_execute(t_mini_cmd *cmd)
 		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 		if (access(str2, F_OK) == 0)
 		{
-			
-			cmd->exe_tools.cmd_name = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 			free_ptr((void **)&cmd->exe_tools.cmd_name);
+			cmd->exe_tools.cmd_name = ft_strdup(str3);
+			free (str3);
 		}
-		if(str1 && str2)
-		{
+		if(str1)
 			free(str1);
+		if(str2)
 			free(str2);
-		}
 		i++;
 	}
 	if (child == 0)

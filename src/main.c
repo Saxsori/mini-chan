@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 21:45:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:22:40 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int	find_command(t_shell_chan *main)
 	// 				printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
 	// 		}
 		// }
+		// return (0);
 		return (run_cmd(main));
 	}
 	// else
