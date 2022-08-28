@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 18:41:30 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:52:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ int	run_builtn(t_mini_cmd *cmd)
 void	get_path(t_shell_chan *main)
 {
 	main->envar = search_envar(main->head_envar, "PATH");
+	printf("%s\n", main->envar->env_cont);
 	if (main->envar)
 	{
 		main->path = ft_strdup(main->envar->env_cont);
+		printf("(%s)\n", main->path);
+		printf("klskjd\n");
 		main->path_split = ft_split(main->path, ':');
 	}
 }

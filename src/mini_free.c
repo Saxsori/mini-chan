@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/27 18:29:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:41:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 		free_ptr((void **)&cmd->cmd_path);
 	if (cmd->name)
 		free_ptr((void **)&cmd->name);
-	free_exe_tools(cmd);
+	// free_exe_tools (cmd);
 	free_cmd_tools(cmd);
 	free_predir(cmd);
 	free_redir(cmd);

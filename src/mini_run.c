@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/27 17:46:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:46:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	run_cmd(t_shell_chan *main)
 
 	// i = 0;
 	get_path(main);
+	printf("lala\n");
 	if (main->cmd_num == 1)
 	{
 		// if (main->cmd_table->tools.y_redir)

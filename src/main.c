@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 20:05:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:45:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	find_command(t_shell_chan *main)
 	redir_tools(main);
 	if (quotes_checker(main))
 	{
-		// printf("here\n");
 		if (pre_redir(main) == 2)
 			return (2);
 		pre_quote(main);
@@ -129,6 +128,7 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		command_name(main);
 		check_cmd_parts(main);
+		printf("here boo \n");
 	// 	i = -1;
 	// 	while (++i < main->cmd_num)
 	// 	{
