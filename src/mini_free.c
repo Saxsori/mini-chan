@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:24:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 00:18:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 05:21:23 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	free_shell_chan_mem(t_shell_chan *main)
 			free_mini_cmd(&main->cmd_table[i]);
 		free_ptr((void **)&main->cmd_table);
 	}
+	//teest
 }
 
 void	free_mini_envar(t_shell_chan *main)
