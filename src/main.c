@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 11:27:51 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:11:50 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,9 @@ int	find_command(t_shell_chan *main)
 					printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
 			}
 		}
+		// printf("\n");
 		// printf("here\n");
+		// return (0);
 		return (run_cmd(main));
 	}
 	// else

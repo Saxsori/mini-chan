@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exit_pre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:52:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/08/25 13:55:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:16:54 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ char	**get_exit_arg(t_mini_cmd *cmd)
 void	pre_exit_arg(t_mini_cmd *cmd)
 {
 	int	i;
-
+	
 	i = -1;
+	printf("222seg\n");
 	printf("opt num %d\n", cmd->tools.opt_num);
 	while (++i < cmd->tools.opt_num)
 		printf("opt %s\n", cmd->option[i]);
@@ -67,5 +68,4 @@ void	pre_exit_arg(t_mini_cmd *cmd)
 	printf("new arg num %d\n", cmd->tools.arg_num);
 	while (++i < cmd->tools.arg_num)
 		printf("new arg %s\n", cmd->arguments[i]);
-	exit(0);
 }

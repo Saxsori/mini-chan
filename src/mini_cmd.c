@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 16:23:56 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:28:02 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_scan_num(char *str)
 	int	i;
 
 	i = 0;
-	if(str[0] == '+')
+	if(str[0] == '+' || str[0] == '-')
 		i++;
 	while (str[i])
 	{
@@ -98,6 +98,30 @@ int	ft_scan_num(char *str)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int check_long(char *str)
+{
+	int len;
+	
+	len = ft_strlen(str);
+	if((str[0] == '-' || str[0] == '+') && ft_strlen(str) == 19)
+	{
+		if(str[len -1] > '0')
+			return(1);
+		else
+			return(0); 	
+	}
+	if((str[0] != '-' || str[0] != '+') && ft_strlen(str) == 18)
+	{
+		if(str[len -1] > '0')
+			return(1);
+		else
+			return(0); 
+	}	
+	if(ft_strlen(str) < 18)
+		return (0);
 	return (1);
 }
 
@@ -110,14 +134,22 @@ int	check_first_arg(t_mini_cmd *cmd)
 		return -1;
 	i = 0;
 	len = ft_strlen(cmd->arguments[0]);
-	if (cmd->arguments[0][i] == '+')
+	if(!ft_strncmp(cmd->arguments[0],"-9223372036854775808",ft_strlen(cmd->arguments[0])))
+		return(0);
+	if(!ft_strncmp(cmd->arguments[0],"-9223372036854775809",ft_strlen(cmd->arguments[0])))
+		return(1);
+	if(!ft_strncmp(cmd->arguments[0],"9223372036854775809",ft_strlen(cmd->arguments[0])))
+		return(1);
+	if(!ft_strncmp(cmd->arguments[0],"9223372036854775808",ft_strlen(cmd->arguments[0])))
+		return(1);
+	if (cmd->arguments[0][i] == '+' || cmd->arguments[0][i] == '-' )
 		i++;
 	while (cmd->arguments[0][i] == '0')
 		i++;
 	if (i == len)
 		return (0);
-	if (ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0]))
-		return (0);
+	if ((ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0])) || (ft_scan_num(cmd->arguments[0]) && check_long(cmd->arguments[0])))
+		return (0);	
 	return (1);
 }
 
@@ -125,18 +157,23 @@ int	mini_exit(t_mini_cmd *cmd)
 {
 	int	check_ret;
 
-	check_ret = 1;
+	check_ret = -1;
+	printf("111seg\n");
+
 	if (cmd->option)
 		pre_exit_arg(cmd);
-	printf("exit  %s\n", cmd->arguments[0]);
-	check_ret = check_first_arg(cmd);
+	// else
+	// 	printf("33seg %d\n",cmd->tools.arg_num );
+	// printf("exit  %s\n", cmd->arguments[0]);
+	if(cmd->tools.arg_num > 0)
+		check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 	{
 		if (check_ret == 1)
 		{
 			printf("exit\n");
-			printf("1 mini-chan🌸$: exit: %s: numeric argument\
-			 required\n", cmd->arguments[0]);
+			printf("1 mini-chan🌸$: exit: %s: numeric argument required\n", \
+			cmd->arguments[0]);
 			exit(255);
 		}
 		else
@@ -146,14 +183,19 @@ int	mini_exit(t_mini_cmd *cmd)
 		}
 	}
 	else if ((cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1) \
-	&& !check_first_arg(cmd))
-		exit(ft_atoi(cmd->arguments[0]));
-	else if (check_first_arg(cmd) && cmd->tools.arg_num == 1)
+	&& check_ret == 0)
 	{
 		printf("exit\n");
-		printf("2 mini-chan🌸$: exit: %s: numeric argument required %d\n", \
-		cmd->arguments[0],check_first_arg(cmd));
+		exit(ft_atoi(cmd->arguments[0]));
+	}
+	else if (check_ret == 1 && cmd->tools.arg_num == 1)
+	{
+		printf("exit\n");
+		printf("2 mini-chan🌸$: exit: %s: numeric argument required\n", \
+		cmd->arguments[0]);
 		exit(255);
 	}
+	else
+		exit(0);
 	return (0);
 }

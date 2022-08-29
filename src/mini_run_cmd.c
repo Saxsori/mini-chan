@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/22 18:13:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:15:08 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 */
 int	which_command(t_mini_cmd *cmd)
 {
+	printf("seg\n");
 	if (!cmd_strncmp(cmd->name, "cd", ft_strlen(cmd->name)))
 		return (mini_cd(cmd));
 	if (!cmd_strncmp(cmd->name, "echo", ft_strlen(cmd->name)))

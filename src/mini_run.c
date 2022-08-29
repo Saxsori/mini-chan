@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 11:35:54 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:13:29 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	run_cmd(t_shell_chan *main)
 
 	i = 0;
 	get_path(main);
-	// printf("seg\n");
+	printf("seg %d\n",main->cmd_num);
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
@@ -67,6 +67,7 @@ int	run_cmd(t_shell_chan *main)
 		{
 			if (is_command(main->cmd_table[0].name))
 			{
+				printf("seg %d\n",main->cmd_num);
 				// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 				return (run_builtn(&main->cmd_table[0]));
 			}
@@ -99,7 +100,7 @@ int	run_cmd(t_shell_chan *main)
 						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
 						{
 							ft_dup_fds(main, i);
-							write(2,"1redir here\n",12);
+							write(2,"1exe here\n",12);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
@@ -113,6 +114,8 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"2redir here\n",11);
+							write(2,ft_itoa(main->cmd_table[i].tools.y_redir),ft_strlen(ft_itoa((main->cmd_table[i].tools.y_redir))));
+							write(2,"\n",1);
 							redir(&main->cmd_table[i]);
 						}
 						else
@@ -127,12 +130,12 @@ int	run_cmd(t_shell_chan *main)
 						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
 						{
 							ft_dup_fds(main, i);
-							write(2,"3redir here\n",12);
+							write(2,"3exe here\n",12);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
 								main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 							{
-								write(2,"l mini-chan🌸: ",18);
+								write(2,"sl mini-chan🌸: ",18);
 								write(2,main->cmd_table[i].exe_tools.arguments[0],ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
 								write(2,": command not found\n",21);
 								exit(1);
@@ -141,6 +144,8 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"4redir here\n",11);
+							write(2,ft_itoa(main->cmd_table[i].tools.y_redir),ft_strlen(ft_itoa((main->cmd_table[i].tools.y_redir))));
+							write(2,"\n",1);
 							redir(&main->cmd_table[i]);
 						}
 						else
@@ -153,7 +158,7 @@ int	run_cmd(t_shell_chan *main)
 				{
 						if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir) 
 						{
-							write(2,"5redir here\n",11);
+							write(2,"5exe here\n",11);
 							ft_dup_fds(main, i);
 							execute_tools(&main->cmd_table[i]);
 							if (execve(main->cmd_table[i].cmd_path, \
@@ -168,6 +173,8 @@ int	run_cmd(t_shell_chan *main)
 						else if(main->cmd_table[i].tools.y_redir)
 						{
 							write(2,"6redir here\n",11);
+							write(2,ft_itoa(main->cmd_table[i].tools.y_redir),ft_strlen(ft_itoa((main->cmd_table[i].tools.y_redir))));
+							write(2,"\n",1);
 							redir(&main->cmd_table[i]);
 						}
 						else

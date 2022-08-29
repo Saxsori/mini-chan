@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 10:40:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:22:28 by badriah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,44 +27,44 @@ void	init_shell_chan(t_shell_chan *main)
 	init_mini_pipe(&main->pipe_tools);
 }
 
-void	free_redir_parse(t_mini_cmd *cmd)
-{
-	free(cmd->tools.p_redir.r_index);
-	free(cmd->tools.p_redir.r_valid);
-	free(cmd->redir.redir_tools.r_pos);
-}
+// void	free_redir_parse(t_mini_cmd *cmd)
+// {
+// 	free(cmd->tools.p_redir.r_index);
+// 	free(cmd->tools.p_redir.r_valid);
+// 	free(cmd->redir.redir_tools.r_pos);
+// }
 
-void	free_mini_redir(t_mini_redir *redir)
-{
-	squaredstr_free(redir->redir_tools.split);
-	free(redir->redir_tools.r_pos);
-	free(redir->command);
-	squaredstr_free(redir->redir);
-	squaredstr_free(redir->arguments);
-	squaredstr_free(redir->files);
-}
+// void	free_mini_redir(t_mini_redir *redir)
+// {
+// 	squaredstr_free(redir->redir_tools.split);
+// 	free(redir->redir_tools.r_pos);
+// 	free(redir->command);
+// 	squaredstr_free(redir->redir);
+// 	squaredstr_free(redir->arguments);
+// 	squaredstr_free(redir->files);
+// }
 
-void	free_mini_cmd(t_mini_cmd *cmd)
-{
-	if (cmd->split != NULL)
-		squaredstr_free(cmd->split);
-	if (cmd->option != NULL)
-		squaredstr_free(cmd->option);
-	if (cmd->arguments != NULL)
-		squaredstr_free(cmd->arguments);
-	if (cmd->name != NULL)
-		free (cmd->name);
-	if (cmd->tools.cwd_ret != NULL)
-		free (cmd->tools.cwd_ret);
-	if (cmd->tools.pwd != NULL)
-		free (cmd->tools.pwd);
-	if (cmd->tools.f_redir)
-		free_redir_parse(cmd);
-	if (cmd->tools.y_redir)
-		free_mini_redir(&cmd->redir);
-	init_mem_cmd(cmd);
-	// // free DIR
-}
+// void	free_mini_cmd(t_mini_cmd *cmd)
+// {
+// 	if (cmd->split != NULL)
+// 		squaredstr_free(cmd->split);
+// 	if (cmd->option != NULL)
+// 		squaredstr_free(cmd->option);
+// 	if (cmd->arguments != NULL)
+// 		squaredstr_free(cmd->arguments);
+// 	if (cmd->name != NULL)
+// 		free (cmd->name);
+// 	if (cmd->tools.cwd_ret != NULL)
+// 		free (cmd->tools.cwd_ret);
+// 	if (cmd->tools.pwd != NULL)
+// 		free (cmd->tools.pwd);
+// 	if (cmd->tools.f_redir)
+// 		free_redir_parse(cmd);
+// 	if (cmd->tools.y_redir)
+// 		free_mini_redir(&cmd->redir);
+// 	init_mem_cmd(cmd);
+// 	// // free DIR
+// }
 
 void	re_init_shell_chan(t_shell_chan *main)
 {
@@ -76,23 +76,23 @@ void	re_init_shell_chan(t_shell_chan *main)
 		squaredint_free(main->env_index, main->cmd_num);
 	// if (main->cmd_num > 1)
 	// {
-		if (main->first_split != NULL)
-			squaredstr_free(main->first_split);
+		// if (main->first_split != NULL)
+		// 	squaredstr_free(main->first_split);
 	// }
-	else if (main->cmd_num == 1)
-	{
-		free(main->first_split[0]);
-		free(main->first_split);
-	}
+	// else if (main->cmd_num == 1)
+	// {
+	// 	free(main->first_split[0]);
+	// 	free(main->first_split);
+	// }
 	// i = -1;
 	// while (++i < main->cmd_num)
 	// 	free_mini_cmd(&main->cmd_table[i]);
-	free(main->cmd_table);
+	// free(main->cmd_table);
 	main->cmd_table = NULL;
 	main->exp_valid = NULL;
 	main->env_index = NULL;
 	main->cmd_num = 0;
-	free(main->cmd_line);
+	// free(main->cmd_line);
 	main->cmd_line = NULL;
 }
 
