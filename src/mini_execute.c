@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/27 18:15:42 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/28 05:56:38 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,25 @@ int	mini_execute(t_mini_cmd *cmd)
 	int		i;
 	int		status;
 	pid_t	child;
-
+	char	*str1;
+	char	*str2;
 	i = 0;
 	child = fork();
 	while (cmd->main->path_split[i])
 	{
-		if (access(ft_strjoin((ft_strjoin(cmd->main->path_split[i], "/")), \
-		cmd->exe_tools.cmd_name), F_OK) == 0)
-			cmd->exe_tools.cmd_name = ft_strjoin((ft_strjoin \
-			(cmd->main->path_split[i], "/")), cmd->exe_tools.cmd_name);
+		str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
+		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+		if (access(str2, F_OK) == 0)
+		{
+			free_ptr((void **)&cmd->exe_tools.cmd_name);
+			cmd->exe_tools.cmd_name = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+		}
+		if(str1 && str2)
+		{
+			free(str1);
+			free(str2);
+		}
+			
 		i++;
 	}
 	if (child == 0)
@@ -46,10 +56,12 @@ int	mini_execute(t_mini_cmd *cmd)
 			write(2, "mini-chan🌸: ", 16);
 			write(2, cmd->exe_tools.arguments[0], ft_strlen(cmd->exe_tools.arguments[0]));
 			write(2, ": command not found\n", 21);
-			// ft_exit(cmd->main, WIFEXITED(status));
-			exit(WIFEXITED(status));
+			ft_exit(cmd->main, WIFEXITED(status));
+			// exit(WIFEXITED(status));
 			//WIFEXITED
 		}
+		
+		
 		//free all memory
 		// exit(1);
 	}
@@ -60,6 +72,6 @@ int	mini_execute(t_mini_cmd *cmd)
 		// printf("exited %d\n", WEXITED);
 	}
 	
-	free(cmd->exe_tools.cmd_name);
+	// free(cmd->exe_tools.cmd_name);
 	return (0);
 }

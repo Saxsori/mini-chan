@@ -365,6 +365,8 @@ void			get_redir_part(t_mini_redir *redir, int op);
 void			split_redir(t_shell_chan *main);
 void			replace_tabbing_spaces(char	**split);
 
+
+
 /*******************    MINI_REDIR_EXE   ******************/
 
 
