@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 08:30:20 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:18:02 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,11 @@ void	redir(t_mini_cmd *cmd)
 			
 				if(!is_command(cmd->redir.command) && ft_strncmp(cmd->redir.command, "cat", ft_strlen("cat")))//&& !ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen("<<") todo if command is "cat"
 				{
+					write(2,"9exe  here\n",12);
+					write(2,"9exe  here\n",12);
+					write(2,"9exe  here\n",12);
+					write(2,"9exe  here\n",12);
+					write(2,"9exe  here\n",12);
 					write(2,"9exe  here\n",12);
 					redir_exe(cmd);
 				}
