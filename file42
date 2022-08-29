@@ -1,0 +1,22 @@
+total 280
+drwxr-xr-x 21 root root    672 Aug 29 14:25 .
+drwxr-xr-x  9 root root    288 Aug 29 04:33 ..
+-rw-r--r--  1 root root  10244 Aug 25 11:08 .DS_Store
+drwxr-xr-x 15 root root    480 Aug 29 07:08 .git
+-rw-r--r--  1 root root     17 Aug 25 11:08 .gitignore
+drwxr-xr-x  6 root root    192 Aug 25 11:08 .vscode
+-rw-r--r--  1 root root   3615 Aug 25 11:08 Makefile
+-rw-r--r--  1 root root    165 Aug 25 11:08 README.md
+-rw-r--r--  1 root root  25953 Aug 25 11:08 WAKUWAKU.mp3
+-rw-r--r--  1 root root      0 Aug 29 14:25 file
+-rw-r--r--  1 root root      0 Aug 29 14:25 file1
+-rw-r--r--  1 root root    138 Aug 29 07:57 file2
+-rw-r--r--  1 root root      0 Aug 29 14:25 file42
+drwxr-xr-x 82 root root   2624 Aug 29 14:25 libft
+-rw-r--r--  1 root root  12585 Aug 29 10:19 mini_chan.h
+-rw-r--r--  1 root root   1944 Aug 25 11:08 mini_redir_getred.c
+-rw-r--r--  1 root root    899 Aug 25 11:08 minichan .txt
+-rwxr-xr-x  1 root root 202672 Aug 29 14:25 minishell
+drwxr-xr-x  3 root root     96 Aug 25 11:08 minishell.dSYM
+drwxr-xr-x 88 root root   2816 Aug 29 14:25 src
+drwxr-xr-x 33 root root   1056 Aug 25 11:08 testing

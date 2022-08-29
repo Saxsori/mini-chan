@@ -110,6 +110,7 @@ typedef struct redirect_tools
 	int				j;
 	pid_t			child;
 	int				**fd;
+	int				fd_redir;
 	int				status;
 	int				ld;
 	int				*r_pos;
@@ -364,8 +365,8 @@ void			get_redir_part(t_mini_redir *redir, int op);
 void			split_redir(t_shell_chan *main);
 void			replace_tabbing_spaces(char	**split);
 void			redir_heredoc(t_mini_cmd *cmd);
-/*******************    MINI_REDIR_EXE   ******************/
 
+/*******************    MINI_REDIR_EXE   ******************/
 
 void			redir_exe(t_mini_cmd *cmd);
 void			redir(t_mini_cmd *cmd);
