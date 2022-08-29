@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 16:23:56 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/29 02:11:28 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ int	mini_exit(t_mini_cmd *cmd)
 	check_ret = 1;
 	if (cmd->option)
 		pre_exit_arg(cmd);
+	if(cmd->tools.arg_num == 0 )
+		exit(0);
 	printf("exit  %s\n", cmd->arguments[0]);
 	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
@@ -145,8 +147,7 @@ int	mini_exit(t_mini_cmd *cmd)
 			printf("mini-chan🌸$: exit: too many arguments\n");
 		}
 	}
-	else if ((cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1) \
-	&& !check_first_arg(cmd))
+	else if ((cmd->tools.arg_num == 1) && !check_first_arg(cmd))
 		exit(ft_atoi(cmd->arguments[0]));
 	else if (check_first_arg(cmd) && cmd->tools.arg_num == 1)
 	{
@@ -155,5 +156,7 @@ int	mini_exit(t_mini_cmd *cmd)
 		cmd->arguments[0],check_first_arg(cmd));
 		exit(255);
 	}
+	
+	
 	return (0);
 }

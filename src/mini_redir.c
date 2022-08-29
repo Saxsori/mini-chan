@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 07:17:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 02:55:14 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,8 @@ void	redir(t_mini_cmd *cmd)
 							close(fd[1]);
 							dup2(fd[0], STDIN_FILENO);
 							close(fd[0]);
-							redir_exe(cmd);
+							// if(!ft_strncmp(cmd->redir.command, "cat", ft_strlen("cat")))
+								redir_exe(cmd);
 						}
 						else {
 							close(fd[0]);
@@ -198,10 +199,9 @@ void	redir(t_mini_cmd *cmd)
 					i++;
 				}
 			
-				if(!is_command(cmd->redir.command) && ft_strncmp(cmd->redir.command, "cat", ft_strlen("cat")))//&& !ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen("<<") todo if command is "cat"
+				if(!is_command(cmd->redir.command) && !ft_strncmp(cmd->redir.redir[i], "cat", ft_strlen("cat")))//&& !ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen("<<") todo if command is "cat"
 				{
 					write(2,"9exe  here\n",12);
-					// write(2,cmd->redir.command,ft_strlen(cmd->redir.command));
 					redir_exe(cmd);
 				}
 				else if (is_command(cmd->redir.command))
