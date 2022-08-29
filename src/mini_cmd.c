@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+// <<<<<<< HEAD
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
 /*   Updated: 2022/08/25 20:28:02 by badriah          ###   ########.fr       */
+// =======
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/08/29 02:11:28 by dfurneau         ###   ########.fr       */
+// >>>>>>> ac11f6f44688370cc25d60960f118e7186680482
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +155,7 @@ int	check_first_arg(t_mini_cmd *cmd)
 		i++;
 	if (i == len)
 		return (0);
-	if ((ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0])) || (ft_scan_num(cmd->arguments[0]) && check_long(cmd->arguments[0])))
+	if((ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0])) || (ft_scan_num(cmd->arguments[0]) && check_long(cmd->arguments[0])))
 		return (0);	
 	return (1);
 }
@@ -162,11 +169,12 @@ int	mini_exit(t_mini_cmd *cmd)
 
 	if (cmd->option)
 		pre_exit_arg(cmd);
-	// else
-	// 	printf("33seg %d\n",cmd->tools.arg_num );
-	// printf("exit  %s\n", cmd->arguments[0]);
 	if(cmd->tools.arg_num > 0)
 		check_ret = check_first_arg(cmd);
+	if(cmd->tools.arg_num == 0 )
+		exit(0);
+	printf("exit  %s\n", cmd->arguments[0]);
+	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 	{
 		if (check_ret == 1)
@@ -188,6 +196,11 @@ int	mini_exit(t_mini_cmd *cmd)
 		printf("exit\n");
 		exit(ft_atoi(cmd->arguments[0]));
 	}
+	else if ((cmd->tools.arg_num == 1) && !check_first_arg(cmd))
+	{
+		printf("exit\n");
+		exit(ft_atoi(cmd->arguments[0]));
+	}
 	else if (check_ret == 1 && cmd->tools.arg_num == 1)
 	{
 		printf("exit\n");
@@ -195,7 +208,9 @@ int	mini_exit(t_mini_cmd *cmd)
 		cmd->arguments[0]);
 		exit(255);
 	}
-	else
-		exit(0);
+// =======
+	
+	
+// >>>>>>> ac11f6f44688370cc25d60960f118e7186680482
 	return (0);
 }

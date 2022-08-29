@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 07:17:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:07:33 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,12 @@ void	redir(t_mini_cmd *cmd)
 	int status;
 	i = 0;
 	
-		if(cmd->main->cmd_num > 1)
-		{
-			redir_mix(cmd);
-		}
-		else if (cmd->main->cmd_num == 1)
-		{
+		// if(cmd->main->cmd_num > 1)
+		// {
+		// 	redir_mix(cmd);
+		// }
+		// else if (cmd->main->cmd_num == 1)
+		// {
 			write(2,"only redir\n",11);
 			child = fork();
 			if(child == 0)
@@ -162,46 +162,12 @@ void	redir(t_mini_cmd *cmd)
 							perror("dup >>");
 						close(fd);
 					}
-					else if(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
-					{
-						// while(!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen("<<")))
-						// 	i++;
-						char *eof;
-						int fd[2];
-						int stat;
-						if(pipe(fd) < 0)
-							perror("pipe error");
-						pid_t child;
-						child = fork();
-						if(child == 0)
-						{
-							while(3)
-							{
-								eof = readline("> ");
-								if(!ft_strncmp(eof,cmd->redir.files[i],ft_strlen(eof)))
-									break;
-								write(fd[1],eof,ft_strlen(eof));
-								write(fd[1],"\n",1);
-							}
-							close(fd[1]);
-							dup2(fd[0], STDIN_FILENO);
-							close(fd[0]);
-							redir_exe(cmd);
-						}
-						else {
-							close(fd[0]);
-							close(fd[1]);
-							waitpid(-1, &stat, 0);
-						}
-					}
-					
 					i++;
 				}
 			
 				if(!is_command(cmd->redir.command) && ft_strncmp(cmd->redir.command, "cat", ft_strlen("cat")))//&& !ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen("<<") todo if command is "cat"
 				{
 					write(2,"9exe  here\n",12);
-					// write(2,cmd->redir.command,ft_strlen(cmd->redir.command));
 					redir_exe(cmd);
 				}
 				else if (is_command(cmd->redir.command))
@@ -209,8 +175,72 @@ void	redir(t_mini_cmd *cmd)
 					run_builtn(cmd);
 					exit(0);
 				}
-		}
+			}
 			else
 				waitpid(-1, &status, 0);
+	// }
+}
+
+void	redir_heredoc_loop(t_mini_cmd *cmd)
+{
+	char	*eof;
+	int		i;
+
+	i = 0;
+	while (3)
+	{
+		eof = readline("> ");
+		cmd->redir.redir_tools.ld = 0;
+		if (!ft_strncmp(eof, cmd->redir.files[i], ft_strlen(eof)))
+		{
+			i++;
+			if (i == cmd->redir.redir_tools.num_redir - 1)
+				cmd->redir.redir_tools.ld = 1;
+		}
+		if (i == cmd->redir.redir_tools.num_redir - 1 && \
+		cmd->redir.redir_tools.ld == 0)
+		{
+			write(cmd->redir.redir_tools.fd[0][1], eof, ft_strlen(eof));
+			write(cmd->redir.redir_tools.fd[0][1], "\n", 1);
+		}
+		if (i == cmd->redir.redir_tools.num_redir)
+			break ;
+	}
+}
+void	redir_init_fd(t_mini_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	cmd->redir.redir_tools.fd = (int **)malloc(sizeof(int *));
+	cmd->redir.redir_tools.fd[0] = (malloc(sizeof(int ) * 2));
+	while (i < 2)
+	{
+		cmd->redir.redir_tools.fd[0][i] = i;
+		i++;
+	}
+}
+
+void	redir_heredoc(t_mini_cmd *cmd)
+{
+	int		i;
+
+	i = 0;
+	if (pipe(cmd->redir.redir_tools.fd[0]) < 0)
+		perror("pipe error");
+	cmd->redir.redir_tools.child = fork();
+	if (cmd->redir.redir_tools.child == 0)
+	{
+		redir_heredoc_loop(cmd);
+		close(cmd->redir.redir_tools.fd[0][1]);
+		dup2(cmd->redir.redir_tools.fd[0][0], STDIN_FILENO);
+		close(cmd->redir.redir_tools.fd[0][0]);
+		redir_exe(cmd);
+	}
+	else
+	{
+		close(cmd->redir.redir_tools.fd[0][0]);
+		close(cmd->redir.redir_tools.fd[0][1]);
+		waitpid(-1, &cmd->redir.redir_tools.status, 0);
 	}
 }

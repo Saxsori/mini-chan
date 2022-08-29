@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 17:11:50 by badriah          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../mini_chan.h"
 
@@ -127,6 +116,7 @@ int	find_command(t_shell_chan *main)
 			printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
 		}
 		split_redir(main);
+		printf("here boo\n");
 		// printf("here\n");
 		split_command(main);
 		if (main->exit_status == 2)
@@ -140,8 +130,11 @@ int	find_command(t_shell_chan *main)
 			{
 				printf("r command->>> %s\n", main->cmd_table[i].redir.command);
 				k = -1;
-				while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
-					printf("r arg->>> %s\n", main->cmd_table[i].redir.arguments[k]);
+				if (main->cmd_table[i].redir.arguments)
+				{
+					while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
+						printf("r arg->>> %s\n", main->cmd_table[i].redir.arguments[k]);
+				}
 				k = -1;
 				while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
 					printf("r redir->>> %s\n", main->cmd_table[i].redir.redir[k]);
@@ -150,9 +143,13 @@ int	find_command(t_shell_chan *main)
 					printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
 			}
 		}
+//<<<<<<< HEAD
 		// printf("\n");
 		// printf("here\n");
 		// return (0);
+//=======
+		printf("here boo\n");
+//>>>>>>> ac11f6f44688370cc25d60960f118e7186680482
 		return (run_cmd(main));
 	}
 	// else

@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+//<<<<<<< HEAD
 /*   By: badriah <badriah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
 /*   Updated: 2022/08/25 17:13:29 by badriah          ###   ########.fr       */
+//=======
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/08/29 07:20:34 by dfurneau         ###   ########.fr       */
+//>>>>>>> ac11f6f44688370cc25d60960f118e7186680482
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +57,68 @@
 		// }
 	! fix exit status and the error mangement for the execution
 	*/
+int	check_redir_heredoc(t_mini_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while ((i < cmd->redir.redir_tools.num_redir) && \
+	(!ft_strncmp(cmd->redir.redir[i], "<<", ft_strlen(">>"))))
+		i++;
+	if (i == cmd->redir.redir_tools.num_redir)
+		return (0);
+	return (1);
+}
+
+int	check_redir_flag(t_mini_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while ((i < cmd->redir.redir_tools.num_redir) && \
+	(!ft_strncmp(cmd->redir.redir[i], ">", ft_strlen(">")) || \
+	!ft_strncmp(cmd->redir.redir[i], ">>", ft_strlen(">>")) || \
+	!ft_strncmp(cmd->redir.redir[i], "<", ft_strlen("<"))))
+		i++;
+	if (i == cmd->redir.redir_tools.num_redir)
+		return (0);
+	else
+		return (1);
+	return (1);
+}
+
 int	run_cmd(t_shell_chan *main)
 {
 	int	i;
 
 	i = 0;
 	get_path(main);
-	printf("seg %d\n",main->cmd_num);
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
 		{
-			redir(main->cmd_table);
+			if (!check_redir_flag(main->cmd_table))
+			{
+				printf("check redir %d \n", check_redir_flag(main->cmd_table));
+				redir(main->cmd_table);
+			}
+			else
+			{
+				if (!check_redir_heredoc(main->cmd_table))
+				{
+					redir_heredoc(main->cmd_table);
+				}
+				else
+					printf("SYNTAX ERROR\n");
+			}
 		}
 		else
 		{
 			if (is_command(main->cmd_table[0].name))
-			{
-				printf("seg %d\n",main->cmd_num);
-				// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 				return (run_builtn(&main->cmd_table[0]));
-			}
 			else if (!is_command(main->cmd_table[0].name))
 			{
-				// TODO : if (!main->path)
 				execute_tools(&main->cmd_table[0]);
-				// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
 				mini_execute(&main->cmd_table[0]);
 				return (1);
 			}
@@ -200,7 +243,7 @@ int	run_cmd(t_shell_chan *main)
 		}
 	}
 		i = 0;
-		while (i < 3)
+		while (i < main->cmd_num)
 		{
 			waitpid(-1, &main->pipe_tools.status, 0);
 			i++;
