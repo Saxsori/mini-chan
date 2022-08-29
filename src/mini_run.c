@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/23 11:35:54 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:20:34 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,66 @@
 		// }
 	! fix exit status and the error mangement for the execution
 	*/
+int check_redir_heredoc(t_mini_cmd *cmd)
+{
+	int i;
+	i = 0;
+	while((i < cmd->redir.redir_tools.num_redir) && (!ft_strncmp(cmd->redir.redir[i],"<<",ft_strlen(">>"))))
+		i++;
+	if(i == cmd->redir.redir_tools.num_redir)
+		return(0);
+	return(1);
+}
+
+int check_redir_flag(t_mini_cmd *cmd)
+{
+	int i;
+
+	i = 0;
+	while((i < cmd->redir.redir_tools.num_redir) && (!ft_strncmp(cmd->redir.redir[i],">",ft_strlen(">")) || !ft_strncmp(cmd->redir.redir[i],">>",ft_strlen(">>")) || !ft_strncmp(cmd->redir.redir[i],"<",ft_strlen("<"))))
+		i++;
+	if(i == cmd->redir.redir_tools.num_redir)
+		return(0);
+	else
+		return(1);
+	return(1);
+}
+
 int	run_cmd(t_shell_chan *main)
 {
 	int	i;
 
 	i = 0;
 	get_path(main);
-	// printf("seg\n");
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
 		{
-			redir(main->cmd_table);
+			if(!check_redir_flag(main->cmd_table))
+			{
+				printf("check redir %d \n",check_redir_flag(main->cmd_table));
+				redir(main->cmd_table);
+			}
+			else
+			{
+				if(!check_redir_heredoc(main->cmd_table))
+				{
+					redir_heredoc(main->cmd_table);
+				}
+				else
+					printf("SYNTAX ERROR\n");
+			}
 		}
 		else
 		{
 			if (is_command(main->cmd_table[0].name))
 			{
-				// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 				return (run_builtn(&main->cmd_table[0]));
 			}
 			else if (!is_command(main->cmd_table[0].name))
 			{
-				// TODO : if (!main->path)
+				// TODO:if (!main->path)
 				execute_tools(&main->cmd_table[0]);
-				// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
 				mini_execute(&main->cmd_table[0]);
 				return (1);
 			}
