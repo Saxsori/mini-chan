@@ -100,7 +100,7 @@ int	run_cmd(t_shell_chan *main)
 			if (!check_redir_flag(main->cmd_table))
 			{
 				printf("check redir %d \n", check_redir_flag(main->cmd_table));
-				redir(main->cmd_table);
+				redir(&main->cmd_table[0]);
 			}
 			else
 			{
