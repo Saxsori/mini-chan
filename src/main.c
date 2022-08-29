@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 07:01:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:26:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	find_command(t_shell_chan *main)
 	first_cmd_split(main);
 	if (main->exit_status == 2)
 		return (2);
-	printf ("heeeey\n");
 	expand_tools(main);
 	redir_tools(main);
 	if (quotes_checker(main))
@@ -129,7 +128,6 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		command_name(main);
 		check_cmd_parts(main);
-		printf("here boo \n");
 	// 	i = -1;
 	// 	while (++i < main->cmd_num)
 	// 	{
@@ -148,11 +146,10 @@ int	find_command(t_shell_chan *main)
 	// 		}
 		// }
 		// return (0);
-		printf("g_status %d \n", g_status);
 		return (run_cmd(main));
 	}
-	// else
-		//free first_split .. cmd_table .. expand_tools .. redir_tools
+	else
+		return (2);
 	return (0);
 }
 
@@ -186,9 +183,10 @@ int	main(int argc, char **argv, char **env)
 			new_prompt(1);
 		else if (check_cmd_line(main.cmd_line))
 			main.exit_status = find_command(&main);
+		g_status = main.exit_status;
+		printf("e_status %d\n", g_status);
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK;
+		VALGRIND_DO_LEAK_CHECK ;
 	}
-	// free envar
 	return (0);
 }

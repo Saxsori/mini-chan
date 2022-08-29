@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 16:35:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:11:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	expand_envar(t_shell_chan *main)
 		{
 			start_expand(&exp_tools);
 			do_expand(&exp_tools);
-			//free
+			printf("new line %s\n", main->first_split[i]);
 		}
 		if (exp_tools.env_num)
 		{

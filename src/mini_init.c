@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 08:53:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:30:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->pipe_tools.status = 0;
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
+	main->exit_status = 0;
 }
 
 
@@ -131,8 +132,6 @@ void	init_loop_p_redir(t_mini_cmd *cmd, int i)
 */
 void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 {
-	// int	k;
-
 	redir->arguments = NULL;
 	redir->command = NULL;
 	redir->files = NULL;
@@ -145,21 +144,11 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->redir_tools.j = -1;
 	redir->redir_tools.k = -1;
 	redir->redir_tools.r_pos = NULL;
-	redir->redir_tools.fd = NULL;
 	redir->redir_tools.child = -1;
 	redir->redir_tools.status = 0;
 	redir->redir_tools.ld = 0;
-	// k = -1;
-	// while (main->first_split[i][++k])
-	// {
-	// 	if (main->first_split[i][k] == '\a')
-	// 		printf("yes\n");
-	// }
-	// printf("first split (%s)\n", main->first_split[i]);
+	redir->redir_tools.fd = NULL;
 	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
-	// k = -1;
-	// while (redir->redir_tools.split[++k])
-	// 	printf("split redir (%s)\n", redir->redir_tools.split[k]);
 	replace_tabbing_spaces(redir->redir_tools.split);
 }
 /****************************  PARSE_REDIR  ***********************************/
@@ -233,6 +222,7 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->redir.redir_tools.parse_err = 0;
 	cmd->redir.redir_tools.r_pos = NULL;
 	cmd->redir.redir_tools.split = NULL;
+	cmd->redir.redir_tools.fd = NULL;
 	cmd->exe_tools.arg_num = 0;
 	cmd->exe_tools.arguments = NULL;
 	cmd->exe_tools.cmd_name = NULL;

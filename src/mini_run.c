@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 08:36:40 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:10:40 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,38 +89,39 @@ int	run_cmd(t_shell_chan *main)
 	printf("lala\n");
 	if (main->cmd_num == 1)
 	{
-		if (main->cmd_table->tools.y_redir)
+		// if (main->cmd_table->tools.y_redir)
+		// {
+		// 	printf("------ heredoc");
+		// 	if (!check_redir_flag(main->cmd_table))
+		// 	{
+		// 		printf("check redir %d \n", check_redir_flag(main->cmd_table));
+		// 		// redir(&main->cmd_table[0]);
+		// 	}
+		// 	else
+		// 	{
+		// 		if (!check_redir_heredoc(main->cmd_table))
+		// 		{
+		// 			printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
+		// 			redir_heredoc(&main->cmd_table[0]);
+		// 		}
+		// 		else
+		// 			printf("SYNTAX ERROR\n");
+		// 	}
+		// }
+		/*else*/ if (is_command(main->cmd_table[0].name))
 		{
-			if (!check_redir_flag(main->cmd_table))
-			{
-				printf("check redir %d \n", check_redir_flag(main->cmd_table));
-				// redir(&main->cmd_table[0]);
-			}
-			else
-			{
-				if (!check_redir_heredoc(main->cmd_table))
-				{
-					printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
-					redir_heredoc(&main->cmd_table[0]);
-				}
-				else
-					printf("SYNTAX ERROR\n");
-			}
+			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
+			return (run_builtn(&main->cmd_table[0]));
 		}
-		// if (is_command(main->cmd_table[0].name))
-		// {
-		// 	// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
-		// 	return (run_builtn(&main->cmd_table[0]));
-		// }
-		// else if (!is_command(main->cmd_table[0].name))
-		// {
-		// 	// TODO : if (!main->path)
-		// 	execute_tools(&main->cmd_table[0]);
-		// 	// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
-		// 	mini_execute(&main->cmd_table[0]);
-		// 	return (1);
-		// }
-
+		else if (!is_command(main->cmd_table[0].name))
+		{
+			// TODO : if (!main->path)
+			execute_tools(&main->cmd_table[0]);
+			// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
+			mini_execute(&main->cmd_table[0]);
+			printf("vooooooo\n");
+			return (1);
+		}
 	}
 	// if (main->cmd_num > 1)
 	// {

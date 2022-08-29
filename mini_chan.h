@@ -388,7 +388,6 @@ void			replace_envar(t_mini_cmd *cmd, int i);
 int				isvalid_name(char *line);
 int				check_is_name_there(t_shell_chan *main, char *line);
 void			two_dollar_case(char *line);
-void			expand_envar(t_shell_chan *main);
 void			do_expand(t_expand_tools *exp_tools);
 void			do_unset(t_mini_cmd *cmd, int i);
 

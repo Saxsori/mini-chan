@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/26 12:44:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:23:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	find_istart(t_env_info *env_info)
 	char	c;
 
 	c = env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index + 1];
-	if (c == ' ' || c == '\t' || c == '\v' || c == 34 || c == 39 || c == '\0' || c == ':' || c == '=')
+	if (c == ' ' || c == '\t' || c == '\v' || c == 34 || c == 39 || c == '\0' || c == ':' || c == '=' )
 		env_info->i_start = env_info->e_index;
 	else
 		env_info->i_start = env_info->e_index + 1;
@@ -48,6 +48,8 @@ void	find_name_size(t_env_info *env_info)
 			break ;
 		else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == ':')
 			break ;
+		// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '?')
+		// 	break ;
 	}
 	env_info->i_end = i - 1;
 	env_info->name_len = (env_info->i_end - env_info->i_start) + 1;
@@ -85,6 +87,28 @@ void	handle_1dollar_case(t_env_info *env_info)
 	free(line);
 }
 
+void	check_e_status(t_env_info *env_info)
+{
+	char	*line;
+	int		i;
+
+	line = ft_strdup(env_info->exp_tools->main->first_split[env_info->exp_tools->index]);
+	i = -1;
+	printf("line (%s)\n", line);
+	while (++i < ft_strlen(line))
+	{
+		if (i == env_info->i_start)
+		{
+			if (i == env_info->i_end)
+			{
+				if (line[i] == '?')
+					env_info->e_valid = 'e';
+			}
+		}
+	}
+	free(line);
+}
+
 /*
 	// printf("old exp len %d\n", env_info->exp_tools->new_exp_len);
 	// printf("old line %s\n", exp_tools->main->first_split[exp_tools->index]);
@@ -100,6 +124,11 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	find_name_size(env_info);
 	if (env_info->e_valid == 0 || !find_env(env_info))
 		env_info->env_ptr = NULL;
+	check_e_status(env_info);
+	printf("here valid %d\n", env_info->e_valid);
+	printf("here env\n");
+	if (!env_info->env_ptr)
+		printf("it's a NULL\n");
 	get_env_value(env_info);
 	env_info->name_len++;
 	handle_1dollar_case(env_info);

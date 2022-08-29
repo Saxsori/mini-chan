@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 08:28:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 08:56:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 10:07:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	redir_heredoc(t_mini_cmd *cmd)
 		close(cmd->redir.redir_tools.fd[0][1]);
 		dup2(cmd->redir.redir_tools.fd[0][0], STDIN_FILENO);
 		close(cmd->redir.redir_tools.fd[0][0]);
+		write(2, "vooooooo\n", 10);
 		redir_exe(cmd);
 	}
 	else

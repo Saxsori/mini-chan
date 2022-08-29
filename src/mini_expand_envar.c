@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_envar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/23 21:42:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:25:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,17 @@ void	get_env_value(t_env_info *env_info)
 	}
 	else
 	{
-		env_info->env_value = NULL;
-		env_info->value_len = 0;
+		printf("bro\n");
+		if (env_info->e_valid == 'e')
+		{
+			env_info->env_value = ft_itoa(g_status);
+			printf("itoa %s\n", env_info->env_value);
+			env_info->value_len = ft_strlen(env_info->env_value);
+		}
+		else
+		{
+			env_info->env_value = NULL;
+			env_info->value_len = 0;
+		}
 	}
 }

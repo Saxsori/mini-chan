@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 18:04:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:21:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	mini_export(t_mini_cmd *cmd)
 		else
 		{
 			print_envar_list(cmd->main->head_envar, 'x');
-			return (1);
+			return (0);
 		}
 	}
 	else
 		printf(BRED"export: no option: %s\n", cmd->option[0]);
-	return (0);
+	return (1);
 }
 
 int	mini_unset(t_mini_cmd *cmd)
@@ -45,31 +45,26 @@ int	mini_unset(t_mini_cmd *cmd)
 				else
 					printf(BRED"mini-chan🌸: unset: `%s': not a valid identifier\n"BCYN, cmd->arguments[i]);
 			}
-			return (1);
+			return (0);
 		}
 	}
 	else
 		printf(BRED"unset: no option: %s\n", cmd->option[0]);
-	return (0);
+	return (2);
 }
 
 int	mini_env(t_mini_cmd *cmd)
 {
-	if (!cmd->arguments)
-		print_envar_list(cmd->main->head_envar, 'n');
-	else
-	{
-		print_envar_list(cmd->main->head_envar, 'n');
-		printf(BCYN"%s\n"BWHT, cmd->arguments[0]);
-	}
-	return (1);
+	// if (!cmd->arguments)
+	print_envar_list(cmd->main->head_envar, 'n');
+	return (0);
 }
 
 int	mini_chan(void)
 {
 	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	new_prompt(1);
-	return (1);
+	return (0);
 }
 
 void	do_unset(t_mini_cmd *cmd, int i)

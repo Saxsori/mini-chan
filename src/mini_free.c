@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 08:57:15 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:27:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	free_redir(t_mini_cmd *cmd)
 
 void	free_cmd_tools(t_mini_cmd *cmd)
 {
-	if (cmd->tools.cwd_ret)
-		free_ptr((void **)&cmd->tools.cwd_ret);
+	// if (cmd->tools.cwd_ret)
+	// 	free_ptr((void **)&cmd->tools.cwd_ret);
 	if (cmd->tools.pwd)
 		free_ptr((void **)&cmd->tools.pwd);
 	if (cmd->tools.dir)
@@ -107,10 +107,6 @@ void	free_shell_chan_mem(t_shell_chan *main)
 	int	i;
 
 	i = -1;
-	// if (main->path)
-	// 	free_ptr((void **)main->path);
-	// if (main->path_split)
-	// 	squaredstr_free(main->path_split);
 	if (main->pipe_tools.fds)
 		squaredint_free(main->pipe_tools.fds, main->cmd_num - 1);
 	if (main->cmd_line)
