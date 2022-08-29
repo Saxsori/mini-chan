@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir_get_parts.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 01:43:01 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:10:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_redir_arg(t_mini_redir *redir, int op)
 	// if (!redir->arguments[0])
 	// 	redir->arguments[0] = NULL;
 	// else
-		redir->arguments[0] = ft_strdup(redir->command);
+	redir->arguments[0] = ft_strdup(redir->command);
 	redir->arguments[redir->redir_tools.num_arg + 1] = NULL;
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
@@ -78,6 +78,7 @@ void	get_cmd(t_mini_redir *redir, int op)
 		else
 			redir->command = ft_strdup(redir->redir_tools.split[0]);
 	}
+	printf("cmd - %s\n", redir->command);
 }
 
 /*
@@ -87,14 +88,28 @@ void	get_redir_part(t_mini_redir *redir, int op)
 	int	i;
 
 	get_cmd(redir, op);
-	get_arg_num(redir, op);
-	get_redir_arg(redir, op);
+	if (redir->command)
+	{
+		get_arg_num(redir, op);
+		get_redir_arg(redir, op);
+	}
+	else
+	{
+		redir->redir_tools.num_arg = 0;
+		redir->arguments = NULL;
+	}
 	printf("heere\n");
 	printf("cmd - %s\n", redir->command);
 	i = -1;
-	while (++i < redir->redir_tools.num_arg + 1)
-		printf("arg - %s\n", redir->arguments[i]);
+	if (redir->arguments)
+	{
+		while (++i < redir->redir_tools.num_arg + 1)
+			printf("arg - %s\n", redir->arguments[i]);
+	}
 	i = -1;
-	while (++i < redir->redir_tools.num_file)
-		printf("file - %s\n", redir->files[i]);
+	if (redir->files)
+	{
+		while (++i < redir->redir_tools.num_file)
+			printf("file - %s\n", redir->files[i]);
+	}
 }
