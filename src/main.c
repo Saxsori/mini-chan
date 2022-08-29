@@ -6,12 +6,13 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 22:22:40 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:01:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
+int	g_status;
 
 /*
 ! b4 u put them in their places check for the qoutes
@@ -100,10 +101,10 @@ int	find_command(t_shell_chan *main)
 {
 	// int	i;
 	// int	k;
-
 	first_cmd_split(main);
 	if (main->exit_status == 2)
 		return (2);
+	printf ("heeeey\n");
 	expand_tools(main);
 	redir_tools(main);
 	if (quotes_checker(main))
@@ -147,6 +148,7 @@ int	find_command(t_shell_chan *main)
 	// 		}
 		// }
 		// return (0);
+		printf("g_status %d \n", g_status);
 		return (run_cmd(main));
 	}
 	// else
@@ -171,6 +173,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void) argc;
 	(void) argv;
+	g_status = 0;
 	init_shell_chan(&main);
 	mini_sig();
 	create_envar_list(&main, env);

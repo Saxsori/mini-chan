@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 22:26:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 08:57:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	free_redir(t_mini_cmd *cmd)
 		free_ptr((void **)&cmd->redir.redir_tools.r_pos);
 	if (cmd->redir.redir_tools.split)
 		squaredstr_free(cmd->redir.redir_tools.split);
+	if (cmd->redir.redir_tools.fd)
+		squaredint_free(cmd->redir.redir_tools.fd, 2);
 }
 
 void	free_cmd_tools(t_mini_cmd *cmd)

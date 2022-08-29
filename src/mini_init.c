@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 20:01:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 08:53:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,10 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->redir_tools.j = -1;
 	redir->redir_tools.k = -1;
 	redir->redir_tools.r_pos = NULL;
+	redir->redir_tools.fd = NULL;
+	redir->redir_tools.child = -1;
+	redir->redir_tools.status = 0;
+	redir->redir_tools.ld = 0;
 	// k = -1;
 	// while (main->first_split[i][++k])
 	// {

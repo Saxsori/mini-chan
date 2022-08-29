@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 22:27:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 05:11:35 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	mini_execute(t_mini_cmd *cmd)
 			// exit(WIFEXITED(status));
 			//WIFEXITED
 		}
-		
-		
 		//free all memory
 		// exit(1);
 	}

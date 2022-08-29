@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 14:34:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:28:44 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ todo	check || in mid of cmd line AND |     |  AND cmd|cmd||||cmd
 */
 void	first_cmd_split(t_shell_chan *main)
 {
+	printf("g_status %d\n", g_status);
 	cmd_counter(main);
 	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	loop_init(main);

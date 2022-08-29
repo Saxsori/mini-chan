@@ -39,10 +39,10 @@
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
 
+extern int	g_status;
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
 typedef struct expand_tools	t_expand_tools;
-
 typedef struct echo_parse
 {
 	int	null_num;
@@ -108,6 +108,10 @@ typedef struct redirect_tools
 	int				i;
 	int				k;
 	int				j;
+	int				**fd;
+	int				ld;
+	int				status;
+	pid_t			child;
 	int				*r_pos;
 	char			**split;
 	t_shell_chan	*main;
@@ -364,7 +368,9 @@ void			get_redir_arg(t_mini_redir *redir, int op);
 void			get_redir_part(t_mini_redir *redir, int op);
 void			split_redir(t_shell_chan *main);
 void			replace_tabbing_spaces(char	**split);
-
+void			redir_heredoc_loop(t_mini_cmd *cmd);
+void			redir_init_fd(t_mini_cmd *cmd);
+void			redir_heredoc(t_mini_cmd *cmd);
 
 
 /*******************    MINI_REDIR_EXE   ******************/
