@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:05:04 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/28 05:56:38 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:09:54 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	mini_execute(t_mini_cmd *cmd)
 	pid_t	child;
 	char	*str1;
 	char	*str2;
+	char	*str3;
 	i = 0;
 	child = fork();
 	while (cmd->main->path_split[i])
@@ -34,14 +35,14 @@ int	mini_execute(t_mini_cmd *cmd)
 		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 		if (access(str2, F_OK) == 0)
 		{
+			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 			free_ptr((void **)&cmd->exe_tools.cmd_name);
-			cmd->exe_tools.cmd_name = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+			cmd->exe_tools.cmd_name = ft_strdup(str3);
 		}
-		if(str1 && str2)
-		{
+		if(str1)
 			free(str1);
+		if(str2)
 			free(str2);
-		}
 			
 		i++;
 	}
