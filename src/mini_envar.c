@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 19:55:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:18:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	create_envar_list(t_shell_chan *main, char **env)
 	i = 0;
 	while (env[++i])
 		main->head_envar = add_node_at_end(main->head_envar, env[i], 'n');
+	//check for pwd
 }
 
 /*

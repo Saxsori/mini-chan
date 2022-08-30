@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/24 19:36:31 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:15:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	new_prompt(int i)
 	if (i == 1)
 	{
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 	}
 	else
 	{
 		printf ("\n");
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -51,7 +51,10 @@ void	new_prompt(int i)
 void	ctrl_c(int c)
 {
 	if (c == SIGINT)
+	{
 		new_prompt('c');
+		g_status = 1;
+	}
 }
 
 /*
