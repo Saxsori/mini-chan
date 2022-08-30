@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:06:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 22:00:11 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:15:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,12 @@ void	del_mid_envar(t_mini_envar *envar)
 	temp = envar->prev;
 	temp->next = envar->next;
 	envar->next->prev = temp;
-	free(envar->env_cont);
-	free(envar->envar);
-	free(envar->env_name);
+	if (envar->envar)
+		free (envar->envar);
+	if (envar->env_cont)
+		free(envar->env_cont);
+	if (envar->env_name)
+		free (envar->env_name);
 	free (envar);
 	envar = NULL;
 }
