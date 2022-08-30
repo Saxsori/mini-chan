@@ -6,11 +6,29 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 14:18:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:57:57 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
+void	get_pwd_envar(t_shell_chan *main)
+{
+	t_mini_envar	*envar;
+	char			*pwd;
+
+	pwd = (char *)malloc(1024 * sizeof(char));
+	envar = search_envar(main->head_envar, "PWD");
+	free(envar->env_cont);
+	getcwd(pwd, 1024);
+	envar->env_cont = ft_strdup(pwd);
+	free(pwd);
+	envar = search_envar(main->head_envar, "OLDPWD");
+	if (envar)
+	{
+		del_mid_envar(envar);
+	}
+}
 
 /*
 ? the main function to create the list
@@ -26,7 +44,7 @@ void	create_envar_list(t_shell_chan *main, char **env)
 	i = 0;
 	while (env[++i])
 		main->head_envar = add_node_at_end(main->head_envar, env[i], 'n');
-	//check for pwd
+	get_pwd_envar(main);
 }
 
 /*

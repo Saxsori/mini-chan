@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 07:53:59 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:48:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,12 @@ int	mini_pwd(t_mini_cmd *cmd)
 			printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
 	}
 	return (0);
-	// else
-	// {
-	// 	printf(BRED"Error: %s\n"BWHT, strerror(errno));
-	// 	return (1);
-	// }
 }
 
 
 int	mini_exit(t_mini_cmd *cmd)
 {
-	int	check_ret;
+	int		check_ret;
 	char	*line;
 
 	check_ret = -1;

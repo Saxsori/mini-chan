@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:06:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/05/28 23:19:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:00:11 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ to delete the first node
 t_mini_envar	*del_first_envar(t_mini_envar *head)
 {
 	head = head->next;
+	free(head->prev->env_cont);
+	free(head->prev->envar);
+	free(head->prev->env_name);
 	free(head->prev);
 	head->prev = NULL;
 	return (head);
@@ -45,6 +48,9 @@ t_mini_envar	*del_last_envar(t_mini_envar *head)
 		traversal = traversal->next;
 	temp = traversal->prev;
 	temp->next = NULL;
+	free(traversal->env_cont);
+	free(traversal->envar);
+	free(traversal->env_name);
 	free(traversal);
 	return (head);
 }
@@ -72,6 +78,9 @@ void	del_mid_envar(t_mini_envar *envar)
 	temp = envar->prev;
 	temp->next = envar->next;
 	envar->next->prev = temp;
+	free(envar->env_cont);
+	free(envar->envar);
+	free(envar->env_name);
 	free (envar);
 	envar = NULL;
 }
