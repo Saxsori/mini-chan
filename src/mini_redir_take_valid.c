@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:24:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 03:39:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 03:59:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	take_v_redir(t_shell_chan *main)
 			num_valid_redir(&main->cmd_table[i]);
 			fill_redir_array(&main->cmd_table[i], main->first_split[i]);
 			main->first_split[i] = replace_redir(main->first_split[i], &main->cmd_table[i]);
-			printf("vslid redir %s \n",  main->first_split[i]);
+			printf("valid redir %s \n",  main->first_split[i]);
 			// check_null_file(main->cmd_table[i]);
 			
 			// k = -1;

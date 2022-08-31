@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 02:40:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:56:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@
 int	mini_cd(t_mini_cmd *cmd)
 {
 	int						ret;
-	char					*pwd;
-	char					*temp;
-	char					*rett;
+	char					*cwd;
 
-	pwd = (char *)malloc(1024 * sizeof(char));
-	getcwd(pwd, 1024);
+	cwd = getcwd(NULL, 1024);
 	if (!cmd->arguments)
-		cd_home(cmd, pwd);
+		cd_home(cmd, cwd);
 	else
 	{
 		ret = chdir(cmd->arguments[0]);
@@ -31,32 +28,11 @@ int	mini_cd(t_mini_cmd *cmd)
 		{
 			printf(BRED"mini-chan🌸: cd: %s: %s\n"BWHT, \
 				cmd->arguments[0], strerror(errno));
-			free (pwd);
 			return (1);
 		}
 		else
-		{
-			temp = NULL;
-			rett = getcwd(temp, 1024);
-			printf("cwd %s\n", rett);
-			if (!rett)
-			{
-				printf(BRED"cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"BWHT);
-				cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-				temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
-				free (cmd->tools.envar->env_cont);
-				cmd->tools.envar->env_cont = ft_strdup(temp);
-				free (temp);
-			}
-			else
-			{
-				check_root(cmd);
-				change_oldpwd(cmd, pwd);
-				change_pwd(cmd, pwd);
-			}
-		}
+			change_dir(cmd, cwd);
 	}
-	free (pwd);
 	return (0);
 }
 
@@ -79,7 +55,13 @@ int	mini_echo(t_mini_cmd *cmd)
 int	mini_pwd(t_mini_cmd *cmd)
 {
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-	printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
+	if (cmd->tools.envar)
+		printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
+	else
+	{
+		cmd->tools.cwd_ret = getcwd(NULL, 1024);
+		printf(BCYN"%s\n"BWHT, cmd->tools.cwd_ret);
+	}
 	return (0);
 }
 

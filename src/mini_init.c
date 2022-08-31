@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 11:30:13 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:41:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_shell_chan(t_shell_chan *main)
 	main->path_split = NULL;
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
+	main->f_pwd = 0;
 	init_mini_pipe(&main->pipe_tools);
 }
 

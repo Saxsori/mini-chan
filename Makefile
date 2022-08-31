@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/08/31 07:54:40 by dfurneau         ###   ########.fr        #
+#    Updated: 2022/08/31 04:30:38 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_redir_get_parts.c              src/mini_echo_arg_redir.c \
 		src/mini_pipe.c							src/mini_redir.c			\
 		src/mini_redir_wpip.c					src/mini_exit_pre.c         \
-		src/mini_heredoc.c 						src/mini_exit_tools.c
+		src/mini_heredoc.c 						src/mini_exit_tools.c \
+		src/mini_cd_do.c
 
 OBJ = ${SRC:.c=.o}
 

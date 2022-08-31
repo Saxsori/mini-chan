@@ -206,6 +206,7 @@ typedef struct shell_chan
 	t_mini_envar	*envar;
 	char			*path;
 	char			**path_split;
+	int				f_pwd;
 	t_mini_pipe		pipe_tools;
 }	t_shell_chan;
 
@@ -308,6 +309,7 @@ void			cd_home(t_mini_cmd *cmd, char *pwd);
 void			change_oldpwd(t_mini_cmd *cmd, char *pwd);
 void			change_pwd(t_mini_cmd *cmd, char *pwd);
 void			check_root(t_mini_cmd *cmd);
+void			change_dir(t_mini_cmd *cmd, char *cwd);
 
 /*******************    MINI_QUOTE_PARSE   *******************/
 int				is_closed(t_shell_chan *main, char *line, int index);
