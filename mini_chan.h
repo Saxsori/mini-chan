@@ -301,8 +301,13 @@ void			get_echo_arg_redir(t_mini_cmd *cmd);
 int				is_echo_opt(char *line);
 void			handle_one_case(t_mini_cmd *cmd);
 char			**new_arg(t_mini_cmd *cmd);
+
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
+void			cd_home(t_mini_cmd *cmd, char *pwd);
+void			change_oldpwd(t_mini_cmd *cmd, char *pwd);
+void			change_pwd(t_mini_cmd *cmd, char *pwd);
+void			check_root(t_mini_cmd *cmd);
 
 /*******************    MINI_QUOTE_PARSE   *******************/
 int				is_closed(t_shell_chan *main, char *line, int index);

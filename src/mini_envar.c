@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:22:48 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 22:17:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:47:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	get_pwd_envar(t_shell_chan *main)
 			main->head_envar = del_last_envar(main->head_envar);
 		else
 			del_mid_envar(envar);
+		add_node_at_end(main->head_envar, "OLDPWD", 'x');
 	}
 }
 

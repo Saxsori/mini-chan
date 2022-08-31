@@ -6,36 +6,59 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 21:48:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 02:13:43 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdlib.h>
 
-// printf("%s\n", cmd->arguments[0]);
-	// if (cmd->arguments[0] == NULL)
 int	mini_cd(t_mini_cmd *cmd)
 {
+	int				ret;
+	char			*pwd;
+	char			*temp;
+	char			*rett;
+
+	pwd = (char *)malloc(1024 * sizeof(char));
+	getcwd(pwd, 1024);
 	if (!cmd->arguments)
-	{
-		cmd->tools.envar = search_envar(cmd->main->head_envar, "HOME");
-		chdir(cmd->tools.envar->env_cont);
-	}
+		cd_home(cmd, pwd);
 	else
 	{
-		if (chdir(cmd->arguments[0]) == -1)
+		ret = chdir(cmd->arguments[0]);
+		printf("ret %d\n", ret);
+		if (ret == -1)
 		{
 			printf(BRED"mini-chan🌸: cd: %s: %s\n"BWHT, \
 				cmd->arguments[0], strerror(errno));
+			free (pwd);
 			return (1);
 		}
-		if (is_doubslash(cmd->arguments[0]) == 2)
-			cmd->main->d_rootpath = 1;
-		else if (is_doubslash(cmd->arguments[0]) != 2 \
-				&& is_doubslash(cmd->arguments[0]) != 0)
-			cmd->main->d_rootpath = 0;
+		else
+		{
+			temp = (char *)malloc(1024 * sizeof(char));
+			rett = getcwd(temp, 1024);
+			printf("cwd %s\n", rett);
+			if (!temp)
+			{
+				printf ("lll\n");
+				free(temp);
+				cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
+				temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
+				free (cmd->tools.envar->env_cont);
+				cmd->tools.envar->env_cont = ft_strdup(temp);
+				free (temp);
+			}
+			else
+			{
+				check_root(cmd);
+				change_oldpwd(cmd, pwd);
+				change_pwd(cmd, pwd);
+			}
+		}
 	}
+	free (pwd);
 	return (0);
 }
 
@@ -57,15 +80,18 @@ int	mini_echo(t_mini_cmd *cmd)
 
 int	mini_pwd(t_mini_cmd *cmd)
 {
-	cmd->tools.pwd = (char *)malloc(1024 * sizeof(char));
-	cmd->tools.cwd_ret = getcwd(cmd->tools.pwd, 1024);
-	if (cmd->tools.cwd_ret != NULL)
-	{
-		if (cmd->main->d_rootpath == 1)
-			printf(BCYN"/%s\n"BWHT, cmd->tools.pwd);
-		else
-			printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
-	}
+	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
+	// cmd->tools.pwd = (char *)malloc(1024 * sizeof(char));
+	// cmd->tools.cwd_ret = getcwd(cmd->tools.pwd, 1024);
+	// printf("cwd %s\n", cmd->tools.cwd_ret);
+	// if (cmd->tools.cwd_ret != NULL)
+	// {
+	// 	if (cmd->main->d_rootpath == 1)
+	// 		printf(BCYN"/%s\n"BWHT, cmd->tools.pwd);
+	// 	else
+	// 		printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
+	// }
+	printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
 	return (0);
 }
 

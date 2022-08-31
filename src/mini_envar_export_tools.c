@@ -6,11 +6,12 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:57:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 17:01:41 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 23:20:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
 
 /*
 to replace the valude of the envar

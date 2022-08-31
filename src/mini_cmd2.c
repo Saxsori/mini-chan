@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 14:21:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/30 23:30:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,10 @@ void	do_unset(t_mini_cmd *cmd, int i)
 						del_last_envar(cmd->main->head_envar);
 		else
 			del_mid_envar(envar);
+		if (!ft_strncmp(cmd->arguments[i], "PWD", ft_strlen(cmd->arguments[i])))
+		{
+			cmd->tools.envar = search_envar(cmd->main->head_envar, "OLDPWD");
+			cmd->tools.envar->declared = 1;
+		}
 	}
 }
