@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exit_pre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:52:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/08/22 13:06:59 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/08/31 08:18:14 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,27 @@ char	**get_exit_arg(t_mini_cmd *cmd)
 	arg = (char **)malloc(sizeof(char *) * (num + 1));
 	arg[num] = NULL;
 	i = -1;
+	printf("sds\n");
 	while (++i < cmd->tools.opt_num)
+	{
+		printf("optttt %s\n", cmd->option[i]);
 		arg[i] = ft_strdup(cmd->option[i]);
+	}
+	printf("sds\n");
 	j = -1;
 	while (++j < cmd->tools.arg_num)
 		arg[i++] = ft_strdup(cmd->arguments[j]);
-	squaredstr_free(cmd->arguments);
-	squaredstr_free(cmd->option);
+	printf("sds\n");
+	if (cmd->arguments)
+	{
+		squaredstr_free(cmd->arguments);
+		cmd->arguments = NULL;
+	}
+	if (cmd->option)
+	{
+		squaredstr_free(cmd->option);
+		cmd->option = NULL;
+	}
 	cmd->tools.arg_num = num;
 	cmd->tools.opt_num = 0;
 	return (arg);
@@ -41,6 +55,7 @@ void	pre_exit_arg(t_mini_cmd *cmd)
 	int	i;
 
 	i = -1;
+	printf("222seg\n");
 	printf("opt num %d\n", cmd->tools.opt_num);
 	while (++i < cmd->tools.opt_num)
 		printf("opt %s\n", cmd->option[i]);
@@ -53,5 +68,4 @@ void	pre_exit_arg(t_mini_cmd *cmd)
 	printf("new arg num %d\n", cmd->tools.arg_num);
 	while (++i < cmd->tools.arg_num)
 		printf("new arg %s\n", cmd->arguments[i]);
-	exit(0);
 }

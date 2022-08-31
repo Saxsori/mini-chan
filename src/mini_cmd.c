@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 14:22:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 07:53:59 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,59 +73,31 @@ int	mini_pwd(t_mini_cmd *cmd)
 	// 	return (1);
 	// }
 }
-/*
-	1 while check if all first arg contain 0s (exit 000000000)
-		if all 0s return 0
-	2 while check if all numbers using atoi (one case wont be handeld)
-*/
 
-int	ft_scan_num(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if(str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_first_arg(t_mini_cmd *cmd)
-{
-	int len;
-	int i;
-	if(!cmd->arguments[0])
-		return -1;
-	i = 0;
-	len = ft_strlen(cmd->arguments[0]);
-	while (cmd->arguments[0][i] == '0')
-		i++;
-	if (i == len)
-		return (0);
-	if (ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0]))
-		return (0);
-	return (1);
-}
 
 int	mini_exit(t_mini_cmd *cmd)
 {
 	int	check_ret;
+	char	*line;
 
-	check_ret = 1;
+	check_ret = -1;
 	if (cmd->option)
 		pre_exit_arg(cmd);
+	if (cmd->tools.arg_num > 0)
+		check_ret = check_first_arg(cmd);
+	if (cmd->tools.arg_num == 0 )
+		exit(0);
 	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 	{
 		if (check_ret == 1)
 		{
-			printf("exit\n");
-			printf("mini-chan🌸$: exit: %s: numeric argument\
-			 required\n", cmd->arguments[0]);
-			exit(255);
+			line = ft_strjoin(cmd->arguments[0], ": numeric argument required\n");
+			exit_msg(cmd->main, "255", &line);
+			// printf("exit\n");
+			// printf("1 mini-chan🌸$: exit: %s: numeric argument required\n", 
+			// cmd->arguments[0]);
+			// exit(255);
 		}
 		else
 		{
@@ -134,14 +106,37 @@ int	mini_exit(t_mini_cmd *cmd)
 		}
 	}
 	else if ((cmd->tools.arg_num == 0 || cmd->tools.arg_num == 1) \
-	&& !check_first_arg(cmd))
-		exit(ft_atoi(cmd->arguments[0]));
-	else if (check_first_arg(cmd) && cmd->tools.arg_num == 1)
+	&& check_ret == 0)
 	{
-		printf("exit\n");
-		printf("mini-chan🌸$: exit: %s: numeric argument required\n", \
-		cmd->arguments[0]);
-		exit(255);
+		exit_msg(cmd->main, cmd->arguments[0], NULL);
+		// printf("exit\n");
+		// exit(ft_atoi(cmd->arguments[0]));
+	}
+	else if ((cmd->tools.arg_num == 1) && !check_first_arg(cmd))
+	{
+		exit_msg(cmd->main, cmd->arguments[0], NULL);
+		// printf("exit\n");
+		// exit(ft_atoi(cmd->arguments[0]));
+	}
+	else if (check_ret == 1 && cmd->tools.arg_num == 1)
+	{
+		line = ft_strjoin(cmd->arguments[0], ": numeric argument required\n");
+		exit_msg(cmd->main, "255", &line);
+		// printf("exit\n");
+		// printf("2 mini-chan🌸$: exit: %s: numeric argument required\n", 
+		// cmd->arguments[0]);
+		// exit(255);
 	}
 	return (0);
+}
+
+void	exit_msg(t_shell_chan *main, char *status, char **msg)
+{
+	printf("exit\n");
+	if (msg)
+	{
+		printf("mini-chan🌸$: %s\n",*msg);
+		free_ptr((void **)msg);
+	}
+	ft_exit(main, ft_atoi(status));
 }

@@ -228,7 +228,6 @@ void			free_mini_envar(t_shell_chan *main);
 void			free_shell_chan_mem(t_shell_chan *main);
 void			free_ptr(void **ptr);
 
-
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
 void			ctrl_c(int c);
@@ -273,6 +272,13 @@ int				mini_export(t_mini_cmd *cmd);
 int				mini_unset(t_mini_cmd *cmd);
 int				mini_env(t_mini_cmd *cmd);
 int				mini_chan(void);
+
+/***************** MINI_EXIT_TOOLS ***************************/
+
+int				ft_scan_num(char *str);
+int				check_long(char *str);
+int				check_first_arg(t_mini_cmd *cmd);
+void			exit_msg(t_shell_chan *main, char *status, char **msg);
 
 /*******************      MINI__ENVAR      *******************/
 void			create_envar_list(t_shell_chan *main, char **env);
