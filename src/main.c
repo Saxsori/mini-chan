@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 03:13:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 03:20:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	check_isbuiltin(t_shell_chan *main)
 	}
 }
 
+
 /*
 // printf("cmd_count%d\n", main->cmd_num);
 ? command line parts splitting and checking 
@@ -108,6 +109,7 @@ int	find_command(t_shell_chan *main)
 	redir_tools(main);
 	if (quotes_checker(main))
 	{
+		printf("line %s\n", main->cmd_line);
 		if (pre_redir(main) == 2)
 			return (2);
 		pre_quote(main);
