@@ -109,6 +109,7 @@ typedef struct redirect_tools
 	int				k;
 	int				j;
 	int				**fd;
+	int				fd_redir;
 	int				ld;
 	int				status;
 	pid_t			child;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 07:08:33 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 14:10:40 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 05:26:38 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,26 +89,26 @@ int	run_cmd(t_shell_chan *main)
 	printf("lala\n");
 	if (main->cmd_num == 1)
 	{
-		// if (main->cmd_table->tools.y_redir)
-		// {
-		// 	printf("------ heredoc");
-		// 	if (!check_redir_flag(main->cmd_table))
-		// 	{
-		// 		printf("check redir %d \n", check_redir_flag(main->cmd_table));
-		// 		// redir(&main->cmd_table[0]);
-		// 	}
-		// 	else
-		// 	{
-		// 		if (!check_redir_heredoc(main->cmd_table))
-		// 		{
-		// 			printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
-		// 			redir_heredoc(&main->cmd_table[0]);
-		// 		}
-		// 		else
-		// 			printf("SYNTAX ERROR\n");
-		// 	}
-		// }
-		/*else*/ if (is_command(main->cmd_table[0].name))
+		if (main->cmd_table->tools.y_redir)
+		{
+			printf("------ heredoc");
+			if (!check_redir_flag(main->cmd_table))
+			{
+				printf("check redir %d \n", check_redir_flag(main->cmd_table));
+				redir(&main->cmd_table[0]);
+			}
+			else
+			{
+				if (!check_redir_heredoc(main->cmd_table))
+				{
+					printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
+					redir_heredoc(&main->cmd_table[0]);
+				}
+				else
+					printf("SYNTAX ERROR\n");
+			}
+		}
+		else if (is_command(main->cmd_table[0].name))
 		{
 			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 			return (run_builtn(&main->cmd_table[0]));
