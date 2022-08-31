@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 02:13:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 02:40:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int	mini_cd(t_mini_cmd *cmd)
 {
-	int				ret;
-	char			*pwd;
-	char			*temp;
-	char			*rett;
+	int						ret;
+	char					*pwd;
+	char					*temp;
+	char					*rett;
 
 	pwd = (char *)malloc(1024 * sizeof(char));
 	getcwd(pwd, 1024);
@@ -27,7 +27,6 @@ int	mini_cd(t_mini_cmd *cmd)
 	else
 	{
 		ret = chdir(cmd->arguments[0]);
-		printf("ret %d\n", ret);
 		if (ret == -1)
 		{
 			printf(BRED"mini-chan🌸: cd: %s: %s\n"BWHT, \
@@ -37,13 +36,12 @@ int	mini_cd(t_mini_cmd *cmd)
 		}
 		else
 		{
-			temp = (char *)malloc(1024 * sizeof(char));
+			temp = NULL;
 			rett = getcwd(temp, 1024);
 			printf("cwd %s\n", rett);
-			if (!temp)
+			if (!rett)
 			{
-				printf ("lll\n");
-				free(temp);
+				printf(BRED"cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"BWHT);
 				cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
 				temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
 				free (cmd->tools.envar->env_cont);
@@ -81,16 +79,6 @@ int	mini_echo(t_mini_cmd *cmd)
 int	mini_pwd(t_mini_cmd *cmd)
 {
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-	// cmd->tools.pwd = (char *)malloc(1024 * sizeof(char));
-	// cmd->tools.cwd_ret = getcwd(cmd->tools.pwd, 1024);
-	// printf("cwd %s\n", cmd->tools.cwd_ret);
-	// if (cmd->tools.cwd_ret != NULL)
-	// {
-	// 	if (cmd->main->d_rootpath == 1)
-	// 		printf(BCYN"/%s\n"BWHT, cmd->tools.pwd);
-	// 	else
-	// 		printf(BCYN"%s\n"BWHT, cmd->tools.pwd);
-	// }
 	printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
 	return (0);
 }

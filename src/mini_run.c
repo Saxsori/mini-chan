@@ -105,9 +105,16 @@ int	run_cmd(t_shell_chan *main)
 		else if (!is_command(main->cmd_table[0].name))
 		{
 			// TODO : if (!main->path)
-			execute_tools(&main->cmd_table[0]);
+			if (main->path)
+			{
+				execute_tools(&main->cmd_table[0]);
+				mini_execute(&main->cmd_table[0]);
+			}
+			else
+			{
+				printf("mini-chan🌸: %s: No such file or directory", main->cmd_table[0].name);
+			}
 			// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
-			mini_execute(&main->cmd_table[0]);
 			printf("vooooooo\n");
 			return (1);
 		}

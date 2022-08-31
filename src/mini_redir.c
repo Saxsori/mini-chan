@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 04:18:06 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/31 02:53:36 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	redir(t_mini_cmd *cmd)
 	int		i;
 
 	i = 0;
+	// if (syntax_error_redir(cmd)
 	cmd->redir.redir_tools.child = fork();
 	if (cmd->redir.redir_tools.child == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 22:09:07 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 03:13:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ int	main(int argc, char **argv, char **env)
 	while (42)
 	{
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
+		if (main.cmd_line)
+			add_history(main.cmd_line);
 		ctrl_d(&main);
 		if (!check_cmd_line(main.cmd_line))
 			new_prompt(1);
