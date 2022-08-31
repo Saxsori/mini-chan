@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 20:41:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:52:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	init_predir_arrays(t_redir_parse *p_redir)
 	i = -1;
 	p_redir->r_index = (int *)malloc(sizeof(int) * p_redir->num_redir);
 	p_redir->r_valid = (int *)malloc(sizeof(int) * p_redir->num_redir);
+	p_redir->i_temp = 0;
 	while (++i < p_redir->num_redir)
 	{
 		p_redir->r_index[i] = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir_get_parts.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 08:28:49 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/08/31 22:21:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,24 @@ void	get_redir_arg(t_mini_redir *redir, int op)
 }
 
 /*
-	// i = -1;
-	// while (++i < redir->redir_tools.num_redir)
-	// 	printf("file -> %s\n", redir->files[i]);
-		// printf("i %d - pos %d - file %s\n", i, redir->redir_tools.r_pos[i] + 1, redir->redir_tools.split[redir->redir_tools.r_pos[i] + 1]);
 */
 void	get_files(t_mini_redir *redir)
 {
 	int	i;
+	// int	k;
 
 	i = -1;
 	while (++i < redir->redir_tools.num_file)
 		redir->files[i] = ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 1]);
+	i = -1;
+	while (++i < redir->redir_tools.num_redir)
+	{
+		// k = -1;
+		printf("file -> (%s)\n", redir->files[i]);
+		if (redir->files[i][0] == '\f')
+			printf("(f)\n");
+	}
+		// printf("i %d - pos %d - file %s\n", i, redir->redir_tools.r_pos[i] + 1, redir->redir_tools.split[redir->redir_tools.r_pos[i] + 1]);
 }
 
 void	get_cmd(t_mini_redir *redir, int op)

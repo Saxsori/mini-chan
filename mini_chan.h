@@ -134,6 +134,7 @@ typedef struct p_redir
 	int	*r_index;
 	int	begin;
 	int	end;
+	int	i_temp;
 }	t_redir_parse;
 
 typedef struct exe_tools
