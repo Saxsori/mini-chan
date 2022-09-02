@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 05:11:35 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:53:26 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	mini_execute(t_mini_cmd *cmd)
 	char	*str1;
 	char	*str2;
 	char	*str3;
-	i = 0;
 
+	i = 0;
 	child = fork();
 		printf("cmd name %s\n", cmd->exe_tools.cmd_name);
 	while (cmd->main->path_split[i])
@@ -42,9 +42,9 @@ int	mini_execute(t_mini_cmd *cmd)
 			cmd->exe_tools.cmd_name = ft_strdup(str3);
 			free (str3);
 		}
-		if(str1)
+		if (str1)
 			free(str1);
-		if(str2)
+		if (str2)
 			free(str2);
 		i++;
 	}

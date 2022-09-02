@@ -3,112 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/26 18:09:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/02 08:52:37 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-/*
-TODO: should cover 
-*/
-void	path_finder(t_mini_cmd *cmd)
+void	pipe_redir(t_mini_cmd *cmd)
 {
-	int		i;
-	int		j;
-	char	*command;
+	int	i;
 
-	i = -1;
-	j = 0;
-	if (cmd->tools.y_redir)
-		command = ft_strdup(cmd->redir.command);
+	i = 0;
+	while (i < cmd->redir.redir_tools.num_redir)
+	{
+		redir_sign(cmd, i);
+		i++;
+	}
+	if (!is_command(cmd->redir.command))
+		redir_exe(cmd);
+	else if (is_command(cmd->redir.command))
+	{
+		run_builtn(cmd);
+		exit(0);
+	}
+}
+
+void	mini_exe_pipe(t_shell_chan *main, int i)
+{
+	if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
+	{
+		ft_dup_fds(main, i);
+		execute_tools(&main->cmd_table[i]);
+		if (execve(main->cmd_table[i].cmd_path, \
+		main->cmd_table[i].exe_tools.arguments, NULL) == -1)
+		{
+			write(2, "mini-chan🌸: ", 18);
+			write(2, main->cmd_table[i].exe_tools.arguments[0], \
+			ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+			write(2, ": command not found\n", 21);
+			exit(1);
+		}
+	}
+	else if(main->cmd_table[i].tools.y_redir)
+		pipe_redir(&main->cmd_table[i]);
 	else
-		command = ft_strdup(cmd->name);
-	while (cmd->main->path_split[++i])
 	{
-		if (access(ft_strjoin(ft_strjoin(cmd->main->path_split[i], "/"), \
-		command), F_OK) == 0)
-		{
-			cmd->cmd_path = ft_strjoin(ft_strjoin(cmd->main->path_split[i], \
-			"/"), command);
-			j = 1;
-			break ;
-		}
-		else
-			cmd->cmd_path = NULL;
-	}
-	i = -1;
-	while (cmd->main->path[++i] && j != 1)
-	{
-		if (access(command, F_OK) == 0)
-		{
-			cmd->cmd_path = ft_strdup(command);
-			break ;
-		}
-		else
-			cmd->cmd_path = NULL;
-	}
-	free(command);
-}
-
-void	init_fds(t_shell_chan *main)
-{
-	int	i;
-	int	j;
-
-	main->pipe_tools.fds = (int **)malloc(sizeof(int *) \
-	* main->pipe_tools.p_num);
-	i = -1;
-	while (++i < main->pipe_tools.p_num)
-		main->pipe_tools.fds[i] = (int *)malloc(sizeof(int) * 2);
-	i = -1;
-	while (++i < main->pipe_tools.p_num)
-	{
-		j = -1;
-		while (++j < 2)
-			main->pipe_tools.fds[i][j] = j;
+		run_builtn(&main->cmd_table[i]);
+		exit(0);
 	}
 }
 
-void	pipe_tools(t_shell_chan *main)
+void	split_pipe(t_shell_chan *main, int i)
 {
-	int	i;
-
-	main->pipe_tools.p_num = main->cmd_num - 1;
-	i = -1;
-	while (++i < main->cmd_num)
-		path_finder(&main->cmd_table[i]);
-	init_fds(main);
-	i = -1;
-	while (++i < main->cmd_num)
-		printf("path_finder %s\n", main->cmd_table[i].cmd_path);
+	if (i == 0)
+	{
+		mini_exe_pipe(main, i);
+	}
+	else if ((i == main->pipe_tools.p_num) && main->pipe_tools.child == 0)
+	{
+		mini_exe_pipe(main, i);
+	}
+	else
+		mini_exe_pipe(main, i);
 }
 
-void	ft_dup_fds(t_shell_chan *main, int i)
+void	close_fds(t_shell_chan *main, int i)
 {
-	if (i > 0)
-	{
-		if (dup2 (main->pipe_tools.fds[i - 1][0], STDIN_FILENO) < 0)
-			perror(". dup2");
-	}
 	if (i < main->pipe_tools.p_num)
 	{
-		if (dup2 (main->pipe_tools.fds[i][1], STDOUT_FILENO) < 0)
-			perror(". dup1");
+		if (close(main->pipe_tools.fds[i][1]) == -1)
+			perror("first close\n");
 	}
 	if (i > 0)
 	{
 		if (close(main->pipe_tools.fds[i - 1][0]) == -1)
-			perror(". 1 close");
+			perror(". sec close \n");
 	}
-	if (i < main->pipe_tools.p_num)
+}
+
+void	ft_mini_pipe(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
 	{
-		if (close(main->pipe_tools.fds[i][1]) == -1)
-			perror(". 2 close");
-		if (close(main->pipe_tools.fds[i][0]) == -1)
-			perror(". 3 close");
+		if (i < main->pipe_tools.p_num)
+		{
+			if (pipe(main->pipe_tools.fds[i]) < 0)
+				perror("pipe add");
+		}
+		main->pipe_tools.child = fork();
+		if (main->pipe_tools.child == 0)
+			split_pipe(main, i);
+		else
+			close_fds(main, i);
+	}
+	i = 0;
+	while (i < main->cmd_num)
+	{
+		waitpid(-1, &main->pipe_tools.status, 0);
+		i++;
 	}
 }

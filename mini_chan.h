@@ -386,15 +386,16 @@ void			replace_tabbing_spaces(char	**split);
 void			redir_heredoc_loop(t_mini_cmd *cmd);
 void			redir_init_fd(t_mini_cmd *cmd);
 void			redir_heredoc(t_mini_cmd *cmd);
-
+void			redir_sign(t_mini_cmd *cmd, int i);
+void			redir_append(t_mini_cmd *cmd, int i);
+void			redir_out(t_mini_cmd *cmd, int i);
+void			redir_in(t_mini_cmd *cmd, int i);
+void			redir_exe(t_mini_cmd *cmd);
 
 /*******************    MINI_REDIR_EXE   ******************/
 
-
 void			redir_exe(t_mini_cmd *cmd);
 void			redir(t_mini_cmd *cmd);
-void			redir_pip(t_shell_chan *main, t_mini_cmd *cmd,int i);
-// void			redir_pip(t_mini_cmd *cmd, int i);
 
 /*******************    MINI_EXPORT_TOOLS   ******************/
 int				is_equal(char *line);
@@ -421,11 +422,12 @@ void			get_path(t_shell_chan *main);
 int				mini_execute(t_mini_cmd *cmd);
 
 /*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
-void			mini_exe_pipe(t_mini_cmd *cmd);
+void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
 void			ft_dup_fds(t_shell_chan *main, int i);
+void			ft_mini_pipe(t_shell_chan *main);
 
 /*******************    MINI_EXIT  ******************/
 void			pre_exit_arg(t_mini_cmd *cmd);

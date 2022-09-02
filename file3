@@ -1,8 +1,11 @@
+
+ 
 Makefile
 README.md
 WAKUWAKU.mp3
 cat
 dirlist
+f
 fd
 fiel1
 fil
@@ -28,4 +31,3 @@ minishell.dSYM
 src
 test_free.c
 testing
-Elkdfj
