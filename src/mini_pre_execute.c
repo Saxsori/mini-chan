@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pre_execute.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 02:48:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/04 07:12:11 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

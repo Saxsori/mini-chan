@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/02 08:52:37 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/05 06:59:37 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	pipe_redir(t_mini_cmd *cmd)
 		redir_exe(cmd);
 	else if (is_command(cmd->redir.command))
 	{
-		run_builtn(cmd);
-		exit(0);
+		g_status = run_builtn(cmd);
+		exit(g_status);
 	}
 }
 
@@ -44,15 +44,15 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 			write(2, main->cmd_table[i].exe_tools.arguments[0], \
 			ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
 			write(2, ": command not found\n", 21);
-			exit(1);
+			exit(127);
 		}
 	}
-	else if(main->cmd_table[i].tools.y_redir)
+	else if (main->cmd_table[i].tools.y_redir)
 		pipe_redir(&main->cmd_table[i]);
 	else
 	{
-		run_builtn(&main->cmd_table[i]);
-		exit(0);
+		g_status = run_builtn(&main->cmd_table[i]);
+		exit(g_status);
 	}
 }
 
@@ -75,12 +75,12 @@ void	close_fds(t_shell_chan *main, int i)
 	if (i < main->pipe_tools.p_num)
 	{
 		if (close(main->pipe_tools.fds[i][1]) == -1)
-			perror("first close\n");
+			perror("close error\n");
 	}
 	if (i > 0)
 	{
 		if (close(main->pipe_tools.fds[i - 1][0]) == -1)
-			perror(". sec close \n");
+			perror("close error \n");
 	}
 }
 
@@ -94,7 +94,7 @@ void	ft_mini_pipe(t_shell_chan *main)
 		if (i < main->pipe_tools.p_num)
 		{
 			if (pipe(main->pipe_tools.fds[i]) < 0)
-				perror("pipe add");
+				perror("pipe error");
 		}
 		main->pipe_tools.child = fork();
 		if (main->pipe_tools.child == 0)
@@ -106,6 +106,8 @@ void	ft_mini_pipe(t_shell_chan *main)
 	while (i < main->cmd_num)
 	{
 		waitpid(-1, &main->pipe_tools.status, 0);
+		if (WIFEXITED(main->pipe_tools.status))
+			g_status = WEXITSTATUS(main->pipe_tools.status);
 		i++;
 	}
 }

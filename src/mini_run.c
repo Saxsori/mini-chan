@@ -75,11 +75,13 @@ int	run_cmd(t_shell_chan *main)
 
 	// i = 0;
 	get_path(main);
-	printf("lala\n");
+	printf("lalala\n");
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
 		{
+			if (!main->cmd_table->redir.files)
+				printf("yes\n");
 			printf("------ heredoc");
 			if (!check_redir_flag(main->cmd_table))
 			{
@@ -100,7 +102,8 @@ int	run_cmd(t_shell_chan *main)
 		else if (is_command(main->cmd_table[0].name))
 		{
 			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
-			return (run_builtn(&main->cmd_table[0]));
+			g_status = run_builtn(&main->cmd_table[0]);
+			return (g_status);
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
@@ -112,11 +115,11 @@ int	run_cmd(t_shell_chan *main)
 			}
 			else
 			{
-				printf("mini-chan🌸: %s: No such file or directory", main->cmd_table[0].name);
+				printf("mini-chan🌸: %s: No such file or directory\n", \
+				main->cmd_table[0].name);
+				g_status = 127;
 			}
-			// printf("2 cmd_name %s \n", main->cmd_table[0].exe_tools.cmd_name);
-			printf("vooooooo\n");
-			return (1);
+			return (g_status);
 		}
 	}
 	if (main->cmd_num > 1)

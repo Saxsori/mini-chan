@@ -39,10 +39,10 @@
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
 
-extern int	g_status;
-typedef struct shell_chan	t_shell_chan;
-typedef struct node			t_mini_envar;
-typedef struct expand_tools	t_expand_tools;
+extern int		g_status;
+typedef struct	shell_chan		t_shell_chan;
+typedef struct	node			t_mini_envar;
+typedef struct	expand_tools	t_expand_tools;
 typedef struct echo_parse
 {
 	int	null_num;

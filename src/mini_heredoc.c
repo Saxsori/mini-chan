@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mini_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 08:28:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 10:07:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/05 08:20:37 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
+int		is_null(char *file)
+{
+	if (file[0] == '\f')
+		return (1);
+	return (0);
+}
 
 void	redir_heredoc_loop(t_mini_cmd *cmd)
 {
@@ -22,7 +29,8 @@ void	redir_heredoc_loop(t_mini_cmd *cmd)
 	{
 		eof = readline("> ");
 		cmd->redir.redir_tools.ld = 0;
-		if (!ft_strncmp(eof, cmd->redir.files[i], ft_strlen(eof)))
+		if (!ft_strncmp(eof, cmd->redir.files[i], ft_strlen(eof)) || \
+		(eof[0] == '\0' && is_null(cmd->redir.files[i])))
 		{
 			i++;
 			if (i == cmd->redir.redir_tools.num_redir - 1)

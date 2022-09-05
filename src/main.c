@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 03:20:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/05 08:37:12 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int	find_command(t_shell_chan *main)
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);
+		printf("kshdkjhdjkhdjk\n");
 		command_name(main);
 		check_cmd_parts(main);
 	// 	i = -1;
@@ -187,8 +188,8 @@ int	main(int argc, char **argv, char **env)
 			new_prompt(1);
 		else if (check_cmd_line(main.cmd_line))
 			main.exit_status = find_command(&main);
-		g_status = main.exit_status;
-		printf("e_status %d\n", g_status);
+		// g_status = main.exit_status;
+		printf("g_status %d\n", g_status);
 		re_init_shell_chan(&main);
 		VALGRIND_DO_LEAK_CHECK ;
 	}
