@@ -1,12 +1,12 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 09:28:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:27:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
 
+typedef struct shell_chan	t_shell_chan;
+typedef struct node			t_mini_envar;
+typedef struct expand_tools	t_expand_tools;
 extern int		g_status;
-typedef struct	shell_chan		t_shell_chan;
-typedef struct	node			t_mini_envar;
-typedef struct	expand_tools	t_expand_tools;
 typedef struct echo_parse
 {
 	int	null_num;
@@ -376,7 +376,6 @@ void			init_predir_arrays(t_redir_parse *p_redir);
 char			*replace_redir(char	*line, t_mini_cmd *cmd);
 int				isvla_redir(t_mini_cmd *cmd, int index);
 void			init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i);
-void			split_redir(t_shell_chan *main);
 int				check_redirline_syn(t_mini_redir *redir);
 void			get_redir_pos(t_mini_redir *redir);
 void			get_files(t_mini_redir *redir);

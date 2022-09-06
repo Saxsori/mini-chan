@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 03:06:41 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:51:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ void	ctrl_c(int c)
 
 // void	ctrl_ign(int i)
 // {
-// 	if (i == SIG_IGN)
-// 	{
-// 		printf
-// 	}
+// 	// (void)i;
+// 	if (rl_line_buffer == NULL)
+// 		SIG_IGN(i);
 // }
 
 /*
@@ -76,6 +75,9 @@ ctrl+c -> create the signal SIGINT
 */
 void	mini_sig(void)
 {
+	// if (rl_line_buffer)
+	// 	printf("%s\n", rl_line_buffer);
+	// if (rl_line_buffer == NULL)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ctrl_c);
 }
