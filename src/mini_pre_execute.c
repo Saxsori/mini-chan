@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/04 07:12:11 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/06 06:34:41 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_arguments(t_mini_cmd *cmd)
 */
 void	execute_tools(t_mini_cmd *cmd)
 {
-	printf("lala\n");
+	printf("2lala\n");
 	init_mini_exe_tools(cmd);
 	get_arguments(cmd);
 }

@@ -43,7 +43,7 @@ int	main()
 
 	// free_ptr(str);
 	if (!str)
-		printf("lala\n");
+		printf("1lala\n");
 		// str = NULL;
 	// printf("%s\n", str[0]);
 }

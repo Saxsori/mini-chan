@@ -159,6 +159,8 @@ typedef struct mini_tools
 	char			*cwd_ret;
 	char			*pwd;
 	int				f_redir;
+	pid_t			child;
+	int				f_path;
 	int				y_exe;
 	int				y_redir;
 	int				r_err_syn;
@@ -174,6 +176,7 @@ typedef struct mini_cmnd
 	char				**option;
 	char				**arguments;
 	char				*cmd_path;
+	int					status;
 	t_cmd_tools			tools;
 	t_mini_redir		redir;
 	t_shell_chan		*main;

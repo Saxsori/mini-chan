@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/02 10:03:02 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/06 06:23:16 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,35 @@ void	path_finder(t_mini_cmd *cmd)
 	char	*command;
 
 	j = 0;
+	cmd->tools.f_path = 0;
 	if (cmd->tools.y_redir)
 		command = ft_strdup(cmd->redir.command);
 	else
 		command = ft_strdup(cmd->name);
-	j = path_finder_split(cmd, j, command);
 	i = -1;
-	while (cmd->main->path[++i] && j != 1)
+	while (command[++i])
 	{
-		if (access(command, F_OK) == 0)
+		if (command[i] == '/')
 		{
-			cmd->cmd_path = ft_strdup(command);
-			free(command);
+			cmd->tools.f_path = 1;
 			break ;
 		}
-		else
-			cmd->cmd_path = NULL;
+	}
+	if (cmd->tools.f_path == 0)
+	{
+		j = path_finder_split(cmd, j, command);
+		i = -1;
+		while (cmd->main->path[++i] && j != 1)
+		{
+			if (access(command, F_OK) == 0)
+			{
+				cmd->cmd_path = ft_strdup(command);
+				free(command);
+				break ;
+			}
+			else
+				cmd->cmd_path = NULL;
+		}
 	}
 }
 

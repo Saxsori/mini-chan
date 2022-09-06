@@ -75,14 +75,14 @@ int	run_cmd(t_shell_chan *main)
 
 	// i = 0;
 	get_path(main);
-	printf("lalala\n");
+	printf("3lalala\n");
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
 		{
 			if (!main->cmd_table->redir.files)
 				printf("yes\n");
-			printf("------ heredoc");
+			printf("------ heredoc\n");
 			if (!check_redir_flag(main->cmd_table))
 			{
 				printf("check redir %d \n", check_redir_flag(main->cmd_table));

@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/05 06:39:14 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/06 06:31:47 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@ int	mini_execute(t_mini_cmd *cmd)
 {
 	int		i;
 	int		status;
-	pid_t	child;
 	char	*str1;
 	char	*str2;
 	char	*str3;
-	int		f = 0;
+
+	cmd->tools.f_path = 0;
+	cmd->tools.child = -1;
 	i = 0;
-	child = fork();
+	cmd->tools.child = fork();
 	while (cmd->exe_tools.cmd_name[i])
 	{
 		if(cmd->exe_tools.cmd_name[i] == '/')
 		{
-			f = 1;
+			cmd->tools.f_path = 1;
 			break;
 		}
 		i++;
 	}
-	if(f == 0)
+	if(cmd->tools.f_path == 0)
 	{
 		i = 0;
 		while (cmd->main->path_split[i])
@@ -65,13 +66,26 @@ int	mini_execute(t_mini_cmd *cmd)
 				free(str2);
 			i++;
 		}
+
 	}
-	if (child == 0)
+	if (cmd->tools.child == 0)
 	{
+		if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
+		(access(cmd->exe_tools.cmd_name, F_OK) == 0))
+		{
+			write(2, "mini-chan🌸: ", 16);
+			write(2, cmd->exe_tools.cmd_name, \
+			ft_strlen(cmd->exe_tools.cmd_name));
+			write(2, ": Permission denied\n", \
+			ft_strlen(": Permission denied\n"));
+			ft_exit(cmd->main, 126);
+		}
 		if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 		NULL) == -1)
 		{
-			if (errno == 2 && f == 1)
+			printf("exe ff lag %d\n",cmd->tools.f_path);
+
+			if (errno == 2 && cmd->tools.f_path == 1)
 			{
 				write(2, "mini-chan🌸: ", 16);
 				write(2, cmd->exe_tools.arguments[0], \

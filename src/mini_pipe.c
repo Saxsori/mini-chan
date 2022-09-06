@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/05 06:59:37 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/06 08:24:17 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,38 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 	{
 		ft_dup_fds(main, i);
 		execute_tools(&main->cmd_table[i]);
+		if (access(main->cmd_table[i].cmd_path, X_OK) == -1 && \
+		(access(main->cmd_table[i].cmd_path, F_OK) == 0))
+		{
+			write(2, "mini-chan🌸: ", 16);
+			write(2, main->cmd_table[i].cmd_path, \
+			ft_strlen(main->cmd_table[i].cmd_path));
+			write(2, ": Permission denied\n", \
+			ft_strlen(": Permission denied\n"));
+			exit(126);
+		}
 		if (execve(main->cmd_table[i].cmd_path, \
 		main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 		{
-			write(2, "mini-chan🌸: ", 18);
-			write(2, main->cmd_table[i].exe_tools.arguments[0], \
-			ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
-			write(2, ": command not found\n", 21);
-			exit(127);
+			if (main->cmd_table[i].tools.f_path == 1)
+			{
+				write(2, "mini-chan🌸: ", 18);
+				write(2, main->cmd_table[i].exe_tools.arguments[0], \
+				ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+				write(2, ": No such file or directory\n", \
+				ft_strlen(": No such file or directory\n"));
+				main->cmd_table[i].status = 127;
+				exit(127);
+			}
+			else
+			{
+				write(2, "mini-chan🌸: ", 18);
+				write(2, main->cmd_table[i].exe_tools.arguments[0], \
+				ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
+				write(2, ": command not found\n", 21);
+				main->cmd_table[i].status = 127;
+				exit(127);
+			}	
 		}
 	}
 	else if (main->cmd_table[i].tools.y_redir)
@@ -111,3 +135,7 @@ void	ft_mini_pipe(t_shell_chan *main)
 		i++;
 	}
 }
+
+/*
+
+*/

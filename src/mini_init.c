@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 21:52:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/06 07:18:45 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->option = NULL;
 	cmd->arguments = NULL;
 	cmd->cmd_path = NULL;
+	cmd->status = 0;
 	init_cmd_tools(cmd);
 	cmd->redir.arguments = NULL;
 	cmd->redir.command = NULL;
