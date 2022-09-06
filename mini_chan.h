@@ -186,7 +186,7 @@ typedef struct mini_cmnd
 typedef struct pip_tools
 {
 	int		**fds;
-	pid_t	child;
+	pid_t	*child;
 	int		p_num;
 	int		status;
 	int		i;

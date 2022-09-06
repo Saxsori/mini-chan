@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 08:24:17 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:55:11 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ void	ft_mini_pipe(t_shell_chan *main)
 			if (pipe(main->pipe_tools.fds[i]) < 0)
 				perror("pipe error");
 		}
-		main->pipe_tools.child = fork();
-		if (main->pipe_tools.child == 0)
+		main->pipe_tools.child[i] = fork();
+		if (main->pipe_tools.child[i] == 0)
 			split_pipe(main, i);
 		else
 			close_fds(main, i);
@@ -129,9 +129,11 @@ void	ft_mini_pipe(t_shell_chan *main)
 	i = 0;
 	while (i < main->cmd_num)
 	{
-		waitpid(-1, &main->pipe_tools.status, 0);
+		waitpid(main->pipe_tools.child[i], \
+		&main->pipe_tools.status, 0);
 		if (WIFEXITED(main->pipe_tools.status))
 			g_status = WEXITSTATUS(main->pipe_tools.status);
+		
 		i++;
 	}
 }

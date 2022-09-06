@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 07:18:45 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:44:44 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->pipe_tools.i = 0;
 	main->pipe_tools.j = 0;
 	main->pipe_tools.p_num = 0;
-	main->pipe_tools.child = -1;
+	main->pipe_tools.child = NULL;
 	main->pipe_tools.status = 0;
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
@@ -235,7 +235,7 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 void	init_mini_pipe(t_mini_pipe *p_tool)
 {
 	p_tool->fds = NULL;
-	p_tool->child = -1;
+	p_tool->child = NULL;
 	p_tool->i = 0;
 	p_tool->j = 0;
 	p_tool->p_num = 0;
