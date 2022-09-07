@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/09/07 17:04:21 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/09/07 18:22:43 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CC = gcc
 
 SANITIZE = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 # -I /usr/local/opt/readline/include
-CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include ${SANITIZE}
+CFLAGS = -Wall -Werror -Wextra -g -I /usr/local/opt/readline/include 
 
 #-L /usr/local/opt/readline/lib
 LINKS =  -lreadline -L /usr/local/opt/readline/lib

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 13:11:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:30:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	do_expand(t_expand_tools *exp_tools)
 			new_line[exp_tools->i++] = exp_tools->main->first_split[exp_tools->index][exp_tools->i_s];
 	}
 	new_line[exp_tools->i] = '\0';
+	printf("i %d  -- len %d\n", exp_tools->i, exp_tools->new_exp_len + 1);
 	free(exp_tools->main->first_split[exp_tools->index]);
 	exp_tools->main->first_split[exp_tools->index] = ft_strdup(new_line);
 	free(new_line);
@@ -90,7 +91,7 @@ void	expand_envar(t_shell_chan *main)
 		{
 			start_expand(&exp_tools);
 			do_expand(&exp_tools);
-			printf("new line %s\n", main->first_split[i]);
+			// printf("new line %s\n", main->first_split[i]);
 		}
 		if (exp_tools.env_num)
 		{

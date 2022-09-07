@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 21:20:42 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:54:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	free_mini_chan(t_shell_chan *main)
 
 void	ft_exit(t_shell_chan *main, int	status)
 {
-	rl_clear_history();
+	// rl_clear_history();
 	if (main->path_split)
 		squaredstr_free(main->path_split);
 	if (main->path)
