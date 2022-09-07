@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 05:47:19 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/06 08:55:09 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	init_loop_p_redir(t_mini_cmd *cmd, int i)
 void	init_mini_pipe(t_mini_pipe *p_tool)
 {
 	p_tool->fds = NULL;
-	p_tool->child = -1;
+	// p_tool->child = -1;
 	p_tool->i = 0;
 	p_tool->j = 0;
 	p_tool->p_num = 0;

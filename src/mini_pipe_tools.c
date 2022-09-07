@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/06 06:23:16 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:48:53 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ void	pipe_tools(t_shell_chan *main)
 {
 	int	i;
 
+	i = -1;
+	main->pipe_tools.child = malloc(sizeof(pid_t) * main->cmd_num);
+	while (++i < main->cmd_num)
+		main->pipe_tools.child[i] = -1;
 	main->pipe_tools.p_num = main->cmd_num - 1;
 	i = -1;
 	while (++i < main->cmd_num)
