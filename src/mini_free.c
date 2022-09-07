@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 02:40:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:20:42 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	free_redir(t_mini_cmd *cmd)
 
 void	free_cmd_tools(t_mini_cmd *cmd)
 {
-	// if (cmd->tools.cwd_ret)
-	// 	free_ptr((void **)&cmd->tools.cwd_ret);
 	if (cmd->tools.pwd)
 		free_ptr((void **)&cmd->tools.pwd);
 	if (cmd->tools.dir)
@@ -94,8 +92,6 @@ void	free_mini_cmd(t_mini_cmd *cmd)
 		squaredstr_free(cmd->arguments);
 	if (cmd->cmd_path)
 		free_ptr((void **)&cmd->cmd_path);
-	// if (cmd->name)
-		// free_ptr((void **)&cmd->name);
 	free_exe_tools (cmd);
 	free_cmd_tools(cmd);
 	free_predir(cmd);
@@ -109,6 +105,8 @@ void	free_shell_chan_mem(t_shell_chan *main)
 	i = -1;
 	if (main->pipe_tools.fds)
 		squaredint_free(main->pipe_tools.fds, main->cmd_num - 1);
+	if (main->path)
+		free_ptr((void **)&main->path);
 	if (main->cmd_line)
 		free_ptr((void **)&main->cmd_line);
 	if (main->first_split)
@@ -123,7 +121,6 @@ void	free_shell_chan_mem(t_shell_chan *main)
 			free_mini_cmd(&main->cmd_table[i]);
 		free_ptr((void **)&main->cmd_table);
 	}
-	//teest
 }
 
 void	free_mini_envar(t_shell_chan *main)
@@ -153,6 +150,11 @@ void	free_mini_chan(t_shell_chan *main)
 
 void	ft_exit(t_shell_chan *main, int	status)
 {
+	rl_clear_history();
+	if (main->path_split)
+		squaredstr_free(main->path_split);
+	if (main->path)
+		free_ptr((void **)&main->path);
 	free_shell_chan_mem(main);
 	free_mini_chan(main);
 	exit(status);

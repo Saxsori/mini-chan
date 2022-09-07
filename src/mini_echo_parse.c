@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/25 19:16:46 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:30:45 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*line_no_null_arg(t_shell_chan *main, int index)
 
 	i = -1;
 	k = 0;
+	printf ("old size %d\n", ft_strlen(main->first_split[index]));
 	line = (char *)malloc(sizeof(char) * (main->e_parse.new_size + 1));
 	printf("new size %d\n", main->e_parse.new_size + 1);
 	while (++i < ft_strlen(main->first_split[index]))
