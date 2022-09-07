@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 18:33:57 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:36:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ void			free_ptr(void **ptr);
 void			ctrl_d(t_shell_chan *main);
 void			ctrl_c(int c);
 void			mini_sig(void);
+void			msg(int i);
 
 /*******************   MINI__TOOLS&CHECK   *******************/
 void			first_cmd_split(t_shell_chan *main);

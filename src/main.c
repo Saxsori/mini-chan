@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 18:33:41 by aaljaber         ###   ########.fr       */
+/*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
+/*   Updated: 2022/09/07 21:11:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,11 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 	g_status = 0;
 	init_shell_chan(&main);
-	mini_sig();
 	create_envar_list(&main, env);
 	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	while (42)
 	{
+		mini_sig();
 		main.cmd_line = readline(BMAG"mini-chan🌸$ "BBLU);
 		if (main.cmd_line)
 			add_history(main.cmd_line);

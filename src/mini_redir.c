@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 06:54:30 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:40:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ void	redir(t_mini_cmd *cmd)
 	cmd->redir.redir_tools.child = fork();
 	if (cmd->redir.redir_tools.child == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		while (++i < cmd->redir.redir_tools.num_redir)
 			redir_sign(cmd, i);
 		if (!is_command(cmd->redir.command))
-				redir_exe(cmd);
+			redir_exe(cmd);
 		else if (is_command(cmd->redir.command))
 		{
 			run_builtn(cmd);
@@ -82,8 +83,14 @@ void	redir(t_mini_cmd *cmd)
 	}
 	else
 	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, msg);
 		waitpid(-1, &cmd->redir.redir_tools.status, 0);
 		if (WIFEXITED(cmd->redir.redir_tools.status))
 			g_status = WEXITSTATUS(cmd->redir.redir_tools.status);
+		else if (WIFSIGNALED(cmd->redir.redir_tools.status))
+			g_status = WTERMSIG(cmd->redir.redir_tools.status) + 128;
+		else if (WIFSTOPPED(cmd->redir.redir_tools.status))
+			g_status = WSTOPSIG(cmd->redir.redir_tools.status) + 128;
 	}
 }

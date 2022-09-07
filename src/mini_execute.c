@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 06:31:47 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:43:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 		/bin/lss not found should know the errno
 */
 
+void	msg(int i)
+{
+	if (i == SIGQUIT)
+		printf("Quit\n");
+}
+
 int	mini_execute(t_mini_cmd *cmd)
 {
 	int		i;
@@ -39,14 +45,14 @@ int	mini_execute(t_mini_cmd *cmd)
 	cmd->tools.child = fork();
 	while (cmd->exe_tools.cmd_name[i])
 	{
-		if(cmd->exe_tools.cmd_name[i] == '/')
+		if (cmd->exe_tools.cmd_name[i] == '/')
 		{
 			cmd->tools.f_path = 1;
-			break;
+			break ;
 		}
 		i++;
 	}
-	if(cmd->tools.f_path == 0)
+	if (cmd->tools.f_path == 0)
 	{
 		i = 0;
 		while (cmd->main->path_split[i])
@@ -66,10 +72,10 @@ int	mini_execute(t_mini_cmd *cmd)
 				free(str2);
 			i++;
 		}
-
 	}
 	if (cmd->tools.child == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
 		(access(cmd->exe_tools.cmd_name, F_OK) == 0))
 		{
@@ -84,7 +90,6 @@ int	mini_execute(t_mini_cmd *cmd)
 		NULL) == -1)
 		{
 			printf("exe ff lag %d\n",cmd->tools.f_path);
-
 			if (errno == 2 && cmd->tools.f_path == 1)
 			{
 				write(2, "mini-chan🌸: ", 16);
@@ -105,9 +110,15 @@ int	mini_execute(t_mini_cmd *cmd)
 	}
 	else
 	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, msg);
 		waitpid(-1, &status, 0);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);
-	}
+		else if (WIFSIGNALED(status))
+			g_status = WTERMSIG(status) + 128;
+		else if (WIFSTOPPED(status))
+			g_status = WSTOPSIG(status) + 128;
+	}	
 	return (0);
 }
