@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 06:31:47 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/08 08:01:48 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 	todo
 		/bin/lss not found should know the errno
 */
+void msg(int i)
+{
+	if (i == SIGQUIT)
+	{
+		// printf("Quit\n");
+		write(2,"Quit\n",ft_strlen("Quit\n"));
+		// exit(131);
+	}
+}
 
 int	mini_execute(t_mini_cmd *cmd)
 {
@@ -66,10 +75,12 @@ int	mini_execute(t_mini_cmd *cmd)
 				free(str2);
 			i++;
 		}
-
 	}
 	if (cmd->tools.child == 0)
 	{
+		write(2,"t\n",ft_strlen("t\n"));
+		signal(SIGQUIT,msg);
+		write(2,"l\n",ft_strlen("l\n"));
 		if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
 		(access(cmd->exe_tools.cmd_name, F_OK) == 0))
 		{
@@ -84,7 +95,6 @@ int	mini_execute(t_mini_cmd *cmd)
 		NULL) == -1)
 		{
 			printf("exe ff lag %d\n",cmd->tools.f_path);
-
 			if (errno == 2 && cmd->tools.f_path == 1)
 			{
 				write(2, "mini-chan🌸: ", 16);
@@ -105,9 +115,18 @@ int	mini_execute(t_mini_cmd *cmd)
 	}
 	else
 	{
-		waitpid(-1, &status, 0);
+		signal(SIGINT,SIG_IGN);
+		waitpid(-1, &status,0);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);
-	}
+		else if (WIFSIGNALED(status))
+			g_status = WTERMSIG(status) + 128;
+		else if (WIFSTOPPED(status))
+			g_status = WSTOPSIG(status) + 128;
+		else
+		{
+			printf("hell \n");
+		}
+	}	
 	return (0);
 }
