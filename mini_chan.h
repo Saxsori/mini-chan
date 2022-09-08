@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 21:36:22 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/08 01:37:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct echo_parse
 {
 	int	null_num;
 	int	new_size;
+	int	i;
 }	t_mini_echo;
 
 typedef struct node

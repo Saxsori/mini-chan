@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 18:05:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 17:30:45 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/08 01:46:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,30 @@ int	is_echo(char *line)
 	return (0);
 }
 
-int	count_null_arg(char *line)
+void	skip_quote(t_mini_echo *e_parse, char *line)
 {
-	int	i;
+	while (++e_parse->i < ft_strlen(line))
+	{
+		if (line[e_parse->i] != '\t')
+			return ;
+	}
+}
+
+int	count_null_arg(t_mini_echo *e_parse, char *line)
+{
 	int	num;
 
-	i = -1;
+	e_parse->i = -1;
 	num = 0;
-	while (++i < ft_strlen(line))
+	while (++e_parse->i < ft_strlen(line))
 	{
-		if (line[i] == '\t')
+		if (line[e_parse->i] == '\t')
 		{
-			if (line[i + 1] == '\t')
+			if (line[e_parse->i - 1] == ' ')
 			{
-				i++;
-				num++;
+				skip_quote(e_parse, line);
+				if (line[e_parse->i] == ' ')
+					num++;
 			}
 		}
 	}
@@ -110,15 +119,16 @@ void	parse_echo_case(t_shell_chan *main)
 		if (is_echo(main->first_split[i]))
 		{
 			main->e_parse.new_size = ft_strlen(main->first_split[i]);
-			main->e_parse.null_num = count_null_arg(main->first_split[i]);
-			main->e_parse.new_size -= (main->e_parse.null_num);
-			if (main->e_parse.null_num > 0)
-			{
-				// line = line_no_null_arg(main, i);
-				// main->first_split[i] = ft_strdup(line);
-				main->first_split[i] = line_no_null_arg(main, i);
-				// free(line);
-			}
+			main->e_parse.null_num = count_null_arg(&main->e_parse, main->first_split[i]);
+			printf("null arg %d\n", main->e_parse.null_num);
+			// main->e_parse.new_size -= (main->e_parse.null_num);
+			// if (main->e_parse.null_num > 0)
+			// {
+			// 	// line = line_no_null_arg(main, i);
+			// 	// main->first_split[i] = ft_strdup(line);
+			// 	main->first_split[i] = line_no_null_arg(main, i);
+			// 	// free(line);
+			// }
 		}
 	}
 }

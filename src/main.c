@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 21:11:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/08 01:47:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		pre_quote(main);
 		expand_envar(main);
-		// parse_echo_case(main);
+		parse_echo_case(main);
 		remove_quote(main);
 		check_isbuiltin(main);
 		split_redir(main);
