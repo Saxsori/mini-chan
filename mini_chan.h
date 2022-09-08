@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 01:37:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:33:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,8 +222,8 @@ void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 void			init_mini_quotes(t_shell_chan *main, char *line);
 void			init_expand_tools(t_expand_tools *exp_tools, \
 												t_shell_chan *main, int index);
-void			init_mem_cmd(t_mini_cmd *cmd);
 void			init_mini_pipe(t_mini_pipe *p_tool);
+void			init_mini_cmd_loop(t_shell_chan *main);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
 void			squaredstr_free(char **array);
@@ -240,18 +240,25 @@ void			ctrl_c(int c);
 void			mini_sig(void);
 void			msg(int i);
 
-/*******************   MINI__TOOLS&CHECK   *******************/
+/*******************   MINI__TOOLS & CHECK   *******************/
 void			first_cmd_split(t_shell_chan *main);
 int				twstrlen(char	**tw_str);
 void			cmd_counter(t_shell_chan *main);
 void			split_command(t_shell_chan *main);
 void			new_prompt(int i);
 int				check_cmd_line(char *line);
+int				no_cmd(char *line, int begin, int end);
+
+/******************* PARSE_PIPE *******************/
+void			remove_invalid_pipe(t_shell_chan *main, char *line, int index);
+void			check_valid_pipe(t_shell_chan *main);
+void			return_invalid_pipe(t_shell_chan *main);
 
 /*******************    OPTIONS___PARSE    *******************/
 void			check_opt(t_mini_cmd *cmd);
 int				is_there_opt(t_mini_cmd *cmd);
 void			get_opt(t_mini_cmd *cmd);
+int				check_pipe(char *line);
 
 /*******************    ARGUMENTS_PARSE    *******************/
 void			check_arg(t_mini_cmd *cmd);
@@ -387,17 +394,16 @@ void			get_redir_arg(t_mini_redir *redir, int op);
 void			get_redir_part(t_mini_redir *redir, int op);
 void			split_redir(t_shell_chan *main);
 void			replace_tabbing_spaces(char	**split);
-void			redir_heredoc_loop(t_mini_cmd *cmd);
 void			redir_init_fd(t_mini_cmd *cmd);
-void			redir_heredoc(t_mini_cmd *cmd);
+void			redir_heredoc_loop(t_mini_cmd *cmd);
 void			redir_sign(t_mini_cmd *cmd, int i);
-void			redir_append(t_mini_cmd *cmd, int i);
-void			redir_out(t_mini_cmd *cmd, int i);
-void			redir_in(t_mini_cmd *cmd, int i);
-void			redir_exe(t_mini_cmd *cmd);
 
 /*******************    MINI_REDIR_EXE   ******************/
 
+void			redir_heredoc(t_mini_cmd *cmd);
+void			redir_append(t_mini_cmd *cmd, int i);
+void			redir_out(t_mini_cmd *cmd, int i);
+void			redir_in(t_mini_cmd *cmd, int i);
 void			redir_exe(t_mini_cmd *cmd);
 void			redir(t_mini_cmd *cmd);
 

@@ -6,24 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 07:28:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:34:27 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-void	cmd_counter(t_shell_chan *main)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ft_strlen(main->cmd_line))
-	{
-		if (main->cmd_line[i] == '|')
-			main->cmd_num++;
-	}
-	main->cmd_num++;
-}
 
 int	no_cmd(char *line, int begin, int end)
 {
@@ -33,42 +20,6 @@ int	no_cmd(char *line, int begin, int end)
 			return (0);
 	}
 	return (1);
-}
-
-int	check_pipe(char *line)
-{
-	int	i;
-	int	begin;
-
-	i = -1;
-	begin = -1;
-	while (++i < ft_strlen(line))
-	{
-		if (line[i] == '|')
-		{
-			if (no_cmd(line, begin, i))
-				return (0);
-			begin = i;
-		}
-		if (line[i + 1] == '\0')
-		{
-			if (line[begin] == '|')
-			{
-				if (no_cmd(line, begin, i))
-					return (0);
-			}
-		}
-	}
-	return (1);
-}
-
-void	loop_init(t_shell_chan *main)
-{
-	int	i;
-
-	i = -1;
-	while (++i < main->cmd_num)
-		init_mini_cmd(&main->cmd_table[i], main);
 }
 
 /*
@@ -85,10 +36,11 @@ todo	check || in mid of cmd line AND |     |  AND cmd|cmd||||cmd
 */
 void	first_cmd_split(t_shell_chan *main)
 {
-	printf("g_status %d\n", g_status);
+	check_valid_pipe(main);
+	printf("line %s\n", main->cmd_line);
 	cmd_counter(main);
 	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
-	loop_init(main);
+	init_mini_cmd_loop(main);
 	if (main->cmd_num > 1)
 	{
 		main->first_split = ft_split(main->cmd_line, '|');
@@ -112,6 +64,7 @@ void	first_cmd_split(t_shell_chan *main)
 		main->first_split[0] = ft_strdup(main->cmd_line);
 		main->first_split[1] = NULL;
 	}
+	return_invalid_pipe(main);
 }
 
 /*

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 04:44:44 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:30:29 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
 
+/****************************  MAIN_STRUCT  ***********************************/
 void	init_shell_chan(t_shell_chan *main)
 {
 	main->cmd_line = NULL;
@@ -61,6 +62,7 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->e_parse.null_num = 0;
 	main->exit_status = 0;
 }
+/****************************  MAIN_STRUCT  ***********************************/
 
 
 /****************************  PARSE_QUOTE  ***********************************/
@@ -155,6 +157,7 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 }
 /****************************  PARSE_REDIR  ***********************************/
 
+
 /****************************  PARSE_EXPAND  ***********************************/
 /*
 ? expand tools
@@ -177,7 +180,7 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 /****************************  PARSE_EXPAND  ***********************************/
 
 
-
+/****************************  CMD_TABLE  ***********************************/
 void	init_cmd_tools(t_mini_cmd *cmd)
 {
 	cmd->tools.arg_num = 0;
@@ -232,6 +235,18 @@ void	init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main)
 	cmd->exe_tools.err_command = NULL;
 }
 
+void	init_mini_cmd_loop(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < main->cmd_num)
+		init_mini_cmd(&main->cmd_table[i], main);
+}
+/****************************  CMD_TABLE  ***********************************/
+
+
+/****************************  PIPE  ***********************************/
 void	init_mini_pipe(t_mini_pipe *p_tool)
 {
 	p_tool->fds = NULL;
@@ -241,41 +256,7 @@ void	init_mini_pipe(t_mini_pipe *p_tool)
 	p_tool->p_num = 0;
 	p_tool->status = 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/****************************  PIPE  ***********************************/
 
 
 
@@ -299,27 +280,6 @@ void	init_mini_pipe(t_mini_pipe *p_tool)
 // 	// cmd->redir.files = NULL;
 // 	// cmd->redir.redir = NULL;
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // void	free_mini_redir(t_mini_redir *redir)
 // {
@@ -352,13 +312,6 @@ void	init_mini_pipe(t_mini_pipe *p_tool)
 // 	init_mem_cmd(cmd);
 // 	// // free DIR
 // }
-
-
-
-
-
-
-
 
 // void	re_init_env_expand(t_env_expand *exp_tools)
 // {
