@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 20:56:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:07:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	mini_exit(t_mini_cmd *cmd)
 	if (cmd->tools.arg_num > 0)
 		check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num == 0 )
-		exit(0);
+		ft_exit(cmd->main, 0);
 	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 	{
@@ -123,7 +123,7 @@ int	mini_exit(t_mini_cmd *cmd)
 
 void	exit_msg(t_shell_chan *main, char *status, char **msg)
 {
-	printf("exit\n");
+	printf("wkjlwexit\n");
 	if (msg)
 	{
 		printf("mini-chan🌸$: %s\n",*msg);

@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 07:11:07 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/08 08:06:15 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	new_prompt(int i)
 	if (i == 1)
 	{
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		// rl_replace_line("", 0);
 	}
 	else
 	{
 		printf ("\n");
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		// rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -53,16 +53,19 @@ void	ctrl_c(int c)
 	if (c == SIGINT)
 	{
 		new_prompt('c');
-		g_status = 1;
+		g_status = 7;
 	}
 }
 
 // void	ctrl_ign(int i)
 // {
-// 	if (i == SIG_IGN)
-// 	{
-// 		printf
-// 	}
+// 	// (void)i;
+// 	if (rl_line_buffer)
+// 		printf("%s\n", rl_line_buffer);
+// 	else
+// 		printf("NULL\n");
+// 	if (!ft_strncmp(rl_line_buffer, "^\'", 2))
+// 		SIG_IGN(i);
 // }
 
 /*

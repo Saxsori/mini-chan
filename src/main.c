@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 11:06:59 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 07:51:46 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/08 08:06:06 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	check_isbuiltin(t_shell_chan *main)
 	char	**split;
 
 	i = -1;
-	printf("here\n");
 	while (++i < main->cmd_num)
 	{
 		split = ft_split(main->first_split[i], ' ');
@@ -95,42 +94,8 @@ void	check_isbuiltin(t_shell_chan *main)
 
 		BOO
 ? 		first_cmd_split .. split pipes only and fill variables
-?
 
-*/
-int	find_command(t_shell_chan *main)
-{
-	// int	i;
-	// int	k;
-	first_cmd_split(main);
-	if (main->exit_status == 2)
-		return (2);
-	expand_tools(main);
-	redir_tools(main);
-	if (quotes_checker(main))
-	{
-		printf("line %s\n", main->cmd_line);
-		if (pre_redir(main) == 2)
-			return (2);
-		pre_quote(main);
-		expand_envar(main);
-		parse_echo_case(main);
-		remove_quote(main);
-		check_isbuiltin(main);
-		// i = -1;
-		// while (++i < main->cmd_num)
-		// {
-		// 	printf("(%s)", main->first_split[i]);
-		// 	printf(" - r %d", main->cmd_table[i].tools.y_redir);
-		// 	printf(" - e %d\n", main->cmd_table[i].tools.y_exe);
-		// }
-		split_redir(main);
-		split_command(main);
-		if (main->exit_status == 2)
-			return (2);
-		printf("kshdkjhdjkhdjk\n");
-		command_name(main);
-		check_cmd_parts(main);
+?? to print the redir (for debug)
 	// 	i = -1;
 	// 	while (++i < main->cmd_num)
 	// 	{
@@ -148,7 +113,31 @@ int	find_command(t_shell_chan *main)
 	// 				printf("r files->>> %s\n", main->cmd_table[i].redir.files[k]);
 	// 		}
 		// }
-		// return (0);
+?
+
+*/
+int	find_command(t_shell_chan *main)
+{
+	first_cmd_split(main);
+	if (main->exit_status == 2)
+		return (2);
+	expand_tools(main);
+	redir_tools(main);
+	if (quotes_checker(main))
+	{
+		if (pre_redir(main) == 2)
+			return (2);
+		pre_quote(main);
+		expand_envar(main);
+		parse_echo_case(main);
+		remove_quote(main);
+		check_isbuiltin(main);
+		split_redir(main);
+		split_command(main);
+		if (main->exit_status == 2)
+			return (2);
+		command_name(main);
+		check_cmd_parts(main);
 		return (run_cmd(main));
 	}
 	else
