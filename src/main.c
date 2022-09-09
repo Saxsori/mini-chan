@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 18:54:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 06:00:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,31 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		pre_quote(main);
 		expand_envar(main);
-		parse_echo_case(main);
+		parse_special_null_arg(main);
 		remove_quote(main);
 		check_isbuiltin(main);
 		split_redir(main);
 		split_command(main);
+		int	i = -1;
+		while (++i < main->cmd_num)
+		{
+			printf("hey\n");
+			printf("--> (%s)\n", main->first_split[i]);
+			int k = -1;
+			while (main->cmd_table[i].split[++k])
+			{
+				printf("arg (%s)\n", main->cmd_table[i].split[k]);
+			}
+			// while (main->first_split[i][++k])
+			// {
+			// 	if (main->first_split[i][k] == '\a')
+			// 		printf("redir\n");
+			// 	if (main->first_split[i][k] == '\f')
+			// 		printf("f\n");
+			// 	else
+			// 		printf("(%c)\n", main->first_split[i][k]);
+			// }
+		}
 		if (main->exit_status == 2)
 			return (2);
 		command_name(main);

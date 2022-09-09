@@ -6,7 +6,7 @@
 #    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/09/08 19:58:22 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/09/09 06:04:54 by aaljaber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_quotes_split.c         	    src/mini_quotes_checker.c \
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
-		src/mini_expand_action.c      			src/mini_echo_parse.c \
+		src/mini_expand_action.c\
 		src/mini_pre_execute.c					src/mini_run.c \
 		src/mini_execute.c						src/mini_redir_tools.c \
 		src/mini_redir_pre.c					src/mini_redir_isvalid.c \
@@ -33,7 +33,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_redir_opt.c					src/mini_exit_pre.c \
 		src/mini_heredoc.c 						src/mini_exit_tools.c \
 		src/mini_cd_do.c						src/mini_pipe_tools.c \
-		src/mini_pipe_pre.c
+		src/mini_pipe_pre.c						src/mini_special_null_case.c
 
 OBJ = ${SRC:.c=.o}
 

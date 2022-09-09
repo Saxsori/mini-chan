@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 20:34:27 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 05:58:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ todo	check || in mid of cmd line AND |     |  AND cmd|cmd||||cmd
 void	first_cmd_split(t_shell_chan *main)
 {
 	check_valid_pipe(main);
-	printf("line %s\n", main->cmd_line);
+	printf("line (%s)\n", main->cmd_line);
 	cmd_counter(main);
 	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	init_mini_cmd_loop(main);
@@ -102,6 +102,22 @@ void	check_spaces(char **line)
 	}
 }
 
+void	check_null_arg(t_mini_cmd *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd->split[++i])
+	{
+		if (cmd->split[i][0] == '\b')
+		{
+			free(cmd->split[i]);
+			cmd->split[i] = malloc(sizeof(char));
+			cmd->split[i][0] = '\0';
+		}
+	}
+}
+
 /*
 ? if the split on | return NULL it means there is only |
 ! handle multiple pipe in the middle or one at the end
@@ -129,6 +145,9 @@ void	check_special_cases(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 		check_spaces(main->cmd_table[i].split);
+	i = -1;
+	while (++i < main->cmd_num)
+		check_null_arg(&main->cmd_table[i]);
 }
 
 /* 

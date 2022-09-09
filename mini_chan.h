@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 20:33:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 04:22:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,18 @@ typedef struct expand_tools
 	int				new_exp_len;
 	t_env_info		*env_info;
 }	t_expand_tools;
+
+typedef struct n_parse
+{
+	int		num;
+	int		tot_size;
+	int		i;
+	int		k;
+	int		counter;
+	int		new_size;
+	char	*new_line;
+}	t_null_parse;
+
 
 typedef struct p_quotes
 {
@@ -207,6 +219,8 @@ typedef struct shell_chan
 	int				**env_index;
 	t_expand_tools	*exp_tools;
 	int				d_rootpath;
+	t_null_parse	n_parse;
+	
 	t_mini_echo		e_parse;
 	t_mini_envar	*envar;
 	char			*path;
@@ -224,6 +238,7 @@ void			init_expand_tools(t_expand_tools *exp_tools, \
 												t_shell_chan *main, int index);
 void			init_mini_pipe(t_mini_pipe *p_tool);
 void			init_mini_cmd_loop(t_shell_chan *main);
+void			init_null_parse(t_null_parse *n_parse);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
 void			squaredstr_free(char **array);
@@ -248,6 +263,9 @@ void			split_command(t_shell_chan *main);
 void			new_prompt(int i);
 int				check_cmd_line(char *line);
 int				no_cmd(char *line, int begin, int end);
+
+/*******************   SPECIAL_NULL_ARG  *******************/
+void			parse_special_null_arg(t_shell_chan *main);
 
 /******************* PARSE_PIPE *******************/
 void			remove_invalid_pipe(t_shell_chan *main, char *line, int index);

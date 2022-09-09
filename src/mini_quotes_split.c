@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/01 20:19:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 05:36:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	tabbing_quote(t_shell_chan *main, char *line, int i)
 {
 	int	n;
 
+	init_mini_quotes(main, main->first_split[i]);
 	find_frst(main, line, i);
 	n = -1;
 	while (++n < envar_num(main, i))

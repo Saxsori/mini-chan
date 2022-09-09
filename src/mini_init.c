@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 20:30:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 04:23:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_shell_chan(t_shell_chan *main)
 	main->e_parse.null_num = 0;
 	main->f_pwd = 0;
 	init_mini_pipe(&main->pipe_tools);
+	init_null_parse(&main->n_parse);
 }
 
 void	re_init_shell_chan(t_shell_chan *main)
@@ -63,6 +64,20 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->exit_status = 0;
 }
 /****************************  MAIN_STRUCT  ***********************************/
+
+
+/****************************  PARSE_NULL_ARG  ***********************************/
+void	init_null_parse(t_null_parse *n_parse)
+{
+	n_parse->i = -1;
+	n_parse->k = -1;
+	n_parse->num = 0;
+	n_parse->tot_size = 0;
+	n_parse->counter = 0;
+	n_parse->new_size = 0;
+	n_parse->new_line = NULL;
+}
+/****************************  PARSE_NULL_ARG  ***********************************/
 
 
 /****************************  PARSE_QUOTE  ***********************************/
