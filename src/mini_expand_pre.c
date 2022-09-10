@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 05:13:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 07:07:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	find_istart(t_env_info *env_info)
 	char	c;
 
 	c = env_info->exp_tools->main->first_split[env_info->exp_tools->index][env_info->e_index + 1];
-	if (c == ' ' || c == '\t' || c == '\v' || c == 34 || c == 39 || c == '\0' || c == ':' || c == '=' )
+	if (c == ' ' || c == '\t' || c == '\v' || c == 34 || c == 39 || c == '\0' || c == ':' || c == '=' || c == '/')
 		env_info->i_start = env_info->e_index;
 	else
 		env_info->i_start = env_info->e_index + 1;
@@ -48,6 +48,8 @@ void	find_name_size(t_env_info *env_info)
 			break ;
 		else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == ':')
 			break ;
+		else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '/')
+			break ;
 		// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '?')
 		// 	break ;
 	}
@@ -72,6 +74,7 @@ void	handle_1dollar_case(t_env_info *env_info)
 		line[env_info->e_index + 1] == '\t' || \
 		line[env_info->e_index + 1] == ':' || \
 		line[env_info->e_index + 1] == '=' || \
+		line[env_info->e_index + 1] == '/' || \
 		line[env_info->e_index + 1] == 34 || \
 		line[env_info->e_index + 1] == 39 || \
 		(line[env_info->e_index - 1] == 34 && \

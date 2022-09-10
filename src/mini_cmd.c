@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 06:57:07 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 07:10:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	mini_echo(t_mini_cmd *cmd)
 		get_echo_arg_redir(cmd);
 	while (++i < cmd->tools.arg_num - 1)
 		printf("%s ", cmd->arguments[i]);
-	printf("%s", cmd->arguments[i]);
+	if (cmd->tools.arg_num)
+		printf("%s", cmd->arguments[i]);
 	if (!cmd->option)
 		printf("\n");
 	return (0);
