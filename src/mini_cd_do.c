@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 04:31:14 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 21:01:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 06:58:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	change_dir(t_mini_cmd *cmd, char *cwd)
 	}
 	else
 		change_cwd(cmd, cwd);
+	free(pwd);
 }
