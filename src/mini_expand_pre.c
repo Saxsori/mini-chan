@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 07:14:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 12:20:57 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ void	handle_1dollar_case(t_env_info *env_info)
 		line[env_info->e_index + 1] == 34 || \
 		line[env_info->e_index + 1] == 39 || \
 		(line[env_info->e_index - 1] == 34 && \
-		line[env_info->e_index + 1] == 34) || \
-		line[env_info->e_index + 1] == '$')
+		line[env_info->e_index + 1] == 34))
 	{
 		env_info->env_value = (char *)malloc(sizeof(char) * 2);
 		env_info->env_value[0] = '$';

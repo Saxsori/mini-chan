@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:05:41 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 07:15:40 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 12:21:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ void	expand_tools(t_shell_chan *main)
 	int	i;
 	int	k;
 
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// 	two_dollar_case(main->first_split[i]);
+	i = -1;
+	while (++i < main->cmd_num)
+		two_dollar_case(main->first_split[i]);
 	main->exp_valid = (int **)malloc(main->cmd_num * sizeof(int *));
 	main->env_index = (int **)malloc(main->cmd_num * sizeof(int *));
 	i = -1;

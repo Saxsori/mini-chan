@@ -201,7 +201,7 @@ int	main(int argc, char **argv, char **env)
 		// g_status = main.exit_status;
 		// printf("end g_status %d\n", g_status);
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK ;
+		// VALGRIND_DO_LEAK_CHECK ;
 	}
 	return (0);
 }
