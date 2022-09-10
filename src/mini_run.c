@@ -75,7 +75,6 @@ int	run_cmd(t_shell_chan *main)
 
 	// i = 0;
 	get_path(main);
-	printf("3lalala\n");
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)

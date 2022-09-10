@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 06:00:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 01:52:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int	find_command(t_shell_chan *main)
 		expand_envar(main);
 		parse_special_null_arg(main);
 		remove_quote(main);
+		printf("-------> (%s)\n", main->first_split[0]);
 		check_isbuiltin(main);
 		split_redir(main);
 		split_command(main);
@@ -198,7 +199,7 @@ int	main(int argc, char **argv, char **env)
 		else if (check_cmd_line(main.cmd_line))
 			main.exit_status = find_command(&main);
 		// g_status = main.exit_status;
-		printf("g_status %d\n", g_status);
+		// printf("end g_status %d\n", g_status);
 		re_init_shell_chan(&main);
 		VALGRIND_DO_LEAK_CHECK ;
 	}

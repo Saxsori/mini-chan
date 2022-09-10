@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:05:41 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/24 23:34:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:57:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	envar_num(t_shell_chan *main, int i)
 			j++;
 			if (main->first_split[i][k + 1] == '$')
 				k += 1;
-			if (main->first_split[i][k + 1] == 34 || main->first_split[i][k + 1] == 39)
-				j = check_ignore_case(main, i, k, j);
+			// if (main->first_split[i][k + 1] == 34 || main->first_split[i][k + 1] == 39 || main->first_split[i][k + 1] == '\t')
+			// 	j = check_ignore_case(main, i, k, j);
 		}
 	}
 	return (j);
@@ -112,6 +112,7 @@ void	expand_tools(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 	{
+		printf("envar num %d in index %d line %s\n", envar_num(main, i), i, main->first_split[i]);
 		main->exp_valid[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 		main->env_index[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 	}

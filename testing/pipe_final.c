@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_final.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 06:53:55 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/10 12:39:05 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/10 05:24:08 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	**path_finder(t_shell_chan *main, char **cmd, int ac)
 			break ;
 		}
 	}
+	// free (path);
+	// squaredstr_free(path_split);
 	return (cmd_path);
 }
 

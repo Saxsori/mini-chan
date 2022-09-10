@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 20:50:27 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 06:35:01 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	mini_export(t_mini_cmd *cmd)
 int	mini_unset(t_mini_cmd *cmd)
 {
 	int				i;
+	int				status;
 
+	status = 0;
 	i = -1;
 	if (cmd->option == NULL)
 	{
@@ -43,9 +45,12 @@ int	mini_unset(t_mini_cmd *cmd)
 				if (isvalid_name(cmd->arguments[i]))
 					do_unset(cmd, i);
 				else
+				{
 					printf(BRED"mini-chan🌸: unset: `%s': not a valid identifier\n"BCYN, cmd->arguments[i]);
+					status = 1;
+				}
 			}
-			return (0);
+			return (status);
 		}
 	}
 	else

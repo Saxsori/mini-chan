@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 13:25:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 05:08:11 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	get_env_value(t_env_info *env_info)
 		if (env_info->e_valid == 'e')
 		{
 			env_info->env_value = ft_itoa(g_status);
-			printf("itoa %s\n", env_info->env_value);
 			env_info->value_len = ft_strlen(env_info->env_value);
 		}
 		else

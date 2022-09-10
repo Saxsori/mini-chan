@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 05:36:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:40:40 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	env_which_index(t_shell_chan *main, int index, int i)
 	int	k;
 
 	k = -1;
+	printf("envar num %d in index %d line %s\n", envar_num(main, i), i, main->first_split[i]);
 	while (++k < envar_num(main, i))
 	{
 		if (main->env_index[i][k] == index)
@@ -57,10 +58,12 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	line[index] = '\t';
 	if (line[index - 1] == '$')
 		line[index - 1] = '\t';
+	printf("%c\n", quote);
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
+			printf("env index-<<%d\n", env_which_index(main, index, i));
 			if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)

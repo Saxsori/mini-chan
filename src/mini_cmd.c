@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 21:07:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 06:47:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	mini_cd(t_mini_cmd *cmd)
 	cwd = getcwd(NULL, 1024);
 	if (!cmd->arguments)
 		cd_home(cmd, cwd);
+	else if (cmd->tools.arg_num > 1)
+	{
+		printf(BRED"mini-chan🌸: cd: too many arguments\n"BWHT);
+		return (1);
+	}
 	else
 	{
 		ret = chdir(cmd->arguments[0]);
@@ -45,8 +50,9 @@ int	mini_echo(t_mini_cmd *cmd)
 		check_echo_opt(cmd);
 	else if (cmd->tools.y_redir)
 		get_echo_arg_redir(cmd);
-	while (++i < cmd->tools.arg_num)
+	while (++i < cmd->tools.arg_num - 1)
 		printf("%s ", cmd->arguments[i]);
+	printf("%s", cmd->arguments[i]);
 	if (!cmd->option)
 		printf("\n");
 	return (0);

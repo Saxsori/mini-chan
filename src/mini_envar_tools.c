@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:10 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/22 16:11:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 06:02:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,13 @@ void	print_envar_list(t_mini_envar *head, char which)
 				printf(BCYN"%s=%s\n"BWHT, print->env_name, print->env_cont);
 		}
 		if (which == 'x')
-			printf(BCYN"declare -x %s=\"%s\"\n"BWHT, \
+		{
+			if (print->env_cont[0] != '\0')
+				printf(BCYN"declare -x %s=\"%s\"\n"BWHT, \
 							print->env_name, print->env_cont);
+			else
+				printf(BCYN"declare -x %s\n"BWHT, print->env_name);
+		}
 		print = print->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 02:26:30 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 05:59:26 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 00:07:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,61 @@ int	is_there_null_arg(t_null_parse *n_parse, char *line)
 	return (n_parse->num);
 }
 
+int	skip_null_arg(t_null_parse *n_parse, char *line)
+{
+	int	i;
+
+	i = n_parse->i;
+	while (++i < ft_strlen(line))
+	{
+		if (line[i] != '\t')
+			return (i);
+		if (line[i + 1] == '\0')
+		{
+			return (i + 1);
+		}
+	}
+	return (0);
+}
+
 void	line_no_null_arg(t_null_parse *n_parse, char *line)
 {
 	n_parse->i = -1;
 	n_parse->k = -1;
+	int i = 0;
 	while (++n_parse->i < ft_strlen(line))
 	{
-		// printf("i %d , line (%c)\n", n_parse->i, line[n_parse->i]);
+		printf("i %d , line (%c)\n", n_parse->i, line[n_parse->i]);
 		if (line[n_parse->i] == '\t')
 		{
 			if (n_parse->i == 0 || line[n_parse->i - 1] == ' ')
 			{
-				skip_quote(n_parse, line);
-				if (line[n_parse->i] == ' ' || line[n_parse->i] == '\0')
+				i = skip_null_arg(n_parse, line);
+				printf("new i %d\n", i);
+				if (i > 0)
 				{
-					// printf("take dot\n");
-					n_parse->new_line[++n_parse->k] = '\b';
+					if (line[i] == ' ' || line[i] == '\0')
+					{
+						n_parse->new_line[++n_parse->k] = '\b';
+						n_parse->i = i;
+						i = 0;
+						printf("k %d i %d take dot\n", n_parse->k, n_parse->i);
+					}
 				}
 			}
 		}
-		// printf("k %d\n", n_parse->k);
 		if (++n_parse->k < n_parse->new_size)
+		{
 			n_parse->new_line[n_parse->k] = line[n_parse->i];
+			printf("k %d , new_line (%c)\n", n_parse->k, n_parse->new_line[n_parse->k]);
+		}
 		else
 		{
-			// printf("break here (%c)\n", n_parse->new_line[n_parse->k]);
+			printf("break here (%c)\n", n_parse->new_line[n_parse->k]);
 			break ;
 		}
-		// printf("k %d , new_line (%c)\n", n_parse->k, n_parse->new_line[n_parse->k]);
 	}
+	printf("exiting (%s)\n", n_parse->new_line);
 }
 
 void	parse_special_null_arg(t_shell_chan *main)
@@ -84,6 +110,9 @@ void	parse_special_null_arg(t_shell_chan *main)
 	while (++i < main->cmd_num)
 	{
 		printf("b4 ------> (%s)\n", main->first_split[i]);
+		int k =-1;
+		while (main->first_split[i][++k])
+			printf("b4 ------> (%c)\n", main->first_split[i][k]);
 		if (is_there_null_arg(&main->n_parse, main->first_split[i]))
 		{
 			printf("null num %d\n", main->n_parse.num);

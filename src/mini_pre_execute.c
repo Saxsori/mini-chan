@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pre_execute.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/06 06:34:41 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/10 01:51:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	get_arguments(t_mini_cmd *cmd)
 */
 void	execute_tools(t_mini_cmd *cmd)
 {
-	printf("2lala\n");
 	init_mini_exe_tools(cmd);
 	get_arguments(cmd);
 }

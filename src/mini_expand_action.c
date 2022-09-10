@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 18:30:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 05:12:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	expand_envar(t_shell_chan *main)
 {
 	t_expand_tools	exp_tools;
 	int				i;
+	int				k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -91,12 +92,19 @@ void	expand_envar(t_shell_chan *main)
 		{
 			start_expand(&exp_tools);
 			do_expand(&exp_tools);
-			// printf("new line %s\n", main->first_split[i]);
+			printf("new line %s\n", main->first_split[i]);
+			k = -1;
+			while (++k < exp_tools.env_num)
+			{
+				if (exp_tools.env_info[k].env_value)
+					free_ptr((void **)&exp_tools.env_info[k].env_value);
+			}
+			if (exp_tools.env_info)
+				free_ptr((void **)&exp_tools.env_info);
 		}
-		if (exp_tools.env_num)
-		{
-			free_ptr((void **)&exp_tools.env_info->env_value);
-			free_ptr((void **)&exp_tools.env_info);
-		}
+		// if (exp_tools.env_num)
+		// {
+			printf("--------------------env num %d\n", exp_tools.env_num);
+		// }
 	}
 }

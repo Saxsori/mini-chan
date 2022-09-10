@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 13:23:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/10 05:13:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	check_e_status(t_env_info *env_info)
 */
 void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 {
+	env_info->env_value = NULL;
 	env_info->exp_tools = exp_tools;
 	env_info->e_pos = i;
 	env_info->e_index = exp_tools->main->env_index[exp_tools->index][i];
