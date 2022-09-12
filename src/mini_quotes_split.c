@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 22:40:40 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/12 06:42:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,18 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 
 	quote = line[index];
 	line[index] = '\t';
-	if (line[index - 1] == '$')
-		line[index - 1] = '\t';
-	printf("%c\n", quote);
+	if (index > 0)
+	{
+		if (line[index - 1] == '$')
+			line[index - 1] = '\t';
+	}
+	// printf("%c\n", quote);
+	// printf("%d\n", index);
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
-			printf("env index-<<%d\n", env_which_index(main, index, i));
+			// printf("env index-<<%d\n", env_which_index(main, index, i));
 			if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
@@ -79,6 +83,7 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 			return ;
 		}
 	}
+	// printf("%d\n", index);
 }
 
 /*
@@ -87,6 +92,7 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 */
 void	find_frst(t_shell_chan *main, char *line, int i)
 {
+	printf("len %d\n", ft_strlen(line));
 	while (++main->q_pars.begin < ft_strlen(line))
 	{
 		if (line[main->q_pars.begin] == 34 || line[main->q_pars.begin] == 39)

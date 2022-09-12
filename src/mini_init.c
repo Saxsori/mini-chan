@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 04:23:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/11 09:42:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->command = NULL;
 	redir->files = NULL;
 	redir->redir_tools.main = main;
+	redir->redir_tools.pos_cmd = -1;
+	redir->redir_tools.n_split = -1;
 	redir->redir_tools.num_arg = 0;
 	redir->redir_tools.num_file = 0;
 	redir->redir_tools.parse_err = 0;
@@ -168,6 +170,19 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->redir_tools.ld = 0;
 	redir->redir_tools.fd = NULL;
 	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
+	i = -1;
+	while (redir->redir_tools.split[++i])
+	{
+		if (redir->redir_tools.split[i][0] == '\b')
+		{
+			free(redir->redir_tools.split[i]);
+			redir->redir_tools.split[i] = malloc(sizeof(char));
+			redir->redir_tools.split[i][0] = '\0';
+		}
+		printf("redir split (%s)\n", redir->redir_tools.split[i]);
+	}
+	redir->redir_tools.n_split = i;
+	printf("n_split %d\n", redir->redir_tools.n_split);
 	replace_tabbing_spaces(redir->redir_tools.split);
 }
 /****************************  PARSE_REDIR  ***********************************/

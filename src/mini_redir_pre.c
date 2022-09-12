@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 20:27:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 04:45:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/11 01:48:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int	redir_pos(t_mini_cmd *cmd, int index)
 	while (++i < cmd->tools.p_redir.num_redir)
 	{
 		if (cmd->tools.p_redir.r_index[i] == index)
+		{
+			// printf ("i %d , index %d, i_redir %d\n", i , index ,cmd->tools.p_redir.r_index[i]);
 			return (i);
+		}
 	}
-	return (i);
+	return (-1);
 }
 
 int	last_redir(char *line, int i)

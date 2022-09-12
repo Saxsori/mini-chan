@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:24:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/31 22:17:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/11 07:17:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	num_valid_redir(t_mini_cmd *cmd)
 			k++;
 	}
 	cmd->redir.redir_tools.num_redir = k;
+	printf ("valid num redir %d \n", cmd->redir.redir_tools.num_redir);
 }
 
 void	change_null(t_mini_cmd *cmd, char *line)
@@ -84,7 +85,7 @@ void	check_null_file(t_mini_cmd *cmd, char *line)
 void	take_v_redir(t_shell_chan *main)
 {
 	int	i;
-	int	k;
+	// int	k;
 
 	i = -1;
 	while (++i < main->cmd_num)
@@ -94,19 +95,20 @@ void	take_v_redir(t_shell_chan *main)
 			main->cmd_table[i].tools.y_redir = 1;
 			num_valid_redir(&main->cmd_table[i]);
 			fill_redir_array(&main->cmd_table[i], main->first_split[i]);
+			// printf ("out side redir %s\n", main->cmd_table[i].redir.redir[0]);
 			main->first_split[i] = replace_redir(main->first_split[i], &main->cmd_table[i]);
-			printf("valid redir %s \n", main->first_split[i]);
-			check_null_file(&main->cmd_table[i], main->first_split[i]);
-			k = -1;
-			while (++k < ft_strlen(main->first_split[i]))
-			{
-				if (main->first_split[i][k] == '\a')
-					printf("(a)\n");
-				else if (main->first_split[i][k] == '\f')
-					printf("(f)\n");
-				else
-					printf("(%c)\n", main->first_split[i][k]);
-			}
+			// printf("valid redir %s \n", main->first_split[i]);
+			// check_null_file(&main->cmd_table[i], main->first_split[i]);
+			// k = -1;
+			// while (++k < ft_strlen(main->first_split[i]))
+			// {
+			// 	if (main->first_split[i][k] == '\a')
+			// 		printf("(a)\n");
+			// 	else if (main->first_split[i][k] == '\f')
+			// 		printf("(f)\n");
+			// 	else
+			// 		printf("(%c)\n", main->first_split[i][k]);
+			// }
 		}
 	}
 }

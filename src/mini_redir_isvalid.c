@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:17:43 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/07/05 04:39:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/11 01:49:03 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void	is_btwn_quote(t_mini_cmd *cmd, char *line, int begin)
 {
 	while (++begin < cmd->tools.p_redir.end)
 	{
-		if (line[begin] == '>' || line[begin] == '<')
+		if ((line[begin] == '>' || line[begin] == '<') && redir_pos(cmd, begin) != -1)
+		{
+			// printf ("inside %d\n", begin);
+			// printf("redir pos %d\n", redir_pos(cmd, begin));
 			cmd->tools.p_redir.r_valid[redir_pos(cmd, begin)] = 0;
+		}
 		if (line[begin] == line[cmd->tools.p_redir.begin])
 		{
 			cmd->tools.p_redir.begin = begin;

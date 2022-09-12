@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 09:04:03 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/11 09:42:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct redirect_tools
 	int				num_file;
 	int				num_redir;
 	int				num_part;
+	int				n_split;
 	int				i;
 	int				k;
 	int				j;
@@ -128,6 +129,7 @@ typedef struct redirect_tools
 	pid_t			child;
 	int				*r_pos;
 	char			**split;
+	char			pos_cmd;
 	t_shell_chan	*main;
 }	t_redir_tools;
 
