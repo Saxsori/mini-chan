@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 07:15:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/12 08:30:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	do_expand(t_expand_tools *exp_tools)
 					new_line[exp_tools->i++] = exp_tools->env_info[exp_tools->pos].env_value[exp_tools->i_e];
 			}
 			exp_tools->i_s += (exp_tools->env_info[exp_tools->pos].name_len - 1);
-			exp_tools->pos++;
+			// ! You have added this condition
+			if (exp_tools->pos + 1 < exp_tools->env_num)
+				exp_tools->pos++;
 		}
 		else
 			new_line[exp_tools->i++] = exp_tools->main->first_split[exp_tools->index][exp_tools->i_s];
