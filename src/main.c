@@ -6,13 +6,33 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/12 08:19:24 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:23:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
 int	g_status;
+
+void	get_builtin_arg(t_mini_cmd *cmd)
+{
+	int	i;
+	int	k;
+
+	k = 0;
+	i = 0;
+	if (cmd->arguments)
+		squaredstr_free(cmd->arguments);
+	cmd->arguments = (char **)malloc(sizeof(char *) * (cmd->redir.redir_tools.num_arg + 1));
+	cmd->arguments[cmd->redir.redir_tools.num_arg] = NULL;
+	printf("lll %d\n", cmd->redir.redir_tools.num_arg);
+	while (++i < (cmd->redir.redir_tools.num_arg + 1))
+	{
+		cmd->arguments[k] = ft_strdup(cmd->redir.arguments[i]);
+		printf("%s\n", cmd->arguments[k]);
+		k++;
+	}
+}
 
 /*
 ! b4 u put them in their places check for the qoutes
@@ -50,6 +70,9 @@ void	check_cmd_parts(t_shell_chan *main)
 	{
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
+		printf("---------------- %d\n", main->cmd_table[i].tools.y_redir);
+		if (main->cmd_table[i].tools.y_redir)
+			get_builtin_arg(&main->cmd_table[i]);
 	}
 }
 
@@ -141,30 +164,7 @@ int	find_command(t_shell_chan *main)
 					printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);
 			}
 		}
-
-		/////////
 		split_command(main);
-		// int	i = -1;
-		i = -1;
-		while (++i < main->cmd_num)
-		{
-			printf("hey\n");
-			printf("--> (%s)\n", main->first_split[i]);
-			int k = -1;
-			while (main->cmd_table[i].split[++k])
-			{
-				printf("arg (%s)\n", main->cmd_table[i].split[k]);
-			}
-			// while (main->first_split[i][++k])
-			// {
-			// 	if (main->first_split[i][k] == '\a')
-			// 		printf("redir\n");
-			// 	if (main->first_split[i][k] == '\f')
-			// 		printf("f\n");
-			// 	else
-			// 		printf("(%c)\n", main->first_split[i][k]);
-			// }
-		}
 		if (main->exit_status == 2)
 			return (2);
 		command_name(main);
@@ -196,6 +196,7 @@ int	main(int argc, char **argv, char **env)
 	g_status = 0;
 	init_shell_chan(&main);
 	create_envar_list(&main, env);
+	mini_sig();
 	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
 	while (42)
 	{

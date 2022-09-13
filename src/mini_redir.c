@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 21:40:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 07:43:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	redir(t_mini_cmd *cmd)
 			redir_exe(cmd);
 		else if (is_command(cmd->redir.command))
 		{
-			run_builtn(cmd);
-			exit(0);
+			g_status = run_builtn(cmd);
+			exit(g_status);
 		}
 	}
 	else

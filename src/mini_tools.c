@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 05:58:49 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 09:00:22 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,6 @@ void	check_special_cases(t_shell_chan *main)
 {
 	int	i;
 
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// 	check_echo_arg(main->cmd_table[i]);
 	i = -1;
 	while (++i < main->cmd_num)
 	{

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 21:23:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 07:22:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	new_prompt(int i)
 	if (i == 1)
 	{
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 	}
 	else
 	{
 		printf ("\n");
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -57,16 +57,33 @@ void	ctrl_c(int c)
 	}
 }
 
-// void	ctrl_ign(int i)
-// {
-// 	// (void)i;
-// 	if (rl_line_buffer)
-// 		printf("%s\n", rl_line_buffer);
-// 	else
-// 		printf("NULL\n");
-// 	if (!ft_strncmp(rl_line_buffer, "^\'", 2))
-// 		SIG_IGN(i);
-// }
+void	ctrl_ign(int i)
+{
+	(void)i;
+	// // printf("%d\n", rl_end);
+	// if (!rl_line_buffer)
+	// 	printf("YES\n");
+	// 	// printf("%s\n", rl_line_buffer);
+	// // else
+	// // 	printf("NULL\n");
+	// // if (!ft_strncmp(rl_line_buffer, "^\'", 2))
+	// SIG_IGN(i);
+	// write(1, "\n", 1);
+	// write(1, "no \n", 5);
+	// write(1, ft_itoa(rl_end), ft_strlen(ft_itoa(rl_end)));
+	// if (rl_end == 0)
+	// 	write(1, "empty\n", ft_strlen("empty\n"));
+	if (rl_end > 0)
+	{
+		write(1, "\nQuit\n", 7);
+		exit(0);
+	}
+	else
+	{
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
 /*
 ctrl+/ -> create the signal SIGQUIT 
@@ -79,6 +96,11 @@ ctrl+c -> create the signal SIGINT
 */
 void	mini_sig(void)
 {
-	signal(SIGQUIT, SIG_IGN);
+	// printf("%d\n", rl_end);
+	// if (!rl_end)
+	// 	signal(SIGQUIT, SIG_IGN);
+	// else
+	// 	signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, ctrl_ign);
 	signal(SIGINT, ctrl_c);
 }

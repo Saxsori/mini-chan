@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/12 07:14:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 04:09:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void	get_redir_pos(t_mini_redir *redir)
 /*
 
 		// printf ("i %d - arg %d - pos %d k - %d\n",redir->redir_tools.i, redir->redir_tools.num_arg, redir->redir_tools.r_pos[redir->redir_tools.k], k);
+					// printf("i %d pos %d\n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k]);
+			// printf ("i %d pos %d k %d \n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k], redir->redir_tools.k);
+			// printf ("k %d limit for k %d\n", redir->redir_tools.k, redir->redir_tools.num_redir);
+	printf("arrrrg num %d\n", redir->redir_tools.num_arg);
 */
 void	get_arg_num(t_mini_redir *redir, int op)
 {
@@ -72,26 +76,19 @@ void	get_arg_num(t_mini_redir *redir, int op)
 	{
 		redir->redir_tools.i = redir->redir_tools.pos_cmd;
 		k = redir->redir_tools.k;
-		printf ("i %d\n", redir->redir_tools.i);
 		while (++redir->redir_tools.i < redir->redir_tools.num_part)
 		{
-			//check this
 			if (k < redir->redir_tools.num_redir)
 			{
 				if (redir->redir_tools.i == redir->redir_tools.r_pos[k])
 				{
-					// printf("i %d pos %d\n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k]);
 					if (k + 1 < redir->redir_tools.num_redir)
 						k++;
 					redir->redir_tools.i++;
 				}
 			}
 			else
-			{
-				printf ("arg\n");
 				redir->redir_tools.num_arg++;
-			}
-			// printf ("i %d pos %d k %d \n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k], redir->redir_tools.k);
 		}
 	}
 	else
@@ -100,20 +97,17 @@ void	get_arg_num(t_mini_redir *redir, int op)
 		redir->redir_tools.k = 0;
 		while (++redir->redir_tools.i < redir->redir_tools.num_part)
 		{
-			printf ("k %d limit for k %d\n", redir->redir_tools.k, redir->redir_tools.num_redir);
 			if (redir->redir_tools.i == redir->redir_tools.r_pos[redir->redir_tools.k])
 			{
 				if (redir->redir_tools.k + 1 < redir->redir_tools.num_redir)
-				{
 					redir->redir_tools.k++;
-				}
 				redir->redir_tools.i++;
 			}
 			else
 				redir->redir_tools.num_arg++;
 		}
 	}
-	printf("arrrrg num %d\n", redir->redir_tools.num_arg);
+	printf ("arg num %d\n", redir->redir_tools.num_arg);
 }
 
 void	replace_tabbing_spaces(char	**split)

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 09:42:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:12:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
+# define TMA "too many arguments"
 
 typedef struct shell_chan	t_shell_chan;
 typedef struct node			t_mini_envar;
@@ -68,6 +69,7 @@ typedef struct env_info
 	int				e_valid;
 	int				f_mode2_val;
 	int				i_start;
+	int				status_var;
 	int				i_end;
 	int				name_len;
 	int				value_len;

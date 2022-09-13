@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 12:20:57 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/13 05:00:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	find_istart(t_env_info *env_info)
 		env_info->i_start = env_info->e_index;
 	else
 		env_info->i_start = env_info->e_index + 1;
+	if (c == '?')
+		env_info->status_var = 1;
 }
 
 void	find_name_size(t_env_info *env_info)
@@ -53,8 +55,18 @@ void	find_name_size(t_env_info *env_info)
 		// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '?')
 		// 	break ;
 	}
-	env_info->i_end = i - 1;
-	env_info->name_len = (env_info->i_end - env_info->i_start) + 1;
+	if (env_info->status_var)
+	{
+		env_info->i_end = env_info->i_start;
+		env_info->name_len = 1;
+	}
+	else
+	{
+		printf("eennnndddd%d\n", env_info->i_end);
+		env_info->i_end = i - 1;
+		printf("eennnndddd%d\n", env_info->i_end);
+		env_info->name_len = (env_info->i_end - env_info->i_start) + 1;
+	}
 }
 
 /*
@@ -124,6 +136,7 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	env_info->e_index = exp_tools->main->env_index[exp_tools->index][i];
 	env_info->e_valid = exp_tools->main->exp_valid[exp_tools->index][i];
 	env_info->i_start = env_info->e_index + 1;
+	env_info->status_var = 0;
 	find_istart(env_info);
 	find_name_size(env_info);
 	if (env_info->e_valid == 0 || !find_env(env_info))

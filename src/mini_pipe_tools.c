@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/07 04:48:53 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/13 08:59:44 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	path_finder_split(t_mini_cmd *cmd, int j, char *command)
 	{
 		str1 = ft_strjoin(cmd->main->path_split[i], "/");
 		str2 = ft_strjoin(str1, command);
-		if (access(str2 , F_OK) == 0)
+		if (access(str2, F_OK) == 0)
 		{
 			cmd->cmd_path = ft_strdup(str2);
 			free(command);
 			free(str1);
-			free(str2);	
+			free(str2);
 			j = 1;
 			break ;
 		}
