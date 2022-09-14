@@ -6,12 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 03:53:17 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 04:00:01 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 08:23:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
 
 void	choose_cmd(t_mini_redir *redir, int op, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 04:09:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:44:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,19 @@ void	get_redir_pos(t_mini_redir *redir)
 
 /*
 
-		// printf ("i %d - arg %d - pos %d k - %d\n",redir->redir_tools.i, redir->redir_tools.num_arg, redir->redir_tools.r_pos[redir->redir_tools.k], k);
-					// printf("i %d pos %d\n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k]);
-			// printf ("i %d pos %d k %d \n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k], redir->redir_tools.k);
-			// printf ("k %d limit for k %d\n", redir->redir_tools.k, redir->redir_tools.num_redir);
-	printf("arrrrg num %d\n", redir->redir_tools.num_arg);
+// printf ("i %d - arg %d - pos %d k - %d\n",\
+	redir->redir_tools.i,\
+	 redir->redir_tools.num_arg,\
+	 redir->redir_tools.r_pos[redir->redir_tools.k], \
+	 k);
+// printf("i %d pos %d\n", redir->redir_tools.i, \
+	redir->redir_tools.r_pos[redir->redir_tools.k]);
+// printf ("i %d pos %d k %d \n", redir->redir_tools.i, \
+		->redir_tools.r_pos[redir->redir_tools.k], \
+		redir->redir_tools.k);
+// printf ("k %d limit for k %d\n", redir->redir_tools.k, \
+			redir->redir_tools.num_redir);
+printf("arrrrg num %d\n", redir->redir_tools.num_arg);
 */
 void	get_arg_num(t_mini_redir *redir, int op)
 {
@@ -126,6 +134,7 @@ void	replace_tabbing_spaces(char	**split)
 		}
 	}
 }
+
 /*
 
 			// printf("cmd %s\n", main->cmd_table[i].redir.command);

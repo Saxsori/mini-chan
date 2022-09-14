@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 08:12:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 08:21:23 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct n_parse
 	char	*new_line;
 }	t_null_parse;
 
-
 typedef struct p_quotes
 {
 	int		begin;
@@ -109,7 +108,6 @@ typedef struct p_quotes
 	int		first;
 	int		second;
 	int		q_string;
-	// char	*line;
 	int		exp_index;
 }	t_mini_quotes;
 
@@ -133,6 +131,9 @@ typedef struct redirect_tools
 	char			**split;
 	char			pos_cmd;
 	t_shell_chan	*main;
+	char			len;
+	char			*new;
+	int				end;
 }	t_redir_tools;
 
 typedef struct mini_redirecton

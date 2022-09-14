@@ -6,12 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 04:12:06 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 08:12:49 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
 
 /*
 		// printf("%s\n", redir->arguments[redir->redir_tools.j]);
@@ -91,8 +90,6 @@ void	get_files(t_mini_redir *redir)
 	while (++i < redir->redir_tools.num_file)
 		redir->files[i] = ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 1]);
 }
-
-
 
 /*
 	
