@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 09:42:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:12:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,28 @@ void	init_loop_p_redir(t_mini_cmd *cmd, int i)
 	cmd->tools.p_redir.end = ft_strlen(cmd->main->first_split[i]);
 }
 
+void	init_mini_redir_tools(t_mini_redir *redir)
+{
+	int	i;
+
+	i = -1;
+	while (redir->redir_tools.split[++i])
+	{
+		if (redir->redir_tools.split[i][0] == '\b')
+		{
+			free(redir->redir_tools.split[i]);
+			redir->redir_tools.split[i] = malloc(sizeof(char));
+			redir->redir_tools.split[i][0] = '\0';
+		}
+	}
+	redir->redir_tools.n_split = i;
+	replace_tabbing_spaces(redir->redir_tools.split);
+}
+
 /*
 ? split redir
+		// printf("redir split (%s)\n", redir->redir_tools.split[i]);
+	// printf("n_split %d\n", redir->redir_tools.n_split);
 */
 void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 {
@@ -170,20 +190,7 @@ void	init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i)
 	redir->redir_tools.ld = 0;
 	redir->redir_tools.fd = NULL;
 	redir->redir_tools.split = ft_split(main->first_split[i], ' ');
-	i = -1;
-	while (redir->redir_tools.split[++i])
-	{
-		if (redir->redir_tools.split[i][0] == '\b')
-		{
-			free(redir->redir_tools.split[i]);
-			redir->redir_tools.split[i] = malloc(sizeof(char));
-			redir->redir_tools.split[i][0] = '\0';
-		}
-		printf("redir split (%s)\n", redir->redir_tools.split[i]);
-	}
-	redir->redir_tools.n_split = i;
-	printf("n_split %d\n", redir->redir_tools.n_split);
-	replace_tabbing_spaces(redir->redir_tools.split);
+	init_mini_redir_tools(redir);
 }
 /****************************  PARSE_REDIR  ***********************************/
 

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 05:27:08 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:17:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,6 @@ int	find_command(t_shell_chan *main)
 					printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);
 			}
 		}
-		printf("hey teez\n");
-		printf("hey\n");
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);

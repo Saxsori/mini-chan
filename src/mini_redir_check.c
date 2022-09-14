@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_redir_check_tools.c                           :+:      :+:    :+:   */
+/*   mini_redir_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 07:56:21 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 07:57:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 08:59:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,45 @@ void	check_redir(t_shell_chan *main, int i)
 		main->cmd_table[i].tools.f_redir = 1;
 	else
 		main->cmd_table[i].tools.f_redir = 0;
+}
+
+void	replace_tabbing_spaces(char	**split)
+{
+	int	i;
+	int	k;
+
+	i = -1;
+	while (split[++i])
+	{
+		k = -1;
+		while (split[i][++k])
+		{
+			if (split[i][k] == '\v')
+				split[i][k] = ' ';
+		}
+	}
+}
+
+int	check_redirline_syn(t_mini_redir *redir)
+{
+	int	i;
+
+	i = -1;
+	while (redir->redir_tools.split[++i] != NULL)
+	{
+		if (redir->redir_tools.split[i][0] == '\a')
+		{
+			if (redir->redir_tools.split[i + 1] == NULL)
+			{
+				redir->redir_tools.main->exit_status = 2;
+				return (2);
+			}
+			else if (redir->redir_tools.split[i + 1][0] == '\a')
+			{
+				redir->redir_tools.main->exit_status = 2;
+				return (2);
+			}
+		}
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 06:26:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:18:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,7 @@ void	check_null_arg(t_mini_cmd *cmd)
 		cmd->split[1] = NULL;
 		cmd->split[0] = (char *)malloc(sizeof(char));
 		cmd->split[0][0] = '\0';
-		printf("cmd arg %d\n", cmd->tools.arg_num);
-		printf("cmd arg %d\n", cmd->tools.opt_num);
 	}
-	printf("sal7\n");
 }
 
 /*
@@ -170,19 +167,17 @@ void	check_special_cases(t_shell_chan *main)
 	// i = -1;
 	// while (main->cmd_table[0].split[++i])
 	// 	printf("%s\n", main->cmd_table[0].split[i]);
-*/
-void	split_command(t_shell_chan *main)
-{
-	int	i;
-	printf("hey teza\n");
-
 	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	// i = -1;
 	// while (++i < main->cmd_num)
 	// 	init_mem_cmd(&main->cmd_table[i]);
+*/
+void	split_command(t_shell_chan *main)
+{
+	int	i;
+
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
-	printf("hey\n");
 	check_special_cases(main);
 }
