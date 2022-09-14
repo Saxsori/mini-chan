@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 07:43:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:29:23 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,15 @@ void	redir(t_mini_cmd *cmd)
 		signal(SIGQUIT, SIG_DFL);
 		while (++i < cmd->redir.redir_tools.num_redir)
 			redir_sign(cmd, i);
-		if (!is_command(cmd->redir.command))
+		if (!is_command(cmd->redir.command) && cmd->redir.command)
 			redir_exe(cmd);
 		else if (is_command(cmd->redir.command))
 		{
 			g_status = run_builtn(cmd);
 			exit(g_status);
 		}
+		else if (!cmd->redir.command)
+			exit(0);
 	}
 	else
 	{

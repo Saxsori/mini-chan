@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 04:55:11 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:18:35 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 		pipe_redir(&main->cmd_table[i]);
 	else
 	{
+		ft_dup_fds(main, i);
 		g_status = run_builtn(&main->cmd_table[i]);
 		exit(g_status);
 	}
@@ -133,7 +134,6 @@ void	ft_mini_pipe(t_shell_chan *main)
 		&main->pipe_tools.status, 0);
 		if (WIFEXITED(main->pipe_tools.status))
 			g_status = WEXITSTATUS(main->pipe_tools.status);
-		
 		i++;
 	}
 }

@@ -81,7 +81,6 @@ int	run_cmd(t_shell_chan *main)
 		{
 			if (!main->cmd_table->redir.files)
 				printf("yes\n");
-			printf("------ heredoc\n");
 			if (!check_redir_flag(main->cmd_table))
 			{
 				printf("check redir %d \n", check_redir_flag(main->cmd_table));

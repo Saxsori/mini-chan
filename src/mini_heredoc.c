@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 08:28:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/05 08:20:37 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:25:18 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ void	redir_heredoc(t_mini_cmd *cmd)
 		dup2(cmd->redir.redir_tools.fd[0][0], STDIN_FILENO);
 		close(cmd->redir.redir_tools.fd[0][0]);
 		write(2, "vooooooo\n", 10);
-		redir_exe(cmd);
+		if (cmd->redir.command)
+			redir_exe(cmd);
+		else
+			exit(0);
 	}
 	else
 	{
