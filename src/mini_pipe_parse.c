@@ -6,9 +6,8 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:54:21 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:54:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:42:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-

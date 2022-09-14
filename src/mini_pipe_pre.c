@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:38:31 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:25:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:41:51 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	check_valid_pipe(t_shell_chan *main)
 	init_mini_quotes(main, main->cmd_line);
 	while (++main->q_pars.begin < main->q_pars.end)
 	{
-		if (main->cmd_line[main->q_pars.begin] == 34 || main->cmd_line[main->q_pars.begin] == 39)
+		if (main->cmd_line[main->q_pars.begin] == 34 || \
+		main->cmd_line[main->q_pars.begin] == 39)
 			remove_invalid_pipe(main, main->cmd_line, main->q_pars.begin);
 	}
 }

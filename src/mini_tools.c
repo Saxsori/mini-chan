@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:36:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:40:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	do_pipe_split(t_shell_chan *main)
 		{
 			main->exit_status = 2;
 			if (ft_strlen(main->cmd_line) == 1)
-				printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+				printf (BRED PIPE_ERR1);
 			else if (ft_strlen(main->cmd_line) > 1)
-				printf (BRED"mini-chan🌸: syntax error near unexpected token `||'\n");
+				printf (BRED PIPE_ERR2);
 		}
 		else if (!check_pipe(main->cmd_line))
 		{
 			main->exit_status = 2;
-			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+			printf (BRED PIPE_ERR1);
 		}
 	}
 	else

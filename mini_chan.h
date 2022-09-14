@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:49:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:39:11 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define BPUR "\e[0;35m"
 # define TMA "too many arguments"
 # define NVI "not a valid identifier"
+# define PIPE_ERR1 "mini-chan🌸: syntax error near unexpected token `|'\n"
+# define PIPE_ERR2 "mini-chan🌸: syntax error near unexpected token `||'\n"
 # define GETCWD_ERR "cd: error retrieving current directory: getcwd: \
 		cannot access parent directories: No such file or directory\n"
 # define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \

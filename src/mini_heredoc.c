@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mini_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 08:28:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 00:25:18 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:43:14 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-int		is_null(char *file)
+int	is_null(char *file)
 {
 	if (file[0] == '\f')
 		return (1);
