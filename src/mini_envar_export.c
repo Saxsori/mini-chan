@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 05:04:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:31:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	do_export(t_mini_cmd *cmd)
 			choose_export_action(cmd, i);
 		else
 		{
-			printf(BRED"mini-chan🌸: export: '%s': not a valid identifier\n", cmd->arguments[i]);
+			errmsg(cmd->arguments[i], NVI);
 			fl = 1;
 		}
 	}

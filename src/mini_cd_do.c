@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 04:31:14 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 06:58:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:36:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ void	change_cwd(t_mini_cmd *cmd, char *cwd)
 	}
 }
 
+/*
+		// printf(BRED"cd: error retrieving current 
+		// directory: getcwd: cannot access parent directories:
+		//  No such file or directory\n"BWHT);
+*/
 void	change_dir(t_mini_cmd *cmd, char *cwd)
 {
 	char		*pwd;
@@ -87,7 +92,7 @@ void	change_dir(t_mini_cmd *cmd, char *cwd)
 	printf("cwd %s\n", pwd);
 	if (!pwd)
 	{
-		printf(BRED"cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"BWHT);
+		write(2, BRED GETCWD_ERR BWHT, 44 + 14);
 		temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
 		free (cmd->tools.envar->env_cont);
 		cmd->tools.envar->env_cont = ft_strdup(pwd);

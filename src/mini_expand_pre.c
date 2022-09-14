@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 06:32:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:20:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	find_name_size(t_env_info *env_info)
 			break ;
 		else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '/')
 			break ;
-		// else if (env_info->exp_tools->main->first_split[env_info->exp_tools->index][i] == '?')
-		// 	break ;
 	}
 	if (env_info->status_var)
 	{

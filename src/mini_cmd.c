@@ -6,26 +6,12 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 04:50:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:18:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdlib.h>
-
-void	errmsg(char *cmd, char *msg)
-{
-	write(2, BRED, 7);
-	write(2, "mini-chan🌸: ", 15);
-	if (cmd)
-	{
-		write(2, cmd, ft_strlen(cmd));
-		write(2, ": ", 2);
-	}
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	write(2, BWHT, 7);
-}
 
 int	mini_cd(t_mini_cmd *cmd)
 {

@@ -6,23 +6,24 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:38:31 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/08 20:36:36 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:25:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-void	cmd_counter(t_shell_chan *main)
-{
-	int	i;
+/*
 
-	i = -1;
-	while (++i < ft_strlen(main->cmd_line))
+		printf("(%c) %d %d \n", line[begin], begin, end);
+*/
+int	no_cmd(char *line, int begin, int end)
+{
+	while (++begin < end)
 	{
-		if (main->cmd_line[i] == '|')
-			main->cmd_num++;
+		if ((line[begin] > 32 && line[begin] < 127))
+			return (0);
 	}
-	main->cmd_num++;
+	return (1);
 }
 
 void	remove_invalid_pipe(t_shell_chan *main, char *line, int index)
@@ -68,8 +69,10 @@ int	check_pipe(char *line)
 		{
 			if (line[begin] == '|')
 			{
-				if (no_cmd(line, begin, i))
+				printf("kjk\n");
+				if (no_cmd(line, begin, i + 1))
 					return (0);
+				printf("kjk\n");
 			}
 		}
 	}
