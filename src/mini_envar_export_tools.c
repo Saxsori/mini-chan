@@ -6,12 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:57:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 23:20:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 04:56:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
 
 /*
 to replace the valude of the envar
@@ -46,7 +45,8 @@ int	isvalid_name(char *line)
 	int	i;
 
 	i = -1;
-	if ((!ft_isalpha(line[0]) && line[0] != '_' && line [0] == '=') || ft_isdigit(line[0]))
+	if ((!ft_isalpha(line[0]) && line[0] != '_' && line [0] == '=') \
+	|| ft_isdigit(line[0]))
 		return (0);
 	while (++i < ft_strlen(line) && line[i])
 	{

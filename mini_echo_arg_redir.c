@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_echo_arg_redir.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:24:02 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/02 10:55:51 by dfurneau         ###   ########.fr       */
+/*   Updated: 2022/09/14 04:52:12 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	get_arg_pos(t_mini_redir *redir)
 	return (0);
 }
 
+/*
+debug
+
+*/
 void	get_echo_arg_redir(t_mini_cmd *cmd)
 {
 	int	i;

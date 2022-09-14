@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/30 23:13:57 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:04:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,40 +91,39 @@ void	add_env_data(t_mini_envar *temp, char *data)
 	}
 }
 
+void	choose_export_action(t_mini_cmd *cmd, int i)
+{
+	if (is_equal(cmd->arguments[i]))
+	{
+		if (check_is_name_there(cmd->main, cmd->arguments[i]))
+			replace_envar(cmd, i);
+		else
+			add_node_at_end(cmd->main->head_envar, \
+			cmd->arguments[i], 'n');
+	}
+	else if (!check_is_name_there(cmd->main, cmd->arguments[i]))
+		add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'x');
+}
+
+	// fl = 1;
+	// if (!fl)
+	// 	return (fl);
 int	do_export(t_mini_cmd *cmd)
 {
 	int	i;
 	int	fl;
 
 	i = -1;
-	// fl = 1;
 	fl = 0;
 	while (++i < cmd->tools.arg_num)
 	{
 		if (isvalid_name(cmd->arguments[i]))
-		{
-			if (is_equal(cmd->arguments[i]))
-			{
-				if (check_is_name_there(cmd->main, cmd->arguments[i]))
-					replace_envar(cmd, i);
-				else
-					add_node_at_end(cmd->main->head_envar, \
-					cmd->arguments[i], 'n');
-			}
-			else if (!check_is_name_there(cmd->main, cmd->arguments[i]))
-				add_node_at_end(cmd->main->head_envar, cmd->arguments[i], 'x');
-		}
+			choose_export_action(cmd, i);
 		else
 		{
 			printf(BRED"mini-chan🌸: export: '%s': not a valid identifier\n", cmd->arguments[i]);
-			// fl = 0;
 			fl = 1;
 		}
 	}
-	// if (!fl)
-	// 	return (fl);
-	if (fl)
-		return (fl);
-	// return (1);
-	return (0);
+	return (fl);
 }

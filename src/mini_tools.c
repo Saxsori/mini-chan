@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 09:00:22 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 06:26:53 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,28 @@ void	check_null_arg(t_mini_cmd *cmd)
 	int	i;
 
 	i = -1;
-	while (cmd->split[++i])
+	if (cmd->split)
 	{
-		if (cmd->split[i][0] == '\b')
+		while (cmd->split[++i])
 		{
-			free(cmd->split[i]);
-			cmd->split[i] = malloc(sizeof(char));
-			cmd->split[i][0] = '\0';
+			if (cmd->split[i][0] == '\b')
+			{
+				free(cmd->split[i]);
+				cmd->split[i] = malloc(sizeof(char));
+				cmd->split[i][0] = '\0';
+			}
 		}
 	}
+	else
+	{
+		cmd->split = (char **)malloc(sizeof(char *) * 2);
+		cmd->split[1] = NULL;
+		cmd->split[0] = (char *)malloc(sizeof(char));
+		cmd->split[0][0] = '\0';
+		printf("cmd arg %d\n", cmd->tools.arg_num);
+		printf("cmd arg %d\n", cmd->tools.opt_num);
+	}
+	printf("sal7\n");
 }
 
 /*
@@ -123,6 +136,17 @@ void	check_null_arg(t_mini_cmd *cmd)
 ! handle multiple pipe in the middle or one at the end
 !  -> echo || or echo | or echo || cat
 ? check to replace the /v by spaces after split on spaces
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// {
+	// 	if (main->cmd_table[i].split == NULL)
+	// 	{
+	// 		printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+	// 		main->exit_status = 2;
+	// 		//free
+	// 		return ;
+	// 	}
+	// }
 */
 void	check_special_cases(t_shell_chan *main)
 {
@@ -131,17 +155,9 @@ void	check_special_cases(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num)
 	{
-		if (main->cmd_table[i].split == NULL)
-		{
-			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
-			main->exit_status = 2;
-			//free
-			return ;
-		}
+		if (main->cmd_table[i].split)
+			check_spaces(main->cmd_table[i].split);
 	}
-	i = -1;
-	while (++i < main->cmd_num)
-		check_spaces(main->cmd_table[i].split);
 	i = -1;
 	while (++i < main->cmd_num)
 		check_null_arg(&main->cmd_table[i]);
@@ -158,6 +174,7 @@ void	check_special_cases(t_shell_chan *main)
 void	split_command(t_shell_chan *main)
 {
 	int	i;
+	printf("hey teza\n");
 
 	// main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	// i = -1;
@@ -166,5 +183,6 @@ void	split_command(t_shell_chan *main)
 	i = -1;
 	while (++i < main->cmd_num && main->first_split[i] != NULL)
 		main->cmd_table[i].split = ft_split(main->first_split[i], ' ');
+	printf("hey\n");
 	check_special_cases(main);
 }
