@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 09:36:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:36:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ static void	arg_syn_one(t_mini_redir *redir)
 
 	redir->redir_tools.i = redir->redir_tools.pos_cmd;
 	k = redir->redir_tools.k;
-	printf("k %d num redir %d \n", k, redir->redir_tools.num_redir);
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
 		if (k < redir->redir_tools.num_redir)
 		{
-			printf("i %d pos %d\n", redir->redir_tools.i, redir->redir_tools.r_pos[k]);
 			if (redir->redir_tools.i == redir->redir_tools.r_pos[k])
 			{
 				if (k + 1 < redir->redir_tools.num_redir)
@@ -70,7 +68,8 @@ static void	arg_syn_two(t_mini_redir *redir)
 	redir->redir_tools.k = 0;
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
-		if (redir->redir_tools.i == redir->redir_tools.r_pos[redir->redir_tools.k])
+		if (redir->redir_tools.i == \
+			redir->redir_tools.r_pos[redir->redir_tools.k])
 		{
 			if (redir->redir_tools.k + 1 < redir->redir_tools.num_redir)
 				redir->redir_tools.k++;

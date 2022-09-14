@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 08:21:23 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:53:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct redirect_tools
 	int				i;
 	int				k;
 	int				j;
+	int				v;
 	int				**fd;
 	int				fd_redir;
 	int				ld;

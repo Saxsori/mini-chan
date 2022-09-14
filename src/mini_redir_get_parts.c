@@ -6,18 +6,32 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 04:08:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 09:35:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:59:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-static void	arg_syn_one(t_mini_redir *redir, int i)
+static void	get_synone_arg(t_mini_redir *redir, int op)
 {
-	int	k;
+	if (op == 1)
+	{
+		redir->redir_tools.v++;
+		redir->arguments[redir->redir_tools.v] = \
+				ft_strdup(redir->redir_tools.split[redir->redir_tools.i]);	
+	}
+	else
+	{
+		redir->arguments[redir->redir_tools.v] = \
+				ft_strdup(redir->redir_tools.split[redir->redir_tools.i]);	
+	}
+}	
 
+static void	arg_syn_one(t_mini_redir *redir, int k)
+{
 	redir->redir_tools.i = redir->redir_tools.pos_cmd;
 	k = redir->redir_tools.k;
+	redir->redir_tools.v = 0;
 	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
 		if (k < redir->redir_tools.num_redir)
@@ -29,19 +43,14 @@ static void	arg_syn_one(t_mini_redir *redir, int i)
 				redir->redir_tools.i++;
 			}
 			else
-			{
-				i++;
-				redir->arguments[i] = \
-				ft_strdup(redir->redir_tools.split[redir->redir_tools.i]);
-			}
+				get_synone_arg(redir, 1);
 		}
 		else
 		{
-			i++;
-			if (i == redir->redir_tools.num_arg + 1)
+			redir->redir_tools.v++;
+			if (redir->redir_tools.v == redir->redir_tools.num_arg + 1)
 				break ;
-			redir->arguments[i] = \
-				ft_strdup(redir->redir_tools.split[redir->redir_tools.i]);
+			get_synone_arg(redir, 2);
 		}
 	}
 }
@@ -77,14 +86,16 @@ static void	arg_syn_two(t_mini_redir *redir, int i)
 void	get_redir_arg(t_mini_redir *redir, int op)
 {
 	int	i;
+	int	k;
 
 	i = 0;
+	k = 0;
 	redir->arguments = (char **)malloc(sizeof(char *) * \
 		(redir->redir_tools.num_arg + 2));
 	redir->arguments[0] = ft_strdup(redir->command);
 	redir->arguments[redir->redir_tools.num_arg + 1] = NULL;
 	if (op == 1)
-		arg_syn_one(redir, i);
+		arg_syn_one(redir, k);
 	else
 		arg_syn_two(redir, i);
 }
