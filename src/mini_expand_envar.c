@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 05:08:11 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 06:36:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ void	get_env_value(t_env_info *env_info)
 			env_info->env_value = ft_strdup(env_info->env_ptr->env_cont);
 			env_info->value_len = ft_strlen(env_info->env_value);
 		}
+		else
+		{
+			printf("------------------here\n");
+			env_info->env_value = NULL;
+			env_info->value_len = 0;
+		}
 	}
 	else if (env_info->e_valid == 0)
 	{
@@ -95,7 +101,6 @@ void	get_env_value(t_env_info *env_info)
 	}
 	else
 	{
-		printf("bro\n");
 		if (env_info->e_valid == 'e')
 		{
 			env_info->env_value = ft_itoa(g_status);
@@ -103,6 +108,7 @@ void	get_env_value(t_env_info *env_info)
 		}
 		else
 		{
+			printf("bro\n");
 			env_info->env_value = NULL;
 			env_info->value_len = 0;
 		}

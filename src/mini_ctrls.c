@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:39:55 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 07:22:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 04:50:59 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,6 @@ void	ctrl_c(int c)
 void	ctrl_ign(int i)
 {
 	(void)i;
-	// // printf("%d\n", rl_end);
-	// if (!rl_line_buffer)
-	// 	printf("YES\n");
-	// 	// printf("%s\n", rl_line_buffer);
-	// // else
-	// // 	printf("NULL\n");
-	// // if (!ft_strncmp(rl_line_buffer, "^\'", 2))
-	// SIG_IGN(i);
-	// write(1, "\n", 1);
-	// write(1, "no \n", 5);
-	// write(1, ft_itoa(rl_end), ft_strlen(ft_itoa(rl_end)));
-	// if (rl_end == 0)
-	// 	write(1, "empty\n", ft_strlen("empty\n"));
 	if (rl_end > 0)
 	{
 		write(1, "\nQuit\n", 7);
@@ -93,14 +80,14 @@ ctrl+c -> create the signal SIGINT
 	so when this signal is recieved
 	it should create a new line
 	means new prombt should be created
-*/
-void	mini_sig(void)
-{
 	// printf("%d\n", rl_end);
 	// if (!rl_end)
 	// 	signal(SIGQUIT, SIG_IGN);
 	// else
 	// 	signal(SIGQUIT, SIG_DFL);
+*/
+void	mini_sig(void)
+{
 	signal(SIGQUIT, ctrl_ign);
 	signal(SIGINT, ctrl_c);
 }

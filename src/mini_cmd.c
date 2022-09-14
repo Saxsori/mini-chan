@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 12:13:07 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 04:50:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ int	mini_cd(t_mini_cmd *cmd)
 	return (0);
 }
 
+/*
+	// else if (cmd->tools.y_redir)
+	// 	get_echo_arg_redir(cmd);
+*/
 int	mini_echo(t_mini_cmd *cmd)
 {
 	int	i;
@@ -62,8 +66,6 @@ int	mini_echo(t_mini_cmd *cmd)
 	i = -1;
 	if (!cmd->tools.y_redir)
 		check_echo_opt(cmd);
-	else if (cmd->tools.y_redir)
-		get_echo_arg_redir(cmd);
 	while (++i < cmd->tools.arg_num - 1)
 		printf("%s ", cmd->arguments[i]);
 	if (cmd->tools.arg_num)

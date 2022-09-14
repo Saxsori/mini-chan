@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 05:00:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 06:32:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	find_name_size(t_env_info *env_info)
 		env_info->i_end = i - 1;
 		printf("eennnndddd%d\n", env_info->i_end);
 		env_info->name_len = (env_info->i_end - env_info->i_start) + 1;
+		printf("eennnndddd%d\n", env_info->i_end);
 	}
 }
 
@@ -136,6 +137,8 @@ void	init_env_info(t_env_info *env_info, t_expand_tools *exp_tools, int i)
 	env_info->e_index = exp_tools->main->env_index[exp_tools->index][i];
 	env_info->e_valid = exp_tools->main->exp_valid[exp_tools->index][i];
 	env_info->i_start = env_info->e_index + 1;
+	env_info->i_end = 0;
+	env_info->value_len = 0;
 	env_info->status_var = 0;
 	find_istart(env_info);
 	find_name_size(env_info);

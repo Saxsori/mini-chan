@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 10:23:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:27:08 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,22 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 	k = 0;
 	i = 0;
 	if (cmd->arguments)
-		squaredstr_free(cmd->arguments);
-	cmd->arguments = (char **)malloc(sizeof(char *) * (cmd->redir.redir_tools.num_arg + 1));
-	cmd->arguments[cmd->redir.redir_tools.num_arg] = NULL;
-	printf("lll %d\n", cmd->redir.redir_tools.num_arg);
-	while (++i < (cmd->redir.redir_tools.num_arg + 1))
 	{
-		cmd->arguments[k] = ft_strdup(cmd->redir.arguments[i]);
-		printf("%s\n", cmd->arguments[k]);
-		k++;
+		squaredstr_free(cmd->arguments);
+		cmd->arguments = NULL;
+		cmd->tools.arg_num = 0;
+	}
+	if (cmd->redir.redir_tools.num_arg)
+	{
+		cmd->tools.arg_num = cmd->redir.redir_tools.num_arg;
+		cmd->arguments = (char **)malloc(sizeof(char *) * (cmd->redir.redir_tools.num_arg + 1));
+		cmd->arguments[cmd->redir.redir_tools.num_arg] = NULL;
+		while (++i < (cmd->redir.redir_tools.num_arg + 1))
+		{
+			cmd->arguments[k] = ft_strdup(cmd->redir.arguments[i]);
+			printf("%s\n", cmd->arguments[k]);
+			k++;
+		}
 	}
 }
 
@@ -164,6 +171,8 @@ int	find_command(t_shell_chan *main)
 					printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);
 			}
 		}
+		printf("hey teez\n");
+		printf("hey\n");
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);
