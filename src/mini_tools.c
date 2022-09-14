@@ -6,11 +6,38 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:10:01 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:36:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
+void	do_pipe_split(t_shell_chan *main)
+{
+	if (main->cmd_num > 1)
+	{
+		main->first_split = ft_split(main->cmd_line, '|');
+		if (!main->first_split)
+		{
+			main->exit_status = 2;
+			if (ft_strlen(main->cmd_line) == 1)
+				printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+			else if (ft_strlen(main->cmd_line) > 1)
+				printf (BRED"mini-chan🌸: syntax error near unexpected token `||'\n");
+		}
+		else if (!check_pipe(main->cmd_line))
+		{
+			main->exit_status = 2;
+			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
+		}
+	}
+	else
+	{
+		main->first_split = (char **)malloc(sizeof (char *) * 2);
+		main->first_split[0] = ft_strdup(main->cmd_line);
+		main->first_split[1] = NULL;
+	}
+}
 
 /*
 ? 1- counting how many commands are there
@@ -30,30 +57,7 @@ void	first_cmd_split(t_shell_chan *main)
 	cmd_counter(main);
 	main->cmd_table = (t_mini_cmd *)malloc(main->cmd_num * sizeof(t_mini_cmd));
 	init_mini_cmd_loop(main);
-	if (main->cmd_num > 1)
-	{
-		main->first_split = ft_split(main->cmd_line, '|');
-		if (!main->first_split)
-		{
-			main->exit_status = 2;
-			if (ft_strlen(main->cmd_line) == 1)
-				printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
-			else if (ft_strlen(main->cmd_line) > 1)
-				printf (BRED"mini-chan🌸: syntax error near unexpected token `||'\n");
-		}
-		else if (!check_pipe(main->cmd_line))
-		{
-			printf("dd\n");
-			main->exit_status = 2;
-			printf (BRED"mini-chan🌸: syntax error near unexpected token `|'\n");
-		}
-	}
-	else
-	{
-		main->first_split = (char **)malloc(sizeof (char *) * 2);
-		main->first_split[0] = ft_strdup(main->cmd_line);
-		main->first_split[1] = NULL;
-	}
+	do_pipe_split(main);
 	if (main->exit_status != 2)
 		return_invalid_pipe(main);
 }
