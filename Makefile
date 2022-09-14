@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/09/13 12:17:17 by aaljaber         ###   ########.fr        #
+#    Updated: 2022/09/14 17:33:18 by balnahdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_heredoc.c 						src/mini_exit_tools.c \
 		src/mini_cd_do.c						src/mini_pipe_tools.c \
 		src/mini_pipe_pre.c						src/mini_special_null_case.c \
-		src/mini_redir_get_cmd.c                src/mini_errormng.c
+		src/mini_redir_get_cmd.c                src/mini_errormng.c \
+		src/mini_wait.c \
 
 OBJ = ${SRC:.c=.o}
 
