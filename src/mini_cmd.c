@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:00:45 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 07:02:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	mini_cd(t_mini_cmd *cmd)
 /*
 	// else if (cmd->tools.y_redir)
 	// 	get_echo_arg_redir(cmd);
+		printf("%s", cmd->arguments[i]);
 */
 int	mini_echo(t_mini_cmd *cmd)
 {
@@ -53,11 +54,14 @@ int	mini_echo(t_mini_cmd *cmd)
 	if (!cmd->tools.y_redir)
 		check_echo_opt(cmd);
 	while (++i < cmd->tools.arg_num - 1)
-		printf("%s ", cmd->arguments[i]);
+	{
+		ft_putstr_fd(cmd->arguments[i], 1);
+		ft_putchar_fd(' ', 1);
+	}
 	if (cmd->tools.arg_num)
-		printf("%s", cmd->arguments[i]);
+		ft_putstr_fd(cmd->arguments[i], 1);
 	if (!cmd->option)
-		printf("\n");
+		ft_putchar_fd('\n', 1);
 	return (0);
 }
 
