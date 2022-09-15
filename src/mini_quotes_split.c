@@ -6,11 +6,20 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:27:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 01:16:04 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
+
+void	expand_validity(t_shell_chan *main, char quote, int index, int i)
+{
+	if (quote == 34)
+		main->exp_valid[i][env_which_index(main, index, i)] = 1;
+	else if (quote == 39)
+		main->exp_valid[i][env_which_index(main, index, i)] = 0;
+	main->q_pars.exp_index++;
+}
 
 /*
 ? 1- replace the first with \t and then search for 
@@ -50,13 +59,7 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
-		{
-			if (quote == 34)
-				main->exp_valid[i][env_which_index(main, index, i)] = 1;
-			else if (quote == 39)
-				main->exp_valid[i][env_which_index(main, index, i)] = 0;
-			main->q_pars.exp_index++;
-		}
+			expand_validity(main, quote, index, i);
 		if (line[index] == ' ')
 			line[index] = '\v';
 		if (line[index] == quote)
@@ -74,7 +77,6 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 */
 void	find_frst(t_shell_chan *main, char *line, int i)
 {
-	printf("len %d\n", ft_strlen(line));
 	while (++main->q_pars.begin < ft_strlen(line))
 	{
 		if (line[main->q_pars.begin] == 34 || line[main->q_pars.begin] == 39)

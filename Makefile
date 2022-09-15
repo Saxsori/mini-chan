@@ -6,8 +6,7 @@
 #    By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-#    Updated: 2022/09/15 11:44:26 by balnahdi         ###   ########.fr        #
-#                                                                              #
+#    Updated: 2022/09/14 17:42:07 by balnahdi         ###   ########.fr        #                                                                              #
 # **************************************************************************** #
 
 SRC =   src/main.c                  		    src/mini_ctrls.c \
@@ -24,7 +23,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_quotes_split_tools.c\
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
-		src/mini_expand_action.c\
+		src/mini_expand_action.c				src/mini_expand_1dollar_case.c \
 		src/mini_pre_execute.c					src/mini_run.c \
 		src/mini_execute.c						src/mini_redir_tools.c \
 		src/mini_redir_pre.c					src/mini_redir_isvalid.c \
@@ -38,8 +37,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_cd_do.c						src/mini_pipe_tools.c \
 		src/mini_pipe_pre.c						src/mini_special_null_case.c \
 		src/mini_redir_get_cmd.c                src/mini_errormng.c \
-		src/mini_wait.c 						src/mini_pipe_exe.c\
-		src/mini_pipe_tools_path.c \
+		src/mini_wait.c							src/mini_pipe_tools_path.c \
+		src/mini_pipe_exe.c
 
 OBJ = ${SRC:.c=.o}
 

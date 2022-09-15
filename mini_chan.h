@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:44:59 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:58:09 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 		cannot access parent directories: No such file or directory\n"
 # define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \
 				in a hope to be \na successful happy shell in the future ^◡^ \n"
-
-# define TMA "too many arguments"
 # define PER_ERR "Permission denied"
 # define NO_F_DIR "No such file or directory"
 # define NO_CMD "command not found"
@@ -474,7 +472,7 @@ void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
-int	path_finder_split(t_mini_cmd *cmd, int j, char *command);
+int				path_finder_split(t_mini_cmd *cmd, int j, char *command);
 void			ft_dup_fds(t_shell_chan *main, int i);
 void			ft_mini_pipe(t_shell_chan *main);
 void			pipe_redir(t_mini_cmd *cmd);
