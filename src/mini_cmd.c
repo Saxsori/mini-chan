@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 07:02:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 07:10:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,22 @@ int	mini_echo(t_mini_cmd *cmd)
 	return (0);
 }
 
+/*
+		// printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
+*/
 int	mini_pwd(t_mini_cmd *cmd)
 {
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
 	if (cmd->tools.envar)
-		printf(BCYN"%s\n"BWHT, cmd->tools.envar->env_cont);
+	{
+		ft_putstr_fd(cmd->tools.envar->env_cont, 1);
+		ft_putchar_fd('\n', 1);
+	}
 	else
 	{
 		cmd->tools.cwd_ret = getcwd(NULL, 1024);
-		printf(BCYN"%s\n"BWHT, cmd->tools.cwd_ret);
+		ft_putstr_fd(cmd->tools.cwd_ret, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	return (0);
 }
