@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_wait.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 17:31:46 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/15 06:08:29 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:24:53 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

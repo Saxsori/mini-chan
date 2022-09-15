@@ -20,6 +20,7 @@ file99
 filee
 fileee
 gg
+h
 hdd
 ile
 j
@@ -48,9 +49,7 @@ pos
 s
 src
 t
-test
 test1
-test2
 test_free.c
 testing
 tmp1

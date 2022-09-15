@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/15 09:06:39 by aaljaber         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/15 18:56:23 by balnahdi         ###   ########.fr       */
+>>>>>>> 84904f8040c95e417264fc3a13fcdacb295fb93a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +42,11 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 		while (++i < (cmd->redir.redir_tools.num_arg + 1))
 		{
 			cmd->arguments[k] = ft_strdup(cmd->redir.arguments[i]);
+<<<<<<< HEAD
 			// printf("-- %s %d \n", cmd->arguments[k], k);
+=======
+			// printf("%s\n", cmd->arguments[k]);
+>>>>>>> 84904f8040c95e417264fc3a13fcdacb295fb93a
 			k++;
 		}
 	}

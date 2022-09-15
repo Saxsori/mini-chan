@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 09:06:53 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:26:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ void	redir(t_mini_cmd *cmd)
 	{
 		signal(SIGQUIT, SIG_DFL);
 		while (++i < cmd->redir.redir_tools.num_redir)
+		{
 			redir_sign(cmd, i);
+		}
 		if (!is_command(cmd->redir.command) && cmd->redir.command)
+		{
 			redir_exe(cmd);
+		}
 		else if (is_command(cmd->redir.command))
 		{
 			g_status = run_builtn(cmd);
@@ -69,5 +73,7 @@ void	redir(t_mini_cmd *cmd)
 			exit(0);
 	}
 	else
+	{
 		mini_wait(-1, cmd->redir.redir_tools.status);
+	}
 }
