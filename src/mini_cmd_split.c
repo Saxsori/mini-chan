@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:55:57 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 13:20:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:07:31 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_null_arg(t_mini_cmd *cmd)
 	{
 		while (cmd->split[++i])
 		{
+			printf("(%s) %d\n", cmd->split[i], i);
 			if (cmd->split[i][0] == '\b')
 			{
 				free(cmd->split[i]);

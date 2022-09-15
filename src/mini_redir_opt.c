@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir_opt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:49:49 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/15 19:28:01 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:37:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

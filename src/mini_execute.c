@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 06:07:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:08:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,20 @@ void	check_path(t_mini_cmd *cmd)
 	char	*str3;
 
 	i = -1;
+	str1 = NULL;
+	str2 = NULL;
 	while (cmd->main->path_split[++i])
 	{
+		ft_putstr_fd(cmd->main->path_split[i], 2);
+		ft_putchar_fd('\n', 2);
 		str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
+		ft_putstr_fd("1hello\n", 2);
+		ft_putstr_fd(cmd->exe_tools.cmd_name, 2);
+		ft_putchar_fd('\n', 2);
+		ft_putstr_fd(str1, 2);
+		ft_putchar_fd('\n', 2);
 		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+		ft_putstr_fd("2hello\n", 2);
 		if (access(str2, F_OK) == 0)
 		{
 			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
@@ -71,6 +81,9 @@ void	check_path(t_mini_cmd *cmd)
 			free(str1);
 		if (str2)
 			free(str2);
+		str1 = NULL;
+		str2 = NULL;
+		ft_putstr_fd("end of loop\n", 2);
 	}	
 }
 

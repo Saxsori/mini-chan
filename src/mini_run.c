@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:19 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 18:31:28 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:49:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ int	run_cmd(t_shell_chan *main)
 				printf("yes\n");
 			if (!check_redir_flag(main->cmd_table))
 			{
-				printf("check redir %d \n", check_redir_flag(main->cmd_table));
+				// printf("check redir %d \n", check_redir_flag(main->cmd_table));
 				redir(&main->cmd_table[0]);
 			}
 			else
 			{
 				if (!check_redir_heredoc(main->cmd_table))
 				{
-					printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
+					// printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
 					redir_heredoc(&main->cmd_table[0]);
 				}
 				else

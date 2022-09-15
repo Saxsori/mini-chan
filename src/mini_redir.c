@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 09:26:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:40:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	redir_exe(t_mini_cmd *cmd)
 
 void	redir_sign(t_mini_cmd *cmd, int i)
 {
+	ft_putstr_fd("here\n", 2);
 	if (!ft_strncmp(cmd->redir.redir[i], ">", ft_strlen(">")))
 		redir_in(cmd, i);
 	else if (!ft_strncmp(cmd->redir.redir[i], "<", ft_strlen("<")))
@@ -73,7 +74,5 @@ void	redir(t_mini_cmd *cmd)
 			exit(0);
 	}
 	else
-	{
 		mini_wait(-1, cmd->redir.redir_tools.status);
-	}
 }

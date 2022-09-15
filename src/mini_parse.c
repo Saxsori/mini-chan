@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:17:28 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:11:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:14:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	command_name(t_shell_chan *main)
 	while (++i < main->cmd_num)
 	{
 		if (main->cmd_table[i].split != NULL)
-			main->cmd_table[i].name = main->cmd_table[i].split[0];
+			main->cmd_table[i].name = ft_strdup(main->cmd_table[i].split[0]);
 		else
 			main->cmd_table[i].name = NULL;
 	}

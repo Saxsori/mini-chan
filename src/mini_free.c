@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 06:21:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:16:06 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	squaredstr_free(char **array)
 
 	i = -1;
 	while (array[++i])
+	{
 		free(array[i]);
+	}
 	free(array);
 }
 
@@ -84,8 +86,11 @@ void	free_exe_tools(t_mini_cmd *cmd)
 
 void	free_mini_cmd(t_mini_cmd *cmd)
 {
+	printf("mm\n");
+	// free(cmd->split[0]);
 	if (cmd->split)
 		squaredstr_free(cmd->split);
+	printf("mm\n");
 	if (cmd->option)
 		squaredstr_free(cmd->option);
 	if (cmd->arguments)
