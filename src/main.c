@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 06:43:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:06:39 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 
 	k = 0;
 	i = 0;
+	free(cmd->name);
+	cmd->name = ft_strdup(cmd->redir.command);
 	if (cmd->arguments)
 	{
 		squaredstr_free(cmd->arguments);
@@ -36,7 +38,7 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 		while (++i < (cmd->redir.redir_tools.num_arg + 1))
 		{
 			cmd->arguments[k] = ft_strdup(cmd->redir.arguments[i]);
-			printf("%s\n", cmd->arguments[k]);
+			// printf("-- %s %d \n", cmd->arguments[k], k);
 			k++;
 		}
 	}

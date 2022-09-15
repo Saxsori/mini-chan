@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 07:10:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:06:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	exit_more_arg(t_mini_cmd *cmd, int check_ret)
 	}
 	else
 	{
-		printf("exit\n");
-		printf("mini-chan🌸$: exit: too many arguments\n");
+		ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("mini-chan🌸$: exit: too many arguments\n", 1);
 		cmd->main->exit_status = 1;
 	}
 }
