@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 07:02:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:23:38 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	mini_echo(t_mini_cmd *cmd)
 	while (++i < cmd->tools.arg_num - 1)
 	{
 		ft_putstr_fd(cmd->arguments[i], 1);
-		ft_putchar_fd(' ', 1);
+		ft_putchar_fd(' ', 2);
 	}
 	if (cmd->tools.arg_num)
 		ft_putstr_fd(cmd->arguments[i], 1);
 	if (!cmd->option)
-		ft_putchar_fd('\n', 1);
+		ft_putchar_fd('\n', 2);
 	return (0);
 }
 
