@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 09:30:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:51:43 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	mini_cd(t_mini_cmd *cmd)
 
 	cwd = getcwd(NULL, 1024);
 	if (!cmd->arguments)
-		cd_home(cmd, cwd);
+		return(cd_home(cmd, cwd));
 	else if (cmd->tools.arg_num > 1)
 	{
 		errmsg(cmd->name, TMA);

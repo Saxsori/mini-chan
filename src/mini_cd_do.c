@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 04:31:14 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:36:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:54:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,19 @@ void	change_oldpwd(t_mini_cmd *cmd, char *pwd)
 	}
 }
 
-void	cd_home(t_mini_cmd *cmd, char *pwd)
+int	cd_home(t_mini_cmd *cmd, char *pwd)
 {
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "HOME");
-	chdir(cmd->tools.envar->env_cont);
-	change_oldpwd(cmd, pwd);
-	change_pwd(cmd, pwd);
+	if (cmd->tools.envar)
+	{
+		chdir(cmd->tools.envar->env_cont);
+		change_oldpwd(cmd, pwd);
+		change_pwd(cmd, pwd);
+		return (0);
+	}
+	else
+		errmsg("cd", "HOME not set");
+	return (1);
 }
 
 void	change_cwd(t_mini_cmd *cmd, char *cwd)
@@ -81,6 +88,7 @@ void	change_cwd(t_mini_cmd *cmd, char *cwd)
 		// printf(BRED"cd: error retrieving current 
 		// directory: getcwd: cannot access parent directories:
 		//  No such file or directory\n"BWHT);
+	// printf("cwd %s\n", pwd);
 */
 void	change_dir(t_mini_cmd *cmd, char *cwd)
 {
@@ -89,7 +97,6 @@ void	change_dir(t_mini_cmd *cmd, char *cwd)
 
 	pwd = getcwd(NULL, 1024);
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-	printf("cwd %s\n", pwd);
 	if (!pwd)
 	{
 		write(2, BRED GETCWD_ERR BWHT, 44 + 14);

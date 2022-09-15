@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 06:07:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:52:56 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,7 +353,7 @@ char			**new_arg(t_mini_cmd *cmd);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
-void			cd_home(t_mini_cmd *cmd, char *pwd);
+int				cd_home(t_mini_cmd *cmd, char *pwd);
 void			change_oldpwd(t_mini_cmd *cmd, char *pwd);
 void			change_pwd(t_mini_cmd *cmd, char *pwd);
 void			check_root(t_mini_cmd *cmd);
