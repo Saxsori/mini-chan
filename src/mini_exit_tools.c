@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:12 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/15 00:23:08 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:24:01 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,8 @@ int	check_long(char *str)
 	return (1);
 }
 
-int	check_first_arg(t_mini_cmd *cmd)
+int	check_first_arg_long(t_mini_cmd *cmd)
 {
-	int	len;
-	int	i;
-
-	if (!cmd->arguments[0])
-		return (-1);
-	i = 0;
-	len = ft_strlen(cmd->arguments[0]);
 	if (!ft_strncmp(cmd->arguments[0], "-9223372036854775808", \
 	ft_strlen(cmd->arguments[0])))
 		return (0);
@@ -79,14 +72,31 @@ int	check_first_arg(t_mini_cmd *cmd)
 	if (!ft_strncmp(cmd->arguments[0], "9223372036854775808", \
 	ft_strlen(cmd->arguments[0])))
 		return (1);
-	if (cmd->arguments[0][i] == '+' || cmd->arguments[0][i] == '-' )
-		i++;
-	while (cmd->arguments[0][i] == '0')
-		i++;
-	if (i == len)
-		return (0);
-	if ((ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0])) \
-	|| (ft_scan_num(cmd->arguments[0]) && check_long(cmd->arguments[0])))
-		return (0);
+	return (3);
+}
+
+int	check_first_arg(t_mini_cmd *cmd)
+{
+	int	len;
+	int	i;
+
+	if (!cmd->arguments[0])
+		return (-1);
+	i = 0;
+	len = ft_strlen(cmd->arguments[0]);
+	if (check_first_arg_long(cmd) == 0 || check_first_arg_long(cmd) == 1)
+		return (check_first_arg_long(cmd));
+	else
+	{
+		if (cmd->arguments[0][i] == '+' || cmd->arguments[0][i] == '-' )
+			i++;
+		while (cmd->arguments[0][i] == '0')
+			i++;
+		if (i == len)
+			return (0);
+		if ((ft_atoi(cmd->arguments[0]) && ft_scan_num(cmd->arguments[0])) \
+		|| (ft_scan_num(cmd->arguments[0]) && check_long(cmd->arguments[0])))
+			return (0);
+	}
 	return (1);
 }

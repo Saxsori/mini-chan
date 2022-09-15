@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:43:38 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:07:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,68 +31,81 @@ void	msg(int i)
 		printf("Quit\n");
 }
 
-int	mini_execute(t_mini_cmd *cmd)
+int	check_if_path(t_mini_cmd *cmd)
 {
-	int		i;
-	int		status;
-	char	*str1;
-	char	*str2;
-	char	*str3;
+	int	i;
 
 	cmd->tools.f_path = 0;
-	cmd->tools.child = -1;
-	i = 0;
-	status = 0;
-	cmd->tools.child = fork();
-	while (cmd->exe_tools.cmd_name[i])
+	i = -1;
+	while (cmd->exe_tools.cmd_name[++i])
 	{
 		if (cmd->exe_tools.cmd_name[i] == '/')
 		{
 			cmd->tools.f_path = 1;
 			break ;
 		}
-		i++;
 	}
+	return (cmd->tools.f_path);
+}
+
+void	check_path(t_mini_cmd *cmd)
+{
+	int		i;
+	char	*str1;
+	char	*str2;
+	char	*str3;
+
+	i = -1;
+	while (cmd->main->path_split[++i])
+	{
+		str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
+		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+		if (access(str2, F_OK) == 0)
+		{
+			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+			free_ptr((void **)&cmd->exe_tools.cmd_name);
+			cmd->exe_tools.cmd_name = ft_strdup(str3);
+			free (str3);
+		}
+		if (str1)
+			free(str1);
+		if (str2)
+			free(str2);
+	}	
+}
+
+void	mini_execute_split(t_mini_cmd *cmd)
+{
+	signal(SIGQUIT, SIG_DFL);
+	if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
+	(access(cmd->exe_tools.cmd_name, F_OK) == 0))
+	{
+		errmsg(cmd->exe_tools.cmd_name, PER_ERR);
+		ft_exit(cmd->main, 126);
+	}
+	if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
+	NULL) == -1)
+	{
+		if (errno == 2 && cmd->tools.f_path == 1)
+			errmsg(cmd->exe_tools.arguments[0], NO_F_DIR);
+		else
+			errmsg(cmd->exe_tools.arguments[0], NO_CMD);
+		ft_exit(cmd->main, 127);
+	}
+}
+
+int	mini_execute(t_mini_cmd *cmd)
+{
+	int		status;
+
+	cmd->tools.child = -1;
+	status = 0;
+	cmd->tools.f_path = check_if_path(cmd);
 	if (cmd->tools.f_path == 0)
-	{
-		i = 0;
-		while (cmd->main->path_split[i])
-		{
-			str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
-			str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-			if (access(str2, F_OK) == 0)
-			{
-				str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-				free_ptr((void **)&cmd->exe_tools.cmd_name);
-				cmd->exe_tools.cmd_name = ft_strdup(str3);
-				free (str3);
-			}
-			if (str1)
-				free(str1);
-			if (str2)
-				free(str2);
-			i++;
-		}
-	}
+		check_path(cmd);
+	cmd->tools.child = fork();
 	if (cmd->tools.child == 0)
-	{
-		signal(SIGQUIT, SIG_DFL);
-		if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
-		(access(cmd->exe_tools.cmd_name, F_OK) == 0))
-		{
-			errmsg(cmd->exe_tools.cmd_name, PER_ERR);
-			ft_exit(cmd->main, 126);
-		}
-		if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
-		NULL) == -1)
-		{
-			if (errno == 2 && cmd->tools.f_path == 1)
-				errmsg(cmd->exe_tools.arguments[0], PER_ERR);
-			else
-				errmsg(cmd->exe_tools.arguments[0], PER_ERR);
-			ft_exit(cmd->main, 127);
-		}
-	}
+		mini_execute_split(cmd);
 	else
 		mini_wait(-1, status);
 	return (0);

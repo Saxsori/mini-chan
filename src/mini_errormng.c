@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_errormng.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:07:16 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 10:18:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:50:05 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 void	exit_msg(t_shell_chan *main, char *status, char **msg)
 {
+	printf("exit\n");
 	if (msg)
 	{
 		printf("mini-chan🌸$: %s\n",*msg);
