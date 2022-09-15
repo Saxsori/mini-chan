@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:49:49 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/15 00:12:36 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:56:57 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	redir_in(t_mini_cmd *cmd, int i)
 		O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	else if (access(cmd->redir.files[i], F_OK) == 0)
 		cmd->redir.redir_tools.fd_redir = open(cmd->redir.files[i], \
-		O_WRONLY | O_TRUNC);
+		O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (dup2(cmd->redir.redir_tools.fd_redir, STDOUT_FILENO) < 0)
 		perror("dup >");
 	close(cmd->redir.redir_tools.fd_redir);

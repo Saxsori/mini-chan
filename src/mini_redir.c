@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 23:57:09 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:56:11 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	redir_exe(t_mini_cmd *cmd)
 {
 	if (cmd->redir.command)
 		path_finder(cmd);
+	
 	if ((access(cmd->cmd_path, X_OK) == -1) && \
 	(access(cmd->cmd_path, F_OK) == 0))
 	{

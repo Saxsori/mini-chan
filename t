@@ -49,7 +49,6 @@ pos
 s
 src
 t
-test
 test1
 test_free.c
 testing
