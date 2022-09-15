@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:38:31 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:41:51 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:38:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int	check_pipe(char *line)
 	return (1);
 }
 
+/*
+		printf("new %s\n", main->first_split[i]);
+*/
 void	return_invalid_pipe(t_shell_chan *main)
 {
 	int	i;
@@ -94,6 +97,5 @@ void	return_invalid_pipe(t_shell_chan *main)
 			if (main->first_split[i][k] == '\v')
 				main->first_split[i][k] = '|';
 		}
-		printf("new %s\n", main->first_split[i]);
 	}
 }

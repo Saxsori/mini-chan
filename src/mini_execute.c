@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 00:23:24 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:43:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

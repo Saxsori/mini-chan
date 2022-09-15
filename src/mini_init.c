@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 10:38:30 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:29:58 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	re_init_shell_chan(t_shell_chan *main)
 	main->pipe_tools.status = 0;
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
-	main->exit_status = 0;
+	main->exit_status = EXIT_SUCCESS;
 }
 /****************************  MAIN_STRUCT  ***********************************/
 

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 09:17:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:41:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 	if (cmd->redir.redir_tools.num_arg)
 	{
 		cmd->tools.arg_num = cmd->redir.redir_tools.num_arg;
-		cmd->arguments = (char **)malloc(sizeof(char *) * (cmd->redir.redir_tools.num_arg + 1));
+		cmd->arguments = (char **)malloc(sizeof(char *) * \
+		(cmd->redir.redir_tools.num_arg + 1));
 		cmd->arguments[cmd->redir.redir_tools.num_arg] = NULL;
 		while (++i < (cmd->redir.redir_tools.num_arg + 1))
 		{
@@ -77,7 +78,6 @@ void	check_cmd_parts(t_shell_chan *main)
 	{
 		check_opt(&main->cmd_table[i]);
 		check_arg(&main->cmd_table[i]);
-		printf("---------------- %d\n", main->cmd_table[i].tools.y_redir);
 		if (main->cmd_table[i].tools.y_redir)
 			get_builtin_arg(&main->cmd_table[i]);
 	}
@@ -102,7 +102,6 @@ void	check_isbuiltin(t_shell_chan *main)
 		}
 	}
 }
-
 
 /*
 // printf("cmd_count%d\n", main->cmd_num);
@@ -144,7 +143,6 @@ int	find_command(t_shell_chan *main)
 		expand_envar(main);
 		parse_special_null_arg(main);
 		remove_quote(main);
-		printf("-------> (%s)\n", main->first_split[0]);
 		check_isbuiltin(main);
 		split_redir(main);
 		int k;
@@ -203,8 +201,7 @@ int	main(int argc, char **argv, char **env)
 	g_status = 0;
 	init_shell_chan(&main);
 	create_envar_list(&main, env);
-	mini_sig();
-	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
+	printf(BCYN"%s", MINI_CHAN);
 	while (42)
 	{
 		mini_sig();
@@ -216,8 +213,8 @@ int	main(int argc, char **argv, char **env)
 			new_prompt(1);
 		else if (check_cmd_line(main.cmd_line))
 			main.exit_status = find_command(&main);
-		// g_status = main.exit_status;
-		// printf("end g_status %d\n", g_status);
+		if (main.exit_status == 2)
+			g_status = main.exit_status;
 		re_init_shell_chan(&main);
 		VALGRIND_DO_LEAK_CHECK ;
 	}

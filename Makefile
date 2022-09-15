@@ -24,6 +24,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
 		src/mini_expand_action.c				src/mini_expand_1dollar_case.c \
+		src/mini_expand_find_env.c\
 		src/mini_pre_execute.c					src/mini_run.c \
 		src/mini_execute.c						src/mini_redir_tools.c \
 		src/mini_redir_pre.c					src/mini_redir_isvalid.c \

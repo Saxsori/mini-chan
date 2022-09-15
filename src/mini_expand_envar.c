@@ -6,42 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 07:16:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:11:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-int	find_env(t_env_info *env_info)
-{
-	t_mini_envar	*temp;
-
-	temp = env_info->exp_tools->main->head_envar;
-	while (temp->next)
-	{
-		if (ft_strlen(temp->env_name) == env_info->name_len)
-		{
-			if (cmp_env_name(env_info, temp))
-			{
-				env_info->env_ptr = temp;
-				return (1);
-			}
-		}
-		temp = temp->next;
-	}
-	if (temp && !temp->next)
-	{
-		if (ft_strlen(temp->env_name) == env_info->name_len)
-		{
-			if (cmp_env_name(env_info, temp))
-			{
-				env_info->env_ptr = temp;
-				return (1);
-			}
-		}
-	}
-	return (0);
-}
 
 char	*get_env_name(t_env_info *env_info)
 {

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:23:52 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:23:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:49:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ to check if the quotes is closed and valid
 ?	else return (0) because the quote is not closed
 	! u can here add a function that would point on the that specific 
 	!	quote	
+			// printf("quotes are valid 1\n");
+			printf("quotes are invalid 0\n");
 */
 int	quotes_checker(t_shell_chan *main)
 {
@@ -70,15 +72,12 @@ int	quotes_checker(t_shell_chan *main)
 	{
 		init_mini_quotes(main, main->first_split[i]);
 		if (is_qt_valid(main, main->first_split[i]))
-		{
-			printf("quotes are valid 1\n");
 			main->q_pars.begin = -1;
-		}
 		else
 		{
-			printf("quotes are invalid 0\n");
+			errmsg(NULL, "syntax error");
 			return (0);
-		}	
+		}
 	}
 	return (1);
 }

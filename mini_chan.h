@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 01:36:32 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:35:13 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define PIPE_ERR2 "mini-chan🌸: syntax error near unexpected token `||'\n"
 # define GETCWD_ERR "cd: error retrieving current directory: getcwd: \
 		cannot access parent directories: No such file or directory\n"
-# define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \
-				in a hope to be \na successful happy shell in the future ^◡^ \n"
+# define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger),\
+in a hope to be \na successful happy shell in the future ^◡^ \n"
 # define PER_ERR "Permission denied"
 # define NO_F_DIR "No such file or directory"
 # define NO_CMD "command not found"
