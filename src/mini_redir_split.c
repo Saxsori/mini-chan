@@ -6,35 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 04:09:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:36:54 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-int	check_redirline_syn(t_mini_redir *redir)
-{
-	int	i;
-
-	i = -1;
-	while (redir->redir_tools.split[++i] != NULL)
-	{
-		if (redir->redir_tools.split[i][0] == '\a')
-		{
-			if (redir->redir_tools.split[i + 1] == NULL)
-			{
-				redir->redir_tools.main->exit_status = 2;
-				return (2);
-			}
-			else if (redir->redir_tools.split[i + 1][0] == '\a')
-			{
-				redir->redir_tools.main->exit_status = 2;
-				return (2);
-			}
-		}
-	}
-	return (1);
-}
 
 /*
 	// i = -1;
@@ -47,8 +23,10 @@ void	get_redir_pos(t_mini_redir *redir)
 	int	n;
 
 	redir->redir_tools.num_file = redir->redir_tools.num_redir;
-	redir->redir_tools.r_pos = (int *)malloc(sizeof(int) * redir->redir_tools.num_redir);
-	redir->files = (char **)malloc(sizeof(char *) * (redir->redir_tools.num_file + 1));
+	redir->redir_tools.r_pos = (int *)malloc(sizeof(int) * \
+								redir->redir_tools.num_redir);
+	redir->files = (char **)malloc(sizeof(char *) * \
+								(redir->redir_tools.num_file + 1));
 	redir->files[redir->redir_tools.num_file] = NULL;
 	i = -1;
 	n = 0;
@@ -60,72 +38,73 @@ void	get_redir_pos(t_mini_redir *redir)
 	redir->redir_tools.num_part = i;
 }
 
-/*
-
-		// printf ("i %d - arg %d - pos %d k - %d\n",redir->redir_tools.i, redir->redir_tools.num_arg, redir->redir_tools.r_pos[redir->redir_tools.k], k);
-					// printf("i %d pos %d\n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k]);
-			// printf ("i %d pos %d k %d \n", redir->redir_tools.i, redir->redir_tools.r_pos[redir->redir_tools.k], redir->redir_tools.k);
-			// printf ("k %d limit for k %d\n", redir->redir_tools.k, redir->redir_tools.num_redir);
-	printf("arrrrg num %d\n", redir->redir_tools.num_arg);
-*/
-void	get_arg_num(t_mini_redir *redir, int op)
+static void	arg_syn_one(t_mini_redir *redir)
 {
 	int	k;
 
-	if (op == 1)
+	redir->redir_tools.i = redir->redir_tools.pos_cmd;
+	k = redir->redir_tools.k;
+	while (++redir->redir_tools.i < redir->redir_tools.num_part)
 	{
-		redir->redir_tools.i = redir->redir_tools.pos_cmd;
-		k = redir->redir_tools.k;
-		while (++redir->redir_tools.i < redir->redir_tools.num_part)
+		if (k < redir->redir_tools.num_redir)
 		{
-			if (k < redir->redir_tools.num_redir)
+			if (redir->redir_tools.i == redir->redir_tools.r_pos[k])
 			{
-				if (redir->redir_tools.i == redir->redir_tools.r_pos[k])
-				{
-					if (k + 1 < redir->redir_tools.num_redir)
-						k++;
-					redir->redir_tools.i++;
-				}
-			}
-			else
-				redir->redir_tools.num_arg++;
-		}
-	}
-	else
-	{
-		redir->redir_tools.i = 0;
-		redir->redir_tools.k = 0;
-		while (++redir->redir_tools.i < redir->redir_tools.num_part)
-		{
-			if (redir->redir_tools.i == redir->redir_tools.r_pos[redir->redir_tools.k])
-			{
-				if (redir->redir_tools.k + 1 < redir->redir_tools.num_redir)
-					redir->redir_tools.k++;
+				if (k + 1 < redir->redir_tools.num_redir)
+					k++;
 				redir->redir_tools.i++;
 			}
 			else
 				redir->redir_tools.num_arg++;
 		}
+		else
+			redir->redir_tools.num_arg++;
 	}
+}
+
+static void	arg_syn_two(t_mini_redir *redir)
+{
+	redir->redir_tools.i = 0;
+	redir->redir_tools.k = 0;
+	while (++redir->redir_tools.i < redir->redir_tools.num_part)
+	{
+		if (redir->redir_tools.i == \
+			redir->redir_tools.r_pos[redir->redir_tools.k])
+		{
+			if (redir->redir_tools.k + 1 < redir->redir_tools.num_redir)
+				redir->redir_tools.k++;
+			redir->redir_tools.i++;
+		}
+		else
+			redir->redir_tools.num_arg++;
+	}
+}
+
+/*
+
+// printf ("i %d - arg %d - pos %d k - %d\n",\
+	redir->redir_tools.i,\
+	 redir->redir_tools.num_arg,\
+	 redir->redir_tools.r_pos[redir->redir_tools.k], \
+	 k);
+// printf("i %d pos %d\n", redir->redir_tools.i, \
+	redir->redir_tools.r_pos[redir->redir_tools.k]);
+// printf ("i %d pos %d k %d \n", redir->redir_tools.i, \
+		->redir_tools.r_pos[redir->redir_tools.k], \
+		redir->redir_tools.k);
+// printf ("k %d limit for k %d\n", redir->redir_tools.k, \
+			redir->redir_tools.num_redir);
+printf("arrrrg num %d\n", redir->redir_tools.num_arg);
+*/
+void	get_arg_num(t_mini_redir *redir, int op)
+{
+	if (op == 1)
+		arg_syn_one(redir);
+	else
+		arg_syn_two(redir);
 	printf ("arg num %d\n", redir->redir_tools.num_arg);
 }
 
-void	replace_tabbing_spaces(char	**split)
-{
-	int	i;
-	int	k;
-
-	i = -1;
-	while (split[++i])
-	{
-		k = -1;
-		while (split[i][++k])
-		{
-			if (split[i][k] == '\v')
-				split[i][k] = ' ';
-		}
-	}
-}
 /*
 
 			// printf("cmd %s\n", main->cmd_table[i].redir.command);

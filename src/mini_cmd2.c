@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 12:15:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:05:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	mini_unset(t_mini_cmd *cmd)
 					do_unset(cmd, i);
 				else
 				{
-					printf(BRED"mini-chan🌸: unset: `%s': not a valid identifier\n"BCYN, cmd->arguments[i]);
+					errmsg(cmd->arguments[i], NVI);
 					status = 1;
 				}
 			}
@@ -67,7 +67,7 @@ int	mini_env(t_mini_cmd *cmd)
 
 int	mini_chan(void)
 {
-	printf(BCYN "\nThis shell has been raised (created) with\nunconditional love (anger), in a hope to be \na successful happy shell in the future ^◡^ \n");
+	printf(BCYN"%s", MINI_CHAN);
 	new_prompt(1);
 	return (0);
 }

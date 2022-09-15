@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 21:17:28 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/06/28 18:01:15 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:11:38 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,32 @@ int	check_cmd_line(char *line)
 			return (1);
 	}
 	return (0);
+}
+
+/*
+? to calculate how many strings in 2d array
+! check if u need to change it to calc any other 2d array 
+!	of any types	
+*/
+int	twstrlen(char	**tw_str)
+{
+	int	i;
+
+	i = 0;
+	while (tw_str[i])
+		i++;
+	return (i);
+}
+
+void	cmd_counter(t_shell_chan *main)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ft_strlen(main->cmd_line))
+	{
+		if (main->cmd_line[i] == '|')
+			main->cmd_num++;
+	}
+	main->cmd_num++;
 }

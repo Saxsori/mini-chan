@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:29:54 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/08/29 11:02:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:22:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	run_builtn(t_mini_cmd *cmd)
 	return (which_command(cmd));
 	return (0);
 }
-
 
 void	get_path(t_shell_chan *main)
 {

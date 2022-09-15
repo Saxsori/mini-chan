@@ -6,21 +6,52 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 03:53:17 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/13 04:00:01 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:16:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-
-void	choose_cmd(t_mini_redir *redir, int op, int i)
+void	take_cmd(t_mini_redir *redir, int i)
 {
-	if (op == 1)
+	redir->command = \
+		ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 2]);
+	redir->redir_tools.pos_cmd = redir->redir_tools.r_pos[i] + 2;
+	redir->redir_tools.k = i + 1;
+}
+
+static void	cmd_syn_one(t_mini_redir *redir)
+{
+	int	i;
+
+	i = -1;
+	while (++i < redir->redir_tools.num_redir)
 	{
-		redir->command = ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 2]);
-		redir->redir_tools.pos_cmd = redir->redir_tools.r_pos[i] + 2;
-		redir->redir_tools.k = i + 1;
+		if (i + 1 < redir->redir_tools.num_redir)
+		{
+			if (redir->redir_tools.r_pos[i] + 2 \
+								!= redir->redir_tools.r_pos[i + 1])
+			{
+				take_cmd(redir, i);
+				break ;
+			}
+		}
+		else if (i + 1 == redir->redir_tools.num_redir)
+		{
+			if (redir->redir_tools.r_pos[i] + 2 < redir->redir_tools.n_split)
+				take_cmd(redir, i);
+			else
+				redir->command = NULL;
+		}
 	}
+}
+
+static void	cmd_syn_two(t_mini_redir *redir)
+{
+	if (!redir->redir_tools.split[0] || redir->redir_tools.split[0][0] == '\a')
+		redir->command = NULL;
+	else
+		redir->command = ft_strdup(redir->redir_tools.split[0]);
 }
 
 /*
@@ -31,41 +62,8 @@ void	choose_cmd(t_mini_redir *redir, int op, int i)
 */
 void	get_cmd(t_mini_redir *redir, int op)
 {
-	int	i;
-
-	i = -1;
 	if (op == 1)
-	{
-		while (++i < redir->redir_tools.num_redir)
-		{
-			if (i + 1 < redir->redir_tools.num_redir)
-			{
-				if (redir->redir_tools.r_pos[i] + 2 != redir->redir_tools.r_pos[i + 1])
-				{
-					redir->command = ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 2]);
-					redir->redir_tools.pos_cmd = redir->redir_tools.r_pos[i] + 2;
-					redir->redir_tools.k = i + 1;
-					break ;
-				}
-			}
-			else if (i + 1 == redir->redir_tools.num_redir)
-			{
-				if (redir->redir_tools.r_pos[i] + 2 < redir->redir_tools.n_split)
-				{
-					redir->command = ft_strdup(redir->redir_tools.split[redir->redir_tools.r_pos[i] + 2]);
-					redir->redir_tools.pos_cmd = redir->redir_tools.r_pos[i] + 2;
-					redir->redir_tools.k = i + 1;
-				}
-				else
-					redir->command = NULL;
-			}
-		}
-	}
+		cmd_syn_one(redir);
 	if (op == 2)
-	{
-		if (!redir->redir_tools.split[0] || redir->redir_tools.split[0][0] == '\a')
-			redir->command = NULL;
-		else
-			redir->command = ft_strdup(redir->redir_tools.split[0]);
-	}
+		cmd_syn_two(redir);
 }

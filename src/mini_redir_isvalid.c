@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:17:43 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 01:49:03 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:49:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 /*
 ? in the array of validity of redir i will mark that redir as invalid redir
 ? and i will return back the new index to continue after the closing quote 
+			// printf ("inside %d\n", begin);
+			// printf("redir pos %d\n", redir_pos(cmd, begin));
 */
 void	is_btwn_quote(t_mini_cmd *cmd, char *line, int begin)
 {
 	while (++begin < cmd->tools.p_redir.end)
 	{
-		if ((line[begin] == '>' || line[begin] == '<') && redir_pos(cmd, begin) != -1)
-		{
-			// printf ("inside %d\n", begin);
-			// printf("redir pos %d\n", redir_pos(cmd, begin));
+		if ((line[begin] == '>' || line[begin] == '<') && \
+		redir_pos(cmd, begin) != -1)
 			cmd->tools.p_redir.r_valid[redir_pos(cmd, begin)] = 0;
-		}
 		if (line[begin] == line[cmd->tools.p_redir.begin])
 		{
 			cmd->tools.p_redir.begin = begin;
@@ -42,9 +41,10 @@ to check if the redir is not btwn quote ">>"
 */
 void	not_btwn_quote(t_mini_cmd *cmd, char *line)
 {
-	while(++cmd->tools.p_redir.begin < cmd->tools.p_redir.end)
+	while (++cmd->tools.p_redir.begin < cmd->tools.p_redir.end)
 	{
-		if (line[cmd->tools.p_redir.begin] == 34 || line[cmd->tools.p_redir.begin] == 39)
+		if (line[cmd->tools.p_redir.begin] == 34 || \
+		line[cmd->tools.p_redir.begin] == 39)
 			is_btwn_quote(cmd, line, cmd->tools.p_redir.begin);
 	}
 }

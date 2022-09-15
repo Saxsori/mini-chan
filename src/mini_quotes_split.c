@@ -6,25 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 12:32:39 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/12 06:42:18 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:27:48 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-int	env_which_index(t_shell_chan *main, int index, int i)
-{
-	int	k;
-
-	k = -1;
-	printf("envar num %d in index %d line %s\n", envar_num(main, i), i, main->first_split[i]);
-	while (++k < envar_num(main, i))
-	{
-		if (main->env_index[i][k] == index)
-			return (k);
-	}
-	return (-1);
-}
 
 /*
 ? 1- replace the first with \t and then search for 
@@ -61,13 +47,10 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 		if (line[index - 1] == '$')
 			line[index - 1] = '\t';
 	}
-	// printf("%c\n", quote);
-	// printf("%d\n", index);
 	while (++index < ft_strlen(line) + 1)
 	{
 		if (line[index] == '$')
 		{
-			// printf("env index-<<%d\n", env_which_index(main, index, i));
 			if (quote == 34)
 				main->exp_valid[i][env_which_index(main, index, i)] = 1;
 			else if (quote == 39)
@@ -83,7 +66,6 @@ void	find_scnd(t_shell_chan *main, char *line, int index, int i)
 			return ;
 		}
 	}
-	// printf("%d\n", index);
 }
 
 /*
@@ -98,25 +80,6 @@ void	find_frst(t_shell_chan *main, char *line, int i)
 		if (line[main->q_pars.begin] == 34 || line[main->q_pars.begin] == 39)
 			find_scnd(main, line, main->q_pars.begin, i);
 	}
-}
-
-/*
-line length with no quotes
-? count the length of the string without the closed quote
-*/
-int	line_len(char *line)
-{
-	int	i;
-	int	len;
-
-	i = -1;
-	len = 0;
-	while (++i < ft_strlen(line))
-	{
-		if (line[i] != '\t')
-			len++;
-	}
-	return (len);
 }
 
 /*
@@ -152,27 +115,6 @@ int	quote_split(t_shell_chan *main, char *line, int i)
 	main->first_split[i] = ft_strdup(new_line);
 	free(new_line);
 	return (1);
-}
-
-/*
-
-	// printf ("old line %s\n", line);
-	// while (++n < envar_num(main, i))
-	// 	printf ("ind %d, val %d\n", main->env_index[i][n], main->exp_valid[i][n]);
-
-*/
-void	tabbing_quote(t_shell_chan *main, char *line, int i)
-{
-	int	n;
-
-	init_mini_quotes(main, main->first_split[i]);
-	find_frst(main, line, i);
-	n = -1;
-	while (++n < envar_num(main, i))
-	{
-		if (main->exp_valid[i][n] == -1)
-			main->exp_valid[i][n] = 1;
-	}
 }
 
 void	remove_quote(t_shell_chan *main)

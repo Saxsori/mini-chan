@@ -6,35 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:14:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 01:35:33 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:57:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-// void	redir_tools
-	// redir_parse_tools(main);
-
-int	is_redir(char *line)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ft_strlen(line))
-	{
-		if (line[i] == '>' || line[i] == '<')
-			return (1);
-	}
-	return (0);
-}
-
-void	check_redir(t_shell_chan *main, int i)
-{
-	if (is_redir(main->first_split[i]))
-		main->cmd_table[i].tools.f_redir = 1;
-	else
-		main->cmd_table[i].tools.f_redir = 0;
-}
 
 int	is_more_redir(char *line, int k)
 {
@@ -63,6 +39,14 @@ void	count_redir(t_mini_cmd *cmd, int i)
 	}
 }
 
+/*
+
+	// printf("----> line %s\n", cmd->main->first_split[i]);
+	// n = -1;
+	// printf("redir num %d\n", cmd->tools.p_redir.num_redir);
+	// while (++n < cmd->tools.p_redir.num_redir)
+	// 	printf("redir pos %d index %d \n", n, cmd->tools.p_redir.r_index[n]);
+*/
 void	redir_index(t_mini_cmd *cmd, int i)
 {
 	int	k;
@@ -70,7 +54,6 @@ void	redir_index(t_mini_cmd *cmd, int i)
 
 	k = -1;
 	n = 0;
-	printf("----> line %s\n", cmd->main->first_split[i]);
 	while (++k < ft_strlen(cmd->main->first_split[i]))
 	{
 		if (cmd->main->first_split[i][k] == '>' \
@@ -81,10 +64,6 @@ void	redir_index(t_mini_cmd *cmd, int i)
 			n++;
 		}
 	}
-	n = -1;
-	printf("redir num %d\n", cmd->tools.p_redir.num_redir);
-	while (++n < cmd->tools.p_redir.num_redir)
-		printf("redir pos %d index %d \n", n, cmd->tools.p_redir.r_index[n]);
 }
 
 /*

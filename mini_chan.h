@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 18:33:05 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:38:52 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
+<<<<<<< HEAD
+=======
+# define TMA "too many arguments"
+# define NVI "not a valid identifier"
+# define PIPE_ERR1 "mini-chan🌸: syntax error near unexpected token `|'\n"
+# define PIPE_ERR2 "mini-chan🌸: syntax error near unexpected token `||'\n"
+# define GETCWD_ERR "cd: error retrieving current directory: getcwd: \
+		cannot access parent directories: No such file or directory\n"
+# define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \
+				in a hope to be \na successful happy shell in the future ^◡^ \n"
+>>>>>>> f7c334bd0e37170aa6dc46feeb8091ef70666e8c
 
 # define TMA "too many arguments"
 # define PER_ERR "Permission denied"
@@ -100,11 +111,11 @@ typedef struct n_parse
 	int		tot_size;
 	int		i;
 	int		k;
+	int		j;
 	int		counter;
 	int		new_size;
 	char	*new_line;
 }	t_null_parse;
-
 
 typedef struct p_quotes
 {
@@ -113,7 +124,6 @@ typedef struct p_quotes
 	int		first;
 	int		second;
 	int		q_string;
-	// char	*line;
 	int		exp_index;
 }	t_mini_quotes;
 
@@ -128,6 +138,7 @@ typedef struct redirect_tools
 	int				i;
 	int				k;
 	int				j;
+	int				v;
 	int				**fd;
 	int				fd_redir;
 	int				ld;
@@ -137,6 +148,9 @@ typedef struct redirect_tools
 	char			**split;
 	char			pos_cmd;
 	t_shell_chan	*main;
+	char			len;
+	char			*new;
+	int				end;
 }	t_redir_tools;
 
 typedef struct mini_redirecton
@@ -228,7 +242,6 @@ typedef struct shell_chan
 	t_expand_tools	*exp_tools;
 	int				d_rootpath;
 	t_null_parse	n_parse;
-	
 	t_mini_echo		e_parse;
 	t_mini_envar	*envar;
 	char			*path;
@@ -363,7 +376,8 @@ void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 void			remove_quote(t_shell_chan *main);
 void			tabbing_quote(t_shell_chan *main, char *line, int i);
 
-/*******************    MINI_EXPAND_TOOLS   ******************/
+/*******************    MINI_EXPAND_TOOLS   ******************/;
+int				env_which_index(t_shell_chan *main, int index, int i);
 void			expand_tools(t_shell_chan *main);
 int				check_ignore_case(t_shell_chan *main, int i, int k, int num);
 int				envar_num(t_shell_chan *main, int i);

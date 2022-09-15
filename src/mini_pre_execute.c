@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:37:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 01:51:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:30:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	init_mini_exe_tools(t_mini_cmd *cmd)
 {
 	cmd->exe_tools.cmd_name = ft_strdup(cmd->name);
 	cmd->exe_tools.arg_num = cmd->tools.arg_num + cmd->tools.opt_num + 1;
-	cmd->exe_tools.arguments = (char **)malloc(sizeof(char *) * (cmd->exe_tools.arg_num + 1));
+	cmd->exe_tools.arguments = (char **)malloc(sizeof(char *) * \
+	(cmd->exe_tools.arg_num + 1));
 	cmd->exe_tools.arguments[0] = ft_strdup(cmd->exe_tools.cmd_name);
 	cmd->exe_tools.err_command = ft_strdup(cmd->exe_tools.cmd_name);
 }

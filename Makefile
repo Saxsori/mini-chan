@@ -6,12 +6,17 @@
 #    By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/09/14 17:42:07 by balnahdi         ###   ########.fr        #
+=======
+#    Updated: 2022/09/14 13:15:22 by aaljaber         ###   ########.fr        #
+>>>>>>> f7c334bd0e37170aa6dc46feeb8091ef70666e8c
 #                                                                              #
 # **************************************************************************** #
 
 SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_init.c           		      	src/mini_tools.c \
+		src/mini_cmd_split.c\
 		src/mini_cmd.c              		    src/mini_check.c \
 		src/mini_cmd_opt.c            			src/mini_cmd_arg.c \
 		src/mini_cmd2.c               			src/mini_parse.c \
@@ -20,6 +25,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_envar_export.c           		src/mini_envar_unset.c \
 		src/mini_echo_tools.c               	src/mini_cd_tools.c \
 		src/mini_quotes_split.c         	    src/mini_quotes_checker.c \
+		src/mini_quotes_split_tools.c\
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
 		src/mini_expand_pre.c 					src/mini_expand_envar.c \
 		src/mini_expand_action.c\
@@ -28,7 +34,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_redir_pre.c					src/mini_redir_isvalid.c \
 		src/mini_redir_take_valid.c             src/mini_redir_getredir.c \
 		src/mini_redir_reline.c					src/mini_redir_split.c \
-		src/mini_redir_get_parts.c\
+		src/mini_redir_get_parts.c              src/mini_redir_check.c \
+		src/mini_redir_get_arg.c\
 		src/mini_pipe.c							src/mini_redir.c \
 		src/mini_redir_opt.c					src/mini_exit_pre.c \
 		src/mini_heredoc.c 						src/mini_exit_tools.c \

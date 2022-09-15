@@ -6,31 +6,11 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 20:27:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 01:48:59 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:54:35 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-/*
--> to check if this index is a redir pos 
--> cuz this array is to record all the rdir pos
-*/
-int	redir_pos(t_mini_cmd *cmd, int index)
-{
-	int	i;
-
-	i = -1;
-	while (++i < cmd->tools.p_redir.num_redir)
-	{
-		if (cmd->tools.p_redir.r_index[i] == index)
-		{
-			// printf ("i %d , index %d, i_redir %d\n", i , index ,cmd->tools.p_redir.r_index[i]);
-			return (i);
-		}
-	}
-	return (-1);
-}
 
 int	last_redir(char *line, int i)
 {
@@ -97,15 +77,15 @@ if the command has a redir
 ? 3- check if there ie no more than two redir >>>
 ? 4- check if there is no opp redir ><
 
-			// k = -1;
-			// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
-			// 	printf("not btwn quote %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
-			// k = -1;
-			// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
-			// 	printf("not more than tw %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
-			// k = -1;
-			// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
-			// 	printf("not opp redir %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
+// k = -1;
+// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
+// 	printf("not btwn quote %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
+// k = -1;
+// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
+// 	printf("not more than tw %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
+// k = -1;
+// while (++k < main->cmd_table[i].tools.p_redir.num_redir)
+// 	printf("not opp redir %d\n", main->cmd_table[i].tools.p_redir.r_valid[k]);
 */
 void	redir_valid(t_shell_chan *main)
 {
@@ -128,7 +108,7 @@ void	redir_valid(t_shell_chan *main)
 prepare for redirection 
 ? 1- check if the redirection is valid
 ? 2- if there was any syntax error return 2
-? 3 - take the valid redirection
+? 3- take the valid redirection
 */
 int	pre_redir(t_shell_chan *main)
 {
