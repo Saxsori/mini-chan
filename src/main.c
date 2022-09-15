@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:16:03 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:18:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,15 +180,6 @@ int	find_command(t_shell_chan *main)
 			return (2);
 		command_name(main);
 		check_cmd_parts(main);
-		// int i = -1;
-		// while (++i < main->cmd_num)
-		// {
-		// 	if (main->cmd_table[i].split)
-		// 	{
-		// 		squaredstr_free(main->cmd_table[i].split);
-		// 		main->cmd_table[i].split = NULL;
-		// 	}
-		// }
 		return (run_cmd(main));
 	}
 	else
