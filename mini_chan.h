@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 10:38:52 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:44:59 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
-<<<<<<< HEAD
-=======
 # define TMA "too many arguments"
 # define NVI "not a valid identifier"
 # define PIPE_ERR1 "mini-chan🌸: syntax error near unexpected token `|'\n"
@@ -48,7 +46,6 @@
 		cannot access parent directories: No such file or directory\n"
 # define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \
 				in a hope to be \na successful happy shell in the future ^◡^ \n"
->>>>>>> f7c334bd0e37170aa6dc46feeb8091ef70666e8c
 
 # define TMA "too many arguments"
 # define PER_ERR "Permission denied"
@@ -264,7 +261,7 @@ void			init_null_parse(t_null_parse *n_parse);
 /******************* MINI ERRORMNG & MEMNG *******************/
 void			squaredstr_free(char **array);
 void			squaredint_free(int **array, int len);
-void			ft_exit(t_shell_chan *main, int	status);
+void			ft_exit(t_shell_chan *main, int status);
 void			free_mini_chan(t_shell_chan *main);
 void			free_mini_envar(t_shell_chan *main);
 void			free_shell_chan_mem(t_shell_chan *main);
@@ -376,7 +373,7 @@ void			find_scnd(t_shell_chan *main, char *line, int index, int i);
 void			remove_quote(t_shell_chan *main);
 void			tabbing_quote(t_shell_chan *main, char *line, int i);
 
-/*******************    MINI_EXPAND_TOOLS   ******************/;
+/*******************    MINI_EXPAND_TOOLS   ******************/
 int				env_which_index(t_shell_chan *main, int index, int i);
 void			expand_tools(t_shell_chan *main);
 int				check_ignore_case(t_shell_chan *main, int i, int k, int num);
@@ -462,8 +459,8 @@ void			do_unset(t_mini_cmd *cmd, int i);
 void			execute_tools(t_mini_cmd *cmd);
 void			path(t_shell_chan *main, char *av[], int argc);
 void			ft_pipe(t_shell_chan *main, char *av[], int ac);
-void			path_test(t_shell_chan *main, char *av[],int ac);
-void 			tst_redir(t_shell_chan *main, char *av[], int ac, int k);
+void			path_test(t_shell_chan *main, char *av[], int ac);
+void			tst_redir(t_shell_chan *main, char *av[], int ac, int k);
 void			tst_redir_main(t_shell_chan *main, char *av[], int ac);
 // void			mini_execute(t_mini_cmd *cmd);
 void			path_test(t_shell_chan *main, char *av[], int ac);
@@ -477,9 +474,14 @@ void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
+int	path_finder_split(t_mini_cmd *cmd, int j, char *command);
 void			ft_dup_fds(t_shell_chan *main, int i);
 void			ft_mini_pipe(t_shell_chan *main);
-
+void			pipe_redir(t_mini_cmd *cmd);
+void			close_fds(t_shell_chan *main, int i);
+void			split_pipe(t_shell_chan *main, int i);
+void			mini_exe_pipe(t_shell_chan *main, int i);
+void			pipe_exe(t_shell_chan *main, int i);
 /*******************    MINI_EXIT  ******************/
 void			pre_exit_arg(t_mini_cmd *cmd);
 

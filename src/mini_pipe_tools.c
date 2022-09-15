@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/15 00:24:50 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:46:33 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,7 @@
 TODO: should cover 
 */
 
-int	path_finder_split(t_mini_cmd *cmd, int j, char *command)
-{
-	int		i;
-	char	*str1;
-	char	*str2;
-
-	i = 0;
-	while (cmd->main->path_split[++i])
-	{
-		str1 = ft_strjoin(cmd->main->path_split[i], "/");
-		str2 = ft_strjoin(str1, command);
-		if (access(str2, F_OK) == 0)
-		{
-			cmd->cmd_path = ft_strdup(str2);
-			free(command);
-			free(str1);
-			free(str2);
-			j = 1;
-			break ;
-		}
-		if (str1)
-			free (str1);
-		if (str2)
-			free (str2);
-	}
-	return (j);
-}
-
+/*
 void	path_finder(t_mini_cmd *cmd)
 {
 	int		i;
@@ -81,6 +54,35 @@ void	path_finder(t_mini_cmd *cmd)
 				cmd->cmd_path = NULL;
 		}
 	}
+}
+*/
+
+int	path_finder_split(t_mini_cmd *cmd, int j, char *command)
+{
+	int		i;
+	char	*str1;
+	char	*str2;
+
+	i = 0;
+	while (cmd->main->path_split[++i])
+	{
+		str1 = ft_strjoin(cmd->main->path_split[i], "/");
+		str2 = ft_strjoin(str1, command);
+		if (access(str2, F_OK) == 0)
+		{
+			cmd->cmd_path = ft_strdup(str2);
+			free(command);
+			free(str1);
+			free(str2);
+			j = 1;
+			break ;
+		}
+		if (str1)
+			free (str1);
+		if (str2)
+			free (str2);
+	}
+	return (j);
 }
 
 void	init_fds(t_shell_chan *main)

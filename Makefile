@@ -6,11 +6,7 @@
 #    By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 21:14:06 by aaljaber          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/09/14 17:42:07 by balnahdi         ###   ########.fr        #
-=======
-#    Updated: 2022/09/14 13:15:22 by aaljaber         ###   ########.fr        #
->>>>>>> f7c334bd0e37170aa6dc46feeb8091ef70666e8c
+#    Updated: 2022/09/15 11:44:26 by balnahdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +38,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_cd_do.c						src/mini_pipe_tools.c \
 		src/mini_pipe_pre.c						src/mini_special_null_case.c \
 		src/mini_redir_get_cmd.c                src/mini_errormng.c \
-		src/mini_wait.c \
+		src/mini_wait.c 						src/mini_pipe_exe.c\
+		src/mini_pipe_tools_path.c \
 
 OBJ = ${SRC:.c=.o}
 
