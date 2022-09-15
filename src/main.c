@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:41:41 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:43:28 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int	find_command(t_shell_chan *main)
 				k = -1;
 				while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
 					printf("redir ----> (%s)\n", main->cmd_table[i].redir.redir[k]);
+				printf("redir num %d\n", main->cmd_table[i].redir.redir_tools.num_redir);
 				k = -1;
 				while (++k < main->cmd_table[i].redir.redir_tools.num_file)
 					printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);

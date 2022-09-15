@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/09 04:25:42 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:21:55 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	free_shell_chan_mem(t_shell_chan *main)
 	i = -1;
 	if (main->pipe_tools.fds)
 		squaredint_free(main->pipe_tools.fds, main->cmd_num - 1);
+	if (main->pipe_tools.child)
+		free_ptr((void **)&main->pipe_tools.child);
 	if (main->path)
 		free_ptr((void **)&main->path);
 	if (main->cmd_line)

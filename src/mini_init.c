@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:29:58 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:20:00 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,6 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 	main->exp_tools = exp_tools;
 }
 /****************************  PARSE_EXPAND  ***********************************/
-
 
 /****************************  CMD_TABLE  ***********************************/
 void	init_cmd_tools(t_mini_cmd *cmd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools_path.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/15 11:52:04 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:24:51 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	path_finder(t_mini_cmd *cmd)
 			if (access(command, F_OK) == 0)
 			{
 				cmd->cmd_path = ft_strdup(command);
-				free(command);
 				break ;
 			}
 			else
 				cmd->cmd_path = NULL;
 		}
 	}
+	free(command);
 }
