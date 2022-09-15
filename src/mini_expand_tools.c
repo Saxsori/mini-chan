@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:05:41 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/10 12:21:41 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 00:49:50 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ int	check_ignore_case(t_shell_chan *main, int i, int k, int num)
 	return (num);
 }
 
+/*
+? $$ case
+this was after j++
+			// if (main->first_split[i][k + 1] == '$')
+			// 	k += 1;
+			// if (main->first_split[i][k + 1] == 34 || main->first_split[i][k + 1] == 39 
+			// || main->first_split[i][k + 1] == '\t')
+			// 	j = check_ignore_case(main, i, k, j);
+*/
 int	envar_num(t_shell_chan *main, int i)
 {
 	int		k;
@@ -37,17 +46,18 @@ int	envar_num(t_shell_chan *main, int i)
 	while (++k < ft_strlen(main->first_split[i]))
 	{
 		if (main->first_split[i][k] == '$')
-		{
 			j++;
-			if (main->first_split[i][k + 1] == '$')
-				k += 1;
-			// if (main->first_split[i][k + 1] == 34 || main->first_split[i][k + 1] == 39 || main->first_split[i][k + 1] == '\t')
-			// 	j = check_ignore_case(main, i, k, j);
-		}
 	}
 	return (j);
 }
 
+/*
+? $$ case
+this was after j++
+			// if (main->first_split[i][k + 1] == '$')
+			// 	k += 1;
+ 
+*/
 void	find_env_index(t_shell_chan *main, int i)
 {
 	int	k;
@@ -61,9 +71,8 @@ void	find_env_index(t_shell_chan *main, int i)
 		{
 			main->env_index[i][j] = k;
 			j++;
-			if (main->first_split[i][k + 1] == '$')
-				k += 1;
-			if (main->first_split[i][k + 1] == 34 || main->first_split[i][k + 1] == 39)
+			if (main->first_split[i][k + 1] == 34 || \
+			main->first_split[i][k + 1] == 39)
 				j = check_ignore_case(main, i, k, j);
 		}
 	}
@@ -98,21 +107,24 @@ void	two_dollar_case(char *line)
 	// }
 	// printf ("line %s\n", main->first_split[0]);
 	// printf ("envar num %d\n", envar_num(main, 0));
+? $$ case
+this was on the line 108
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	two_dollar_case(main->first_split[i]);
+		printf("envar num %d in index %d line %s\n",
+		 envar_num(main, i), i, main->first_split[i]);
 */
 void	expand_tools(t_shell_chan *main)
 {
 	int	i;
 	int	k;
 
-	i = -1;
-	while (++i < main->cmd_num)
-		two_dollar_case(main->first_split[i]);
 	main->exp_valid = (int **)malloc(main->cmd_num * sizeof(int *));
 	main->env_index = (int **)malloc(main->cmd_num * sizeof(int *));
 	i = -1;
 	while (++i < main->cmd_num)
 	{
-		printf("envar num %d in index %d line %s\n", envar_num(main, i), i, main->first_split[i]);
 		main->exp_valid[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 		main->env_index[i] = (int *)malloc(envar_num(main, i) * sizeof(int));
 	}
