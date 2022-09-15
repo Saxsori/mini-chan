@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/13 08:59:44 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 00:24:50 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

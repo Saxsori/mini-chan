@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_exit_tools.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/15 00:22:12 by balnahdi          #+#    #+#             */
+/*   Updated: 2022/09/15 00:23:08 by balnahdi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../mini_chan.h"
 
 /*
@@ -32,7 +44,7 @@ int	check_long(char *str)
 		if (str[len -1] > '0')
 			return (1);
 		else
-			return (0);	
+			return (0);
 	}
 	if ((str[0] != '-' || str[0] != '+') && ft_strlen(str) == 18)
 	{
@@ -55,16 +67,16 @@ int	check_first_arg(t_mini_cmd *cmd)
 		return (-1);
 	i = 0;
 	len = ft_strlen(cmd->arguments[0]);
-	if (!ft_strncmp(cmd->arguments[0],"-9223372036854775808", \
+	if (!ft_strncmp(cmd->arguments[0], "-9223372036854775808", \
 	ft_strlen(cmd->arguments[0])))
 		return (0);
-	if (!ft_strncmp(cmd->arguments[0],"-9223372036854775809", \
+	if (!ft_strncmp(cmd->arguments[0], "-9223372036854775809", \
 	ft_strlen(cmd->arguments[0])))
 		return (1);
-	if (!ft_strncmp(cmd->arguments[0],"9223372036854775809", \
+	if (!ft_strncmp(cmd->arguments[0], "9223372036854775809", \
 	ft_strlen(cmd->arguments[0])))
 		return (1);
-	if (!ft_strncmp(cmd->arguments[0],"9223372036854775808", \
+	if (!ft_strncmp(cmd->arguments[0], "9223372036854775808", \
 	ft_strlen(cmd->arguments[0])))
 		return (1);
 	if (cmd->arguments[0][i] == '+' || cmd->arguments[0][i] == '-' )

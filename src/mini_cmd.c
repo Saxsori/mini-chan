@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 10:18:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:38:20 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

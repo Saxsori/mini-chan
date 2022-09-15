@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/07 21:43:37 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 00:23:24 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	mini_execute(t_mini_cmd *cmd)
 	cmd->tools.f_path = 0;
 	cmd->tools.child = -1;
 	i = 0;
+	status = 0;
 	cmd->tools.child = fork();
 	while (cmd->exe_tools.cmd_name[i])
 	{
@@ -79,46 +80,20 @@ int	mini_execute(t_mini_cmd *cmd)
 		if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
 		(access(cmd->exe_tools.cmd_name, F_OK) == 0))
 		{
-			write(2, "mini-chan🌸: ", 16);
-			write(2, cmd->exe_tools.cmd_name, \
-			ft_strlen(cmd->exe_tools.cmd_name));
-			write(2, ": Permission denied\n", \
-			ft_strlen(": Permission denied\n"));
+			errmsg(cmd->exe_tools.cmd_name, PER_ERR);
 			ft_exit(cmd->main, 126);
 		}
 		if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 		NULL) == -1)
 		{
-			printf("exe ff lag %d\n",cmd->tools.f_path);
 			if (errno == 2 && cmd->tools.f_path == 1)
-			{
-				write(2, "mini-chan🌸: ", 16);
-				write(2, cmd->exe_tools.arguments[0], \
-				ft_strlen(cmd->exe_tools.arguments[0]));
-				write(2, ": No such file or directory\n", \
-				ft_strlen(": No such file or directory\n"));
-			}
+				errmsg(cmd->exe_tools.arguments[0], PER_ERR);
 			else
-			{
-				write(2, "mini-chan🌸: ", 16);
-				write(2, cmd->exe_tools.arguments[0], \
-				ft_strlen(cmd->exe_tools.arguments[0]));
-				write(2, ": command not found\n", 21);
-			}
+				errmsg(cmd->exe_tools.arguments[0], PER_ERR);
 			ft_exit(cmd->main, 127);
 		}
 	}
 	else
-	{
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, msg);
-		waitpid(-1, &status, 0);
-		if (WIFEXITED(status))
-			g_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			g_status = WTERMSIG(status) + 128;
-		else if (WIFSTOPPED(status))
-			g_status = WSTOPSIG(status) + 128;
-	}	
+		mini_wait(-1, status);
 	return (0);
 }

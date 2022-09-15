@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 00:18:35 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:34:20 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,17 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 		if (access(main->cmd_table[i].cmd_path, X_OK) == -1 && \
 		(access(main->cmd_table[i].cmd_path, F_OK) == 0))
 		{
-			write(2, "mini-chan🌸: ", 16);
-			write(2, main->cmd_table[i].cmd_path, \
-			ft_strlen(main->cmd_table[i].cmd_path));
-			write(2, ": Permission denied\n", \
-			ft_strlen(": Permission denied\n"));
+			errmsg(main->cmd_table[i].cmd_path, PER_ERR);
 			exit(126);
 		}
 		if (execve(main->cmd_table[i].cmd_path, \
 		main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 		{
 			if (main->cmd_table[i].tools.f_path == 1)
-			{
-				write(2, "mini-chan🌸: ", 18);
-				write(2, main->cmd_table[i].exe_tools.arguments[0], \
-				ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
-				write(2, ": No such file or directory\n", \
-				ft_strlen(": No such file or directory\n"));
-				main->cmd_table[i].status = 127;
-				exit(127);
-			}
+				errmsg(main->cmd_table[i].exe_tools.arguments[0], NO_F_DIR);
 			else
-			{
-				write(2, "mini-chan🌸: ", 18);
-				write(2, main->cmd_table[i].exe_tools.arguments[0], \
-				ft_strlen(main->cmd_table[i].exe_tools.arguments[0]));
-				write(2, ": command not found\n", 21);
-				main->cmd_table[i].status = 127;
-				exit(127);
-			}	
+				errmsg(main->cmd_table[i].exe_tools.arguments[0], NO_CMD);
+			exit(127);
 		}
 	}
 	else if (main->cmd_table[i].tools.y_redir)
@@ -127,15 +109,9 @@ void	ft_mini_pipe(t_shell_chan *main)
 		else
 			close_fds(main, i);
 	}
-	i = 0;
-	while (i < main->cmd_num)
-	{
-		waitpid(main->pipe_tools.child[i], \
-		&main->pipe_tools.status, 0);
-		if (WIFEXITED(main->pipe_tools.status))
-			g_status = WEXITSTATUS(main->pipe_tools.status);
-		i++;
-	}
+	i = -1;
+	while (++i < main->cmd_num)
+		mini_wait(main->pipe_tools.child[i], main->pipe_tools.status);
 }
 
 /*

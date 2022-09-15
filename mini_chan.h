@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:39:11 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 01:36:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
+
 # define TMA "too many arguments"
 # define NVI "not a valid identifier"
 # define PIPE_ERR1 "mini-chan🌸: syntax error near unexpected token `|'\n"
@@ -46,11 +47,14 @@
 		cannot access parent directories: No such file or directory\n"
 # define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger), \
 				in a hope to be \na successful happy shell in the future ^◡^ \n"
+# define PER_ERR "Permission denied"
+# define NO_F_DIR "No such file or directory"
+# define NO_CMD "command not found"
 
-typedef struct shell_chan	t_shell_chan;
-typedef struct node			t_mini_envar;
-typedef struct expand_tools	t_expand_tools;
-extern int		g_status;
+typedef struct shell_chan		t_shell_chan;
+typedef struct node				t_mini_envar;
+typedef struct expand_tools		t_expand_tools;
+extern int     g_status;
 typedef struct echo_parse
 {
 	int	null_num;
@@ -474,5 +478,8 @@ void			ft_mini_pipe(t_shell_chan *main);
 
 /*******************    MINI_EXIT  ******************/
 void			pre_exit_arg(t_mini_cmd *cmd);
+
+/******************* wait pid **************************/
+void			mini_wait(pid_t pid, int status);
 
 #endif
