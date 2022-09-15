@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/11 09:42:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 00:51:37 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,9 +349,3 @@ void	init_mini_pipe(t_mini_pipe *p_tool)
 // 	exp_tools->end = 0;
 // 	exp_tools->name_len = 0;
 // }
-
-
-
-
-
-

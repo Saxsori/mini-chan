@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 17:37:11 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:33:05 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@
 # define BCYN "\e[1;36m"
 # define BWHT "\e[1;37m"
 # define BPUR "\e[0;35m"
-# define TMA "too many arguments"
 
-typedef struct shell_chan	t_shell_chan;
-typedef struct node			t_mini_envar;
-typedef struct expand_tools	t_expand_tools;
-extern int		g_status;
+# define TMA "too many arguments"
+# define PER_ERR "Permission denied"
+# define NO_F_DIR "No such file or directory"
+# define NO_CMD "command not found"
+
+typedef struct shell_chan		t_shell_chan;
+typedef struct node				t_mini_envar;
+typedef struct expand_tools		t_expand_tools;
+extern int     g_status;
 typedef struct echo_parse
 {
 	int	null_num;
@@ -252,6 +256,7 @@ void			free_mini_chan(t_shell_chan *main);
 void			free_mini_envar(t_shell_chan *main);
 void			free_shell_chan_mem(t_shell_chan *main);
 void			free_ptr(void **ptr);
+void			errmsg(char *cmd, char *msg);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
