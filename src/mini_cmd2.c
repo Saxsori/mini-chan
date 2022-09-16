@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 13:26:39 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:31:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	mini_unset(t_mini_cmd *cmd)
 		{
 			while (++i < cmd->tools.arg_num)
 			{
-				if (isvalid_name(cmd->arguments[i]))
+				if (isvalid_name(cmd->arguments[i]) && !is_equal(cmd->arguments[i]))
 					do_unset(cmd, i);
 				else
 				{
