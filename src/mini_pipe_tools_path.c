@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/16 07:37:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:06:01 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,17 @@ char	*check_command(t_mini_cmd *cmd)
 {
 	char	*command;
 
+	command = NULL;
 	if (cmd->tools.y_redir)
-		command = ft_strdup(cmd->redir.command);
+	{
+		if (cmd->redir.command)
+			command = ft_strdup(cmd->redir.command);
+	}
 	else
-		command = ft_strdup(cmd->name);
+	{
+		if (cmd->name)
+			command = ft_strdup(cmd->name);
+	}
 	return (command);
 }
 
@@ -49,7 +56,13 @@ void	path_finder(t_mini_cmd *cmd)
 
 	j = 0;
 	command = check_command(cmd);
-	cmd->tools.f_path = check_path_npipe(cmd, command);
+	if (!command)
+	{
+		cmd->tools.f_path = 1;
+		cmd->cmd_path = NULL;
+	}
+	else
+		cmd->tools.f_path = check_path_npipe(cmd, command);
 	if (cmd->tools.f_path == 0)
 	{
 		j = path_finder_split(cmd, j, command);
@@ -65,5 +78,6 @@ void	path_finder(t_mini_cmd *cmd)
 				cmd->cmd_path = NULL;
 		}
 	}
-	free(command);
+	if (command)
+		free(command);
 }

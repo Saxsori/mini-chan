@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 07:08:47 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:00:02 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,12 @@ void			parse_special_null_arg(t_shell_chan *main);
 void			remove_invalid_pipe(t_shell_chan *main, char *line, int index);
 void			check_valid_pipe(t_shell_chan *main);
 void			return_invalid_pipe(t_shell_chan *main);
+
+/*******************    cmd__PARTS__PARSE    *******************/
+void			check_isbuiltin(t_shell_chan *main);
+void			check_cmd_parts(t_shell_chan *main);
+void			get_builtin_arg(t_mini_cmd *cmd);
+void			get_builtin_cmd(t_mini_cmd *cmd);
 
 /*******************    OPTIONS___PARSE    *******************/
 void			check_opt(t_mini_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 20:27:27 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 07:54:35 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 11:28:30 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int	pre_redir(t_shell_chan *main)
 	if (redir_err_syn(main))
 	{
 		main->exit_status = 2;
+		errmsg(NULL, "syntax error");
 		return (2);
 	}
 	take_v_redir(main);

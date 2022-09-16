@@ -6,13 +6,12 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 05:18:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:47:19 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdlib.h>
-
 
 int	mini_cd(t_mini_cmd *cmd)
 {
@@ -87,8 +86,8 @@ void	exit_more_arg(t_mini_cmd *cmd, int check_ret)
 	}
 	else
 	{
-		ft_putstr_fd("exit\n", 1);
-		ft_putstr_fd("mini-chan🌸$: exit: too many arguments\n", 1);
+		ft_putstr_fd("exit\n", 2);
+		errmsg("exit", TMA);
 		cmd->main->exit_status = 1;
 	}
 }

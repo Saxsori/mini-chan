@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:02:00 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 05:06:04 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:06:26 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ int	do_export(t_mini_cmd *cmd)
 	while (++i < cmd->tools.arg_num)
 	{
 		if (isvalid_name(cmd->arguments[i]))
+		{
 			choose_export_action(cmd, i);
+		}
 		else
 		{
 			errmsg(cmd->arguments[i], NVI);

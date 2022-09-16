@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:38:31 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:38:18 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:26:03 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ int	check_pipe(char *line)
 		{
 			if (line[begin] == '|')
 			{
-				printf("kjk\n");
 				if (no_cmd(line, begin, i + 1))
 					return (0);
-				printf("kjk\n");
 			}
 		}
 	}

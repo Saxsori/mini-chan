@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:57:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 05:06:47 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:30:41 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	isvalid_name(char *line)
 
 	i = -1;
 	if ((!ft_isalpha(line[0]) && line[0] != '_' && line [0] == '=') \
-	|| ft_isdigit(line[0]))
+	|| ft_isdigit(line[0]) || line[0] == '\0')
 		return (0);
 	while (++i < ft_strlen(line) && line[i])
 	{

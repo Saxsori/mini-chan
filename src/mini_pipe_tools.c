@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/16 07:37:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:26:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ void	pipe_tools(t_shell_chan *main)
 	while (++i < main->cmd_num)
 		path_finder(&main->cmd_table[i]);
 	init_fds(main);
-	i = -1;
-	while (++i < main->cmd_num)
-		printf("path_finder %s\n", main->cmd_table[i].cmd_path);
+	// i = -1;
+	// while (++i < main->cmd_num)
+	// 	printf("path_finder %s\n", main->cmd_table[i].cmd_path);
 }
 
 void	ft_dup_fds(t_shell_chan *main, int i)

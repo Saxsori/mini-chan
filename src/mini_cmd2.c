@@ -6,12 +6,13 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 18:17:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:26:39 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
+		// printf(BRED"export: no option: %s\n", cmd->option[0]);
 int	mini_export(t_mini_cmd *cmd)
 {
 	if (cmd->option == NULL)
@@ -25,10 +26,11 @@ int	mini_export(t_mini_cmd *cmd)
 		}
 	}
 	else
-		printf(BRED"export: no option: %s\n", cmd->option[0]);
+		errmsg("export", "no option");
 	return (1);
 }
 
+		// printf(BRED"unset: no option: %s\n", cmd->option[0]);
 int	mini_unset(t_mini_cmd *cmd)
 {
 	int				i;
@@ -54,7 +56,7 @@ int	mini_unset(t_mini_cmd *cmd)
 		}
 	}
 	else
-		printf(BRED"unset: no option: %s\n", cmd->option[0]);
+		errmsg("unset", "no option");
 	return (2);
 }
 

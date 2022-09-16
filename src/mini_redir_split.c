@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:36:26 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 09:36:54 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:08:25 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	get_arg_num(t_mini_redir *redir, int op)
 		arg_syn_one(redir);
 	else
 		arg_syn_two(redir);
-	printf ("arg num %d\n", redir->redir_tools.num_arg);
 }
 
 /*
