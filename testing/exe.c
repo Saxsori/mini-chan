@@ -326,21 +326,23 @@ int main()
 	// arg[1][0] = '\0';
 
 	// execve(arg[0], arg, NULL);
-	char	*line;
+	// char	*line;
 
-	line = malloc(sizeof(char) * 4);
-	line[0] = 'a';
-	line[1] = 16;
-	line[2] = 'c';
-	line[3] = '\0';
-	printf("%s\n", line);
-	int i;
-	i = -1;
-	while (++i < 3)
-	{
-		if (line[i] == 16)
-			printf("yes\n");
-		// else 
-			printf("'%c\" \n", line[i]);
-	}
+	// line = malloc(sizeof(char) * 4);
+	// line[0] = 'a';
+	// line[1] = 16;
+	// line[2] = 'c';
+	// line[3] = '\0';
+	// printf("%s\n", line);
+	// int i;
+	// i = -1;
+	// while (++i < 3)
+	// {
+	// 	if (line[i] == 16)
+	// 		printf("yes\n");
+	// 	// else 
+	// 		printf("'%c\" \n", line[i]);
+	// }
+	char str[7] = "abrarar";
+	printf("%s\n", ft_strtrim(str, "abr"));
 }

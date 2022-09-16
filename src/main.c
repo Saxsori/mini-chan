@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:18:16 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 08:33:01 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	get_builtin_arg(t_mini_cmd *cmd)
 	if (cmd->redir.redir_tools.num_arg)
 	{
 		cmd->tools.arg_num = cmd->redir.redir_tools.num_arg;
-		cmd->arguments = (char **)malloc(sizeof(char *) * \
-		(cmd->redir.redir_tools.num_arg + 1));
+		cmd->arguments = (char **)malloc(sizeof(char *) * (cmd->redir.redir_tools.num_arg + 1));
 		cmd->arguments[cmd->redir.redir_tools.num_arg] = NULL;
 		while (++i < (cmd->redir.redir_tools.num_arg + 1))
 		{
@@ -222,7 +221,7 @@ int	main(int argc, char **argv, char **env)
 		if (main.exit_status == 2)
 			g_status = main.exit_status;
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK ;
+		// VALGRIND_DO_LEAK_CHECK ;
 	}
 	return (0);
 }

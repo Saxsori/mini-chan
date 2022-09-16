@@ -6,21 +6,18 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:51:43 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:18:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <stdlib.h>
 
+
 int	mini_cd(t_mini_cmd *cmd)
 {
-	int						ret;
-	char					*cwd;
-
-	cwd = getcwd(NULL, 1024);
 	if (!cmd->arguments)
-		return(cd_home(cmd, cwd));
+		return (cd_home(cmd));
 	else if (cmd->tools.arg_num > 1)
 	{
 		errmsg(cmd->name, TMA);
@@ -28,16 +25,9 @@ int	mini_cd(t_mini_cmd *cmd)
 	}
 	else
 	{
-		ret = chdir(cmd->arguments[0]);
-		if (ret == -1)
-		{
-			errmsg(cmd->name, strerror(errno));
+		if (change_dir(cmd))
 			return (1);
-		}
-		else
-			change_dir(cmd, cwd);
 	}
-	free (cwd);
 	return (0);
 }
 

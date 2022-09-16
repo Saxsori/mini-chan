@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:57:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 04:56:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:06:47 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	replace_envar(t_mini_cmd *cmd, int i)
 	envar = search_envar(cmd->main->head_envar, arg[0]);
 	if (envar)
 	{
+		envar->declared = 1;
 		if (envar->prev == NULL)
 			cmd->main->head_envar = \
 							del_first_envar(cmd->main->head_envar);

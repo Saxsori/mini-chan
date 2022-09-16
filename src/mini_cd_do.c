@@ -6,52 +6,19 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 04:31:14 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:54:21 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:18:47 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
-void	change_pwd(t_mini_cmd *cmd, char *pwd)
-{
-	getcwd(pwd, 1024);
-	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-	if (cmd->tools.envar)
-	{
-		free(cmd->tools.envar->env_cont);
-		if (cmd->main->d_rootpath)
-			cmd->tools.envar->env_cont = ft_strjoin("/", pwd);
-		else
-			cmd->tools.envar->env_cont = ft_strdup(pwd);
-	}
-}
-
-void	change_oldpwd(t_mini_cmd *cmd, char *pwd)
-{
-	char	*data;
-
-	if (check_is_name_there(cmd->main, "OLDPWD"))
-	{
-		cmd->tools.envar = search_envar(cmd->main->head_envar, "OLDPWD");
-		free(cmd->tools.envar->env_cont);
-		cmd->tools.envar->env_cont = ft_strdup(pwd);
-		cmd->tools.envar->declared = 1;
-	}
-	else
-	{
-		data = ft_strjoin("OLDPWD=", pwd);
-		add_node_at_end(cmd->main->head_envar, data, 'n');
-	}
-}
-
-int	cd_home(t_mini_cmd *cmd, char *pwd)
+int	cd_home(t_mini_cmd *cmd)
 {
 	cmd->tools.envar = search_envar(cmd->main->head_envar, "HOME");
 	if (cmd->tools.envar)
 	{
 		chdir(cmd->tools.envar->env_cont);
-		change_oldpwd(cmd, pwd);
-		change_pwd(cmd, pwd);
+		update_cd_envars(cmd);
 		return (0);
 	}
 	else
@@ -59,53 +26,38 @@ int	cd_home(t_mini_cmd *cmd, char *pwd)
 	return (1);
 }
 
-void	change_cwd(t_mini_cmd *cmd, char *cwd)
+void	no_parent_dir(t_mini_cmd *cmd)
 {
-	if (cmd->tools.envar)
-	{
-		check_root(cmd);
-		change_oldpwd(cmd, cwd);
-		change_pwd(cmd, cwd);
-	}
-	else
-	{
-		if (cmd->main->f_pwd)
-		{
-			cmd->main->f_pwd = 0;
-			cmd->tools.envar = search_envar(cmd->main->head_envar, "OLDPWD");
-			if (!cmd->tools.envar->declared)
-				cmd->tools.envar->declared = 1;
-			free(cmd->tools.envar->env_cont);
-			cmd->tools.envar->env_cont = malloc(sizeof(char));
-			cmd->tools.envar->env_cont[0] = '\0';
-		}
-		else
-			change_oldpwd(cmd, cwd);
-	}
+	char	*temp;
+
+	change_oldpwd(cmd);
+	errmsg(NULL, GETCWD_ERR);
+	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
+	temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
+	free (cmd->tools.envar->env_cont);
+	cmd->tools.envar->env_cont = ft_strdup(temp);
+	cmd->tools.envar = NULL;
+	free(temp);
 }
 
-/*
-		// printf(BRED"cd: error retrieving current 
-		// directory: getcwd: cannot access parent directories:
-		//  No such file or directory\n"BWHT);
-	// printf("cwd %s\n", pwd);
-*/
-void	change_dir(t_mini_cmd *cmd, char *cwd)
+int	change_dir(t_mini_cmd *cmd)
 {
-	char		*pwd;
-	char		*temp;
+	int		ret;
+	char	*pwd;
 
-	pwd = getcwd(NULL, 1024);
-	cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
-	if (!pwd)
+	ret = chdir(cmd->arguments[0]);
+	if (ret == -1)
 	{
-		write(2, BRED GETCWD_ERR BWHT, 44 + 14);
-		temp = ft_strjoin(cmd->tools.envar->env_cont, "/..");
-		free (cmd->tools.envar->env_cont);
-		cmd->tools.envar->env_cont = ft_strdup(pwd);
-		free (temp);
+		errmsg(cmd->name, strerror(errno));
+		return (1);
 	}
 	else
-		change_cwd(cmd, cwd);
-	free(pwd);
+	{
+		pwd = getcwd(NULL, 1024);
+		if (!pwd)
+			no_parent_dir(cmd);
+		else
+			update_cd_envars(cmd);
+	}
+	return (0);
 }

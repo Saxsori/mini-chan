@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:52:56 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:19:10 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <valgrind/memcheck.h>
+// # include <valgrind/memcheck.h>
 # include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
@@ -43,7 +43,7 @@
 # define PIPE_ERR1 "mini-chan🌸: syntax error near unexpected token `|'\n"
 # define PIPE_ERR2 "mini-chan🌸: syntax error near unexpected token `||'\n"
 # define GETCWD_ERR "cd: error retrieving current directory: getcwd: \
-		cannot access parent directories: No such file or directory\n"
+cannot access parent directories: No such file or directory"
 # define MINI_CHAN "\nThis shell has been raised (created) with\nunconditional love (anger),\
 in a hope to be \na successful happy shell in the future ^◡^ \n"
 # define PER_ERR "Permission denied"
@@ -353,11 +353,12 @@ char			**new_arg(t_mini_cmd *cmd);
 
 /*******************      MINI_PWD_CD      *******************/
 int				is_doubslash(char *line);
-int				cd_home(t_mini_cmd *cmd, char *pwd);
-void			change_oldpwd(t_mini_cmd *cmd, char *pwd);
-void			change_pwd(t_mini_cmd *cmd, char *pwd);
-void			check_root(t_mini_cmd *cmd);
-void			change_dir(t_mini_cmd *cmd, char *cwd);
+int				cd_home(t_mini_cmd *cmd);
+void			change_oldpwd(t_mini_cmd *cmd);
+void			change_pwd(t_mini_cmd *cmd);
+int				change_dir(t_mini_cmd *cmd);
+void			update_cd_envars(t_mini_cmd *cmd);
+void			no_parent_dir(t_mini_cmd *cmd);
 
 /*******************    MINI_QUOTE_PARSE   *******************/
 int				is_closed(t_shell_chan *main, char *line, int index);

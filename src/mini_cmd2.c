@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 12:05:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:17:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ void	do_unset(t_mini_cmd *cmd, int i)
 		{
 			cmd->tools.envar = search_envar(cmd->main->head_envar, "PWD");
 			if (cmd->tools.envar)
+			{
 				cmd->main->f_pwd = 1;
+				cmd->tools.envar->declared = 0;
+				return ;
+			}
 		}
 		if (envar->prev == NULL)
 			cmd->main->head_envar = \

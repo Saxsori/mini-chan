@@ -19,6 +19,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_envar.c                		src/mini_envar_tools.c \
 		src/mini_envar_export.c           		src/mini_envar_unset.c \
 		src/mini_echo_tools.c               	src/mini_cd_tools.c \
+		src/mini_cd_do.c \
 		src/mini_quotes_split.c         	    src/mini_quotes_checker.c \
 		src/mini_quotes_split_tools.c\
 		src/mini_envar_export_tools.c			src/mini_expand_tools.c \
@@ -35,7 +36,7 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_pipe.c							src/mini_redir.c \
 		src/mini_redir_opt.c					src/mini_exit_pre.c \
 		src/mini_heredoc.c 						src/mini_exit_tools.c \
-		src/mini_cd_do.c						src/mini_pipe_tools.c \
+		src/mini_pipe_tools.c \
 		src/mini_pipe_pre.c						src/mini_special_null_case.c \
 		src/mini_redir_get_cmd.c                src/mini_errormng.c \
 		src/mini_wait.c							src/mini_pipe_tools_path.c \
