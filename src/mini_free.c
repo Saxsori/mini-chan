@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:27:42 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 07:29:21 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	free_exe_tools(t_mini_cmd *cmd)
 
 void	free_mini_cmd(t_mini_cmd *cmd)
 {
+	if (cmd->name)
+		free_ptr((void **)&cmd->name);
 	if (cmd->split)
 		squaredstr_free(cmd->split);
 	if (cmd->option)

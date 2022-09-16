@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 08:33:01 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 07:09:03 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int	main(int argc, char **argv, char **env)
 		if (main.exit_status == 2)
 			g_status = main.exit_status;
 		re_init_shell_chan(&main);
-		// VALGRIND_DO_LEAK_CHECK ;
+		VALGRIND_DO_LEAK_CHECK ;
 	}
 	return (0);
 }

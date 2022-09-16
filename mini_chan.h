@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 05:19:10 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 07:08:47 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-// # include <valgrind/memcheck.h>
+# include <valgrind/memcheck.h>
 # include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
