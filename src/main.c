@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 15:05:55 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:37:18 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	main(int argc, char **argv, char **env)
 		if (main.exit_status == 2)
 			g_status = main.exit_status;
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK ;
+		// VALGRIND_DO_LEAK_CHECK ;
 	}
 	return (0);
 }
