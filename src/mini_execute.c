@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:19:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:38:36 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ void	check_path(t_mini_cmd *cmd)
 void	mini_execute_split(t_mini_cmd *cmd)
 {
 	signal(SIGQUIT, SIG_DFL);
+	if (cmd->null_cmd_line)
+	{
+		write(2,"rr\n", 3);
+		ft_exit(cmd->main, 0);
+	}
 	if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
 	(access(cmd->exe_tools.cmd_name, F_OK) == 0))
 	{
