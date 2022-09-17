@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:19:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:22:20 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	check_if_path(t_mini_cmd *cmd)
 		if (cmd->exe_tools.cmd_name[i] == '/')
 		{
 			cmd->tools.f_path = 1;
+			
 			break ;
 		}
 	}
@@ -65,32 +66,44 @@ void	check_path(t_mini_cmd *cmd)
 			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 			free_ptr((void **)&cmd->exe_tools.cmd_name);
 			cmd->exe_tools.cmd_name = ft_strdup(str3);
+			cmd->tools.y_cmd = 1;
+			free(str1);
+			free(str2);
 			free (str3);
+			break ;
 		}
+		else
+			cmd->tools.y_cmd = 0;
 		if (str1)
 			free(str1);
 		if (str2)
 			free(str2);
-	}	
+	}
 }
 
 void	mini_execute_split(t_mini_cmd *cmd)
 {
 	signal(SIGQUIT, SIG_DFL);
-	if (access(cmd->exe_tools.cmd_name, X_OK) == -1 && \
-	(access(cmd->exe_tools.cmd_name, F_OK) == 0))
-	{
-		errmsg(cmd->exe_tools.cmd_name, PER_ERR);
-		ft_exit(cmd->main, 126);
-	}
+	if (cmd->null_cmd_line)
+		ft_exit(cmd->main, 0);
 	if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 	NULL) == -1)
 	{
 		if (errno == 2 && cmd->tools.f_path == 1)
+		{
 			errmsg(cmd->exe_tools.arguments[0], NO_F_DIR);
+			ft_exit(cmd->main, 127);
+		}
+		if (errno == 13 && cmd->tools.y_cmd)
+		{
+			errmsg(cmd->exe_tools.arguments[0], PER_ERR);
+			ft_exit(cmd->main, 126);
+		}
 		else
+		{
 			errmsg(cmd->exe_tools.arguments[0], NO_CMD);
-		ft_exit(cmd->main, 127);
+			ft_exit(cmd->main, 127);
+		}
 	}
 }
 

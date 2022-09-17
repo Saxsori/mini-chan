@@ -1,0 +1,19 @@
+
+
+Tests facultatifs :
+
+echo $test
+export test="  foo    bar  "
+echo $test
+export test="  foo    bar  "
+echo ab$test
+export test="  foo    bar  "
+echo "ab"$test
+export test=" foo   bar "
+echo ab"$test" | cat -e
+export test=" foo   bar "
+echo "$test"
+export test=" foo   bar "
+echo ""$test""
+export test=" foo   bar "
+echo """$test"""

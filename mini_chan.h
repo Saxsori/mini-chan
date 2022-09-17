@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 18:37:11 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:01:05 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ typedef struct mini_tools
 	int				y_exe;
 	int				y_redir;
 	int				r_err_syn;
+	int				y_cmd;
 	DIR				*dir;
 	t_redir_parse	p_redir;
 	t_mini_envar	*envar;
@@ -211,6 +212,7 @@ typedef struct mini_cmnd
 	t_mini_redir		redir;
 	t_shell_chan		*main;
 	t_mini_exe_tools	exe_tools;
+	int					null_cmd_line;
 }	t_mini_cmd;
 
 typedef struct pip_tools

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 09:40:28 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:21:00 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ void	redir(t_mini_cmd *cmd)
 		{
 			redir_sign(cmd, i);
 		}
-		if (!is_command(cmd->redir.command) && cmd->redir.command)
+		if (cmd->redir.command)
 		{
-			redir_exe(cmd);
+			if (!is_command(cmd->redir.command))
+			{
+				redir_exe(cmd);
+			}
+			else if (is_command(cmd->redir.command))
+			{
+				g_status = run_builtn(cmd);
+				exit(g_status);
+			}
 		}
-		else if (is_command(cmd->redir.command))
-		{
-			g_status = run_builtn(cmd);
-			exit(g_status);
-		}
-		else if (!cmd->redir.command)
+		else
 			exit(0);
 	}
 	else

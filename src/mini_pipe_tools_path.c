@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools_path.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/16 15:06:01 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:23:03 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*check_command(t_mini_cmd *cmd)
 
 void	path_finder(t_mini_cmd *cmd)
 {
-	int		i;
+	// int		i;
 	int		j;
 	char	*command;
 
@@ -64,20 +64,29 @@ void	path_finder(t_mini_cmd *cmd)
 	else
 		cmd->tools.f_path = check_path_npipe(cmd, command);
 	if (cmd->tools.f_path == 0)
-	{
-		j = path_finder_split(cmd, j, command);
-		i = -1;
-		while (cmd->main->path[++i] && j != 1)
-		{
-			if (access(command, F_OK) == 0)
-			{
-				cmd->cmd_path = ft_strdup(command);
-				break ;
-			}
-			else
-				cmd->cmd_path = NULL;
-		}
-	}
-	if (command)
-		free(command);
+		 path_finder_split(cmd, j, command);
+	// {
+		// j = path_finder_split(cmd, j, command);
+		// i = -1;
+	// 	while (cmd->main->path[++i] && j != 1)
+	// 	{
+	// 		if (access(command, F_OK) == 0)
+	// 		{
+	// 			// ft_putstr_fd(command, 2);
+	// 			// ft_putstr_fd("\n", 2);
+	// 			cmd->cmd_path = ft_strdup(command);
+	// 			// ft_putstr_fd(cmd->cmd_path, 2);
+	// 			// ft_putstr_fd("\n", 2);
+	// 			// cmd->tools.y_cmd = 1;
+	// 			break ;
+	// 		}
+	// 		else
+	// 		{
+	// 			cmd->cmd_path = NULL;
+	// 			cmd->tools.y_cmd = 0;
+	// 		}
+	// 	}
+	// }
+	// if (command)
+	// 	free(command);
 }
