@@ -1,5 +1,6 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/balnahdi/mini-ff'
+make: Entering directory `/Users/balnahdi/mini-final'
+ 
 make: Nothing to be done for `all'.
-make: Leaving directory `/Users/balnahdi/mini-ff'
+make: Leaving directory `/Users/balnahdi/mini-final'
  
