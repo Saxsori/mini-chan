@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_exe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:29:41 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/15 11:31:49 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:22:53 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,20 @@ void	pipe_redir(t_mini_cmd *cmd)
 		redir_sign(cmd, i);
 		i++;
 	}
-	if (!is_command(cmd->redir.command))
-		redir_exe(cmd);
-	else if (is_command(cmd->redir.command))
+	if (cmd->redir.command)
 	{
-		g_status = run_builtn(cmd);
-		exit(g_status);
+		if (!is_command(cmd->redir.command))
+		{
+			redir_exe(cmd);
+		}
+		else if (is_command(cmd->redir.command))
+		{
+			g_status = run_builtn(cmd);
+			exit(g_status);
+		}
 	}
+	else
+		exit (0);
 }
 
 void	pipe_exe(t_shell_chan *main, int i)

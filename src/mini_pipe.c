@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 11:29:37 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:23:18 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 	if (main->cmd_table[i].tools.y_exe && !main->cmd_table[i].tools.y_redir)
 		pipe_exe(main, i);
 	else if (main->cmd_table[i].tools.y_redir)
+	{
+		ft_dup_fds(main, i);
 		pipe_redir(&main->cmd_table[i]);
+	}
 	else
 	{
 		ft_dup_fds(main, i);
