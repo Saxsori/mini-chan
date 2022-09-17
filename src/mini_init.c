@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 13:17:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:02:40 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void	init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index)
 /****************************  CMD_TABLE  ***********************************/
 void	init_cmd_tools(t_mini_cmd *cmd)
 {
+	cmd->tools.y_cmd = -1;
 	cmd->tools.arg_num = 0;
 	cmd->tools.opt_num = 0;
 	cmd->tools.arg_index = 0;

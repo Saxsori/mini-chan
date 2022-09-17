@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_action.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 13:39:29 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:30:09 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,5 @@ void	expand_envar(t_shell_chan *main)
 		}
 		if (main->first_split[i][0] == '\0')
 			main->cmd_table[i].null_cmd_line = 1;
-		printf("(%s)\n", main->first_split[i]);
 	}
 }
