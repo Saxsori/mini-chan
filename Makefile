@@ -40,7 +40,8 @@ SRC =   src/main.c                  		    src/mini_ctrls.c \
 		src/mini_pipe_pre.c						src/mini_special_null_case.c \
 		src/mini_redir_get_cmd.c                src/mini_errormng.c \
 		src/mini_wait.c							src/mini_pipe_tools_path.c \
-		src/mini_pipe_exe.c						src/mini_builtin_tools.c
+		src/mini_pipe_exe.c						src/mini_builtin_tools.c\
+		src/mini_unset_tools.c
 
 OBJ = ${SRC:.c=.o}
 

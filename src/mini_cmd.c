@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:47:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/16 13:47:19 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 10:55:37 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void	exit_more_arg(t_mini_cmd *cmd, int check_ret)
 	}
 }
 
+/*
+! chmge the exiy=t status for no argument to g_status 
+*/
 int	mini_exit(t_mini_cmd *cmd)
 {
 	int		check_ret;
@@ -103,7 +106,7 @@ int	mini_exit(t_mini_cmd *cmd)
 	if (cmd->tools.arg_num > 0)
 		check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num == 0)
-		ft_exit(cmd->main, 0);
+		ft_exit(cmd->main, g_status);
 	check_ret = check_first_arg(cmd);
 	if (cmd->tools.arg_num > 1)
 		exit_more_arg(cmd, check_ret);

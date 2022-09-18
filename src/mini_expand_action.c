@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:14:20 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 16:30:09 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:05:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	expand_envar(t_shell_chan *main)
 			if (exp_tools.env_info)
 				free_ptr((void **)&exp_tools.env_info);
 		}
-		if (main->first_split[i][0] == '\0')
+		if (is_null_cmd_line(main->first_split[i]))
 			main->cmd_table[i].null_cmd_line = 1;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_envar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:11:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:04:52 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,19 @@ void	get_env_value(t_env_info *env_info)
 		else
 			null_enval(env_info);
 	}
+}
+
+int	is_null_cmd_line(char *line)
+{
+	int	i;
+
+	if (line[0] == '\0')
+		return (1);
+	i = -1;
+	while (++i < ft_strlen(line))
+	{
+		if (line[i] != ' ')
+			return (0);
+	}
+	return (1);
 }

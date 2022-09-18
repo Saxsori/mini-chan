@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 05:51:42 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:06:17 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,8 @@ int				mini_export(t_mini_cmd *cmd);
 int				mini_unset(t_mini_cmd *cmd);
 int				mini_env(t_mini_cmd *cmd);
 int				mini_chan(void);
+int				start_unset(t_mini_cmd *cmd);
+void			do_unset(t_mini_cmd *cmd, int i);
 
 /***************** MINI_EXIT_TOOLS ***************************/
 
@@ -399,6 +401,7 @@ int				cmp_env_name(t_env_info *env_info, t_mini_envar *env);
 void			handle_1dollar_case(t_env_info *env_info);
 void			init_exp_loop(t_expand_tools *exp_tools);
 void			two_dollar_case(char *line);
+int				is_null_cmd_line(char *line);
 
 /*******************    MINI_REDIR_TOOLS   ******************/
 void			redir_tools(t_shell_chan *main);
