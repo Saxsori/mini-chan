@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/18 11:42:12 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:22:25 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,41 @@ void	path_finder(t_mini_cmd *cmd)
 }
 */
 
-void	path_finder_split(t_mini_cmd *cmd, char *command)
+static void	search_path_loop(t_mini_cmd *cmd, char *command)
 {
 	int		i;
 	char	*str1;
 	char	*str2;
 
 	i = 0;
-	if (cmd->main->path)
+	while (cmd->main->path_split[++i])
 	{
-		while (cmd->main->path_split[++i])
+		str1 = ft_strjoin(cmd->main->path_split[i], "/");
+		str2 = ft_strjoin(str1, command);
+		if (access(str2, F_OK) == 0)
 		{
-			str1 = ft_strjoin(cmd->main->path_split[i], "/");
-			str2 = ft_strjoin(str1, command);
-			if (access(str2, F_OK) == 0)
-			{
-				cmd->cmd_path = ft_strdup(str2);
-				free(str1);
-				free(str2);
-				cmd->tools.y_cmd = 1;
-				break ;
-			}
-			else
-			{
-				cmd->tools.y_cmd = 0;
-				free (str1);
-				free (str2);
-			}
+			cmd->cmd_path = ft_strdup(str2);
+			free(str1);
+			free(str2);
+			cmd->tools.y_cmd = 1;
+			break ;
+		}
+		else
+		{
+			cmd->tools.y_cmd = 0;
+			free (str1);
+			free (str2);
 		}
 	}
+}
+
+/*
+took the loop to the search_path_loop function
+*/
+void	path_finder_split(t_mini_cmd *cmd, char *command)
+{
+	if (cmd->main->path)
+		search_path_loop(cmd, command);
 	else
 	{
 		cmd->cmd_path = NULL;

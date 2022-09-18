@@ -3,33 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 15:58:52 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:39:59 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 #include <sys/wait.h>
-
-/*
-	// i = 0;
-	// while (i < cmd->exe_tools.arg_num)
-	// 	printf("arg '%s'\n", cmd->exe_tools.arguments[i++]);
-
-
-	todo 
-		126 exit code use access(x_ok)
-	todo
-		/bin/lss not found should know the errno
-*/
-
-void	msg(int i)
-{
-	if (i == SIGQUIT)
-		printf("Quit\n");
-}
 
 int	check_if_path(t_mini_cmd *cmd)
 {
@@ -48,37 +30,46 @@ int	check_if_path(t_mini_cmd *cmd)
 	return (cmd->tools.f_path);
 }
 
-void	check_path(t_mini_cmd *cmd)
+static void	search_path_loop(t_mini_cmd *cmd, int i)
 {
-	int		i;
 	char	*str1;
 	char	*str2;
 	char	*str3;
 
+	str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
+	str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name); 
+	if (access(str2, F_OK) == 0)
+	{
+		str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+		free_ptr((void **)&cmd->exe_tools.cmd_name);
+		cmd->exe_tools.cmd_name = ft_strdup(str3);
+		cmd->tools.y_cmd = 1;
+		free_ptr((void **)&str1);
+		free_ptr((void **)&str2);
+		free_ptr((void **)&str3);
+		cmd->tools.found_path = 1;
+	}
+	else
+		cmd->tools.y_cmd = 0;
+	if (str1)
+		free(str1);
+	if (str2)
+		free(str2);
+}
+
+void	check_path(t_mini_cmd *cmd)
+{
+	int		i;
+
+	cmd->tools.found_path = 0;
 	i = -1;
 	if (cmd->main->path)
 	{
 		while (cmd->main->path_split[++i])
 		{
-			str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
-			str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-			if (access(str2, F_OK) == 0)
-			{
-				str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-				free_ptr((void **)&cmd->exe_tools.cmd_name);
-				cmd->exe_tools.cmd_name = ft_strdup(str3);
-				cmd->tools.y_cmd = 1;
-				free(str1);
-				free(str2);
-				free (str3);
+			search_path_loop(cmd, i);
+			if (cmd->tools.found_path == 1)
 				break ;
-			}
-			else
-				cmd->tools.y_cmd = 0;
-			if (str1)
-				free(str1);
-			if (str2)
-				free(str2);
 		}
 	}
 	else
