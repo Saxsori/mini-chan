@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 12:39:59 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:53:56 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	search_path_loop(t_mini_cmd *cmd, int i)
 	char	*str3;
 
 	str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
-	str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name); 
+	str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
 	if (access(str2, F_OK) == 0)
 	{
 		str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);

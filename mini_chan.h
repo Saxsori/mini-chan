@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 12:10:26 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 12:15:31 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:40:08 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,17 @@ void			init_expand_tools(t_expand_tools *exp_tools, \
 void			init_mini_pipe(t_mini_pipe *p_tool);
 void			init_mini_cmd_loop(t_shell_chan *main);
 void			init_null_parse(t_null_parse *n_parse);
+void			init_predir(t_redir_parse *p_redir);
+void			init_predir_arrays(t_redir_parse *p_redir);
+void			init_loop_p_redir(t_mini_cmd *cmd, int i);
+void			init_mini_redir_tools(t_mini_redir *redir);
+void			init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i);
+void			init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index);
+void			init_cmd_tools(t_mini_cmd *cmd);
+void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
+void			init_mini_cmd_loop(t_shell_chan *main);
+void			init_mini_pipe(t_mini_pipe *p_tool);
+void			init_first_redir(t_mini_cmd *cmd);
 
 /******************* MINI ERRORMNG & MEMNG *******************/
 void			squaredstr_free(char **array);
@@ -268,6 +279,10 @@ void			free_mini_envar(t_shell_chan *main);
 void			free_shell_chan_mem(t_shell_chan *main);
 void			free_ptr(void **ptr);
 void			errmsg(char *cmd, char *msg);
+void			free_predir(t_mini_cmd *cmd);
+void			free_redir(t_mini_cmd *cmd);
+void			free_ptr(void **ptr);
+void			free_mini_chan(t_shell_chan *main);
 
 /*******************      CTRL & SIG       *******************/
 void			ctrl_d(t_shell_chan *main);
@@ -446,6 +461,9 @@ void			replace_tabbing_spaces(char	**split);
 void			redir_init_fd(t_mini_cmd *cmd);
 void			redir_heredoc_loop(t_mini_cmd *cmd);
 void			redir_sign(t_mini_cmd *cmd, int i);
+void			run_one_redir(t_shell_chan *main);
+int				check_redir_heredoc(t_mini_cmd *cmd);
+int				check_redir_flag(t_mini_cmd *cmd);
 
 /*******************    MINI_REDIR_EXE   ******************/
 

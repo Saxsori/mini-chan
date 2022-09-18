@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:19 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 12:24:38 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:00:12 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,7 @@ int	run_cmd(t_shell_chan *main)
 	if (main->cmd_num == 1)
 	{
 		if (main->cmd_table->tools.y_redir)
-		{
-			if (!check_redir_flag(main->cmd_table))
-			{
-				if (main->path)
-					redir(&main->cmd_table[0]);
-				else
-				{
-					errmsg(main->cmd_table[0].name, NO_F_DIR);
-					g_status = 127;
-				}
-			}
-			else
-			{
-				if (!check_redir_heredoc(main->cmd_table))
-				{
-					if (main->path)
-						redir_heredoc(&main->cmd_table[0]);
-					else
-					{
-						errmsg(main->cmd_table[0].name, NO_F_DIR);
-						g_status = 127;
-					}
-				}
-				else
-					printf("SYNTAX ERROR\n");
-			}
-		}
+			run_one_redir(main);
 		else if (is_command(main->cmd_table[0].name))
 		{
 			g_status = run_builtn(&main->cmd_table[0]);

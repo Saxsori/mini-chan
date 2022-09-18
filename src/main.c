@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 12:05:27 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:45:04 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,31 @@ int	g_status;
 ? 		first_cmd_split .. split pipes only and fill variables
 
 ?? to print the redir (for debug)
-?
-
+		int k;
+		int i;
+		i = -1;
+		while (++i < main->cmd_num)
+		{
+			if (main->cmd_table[i].tools.y_redir)
+			{
+				printf("command ----> (%s)\n", main->cmd_table[i].redir.command);
+				k = -1;
+				if (main->cmd_table[i].redir.redir_tools.num_arg)
+				{
+					while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
+						printf("arg ----> (%s)\n", main->cmd_table[i].redir.arguments[k]);
+				}
+				else
+					printf("no arg\n");
+				k = -1;
+				while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
+					printf("redir ----> (%s)\n", main->cmd_table[i].redir.redir[k]);
+				printf("redir num %d\n", main->cmd_table[i].redir.redir_tools.num_redir);
+				k = -1;
+				while (++k < main->cmd_table[i].redir.redir_tools.num_file)
+					printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);
+			}
+		}
 */
 int	find_command(t_shell_chan *main)
 {
@@ -56,31 +79,6 @@ int	find_command(t_shell_chan *main)
 		remove_quote(main);
 		check_isbuiltin(main);
 		split_redir(main);
-		// int k;
-		// int i;
-		// i = -1;
-		// while (++i < main->cmd_num)
-		// {
-		// 	if (main->cmd_table[i].tools.y_redir)
-		// 	{
-		// 		printf("command ----> (%s)\n", main->cmd_table[i].redir.command);
-		// 		k = -1;
-		// 		if (main->cmd_table[i].redir.redir_tools.num_arg)
-		// 		{
-		// 			while (++k < main->cmd_table[i].redir.redir_tools.num_arg + 1)
-		// 				printf("arg ----> (%s)\n", main->cmd_table[i].redir.arguments[k]);
-		// 		}
-		// 		else
-		// 			printf("no arg\n");
-		// 		k = -1;
-		// 		while (++k < main->cmd_table[i].redir.redir_tools.num_redir)
-		// 			printf("redir ----> (%s)\n", main->cmd_table[i].redir.redir[k]);
-		// 		printf("redir num %d\n", main->cmd_table[i].redir.redir_tools.num_redir);
-		// 		k = -1;
-		// 		while (++k < main->cmd_table[i].redir.redir_tools.num_file)
-		// 			printf("files ----> (%s)\n", main->cmd_table[i].redir.files[k]);
-		// 	}
-		// }
 		split_command(main);
 		if (main->exit_status == 2)
 			return (2);

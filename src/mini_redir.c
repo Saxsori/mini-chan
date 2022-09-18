@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 11:44:34 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:34:21 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	redir_exe(t_mini_cmd *cmd)
 {
-	if (cmd->redir.command[0] == '\0' && cmd->tools.y_cmd == 1)
+	if (cmd->redir.command[0] == '\0')
 		cmd->tools.y_cmd = 3;
 	else
 		path_finder(cmd);
@@ -31,7 +31,7 @@ void	redir_exe(t_mini_cmd *cmd)
 			errmsg(cmd->redir.command, NO_F_DIR);
 			exit(127);
 		}
-		if (errno == 13 && cmd->tools.y_cmd == 1)
+		else if (errno == 13 && cmd->tools.y_cmd == 1)
 		{
 			errmsg(cmd->redir.arguments[0], PER_ERR);
 			exit(126);

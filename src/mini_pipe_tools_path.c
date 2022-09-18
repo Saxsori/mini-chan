@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 12:49:33 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:52:52 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ void	path_finder(t_mini_cmd *cmd)
 	else
 	{
 		cmd->tools.f_path = check_path_npipe(cmd, command);
-		if(cmd->tools.f_path == 1)
+		if (cmd->tools.f_path == 1)
 			cmd->cmd_path = ft_strdup(command);
-
 	}
 	if (cmd->tools.f_path == 0)
 		path_finder_split(cmd, command);

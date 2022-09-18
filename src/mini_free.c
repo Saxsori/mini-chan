@@ -6,65 +6,11 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:29:06 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 12:23:03 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:21:58 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
-
-void	squaredstr_free(char **array)
-{
-	int		i;
-
-	i = -1;
-	while (array[++i])
-	{
-		free(array[i]);
-	}
-	free(array);
-}
-
-void	squaredint_free(int **array, int len)
-{
-	int		i;
-
-	i = -1;
-	while (++i < len)
-		free(array[i]);
-	free(array);
-}
-
-void	free_ptr(void **ptr)
-{
-	free(*ptr);
-	*ptr = NULL;
-}
-
-void	free_predir(t_mini_cmd *cmd)
-{
-	if (cmd->tools.p_redir.r_index)
-		free_ptr((void **)&cmd->tools.p_redir.r_index);
-	if (cmd->tools.p_redir.r_valid)
-		free_ptr((void **)&cmd->tools.p_redir.r_valid);
-}
-
-void	free_redir(t_mini_cmd *cmd)
-{
-	if (cmd->redir.command)
-		free_ptr((void **)&cmd->redir.command);
-	if (cmd->redir.arguments)
-		squaredstr_free(cmd->redir.arguments);
-	if (cmd->redir.files)
-		squaredstr_free(cmd->redir.files);
-	if (cmd->redir.redir)
-		squaredstr_free(cmd->redir.redir);
-	if (cmd->redir.redir_tools.r_pos)
-		free_ptr((void **)&cmd->redir.redir_tools.r_pos);
-	if (cmd->redir.redir_tools.split)
-		squaredstr_free(cmd->redir.redir_tools.split);
-	if (cmd->redir.redir_tools.fd)
-		squaredint_free(cmd->redir.redir_tools.fd, 2);
-}
 
 void	free_cmd_tools(t_mini_cmd *cmd)
 {
@@ -149,21 +95,4 @@ void	free_mini_envar(t_shell_chan *main)
 		free(node);
 		node = traversal;
 	}
-}
-
-void	free_mini_chan(t_shell_chan *main)
-{
-	free_mini_envar(main);
-}
-
-void	ft_exit(t_shell_chan *main, int	status)
-{
-	// rl_clear_history();
-	if (main->path_split)
-		squaredstr_free(main->path_split);
-	if (main->path)
-		free_ptr((void **)&main->path);
-	free_shell_chan_mem(main);
-	free_mini_chan(main);
-	exit(status);
 }
