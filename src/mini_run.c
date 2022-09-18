@@ -6,50 +6,15 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:19 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 06:13:28 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:58:03 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_chan.h"
 
 /*
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// {
-	// 	if (!is_command(main->cmd_table[i].name))
-	// 	{
-	// 		execute_tools(&main->cmd_table[i]);
-	// 		main->cmd_table[i].y_exe = 1;
-	// 	}
-	// 	else if (is_command(main->cmd_table[i].name))
-	// 	{
-	// 		main->cmd_table[i].y_exe = 0;
-			
-	// 	}
-	// }
-		// i = -1;
-		// printf("lo here\n");
-		// while (++i < main->cmd_num)
-		// {
-		// 	if (is_command(main->cmd_table[i].name))
-		// 	{
-		// 		printf("b %d\n", i);
-		// 		printf("b %s\n", main->cmd_table[i].name);
-		// 		k = -1;
-		// 		while (++k < main->cmd_table[i].tools.arg_num)
-		// 			printf("b %s\n", main->cmd_table[i].arguments[k]);
-		// 	}
-		// 	else if (!is_command(main->cmd_table[i].name))
-		// 	{
-		// 		printf("e %d\n", i);
-		// 		execute_tools(&main->cmd_table[i]);
-		// 		k = -1;
-		// 		while (++k < main->cmd_table[i].exe_tools.arg_num)
-		// 			printf("e %s\n", main->cmd_table[i].exe_tools.arguments[k]);
-		// 	}
-		// }
 	! fix exit status and the error mangement for the execution
-	*/
+*/
 int	check_redir_heredoc(t_mini_cmd *cmd)
 {
 	int	i;
@@ -122,24 +87,15 @@ int	run_cmd(t_shell_chan *main)
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
-			// if (main->path)
-			// {
-				execute_tools(&main->cmd_table[0]);
-				mini_execute(&main->cmd_table[0]);
-			// }
-			// else
-			// {
-			// 	printf("mini-chan🌸: %s: No such file or directory\n", 
-			// 	main->cmd_table[0].name);
-			// 	g_status = 127;
-			// }
+			execute_tools(&main->cmd_table[0]);
+			mini_execute(&main->cmd_table[0]);
 			return (g_status);
 		}
 	}
 	if (main->cmd_num > 1)
 	{
-			pipe_tools(main);
-			ft_mini_pipe(main);
+		pipe_tools(main);
+		ft_mini_pipe(main);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 06:48:38 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:48:07 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,25 @@ void	redir_exe(t_mini_cmd *cmd)
 
 void	redir_sign(t_mini_cmd *cmd, int i)
 {
-	ft_putstr_fd("here\n", 2);
 	if (!ft_strncmp(cmd->redir.redir[i], ">", ft_strlen(">")))
 		redir_in(cmd, i);
 	else if (!ft_strncmp(cmd->redir.redir[i], "<", ft_strlen("<")))
 		redir_out(cmd, i);
 	else if (!ft_strncmp(cmd->redir.redir[i], ">>", ft_strlen(">>")))
 		redir_append(cmd, i);
+}
+
+void	f_redir(t_mini_cmd *cmd)
+{
+	if (!is_command(cmd->redir.command))
+	{
+		redir_exe(cmd);
+	}
+	else if (is_command(cmd->redir.command))
+	{
+		g_status = run_builtn(cmd);
+		exit(g_status);
+	}
 }
 
 void	redir(t_mini_cmd *cmd)
@@ -66,17 +78,7 @@ void	redir(t_mini_cmd *cmd)
 			redir_sign(cmd, i);
 		}
 		if (cmd->redir.command)
-		{
-			if (!is_command(cmd->redir.command))
-			{
-				redir_exe(cmd);
-			}
-			else if (is_command(cmd->redir.command))
-			{
-				g_status = run_builtn(cmd);
-				exit(g_status);
-			}
-		}
+			f_redir(cmd);
 		else
 			exit(0);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 08:28:05 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:43:14 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:54:17 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ void	redir_heredoc(t_mini_cmd *cmd)
 	cmd->redir.redir_tools.child = fork();
 	if (cmd->redir.redir_tools.child == 0)
 	{
-		printf("check2\n");
 		redir_heredoc_loop(cmd);
 		close(cmd->redir.redir_tools.fd[0][1]);
 		dup2(cmd->redir.redir_tools.fd[0][0], STDIN_FILENO);
 		close(cmd->redir.redir_tools.fd[0][0]);
-		write(2, "vooooooo\n", 10);
 		if (cmd->redir.command)
 			redir_exe(cmd);
 		else

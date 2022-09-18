@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 06:45:41 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:58:52 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_if_path(t_mini_cmd *cmd)
 	{
 		if (cmd->exe_tools.cmd_name[i] == '/')
 		{
-			cmd->tools.f_path = 1;		
+			cmd->tools.f_path = 1;
 			break ;
 		}
 	}
@@ -56,7 +56,7 @@ void	check_path(t_mini_cmd *cmd)
 	char	*str3;
 
 	i = -1;
-	if(cmd->main->path)
+	if (cmd->main->path)
 	{
 		while (cmd->main->path_split[++i])
 		{

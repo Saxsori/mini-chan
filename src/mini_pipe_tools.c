@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/18 06:41:17 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:59:35 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	path_finder(t_mini_cmd *cmd)
 }
 */
 
-void	path_finder_split(t_mini_cmd *cmd,char *command)
+void	path_finder_split(t_mini_cmd *cmd, char *command)
 {
 	int		i;
 	char	*str1;
@@ -122,9 +122,6 @@ void	pipe_tools(t_shell_chan *main)
 	while (++i < main->cmd_num)
 		path_finder(&main->cmd_table[i]);
 	init_fds(main);
-	// i = -1;
-	// while (++i < main->cmd_num)
-	// 	printf("path_finder %s\n", main->cmd_table[i].cmd_path);
 }
 
 void	ft_dup_fds(t_shell_chan *main, int i)

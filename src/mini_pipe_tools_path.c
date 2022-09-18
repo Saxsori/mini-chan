@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 06:06:51 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:56:07 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	path_finder(t_mini_cmd *cmd)
 {
 	char	*command;
 
-	// j = 0;
 	command = check_command(cmd);
 	if (!command)
 	{
