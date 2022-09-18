@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 11:06:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:07:51 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-// # include <valgrind/memcheck.h>
+# include <valgrind/memcheck.h>
 # include <sys/wait.h>
 # include "./libft/libft.h"
 # define BBLK "\e[1;30m"
