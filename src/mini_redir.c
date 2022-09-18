@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 11:40:03 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:44:34 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	redir_exe(t_mini_cmd *cmd)
 		path_finder(cmd);
 	if (execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
 	{
-		if ((errno == 2 && cmd->tools.f_path == 1) || (errno == 14 && cmd->tools.y_cmd != 3))
+		if ((errno == 2 && cmd->tools.f_path == 1) || \
+		(errno == 14 && cmd->tools.y_cmd != 3))
 		{
 			errmsg(cmd->redir.command, NO_F_DIR);
 			exit(127);

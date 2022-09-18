@@ -6,7 +6,7 @@
 /*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 11:06:17 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:49:33 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -484,7 +484,7 @@ void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
-void				path_finder_split(t_mini_cmd *cmd, char *command);
+void			path_finder_split(t_mini_cmd *cmd, char *command);
 void			ft_dup_fds(t_shell_chan *main, int i);
 void			ft_mini_pipe(t_shell_chan *main);
 void			pipe_redir(t_mini_cmd *cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:48:11 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 14:40:00 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:49:07 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ void	first_cmd_split(t_shell_chan *main)
 	do_pipe_split(main);
 	if (main->exit_status != 2)
 		return_invalid_pipe(main);
+}
+
+/*
+	// i = 0;
+	// while (i < cmd->exe_tools.arg_num)
+	// 	printf("arg '%s'\n", cmd->exe_tools.arguments[i++]);
+
+
+	todo 
+		126 exit code use access(x_ok)
+	todo
+		/bin/lss not found should know the errno
+*/
+
+void	msg(int i)
+{
+	if (i == SIGQUIT)
+		printf("Quit\n");
 }

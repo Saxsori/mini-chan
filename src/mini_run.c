@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:19 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 15:58:03 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 12:06:32 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	run_cmd(t_shell_chan *main)
 	{
 		if (main->cmd_table->tools.y_redir)
 		{
-			if (!main->cmd_table->redir.files)
-				printf("yes\n");
 			if (!check_redir_flag(main->cmd_table))
 			{
 				if (main->path)
@@ -73,7 +71,7 @@ int	run_cmd(t_shell_chan *main)
 					else
 					{
 						errmsg(main->cmd_table[0].name, NO_F_DIR);
-					g_status = 127;
+						g_status = 127;
 					}
 				}
 				else

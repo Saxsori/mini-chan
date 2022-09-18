@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_exe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:29:41 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 11:40:25 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:45:15 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	pipe_exe(t_shell_chan *main, int i)
 {
 	ft_dup_fds(main, i);
 	execute_tools(&main->cmd_table[i]);
-	if (main->cmd_table[i].exe_tools.cmd_name[0] == '\0' && main->cmd_table[i].tools.y_cmd == 1)
+	if (main->cmd_table[i].exe_tools.cmd_name[0] == '\0' && \
+	main->cmd_table[i].tools.y_cmd == 1)
 		main->cmd_table[i].tools.y_cmd = 3;
 	if (execve(main->cmd_table[i].cmd_path, \
 	main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 	{
-		if ((errno == 2 && main->cmd_table[i].tools.f_path == 1) || (errno == 14 && main->cmd_table[i].tools.y_cmd != 3))
+		if ((errno == 2 && main->cmd_table[i].tools.f_path == 1) || \
+		(errno == 14 && main->cmd_table[i].tools.y_cmd != 3))
 		{
 			errmsg(main->cmd_table[i].exe_tools.arguments[0], NO_F_DIR);
 			exit(127);
