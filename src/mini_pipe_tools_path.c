@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools_path.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:39:42 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 15:56:07 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:42:09 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

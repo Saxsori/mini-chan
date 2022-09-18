@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/18 15:59:35 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 11:42:12 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	path_finder_split(t_mini_cmd *cmd, char *command)
 		}
 	}
 	else
+	{
 		cmd->cmd_path = NULL;
+		cmd->tools.y_cmd = 0;
+	}
 }
 
 void	init_fds(t_shell_chan *main)
