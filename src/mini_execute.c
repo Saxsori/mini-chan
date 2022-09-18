@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 17:22:20 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 06:16:48 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	check_if_path(t_mini_cmd *cmd)
 	{
 		if (cmd->exe_tools.cmd_name[i] == '/')
 		{
-			cmd->tools.f_path = 1;
-			
+			cmd->tools.f_path = 1;		
 			break ;
 		}
 	}
@@ -57,28 +56,33 @@ void	check_path(t_mini_cmd *cmd)
 	char	*str3;
 
 	i = -1;
-	while (cmd->main->path_split[++i])
+	if(cmd->main->path)
 	{
-		str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
-		str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-		if (access(str2, F_OK) == 0)
+		while (cmd->main->path_split[++i])
 		{
-			str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
-			free_ptr((void **)&cmd->exe_tools.cmd_name);
-			cmd->exe_tools.cmd_name = ft_strdup(str3);
-			cmd->tools.y_cmd = 1;
-			free(str1);
-			free(str2);
-			free (str3);
-			break ;
+			str1 = (ft_strjoin(cmd->main->path_split[i], "/"));
+			str2 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+			if (access(str2, F_OK) == 0)
+			{
+				str3 = ft_strjoin(str1, cmd->exe_tools.cmd_name);
+				free_ptr((void **)&cmd->exe_tools.cmd_name);
+				cmd->exe_tools.cmd_name = ft_strdup(str3);
+				cmd->tools.y_cmd = 1;
+				free(str1);
+				free(str2);
+				free (str3);
+				break ;
+			}
+			else
+				cmd->tools.y_cmd = 0;
+			if (str1)
+				free(str1);
+			if (str2)
+				free(str2);
 		}
-		else
-			cmd->tools.y_cmd = 0;
-		if (str1)
-			free(str1);
-		if (str2)
-			free(str2);
 	}
+	else
+		cmd->exe_tools.cmd_name = NULL;
 }
 
 void	mini_execute_split(t_mini_cmd *cmd)
@@ -89,7 +93,7 @@ void	mini_execute_split(t_mini_cmd *cmd)
 	if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 	NULL) == -1)
 	{
-		if (errno == 2 && cmd->tools.f_path == 1)
+		if ((errno == 2 && cmd->tools.f_path == 1) || errno == 14)
 		{
 			errmsg(cmd->exe_tools.arguments[0], NO_F_DIR);
 			ft_exit(cmd->main, 127);

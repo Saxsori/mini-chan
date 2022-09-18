@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_chan.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 11:40:03 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 16:01:05 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 05:51:42 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -481,7 +481,7 @@ void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_tools(t_shell_chan *main);
 void			init_fds(t_shell_chan *main);
 void			path_finder(t_mini_cmd *cmd);
-int				path_finder_split(t_mini_cmd *cmd, int j, char *command);
+void				path_finder_split(t_mini_cmd *cmd, char *command);
 void			ft_dup_fds(t_shell_chan *main, int i);
 void			ft_mini_pipe(t_shell_chan *main);
 void			pipe_redir(t_mini_cmd *cmd);

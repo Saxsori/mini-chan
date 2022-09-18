@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe_exe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 11:29:41 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/17 17:11:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2022/09/18 06:11:26 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	pipe_exe(t_shell_chan *main, int i)
 	if (execve(main->cmd_table[i].cmd_path, \
 	main->cmd_table[i].exe_tools.arguments, NULL) == -1)
 	{
-		ft_putstr_fd(main->cmd_table[i].cmd_path,2);
-		ft_putstr_fd("\n",2);
-		ft_putstr_fd(ft_itoa(main->cmd_table[i].tools.y_cmd),2);
-		if (errno == 2 && main->cmd_table[i].tools.f_path == 1)
+		// ft_putstr_fd(ft_itoa(errno),2);
+		// ft_putstr_fd("\n",2);
+		// ft_putstr_fd(ft_itoa(main->cmd_table[i].tools.y_cmd),2);
+		if ((errno == 2 && main->cmd_table[i].tools.f_path == 1) || errno == 14)
 		{
 			errmsg(main->cmd_table[i].exe_tools.arguments[0], NO_F_DIR);
 			exit(127);

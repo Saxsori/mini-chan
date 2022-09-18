@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:19 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 13:34:51 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 06:13:28 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ int	check_redir_flag(t_mini_cmd *cmd)
 
 int	run_cmd(t_shell_chan *main)
 {
-	// int	i;
-
-	// i = 0;
 	get_path(main);
 	if (main->cmd_num == 1)
 	{
@@ -94,15 +91,25 @@ int	run_cmd(t_shell_chan *main)
 				printf("yes\n");
 			if (!check_redir_flag(main->cmd_table))
 			{
-				// printf("check redir %d \n", check_redir_flag(main->cmd_table));
-				redir(&main->cmd_table[0]);
+				if (main->path)
+					redir(&main->cmd_table[0]);
+				else
+				{
+					errmsg(main->cmd_table[0].name, NO_F_DIR);
+					g_status = 127;
+				}
 			}
 			else
 			{
 				if (!check_redir_heredoc(main->cmd_table))
 				{
-					// printf("check redir heredoc  %d \n", check_redir_flag(main->cmd_table));
-					redir_heredoc(&main->cmd_table[0]);
+					if (main->path)
+						redir_heredoc(&main->cmd_table[0]);
+					else
+					{
+						errmsg(main->cmd_table[0].name, NO_F_DIR);
+					g_status = 127;
+					}
 				}
 				else
 					printf("SYNTAX ERROR\n");
@@ -110,31 +117,29 @@ int	run_cmd(t_shell_chan *main)
 		}
 		else if (is_command(main->cmd_table[0].name))
 		{
-			// printf("isredir %d\n", main->cmd_table[0].tools.y_redir);
 			g_status = run_builtn(&main->cmd_table[0]);
 			return (g_status);
 		}
 		else if (!is_command(main->cmd_table[0].name))
 		{
-			// TODO : if (!main->path)
-			if (main->path)
-			{
+			// if (main->path)
+			// {
 				execute_tools(&main->cmd_table[0]);
 				mini_execute(&main->cmd_table[0]);
-			}
-			else
-			{
-				printf("mini-chan🌸: %s: No such file or directory\n", \
-				main->cmd_table[0].name);
-				g_status = 127;
-			}
+			// }
+			// else
+			// {
+			// 	printf("mini-chan🌸: %s: No such file or directory\n", 
+			// 	main->cmd_table[0].name);
+			// 	g_status = 127;
+			// }
 			return (g_status);
 		}
 	}
 	if (main->cmd_num > 1)
 	{
-		pipe_tools(main);
-		ft_mini_pipe(main);
+			pipe_tools(main);
+			ft_mini_pipe(main);
 	}
 	return (0);
 }
