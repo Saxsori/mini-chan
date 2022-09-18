@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 13:17:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 13:22:02 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:54:20 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	free_ptr(void **ptr)
 	*ptr = NULL;
 }
 
+	// rl_clear_history();
 void	ft_exit(t_shell_chan *main, int status)
 {
-	// rl_clear_history();
 	if (main->path_split)
 		squaredstr_free(main->path_split);
 	if (main->path)

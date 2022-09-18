@@ -12,11 +12,5 @@
    fun:add_history
 }
 
-{
-   exec suppresion
-   Memcheck:Leak
-   ...
-   fun:execve
-}
 
 

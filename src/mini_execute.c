@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:13:22 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 12:53:56 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:44:04 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,22 @@ void	mini_execute_split(t_mini_cmd *cmd)
 		ft_exit(cmd->main, 0);
 	if (execve(cmd->exe_tools.cmd_name, cmd->exe_tools.arguments, \
 	NULL) == -1)
-	{
-		if ((errno == 2 && cmd->tools.f_path == 1) || errno == 14)
+	{	
+		execute_err(cmd);
+	}
+}
+/*
+		if ((errno == 2 && cmd->tools.f_path == 1) || \
+		(errno == 14 && cmd->tools.y_cmd != 3) || \
+		(errno == 2 && cmd->tools.y_cmd == 1))
 		{
-			errmsg(cmd->exe_tools.arguments[0], NO_F_DIR);
+			if (cmd->tools.y_cmd == 0 && cmd->main->no_path == 0)
+				errmsg(cmd->redir.arguments[0], NO_CMD);
+			else
+				errmsg(cmd->exe_tools.arguments[0], NO_F_DIR);
 			ft_exit(cmd->main, 127);
 		}
-		if (errno == 13 && cmd->tools.y_cmd)
+		else if (errno == 13 && cmd->tools.y_cmd == 1)
 		{
 			errmsg(cmd->exe_tools.arguments[0], PER_ERR);
 			ft_exit(cmd->main, 126);
@@ -99,8 +108,7 @@ void	mini_execute_split(t_mini_cmd *cmd)
 			errmsg(cmd->exe_tools.arguments[0], NO_CMD);
 			ft_exit(cmd->main, 127);
 		}
-	}
-}
+		*/
 
 int	mini_execute(t_mini_cmd *cmd)
 {
@@ -109,8 +117,12 @@ int	mini_execute(t_mini_cmd *cmd)
 	cmd->tools.child = -1;
 	status = 0;
 	cmd->tools.f_path = check_if_path(cmd);
-	if (cmd->tools.f_path == 0)
+	if (cmd->tools.f_path == 0 && cmd->exe_tools.cmd_name[0] != '\0')
 		check_path(cmd);
+	else if (cmd->main->no_path == 0 && cmd->exe_tools.cmd_name[0] == '\0')
+		cmd->tools.y_cmd = 3;
+	else
+		cmd->tools.y_cmd = 1;
 	cmd->tools.child = fork();
 	if (cmd->tools.child == 0)
 		mini_execute_split(cmd);

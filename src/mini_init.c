@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:50:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 13:15:19 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 14:48:24 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_shell_chan(t_shell_chan *main)
 	main->e_parse.new_size = 0;
 	main->e_parse.null_num = 0;
 	main->f_pwd = 0;
+	main->no_path = 0;
 	init_mini_pipe(&main->pipe_tools);
 	init_null_parse(&main->n_parse);
 }

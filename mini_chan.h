@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 12:10:26 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 13:40:08 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:40:24 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ typedef struct shell_chan
 	char			*path;
 	char			**path_split;
 	int				f_pwd;
+	int				no_path;
 	t_mini_pipe		pipe_tools;
 }	t_shell_chan;
 
@@ -263,7 +264,8 @@ void			init_predir_arrays(t_redir_parse *p_redir);
 void			init_loop_p_redir(t_mini_cmd *cmd, int i);
 void			init_mini_redir_tools(t_mini_redir *redir);
 void			init_mini_redir(t_mini_redir *redir, t_shell_chan *main, int i);
-void			init_expand_tools(t_expand_tools *exp_tools, t_shell_chan *main, int index);
+void			init_expand_tools(t_expand_tools *exp_tools, \
+t_shell_chan *main, int index);
 void			init_cmd_tools(t_mini_cmd *cmd);
 void			init_mini_cmd(t_mini_cmd *cmd, t_shell_chan *main);
 void			init_mini_cmd_loop(t_shell_chan *main);
@@ -497,6 +499,7 @@ void			tst_redir(t_shell_chan *main, char *av[], int ac, int k);
 void			tst_redir_main(t_shell_chan *main, char *av[], int ac);
 void			get_path(t_shell_chan *main);
 int				mini_execute(t_mini_cmd *cmd);
+void			execute_err(t_mini_cmd *cmd);
 
 /*******************    MINI_EXECUTE_TOOLS(PIPES)   ******************/
 void			mini_exe_pipe(t_shell_chan *main, int i);
@@ -511,6 +514,7 @@ void			close_fds(t_shell_chan *main, int i);
 void			split_pipe(t_shell_chan *main, int i);
 void			mini_exe_pipe(t_shell_chan *main, int i);
 void			pipe_exe(t_shell_chan *main, int i);
+void			pipe_exe_err(t_shell_chan *main, int i);
 /*******************    MINI_EXIT  ******************/
 void			pre_exit_arg(t_mini_cmd *cmd);
 
