@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 07:17:42 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/17 13:21:00 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 06:48:38 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,23 @@ void	redir_exe(t_mini_cmd *cmd)
 {
 	if (cmd->redir.command)
 		path_finder(cmd);
-	if ((access(cmd->cmd_path, X_OK) == -1) && \
-	(access(cmd->cmd_path, F_OK) == 0))
-	{
-		errmsg(cmd->cmd_path, PER_ERR);
-		exit(126);
-	}
 	if (execve(cmd->cmd_path, cmd->redir.arguments, NULL) == -1)
 	{
-		if (errno == 2 && cmd->tools.f_path == 1)
+		if ((errno == 2 && cmd->tools.f_path == 1) || errno == 14)
+		{
 			errmsg(cmd->redir.command, NO_F_DIR);
+			exit(127);
+		}
+		if (errno == 13 && cmd->tools.y_cmd == 1)
+		{
+			errmsg(cmd->redir.arguments[0], PER_ERR);
+			exit(126);
+		}
 		else
-			errmsg(cmd->redir.command, NO_CMD);
-		exit(127);
+		{
+			errmsg(cmd->redir.arguments[0], NO_CMD);
+			exit(127);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 08:00:35 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/09/18 05:52:41 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 06:41:17 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,18 @@ void	path_finder_split(t_mini_cmd *cmd,char *command)
 				cmd->cmd_path = ft_strdup(str2);
 				free(str1);
 				free(str2);
+				cmd->tools.y_cmd = 1;
 				break ;
 			}
-			if (str1)
+			else
+			{
+				cmd->tools.y_cmd = 0;
 				free (str1);
-			if (str2)
 				free (str2);
+			}
 		}
 	}
-	else 
+	else
 		cmd->cmd_path = NULL;
 }
 

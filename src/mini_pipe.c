@@ -6,7 +6,7 @@
 /*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 05:53:40 by balnahdi         ###   ########.fr       */
+/*   Updated: 2022/09/18 07:06:19 by balnahdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	mini_exe_pipe(t_shell_chan *main, int i)
 	}
 	else
 	{
-		ft_dup_fds(main, i);
+		if (cmd_strncmp(main->cmd_table[i].name, \
+		"exit", ft_strlen(main->cmd_table[i].name)))
+			ft_dup_fds(main, i);
 		g_status = run_builtn(&main->cmd_table[i]);
 		exit(g_status);
 	}
