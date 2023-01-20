@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_pre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:11:56 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 01:29:25 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 void	find_istart(t_env_info *env_info)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:19:49 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 07:35:46 by balnahdi         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 void	mini_exe_pipe(t_shell_chan *main, int i)
 {

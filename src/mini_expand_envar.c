@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_envar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 00:00:15 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 11:04:52 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 char	*get_env_name(t_env_info *env_info)
 {

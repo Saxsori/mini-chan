@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_redir_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 07:56:21 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/14 08:59:48 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 /*
 -> to check if this index is a redir pos 

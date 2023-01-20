@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:08:40 by dfurneau          #+#    #+#             */
-/*   Updated: 2022/08/02 08:22:23 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>

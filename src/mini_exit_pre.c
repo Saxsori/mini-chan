@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exit_pre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:52:21 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/16 13:51:50 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:19:16 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../mini_chan.h"
+#include"../incl/mini_chan.h"
 
 void	free_previous_parts(t_mini_cmd *cmd)
 {

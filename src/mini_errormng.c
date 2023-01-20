@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_errormng.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:07:16 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 13:50:05 by balnahdi         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 // void	mini_errmng(t_shell_chan *main, int op)
 // {

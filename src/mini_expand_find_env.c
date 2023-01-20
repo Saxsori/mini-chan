@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_expand_find_env.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 05:10:32 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/15 05:11:07 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 int	find_env_first_node(t_env_info *env_info, t_mini_envar *temp)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cmd2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaljaber <aaljaber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:39:29 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 10:53:12 by aaljaber         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 		// printf(BRED"export: no option: %s\n", cmd->option[0]);
 int	mini_export(t_mini_cmd *cmd)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init_small_parse.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 13:11:43 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 13:15:45 by balnahdi         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 /****************************  PARSE_NULL_ARG  ******************************/
 void	init_null_parse(t_null_parse *n_parse)

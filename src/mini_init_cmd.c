@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 13:08:03 by balnahdi          #+#    #+#             */
-/*   Updated: 2022/09/18 13:40:22 by balnahdi         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 /****************************  CMD_TABLE  ***********************************/
 void	init_cmd_tools(t_mini_cmd *cmd)

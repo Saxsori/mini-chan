@@ -1,4 +1,4 @@
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

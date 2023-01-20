@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balnahdi <balnahdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaljaber <aaljaber@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:11:53 by aaljaber          #+#    #+#             */
-/*   Updated: 2022/09/18 13:45:04 by balnahdi         ###   ########.fr       */
+/*   Updated: 2023/01/21 00:18:46 by aaljaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_chan.h"
+#include "../incl/mini_chan.h"
 
 int	g_status;
 
@@ -126,7 +126,7 @@ int	main(int argc, char **argv, char **env)
 		if (main.exit_status == 2)
 			g_status = main.exit_status;
 		re_init_shell_chan(&main);
-		VALGRIND_DO_LEAK_CHECK ;
+		// VALGRIND_DO_LEAK_CHECK ;
 	}
 	return (0);
 }
